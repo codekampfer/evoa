@@ -1,8 +1,8 @@
 import logo from '../../assets/logo.avif';
 
-export default function Navbar() {
+export default function Navbar({ isLoginPage }) {
   return (
-    <header className="bg-[#003F91] text-white">
+<header className={`${isLoginPage ? "fixed top-0 left-0 w-full z-10" : ""} bg-[#003F91] text-white`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
