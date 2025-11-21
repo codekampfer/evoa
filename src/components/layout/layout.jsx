@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <div className={isLoginPage ? "bg-white h-screen" : "bg-gray-100 min-h-screen"}>
       <Navbar isLoginPage={isLoginPage} />
-      <main className={isLoginPage ? "flex flex-col h-screen pt-[56px]" : ""}>
+      <main className={isLoginPage ? "flex flex-col h-screen " : ""}>
         <Outlet />
       </main>
     </div>
