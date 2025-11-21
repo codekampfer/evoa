@@ -1,160 +1,134 @@
-function App() {
+// landing.jsx
+export default function Landing() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center p-6">
-      {/* Main Card - Full Width */}
-      <div className="w-full bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
-        {/* Header Section */}
-        <div className="bg-gradient-to-r from-purple-900 to-indigo-900 p-8 text-white border-b border-gray-700">
-          <div className="flex items-center justify-center mb-4">
-            <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+    <div className="min-h-screen bg-gray-100">
+      {/* Top bar / navbar */}
+      <header className="bg-[#003F91] text-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-bold">
+              <span className="tracking-tight">EV</span>
+            </div>
+            <span className="text-lg font-semibold tracking-wide">EVO-A</span>
           </div>
-          <h1 className="text-4xl font-bold text-center mb-2">
-            EVOA Project
-          </h1>
-          <p className="text-center text-purple-200 text-lg">
-            Successfully Created & Ready to Start! 🚀
-          </p>
-        </div>
 
-        {/* Content Section */}
-        <div className="p-8">
-          {/* Success Message */}
-          <div className="bg-green-900/30 border-l-4 border-green-500 p-4 mb-6 rounded">
-            <div className="flex items-center">
-              <svg className="w-6 h-6 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <p className="text-green-300 font-semibold">
-                Your project has been initialized successfully!
-              </p>
+          {/* Hamburger icon */}
+          <button
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-white/0 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white md:hidden"
+            aria-label="Open menu"
+          >
+            <span className="block h-0.5 w-5 bg-white mb-1" />
+            <span className="block h-0.5 w-5 bg-white mb-1" />
+            <span className="block h-0.5 w-5 bg-white" />
+          </button>
+
+          {/* Desktop nav placeholder (you can add links later) */}
+          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+            <button className="rounded-full border border-white/60 px-4 py-1.5 text-xs tracking-wide hover:bg-white/10">
+              For Startups
+            </button>
+            <button className="rounded-full border border-white/60 px-4 py-1.5 text-xs tracking-wide hover:bg-white/10">
+              For Investors
+            </button>
+            <button className="rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#003F91]">
+              Sign in
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* MAIN */}
+      <main className="mx-auto max-w-6xl bg-white px-4 pb-16 pt-10 md:mt-6 md:rounded-3xl md:px-10 md:pb-20">
+        {/* Hero section */}
+        <section className="md:flex md:items-center md:justify-between md:gap-10">
+          {/* Text */}
+          <div className="md:max-w-xl">
+            <h1 className="text-center text-3xl font-extrabold leading-tight text-gray-900 md:text-left md:text-4xl lg:text-5xl">
+              Join the Future of
+              <br />
+              Startup-Investor
+              <br />
+              Ecosystem
+            </h1>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
+              <button className="w-full rounded-full border border-gray-900 px-6 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-50 sm:w-auto">
+                Create Your Account
+              </button>
+              <button className="w-full rounded-full bg-[#003F91] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#012f6b] sm:w-auto">
+                Sign in with email
+              </button>
             </div>
           </div>
 
-          {/* Tech Stack Section */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
-              <svg className="w-6 h-6 mr-2 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-              </svg>
-              Tech Stack
+          {/* Optional hero image on desktop */}
+          <div className="mt-10 hidden flex-1 justify-end md:flex">
+            <div className="relative h-64 w-full max-w-sm">
+              <div className="absolute inset-0 rounded-3xl border border-dashed border-gray-300" />
+              <img
+                src="https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Startup team collaborating"
+                className="relative z-10 h-full w-full rounded-3xl object-cover p-3"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2 */}
+        <section className="mt-14 grid gap-8 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#003F91]">
+              EVOA is Redefining Startup Investments
             </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Vite */}
-              <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 p-6 rounded-xl border border-purple-700/50 hover:border-purple-500 transition-all">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
-                    V
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white">Vite</h3>
-                    <p className="text-sm text-purple-300">v6.0+</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-300">Lightning Fast Build Tool</p>
-              </div>
+            <p className="mt-4 text-sm leading-relaxed text-gray-700">
+              EVOA is dedicated to reshaping the landscape of startup investments. Our platform offers an
+              innovative approach that revolutionizes how entrepreneurs connect with potential investors.
+              We are committed to fostering a vibrant ecosystem that fuels the growth of groundbreaking
+              ideas and visionary startups.
+            </p>
+          </div>
 
-              {/* React */}
-              <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 p-6 rounded-xl border border-blue-700/50 hover:border-blue-500 transition-all">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
-                    R
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white">React</h3>
-                    <p className="text-sm text-blue-300">v18.3+</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-300">UI Library</p>
-              </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative h-44 w-40">
+              <div className="absolute inset-0 rounded-3xl border border-dashed border-gray-300" />
+              <img
+                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Pitch meeting"
+                className="relative z-10 h-full w-full rounded-3xl object-cover p-2"
+              />
+            </div>
+          </div>
+        </section>
 
-              {/* Tailwind CSS */}
-              <div className="bg-gradient-to-br from-cyan-900/50 to-cyan-800/30 p-6 rounded-xl border border-cyan-700/50 hover:border-cyan-500 transition-all">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-cyan-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
-                    T
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white">Tailwind CSS</h3>
-                    <p className="text-sm text-cyan-300">v4.0+</p>
-                  </div>
+        {/* Section 3 */}
+        <section className="mt-16">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+              Why EVO-A?
+            </p>
+            <h2 className="mt-3 text-lg font-semibold text-gray-900 md:text-2xl">
+              Revolutionizing Startup Investments &amp; Networking
+            </h2>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <div className="w-full max-w-md rounded-3xl border border-gray-200 p-3 shadow-sm">
+              {/* Phone mockup */}
+              <div className="rounded-[2rem] bg-black p-2">
+                <div className="overflow-hidden rounded-[1.6rem] bg-white">
+                  <img
+                    src="https://images.pexels.com/photos/1181352/pexels-photo-1181352.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Empowering Startup Success"
+                    className="h-48 w-full object-cover"
+                  />
                 </div>
-                <p className="text-sm text-gray-300">Utility-First CSS</p>
               </div>
             </div>
           </div>
-
-          {/* Features Section */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-4">Features Included</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex items-center text-gray-300">
-                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Hot Module Replacement (HMR)
-              </div>
-              <div className="flex items-center text-gray-300">
-                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                ESLint Configuration
-              </div>
-              <div className="flex items-center text-gray-300">
-                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Optimized Production Build
-              </div>
-              <div className="flex items-center text-gray-300">
-                <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Modern JavaScript Support
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Start Commands */}
-          <div className="bg-black/40 rounded-xl p-6 border border-gray-700">
-            <h3 className="font-bold text-white mb-3 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-              </svg>
-              Quick Start Commands
-            </h3>
-            <div className="space-y-2">
-              <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm border border-gray-700">
-                npm run dev <span className="text-gray-500"># Start development server</span>
-              </div>
-              <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm border border-gray-700">
-                npm run build <span className="text-gray-500"># Build for production</span>
-              </div>
-              <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm border border-gray-700">
-                npm run preview <span className="text-gray-500"># Preview production build</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="bg-gray-900/50 px-8 py-4 border-t border-gray-700">
-          <p className="text-center text-gray-400 text-sm">
-            Ready to build something amazing? Let's code! 💻✨
-          </p>
-        </div>
-      </div>
-
-      {/* Version Info Footer */}
-      <div className="absolute bottom-6 left-0 right-0 text-center">
-        <p className="text-gray-400 text-sm">
-          Powered by Vite ⚡ React ⚛️ Tailwind CSS 🎨
-        </p>
-      </div>
+        </section>
+      </main>
     </div>
-  )
+  );
 }
-
-export default App
