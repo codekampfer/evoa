@@ -11,7 +11,7 @@ export default function Login() {
 
 
       {/* Main Content with Hexagonal Pattern Background */}
-      <div className="flex-1 relative hex-pattern overflow-hidden flex items-start md:items-center justify-center">
+      <div className="flex-1 relative hex-pattern overflow-y-auto flex items-start md:items-center justify-center">
         <div className="relative z-10 w-full max-w-md mx-auto px-6 py-4 md:py-8">
           {/* EVO-A / login label */}
           <div className="mb-6">
