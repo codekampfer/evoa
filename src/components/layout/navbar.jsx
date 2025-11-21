@@ -1,12 +1,16 @@
+import logo from '../../assets/logo.avif';
+
 export default function Navbar() {
   return (
     <header className="bg-[#003F91] text-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-bold">
-            <span className="tracking-tight">EV</span>
-          </div>
+          <img 
+            src={logo} 
+            alt="EVO-A Logo" 
+            className="h-8 w-8 object-contain"
+          />
           <span className="text-lg font-semibold tracking-wide">EVO-A</span>
         </div>
 
