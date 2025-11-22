@@ -6,7 +6,7 @@ export default function Layout() {
   const isLoginPage = location.pathname === '/login';
 
   return (
-    <div className={isLoginPage ? "bg-white h-screen" : "bg-gray-100 min-h-screen"}>
+    <div className={isLoginPage ? "bg-[#0B1812] h-screen" : "bg-[#253D32] min-h-screen"}>
       <Navbar isLoginPage={isLoginPage} />
       <main className={isLoginPage ? "flex flex-col h-screen " : ""}>
         <Outlet />
