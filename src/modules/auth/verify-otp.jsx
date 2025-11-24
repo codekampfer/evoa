@@ -1,13 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
+import logo from "../../assets/logo.avif";
 
 export default function VerifyOTP() {
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const [imagesVisible, setImagesVisible] = useState(false);
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const navigate = useNavigate();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setImagesVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleVerify = () => {
     // Navigate to create new password page
@@ -44,57 +54,107 @@ export default function VerifyOTP() {
   };
 
   return (
-    <div className={`h-screen flex flex-col overflow-hidden transition-colors duration-300 ${
-      isDark 
-        ? 'bg-black' 
-        : 'bg-white'
+    <div className={`min-h-screen flex transition-colors duration-300 ${
+      isDark ? 'bg-black' : 'bg-white'
     }`}>
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className={`absolute top-20 right-20 w-72 h-72 rounded-full blur-3xl ${
-          isDark ? 'bg-white/5' : 'bg-black/5'
-        }`}></div>
-        <div className={`absolute bottom-20 left-20 w-96 h-96 rounded-full blur-3xl ${
-          isDark ? 'bg-white/3' : 'bg-black/3'
-        }`}></div>
+      {/* Left Side - Image Collage */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center p-4 pl-8 pr-2">
+          {/* Image Collage Container */}
+          <div className="relative w-full max-w-md h-[600px]">
+            {/* Image 1 - Top Left - Animates from top-left */}
+            <div className={`absolute top-0 left-0 w-48 h-48 transform -rotate-12 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 translate-y-0 opacity-100' 
+                : '-translate-x-full -translate-y-full opacity-0'
+            }`} style={{ transitionDelay: '0.1s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Startup meeting"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 2 - Center Large - Animates from bottom */}
+            <div className={`absolute top-16 left-20 w-64 h-80 transform rotate-6 shadow-2xl z-10 transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-full opacity-0'
+            }`} style={{ transitionDelay: '0.3s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=500"
+                alt="Team collaboration"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 3 - Bottom Right - Animates from right */}
+            <div className={`absolute bottom-0 right-0 w-52 h-52 transform rotate-12 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-full opacity-0'
+            }`} style={{ transitionDelay: '0.2s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Business growth"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 4 - Bottom Left - Animates from left */}
+            <div className={`absolute bottom-8 left-0 w-44 h-44 transform -rotate-6 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 opacity-100' 
+                : '-translate-x-full opacity-0'
+            }`} style={{ transitionDelay: '0.4s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Innovation"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 relative overflow-y-auto flex items-start md:items-center justify-center px-4 py-8">
-        <div className="relative z-10 w-full max-w-md mx-auto">
-          {/* Card Container */}
-          <div className={`backdrop-blur-sm border rounded-2xl p-8 md:p-10 shadow-2xl ${
+      {/* Right Side - Form */}
+      <div className="flex-1 flex items-center justify-center px-4 py-8 lg:pl-2 lg:pr-12">
+        <div className="w-full max-w-md">
+          {/* Logo/Brand */}
+          <div className="mb-6 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+              <img 
+                src={logo} 
+                alt="EVO-A Logo" 
+                className="h-12 w-12 object-contain"
+              />
+              <span className={`text-3xl font-bold tracking-wide ${
+                isDark ? 'text-white' : 'text-black'
+              }`}>EVO-A</span>
+            </div>
+            <h1 className={`text-2xl font-semibold mb-1 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Verify OTP Code
+            </h1>
+            <p className={`text-sm ${
+              isDark ? 'text-white/60' : 'text-black/60'
+            }`}>
+              We've sent a 4-digit code to <span className={`font-medium ${
+                isDark ? 'text-white' : 'text-black'
+              }`}>di*****@gmail.com</span>
+            </p>
+          </div>
+
+          {/* Form Container */}
+          <div className={`rounded-2xl p-6 ${
             isDark 
-              ? 'bg-black/40 border-white/20' 
-              : 'bg-white border-black/30'
+              ? 'bg-black/50 border border-white/10' 
+              : 'bg-white border border-black/10'
           }`}>
-            {/* Breadcrumb */}
-            <div className="mb-6">
-              <span className={`text-xs font-medium tracking-wider uppercase ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>EVO-A / login / forget password / verify OTP</span>
-            </div>
-
-            {/* Heading */}
-            <div className="mb-8 text-center">
-              <h1 className={`text-4xl md:text-5xl font-bold mb-3 leading-tight ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}>
-                Verify OTP Code
-              </h1>
-              <p className={`text-sm ${
-                isDark ? 'text-white/60' : 'text-gray-600'
-              }`}>
-                We've sent a 4-digit code to <span className={`font-medium ${
-                  isDark ? 'text-white' : 'text-black'
-                }`}>di*****@gmail.com</span>
-              </p>
-            </div>
-
-            {/* Form */}
-            <form className="space-y-6">
+            <form className="space-y-4">
               {/* OTP Input Fields */}
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-3 justify-center">
                 {otp.map((digit, index) => (
                   <input
                     key={index}
@@ -106,10 +166,10 @@ export default function VerifyOTP() {
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
                     onPaste={handlePaste}
-                    className={`w-16 h-16 md:w-20 md:h-20 text-center text-3xl font-bold rounded-xl border-2 focus:outline-none focus:ring-2 shadow-lg transition-all duration-300 ${
+                    className={`w-14 h-14 md:w-16 md:h-16 text-center text-2xl font-bold rounded-lg border focus:outline-none focus:ring-1 transition-all ${
                       isDark 
-                        ? 'bg-black/80 border-white/30 text-white focus:ring-white/50 focus:border-white hover:border-white/50' 
-                        : 'bg-white border-black/40 text-black focus:ring-black/50 focus:border-black hover:border-black/50'
+                        ? 'bg-black/80 border-white/30 text-white focus:ring-white/20 focus:border-white/50' 
+                        : 'bg-white border-black/40 text-black focus:ring-black/20 focus:border-black/50'
                     }`}
                   />
                 ))}
@@ -119,7 +179,7 @@ export default function VerifyOTP() {
               <button
                 type="button"
                 onClick={handleVerify}
-                className={`w-full font-bold py-4 rounded-xl text-base transition-all duration-300 shadow-lg hover:scale-[1.02] active:scale-[0.98] ${
+                className={`w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90' 
                     : 'bg-black text-white hover:bg-black/90'
@@ -128,24 +188,30 @@ export default function VerifyOTP() {
                 Verify Code
               </button>
             </form>
+          </div>
 
-            {/* Resend OTP Link */}
-            <div className="mt-8 text-center">
-              <p className={`text-sm ${
-                isDark ? 'text-white/60' : 'text-gray-600'
-              }`}>
-                Didn't receive code?{' '}
-                <a href="#" className={`font-semibold transition-colors hover:underline ${
+          {/* Resend OTP Link */}
+          <div className={`mt-4 text-center py-4 rounded-2xl ${
+            isDark 
+              ? 'bg-black/50 border border-white/10' 
+              : 'bg-white border border-black/10'
+          }`}>
+            <p className={`text-sm ${
+              isDark ? 'text-white/60' : 'text-black/60'
+            }`}>
+              Didn't receive code?{' '}
+              <a 
+                href="#" 
+                className={`font-semibold transition-colors ${
                   isDark ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'
-                }`}>
-                  Resend OTP
-                </a>
-              </p>
-            </div>
+                }`}
+              >
+                Resend OTP
+              </a>
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

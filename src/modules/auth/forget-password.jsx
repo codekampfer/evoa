@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
+import logo from "../../assets/logo.avif";
 
 export default function ForgetPassword() {
   const [email, setEmail] = useState("");
+  const [imagesVisible, setImagesVisible] = useState(false);
   const navigate = useNavigate();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setImagesVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSendOTP = () => {
     // Navigate to verify OTP page
@@ -14,70 +24,114 @@ export default function ForgetPassword() {
   };
 
   return (
-    <div className={`h-screen flex flex-col overflow-hidden transition-colors duration-300 ${
-      isDark 
-        ? 'bg-black' 
-        : 'bg-white'
+    <div className={`min-h-screen flex transition-colors duration-300 ${
+      isDark ? 'bg-black' : 'bg-white'
     }`}>
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className={`absolute top-20 right-20 w-72 h-72 rounded-full blur-3xl ${
-          isDark ? 'bg-white/5' : 'bg-black/5'
-        }`}></div>
-        <div className={`absolute bottom-20 left-20 w-96 h-96 rounded-full blur-3xl ${
-          isDark ? 'bg-white/3' : 'bg-black/3'
-        }`}></div>
+      {/* Left Side - Image Collage */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center p-4 pl-8 pr-2">
+          {/* Image Collage Container */}
+          <div className="relative w-full max-w-md h-[600px]">
+            {/* Image 1 - Top Left - Animates from top-left */}
+            <div className={`absolute top-0 left-0 w-48 h-48 transform -rotate-12 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 translate-y-0 opacity-100' 
+                : '-translate-x-full -translate-y-full opacity-0'
+            }`} style={{ transitionDelay: '0.1s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Startup meeting"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 2 - Center Large - Animates from bottom */}
+            <div className={`absolute top-16 left-20 w-64 h-80 transform rotate-6 shadow-2xl z-10 transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-full opacity-0'
+            }`} style={{ transitionDelay: '0.3s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=500"
+                alt="Team collaboration"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 3 - Bottom Right - Animates from right */}
+            <div className={`absolute bottom-0 right-0 w-52 h-52 transform rotate-12 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-full opacity-0'
+            }`} style={{ transitionDelay: '0.2s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Business growth"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+            
+            {/* Image 4 - Bottom Left - Animates from left */}
+            <div className={`absolute bottom-8 left-0 w-44 h-44 transform -rotate-6 shadow-2xl transition-all duration-700 ease-out ${
+              imagesVisible 
+                ? 'translate-x-0 opacity-100' 
+                : '-translate-x-full opacity-0'
+            }`} style={{ transitionDelay: '0.4s' }}>
+              <img
+                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Innovation"
+                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 relative overflow-y-auto flex items-start md:items-center justify-center px-4 py-8">
-        <div className="relative z-10 w-full max-w-md mx-auto">
-          {/* Card Container */}
-          <div className={`backdrop-blur-sm border rounded-2xl p-8 md:p-10 shadow-2xl ${
+      {/* Right Side - Form */}
+      <div className="flex-1 flex items-center justify-center px-4 py-8 lg:pl-2 lg:pr-12">
+        <div className="w-full max-w-md">
+          {/* Logo/Brand */}
+          <div className="mb-6 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+              <img 
+                src={logo} 
+                alt="EVO-A Logo" 
+                className="h-12 w-12 object-contain"
+              />
+              <span className={`text-3xl font-bold tracking-wide ${
+                isDark ? 'text-white' : 'text-black'
+              }`}>EVO-A</span>
+            </div>
+            <h1 className={`text-2xl font-semibold mb-1 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Forgot Password?
+            </h1>
+            <p className={`text-sm ${
+              isDark ? 'text-white/60' : 'text-black/60'
+            }`}>
+              No worries! Enter your email and we'll send you an OTP code to reset your password.
+            </p>
+          </div>
+
+          {/* Form Container */}
+          <div className={`rounded-2xl p-6 ${
             isDark 
-              ? 'bg-black/40 border-white/20' 
-              : 'bg-white border-black/30'
+              ? 'bg-black/50 border border-white/10' 
+              : 'bg-white border border-black/10'
           }`}>
-            {/* Breadcrumb */}
-            <div className="mb-6">
-              <span className={`text-xs font-medium tracking-wider uppercase ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>EVO-A / login / forget password</span>
-            </div>
-
-            {/* Heading */}
-            <div className="mb-8">
-              <h1 className={`text-4xl md:text-5xl font-bold mb-3 leading-tight ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}>
-                Forgot Password?
-              </h1>
-              <p className={`text-sm ${
-                isDark ? 'text-white/60' : 'text-gray-600'
-              }`}>
-                No worries! Enter your email and we'll send you an OTP code to reset your password.
-              </p>
-            </div>
-
-            {/* Form */}
-            <form className="space-y-5">
+            <form className="space-y-3">
               {/* Email Input */}
-              <div className="space-y-2">
-                <label htmlFor="email" className={`block text-sm font-medium ${
-                  isDark ? 'text-white/80' : 'text-gray-700'
-                }`}>
-                  Email Address
-                </label>
+              <div>
                 <input
-                  id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-4 py-3.5 rounded-xl text-base border focus:outline-none focus:ring-2 shadow-lg transition-all duration-300 ${
+                  className={`w-full px-4 py-3 rounded-lg text-sm border focus:outline-none focus:ring-1 transition-all ${
                     isDark 
-                      ? 'bg-black/80 border-white/20 text-white placeholder-white/40 focus:ring-white/50 focus:border-white hover:border-white/40' 
-                      : 'bg-white border-black/30 text-black placeholder-black/40 focus:ring-black/50 focus:border-black hover:border-black/40'
+                      ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
+                      : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
                   }`}
                 />
               </div>
@@ -86,7 +140,7 @@ export default function ForgetPassword() {
               <button
                 type="button"
                 onClick={handleSendOTP}
-                className={`w-full font-bold py-4 rounded-xl text-base transition-all duration-300 mt-6 shadow-lg hover:scale-[1.02] active:scale-[0.98] ${
+                className={`w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90' 
                     : 'bg-black text-white hover:bg-black/90'
@@ -95,24 +149,30 @@ export default function ForgetPassword() {
                 Send OTP Code
               </button>
             </form>
+          </div>
 
-            {/* Back to Login Link */}
-            <div className="mt-8 text-center">
-              <p className={`text-sm ${
-                isDark ? 'text-white/60' : 'text-gray-600'
-              }`}>
-                Remember your password?{' '}
-                <Link to="/login" className={`font-semibold transition-colors hover:underline ${
+          {/* Sign In Link */}
+          <div className={`mt-4 text-center py-4 rounded-2xl ${
+            isDark 
+              ? 'bg-black/50 border border-white/10' 
+              : 'bg-white border border-black/10'
+          }`}>
+            <p className={`text-sm ${
+              isDark ? 'text-white/60' : 'text-black/60'
+            }`}>
+              Remember your password?{' '}
+              <Link 
+                to="/login" 
+                className={`font-semibold transition-colors ${
                   isDark ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'
-                }`}>
-                  Sign in
-                </Link>
-              </p>
-            </div>
+                }`}
+              >
+                Sign in
+              </Link>
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

@@ -1,6 +1,20 @@
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { useTheme } from '../../contexts/ThemeContext';
+
+// X (Twitter) Icon Component
+const XIcon = ({ size = 20, className = '' }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
 export default function Footer() {
   const { theme } = useTheme();
@@ -12,7 +26,7 @@ export default function Footer() {
         ? 'bg-black border-white/20' 
         : 'bg-white border-black/30'
     }`}>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-2">
@@ -33,8 +47,8 @@ export default function Footer() {
               </a>
               <a href="#" className={`transition-colors ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
-              }`} aria-label="Twitter">
-                <FaTwitter size={20} />
+              }`} aria-label="X (Twitter)">
+                <XIcon size={20} />
               </a>
               <a href="#" className={`transition-colors ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'

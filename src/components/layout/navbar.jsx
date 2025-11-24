@@ -22,18 +22,18 @@ export default function Navbar() {
     <header className={`bg-transparent transition-colors duration-300 ${
       isDark ? 'text-white' : 'text-gray-900'
     }`}>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10">
         {/* Main navbar */}
         <div className="flex items-center justify-between py-2 md:py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 md:gap-3.5">
+          <Link to="/" className="flex items-center gap-3 md:gap-3.5 group transition-transform duration-300 hover:scale-105">
             <img 
               src={logo} 
               alt="EVO-A Logo" 
-              className="h-12 w-12 object-contain md:h-14 md:w-14"
+              className="h-12 w-12 object-contain md:h-16 md:w-16"
             />
-            <span className={`text-xl font-semibold tracking-wide md:text-2xl ${
-              isDark ? 'text-white' : 'text-gray-900'
+            <span className={`text-xl font-bold tracking-wide md:text-2xl transition-colors duration-300 ${
+              isDark ? 'text-white group-hover:text-white/90' : 'text-gray-900 group-hover:text-gray-700'
             }`}>EVO-A</span>
           </Link>
 

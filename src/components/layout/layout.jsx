@@ -6,16 +6,17 @@ export default function Layout() {
   const location = useLocation();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const isLoginPage = location.pathname === '/login';
+  const authPages = ['/login', '/register', '/forget-password', '/verify-otp', '/create-new-password'];
+  const isAuthPage = authPages.includes(location.pathname);
 
   return (
     <div className={`transition-colors duration-300 ${
-      isLoginPage 
+      isAuthPage 
         ? (isDark ? "bg-black h-screen" : "bg-white h-screen")
         : (isDark ? "bg-black min-h-screen" : "bg-white min-h-screen")
     }`}>
-      <Navbar isLoginPage={isLoginPage} />
-      <main className={isLoginPage ? "flex flex-col h-screen " : ""}>
+      {!isAuthPage && <Navbar />}
+      <main className={isAuthPage ? "flex flex-col h-screen " : ""}>
         <Outlet />
       </main>
     </div>

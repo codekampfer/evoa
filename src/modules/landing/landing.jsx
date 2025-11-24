@@ -102,7 +102,7 @@ export default function Landing() {
 
         {/* MAIN */}
         {/* Full width, seamless design, no box appearance */}
-        <main className="mx-auto max-w-6xl px-4 pb-12 pt-6 sm:px-6 sm:pb-16 sm:pt-8 md:px-10 md:pb-20 md:pt-12">
+        <main className="mx-auto max-w-7xl px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-16 md:px-10 md:pb-20 md:pt-20">
 
 
           {/* Hero section */}
@@ -114,7 +114,7 @@ export default function Landing() {
           >
             {/* Text */}
             <div className="w-full text-center md:max-w-xl md:text-left">
-              <h1 className={`text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-6xl ${
+              <h1 className={`text-3xl font-extrabold leading-tight sm:text-4xl md:text-4xl lg:text-5xl ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
                 Join the Future of
@@ -125,13 +125,13 @@ export default function Landing() {
                 <br />
                 Ecosystem
               </h1>
-              <p className={`mt-6 text-lg md:text-xl ${
-                isDark ? 'text-white/80' : 'text-black/70'
+              <p className={`mt-5 text-base md:text-lg ${
+                isDark ? 'text-white/70' : 'text-black/60'
               }`}>
-                Connect with investors, grow your startup, and revolutionize the entrepreneurial landscape.
+                Connect with investors and grow your startup.
               </p>
-              <div className="mt-8 flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto
-                sm:mt-10 sm:flex-row sm:justify-center sm:max-w-none
+              <div className="mt-6 flex flex-col items-stretch gap-3 w-full max-w-sm mx-auto
+                sm:mt-8 sm:flex-row sm:justify-center sm:max-w-none
                 md:justify-start md:mx-0">
 
                 <Link to="/register" className={`w-full sm:w-auto rounded-xl border-2 px-6 py-3.5 text-sm font-semibold text-center
@@ -234,7 +234,7 @@ export default function Landing() {
           {/* Section 2 */}
           <section 
             ref={setRef('section2')}
-            className={`mt-20 grid gap-8 sm:mt-24 sm:gap-10 md:grid-cols-2 md:items-center md:gap-12 transition-all duration-1000 ease-out ${
+            className={`mt-16 grid gap-8 sm:mt-20 sm:gap-10 md:grid-cols-2 md:items-center md:gap-12 transition-all duration-1000 ease-out ${
               isVisible['section2'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -244,19 +244,17 @@ export default function Landing() {
                 <span className={`text-xs font-semibold uppercase tracking-wider ${
                   isDark ? 'text-white/80' : 'text-black/80'
                 }`}>About EVO-A</span>
-                <h2 className={`text-2xl font-bold sm:text-3xl md:text-4xl mt-3 ${
+                <h2 className={`text-2xl font-bold sm:text-3xl md:text-3xl mt-3 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>
                   Redefining Startup Investments
                 </h2>
               </div>
-              <p className={`text-base leading-relaxed sm:text-lg md:text-xl ${
-                isDark ? 'text-white/80' : 'text-black/70'
+              <p className={`text-sm leading-relaxed sm:text-base md:text-lg ${
+                isDark ? 'text-white/70' : 'text-black/60'
               }`}>
-                EVOA is dedicated to reshaping the landscape of startup investments. Our platform offers an
-                innovative approach that revolutionizes how entrepreneurs connect with potential investors.
-                We are committed to fostering a vibrant ecosystem that fuels the growth of groundbreaking
-                ideas and visionary startups.
+                EVOA reshapes startup investments with an innovative platform that connects entrepreneurs 
+                with investors, fostering a vibrant ecosystem for groundbreaking ideas.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <div className="flex items-center gap-2">
@@ -319,7 +317,7 @@ export default function Landing() {
           {/* Stats Section */}
           <section 
             ref={setRef('stats')}
-            className={`relative mt-20 sm:mt-24 md:mt-32 transition-all duration-1000 ease-out ${
+            className={`relative mt-16 sm:mt-20 md:mt-24 transition-all duration-1000 ease-out ${
               isVisible['stats'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -386,17 +384,17 @@ export default function Landing() {
           {/* Section 3 - Features */}
           <section 
             ref={setRef('features')}
-            className={`relative mt-20 sm:mt-24 md:mt-32 transition-all duration-1000 ease-out ${
+            className={`relative mt-16 sm:mt-20 md:mt-24 transition-all duration-1000 ease-out ${
               isVisible['features'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <p className={`text-xs font-semibold uppercase tracking-[0.3em] sm:text-sm ${
                 isDark ? 'text-white/80' : 'text-black/80'
               }`}>
                 Why EVO-A?
               </p>
-              <h2 className={`mt-3 text-2xl font-bold sm:mt-4 sm:text-3xl md:text-4xl lg:text-5xl ${
+              <h2 className={`mt-3 text-2xl font-bold sm:mt-4 sm:text-3xl md:text-4xl ${
                 isDark ? 'text-white' : 'text-black'
               }`}>
                 Revolutionizing Startup Investments &amp; Networking
@@ -449,12 +447,12 @@ export default function Landing() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className={`text-xl font-bold mb-2 ${
+                <h3 className={`text-lg font-bold mb-2 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>Fast Connections</h3>
-                <p className={`text-sm ${
+                <p className={`text-sm leading-relaxed ${
                   isDark ? 'text-white/60' : 'text-black/60'
-                }`}>Connect with investors and startups instantly through our streamlined platform.</p>
+                }`}>Connect with investors and startups instantly.</p>
               </div>
 
               <div 
@@ -474,12 +472,12 @@ export default function Landing() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className={`text-xl font-bold mb-2 ${
+                <h3 className={`text-lg font-bold mb-2 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>Secure & Safe</h3>
-                <p className={`text-sm ${
+                <p className={`text-sm leading-relaxed ${
                   isDark ? 'text-white/60' : 'text-black/60'
-                }`}>Your data and investments are protected with enterprise-grade security.</p>
+                }`}>Enterprise-grade security for your data and investments.</p>
               </div>
 
               <div 
@@ -499,10 +497,10 @@ export default function Landing() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <h3 className={`text-xl font-bold mb-2 ${
+                <h3 className={`text-lg font-bold mb-2 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>Global Network</h3>
-                <p className={`text-sm ${
+                <p className={`text-sm leading-relaxed ${
                   isDark ? 'text-white/60' : 'text-black/60'
                 }`}>Access a worldwide network of investors and entrepreneurs.</p>
               </div>
@@ -512,24 +510,24 @@ export default function Landing() {
           {/* CTA Section */}
           <section 
             ref={setRef('cta')}
-            className={`relative mt-20 sm:mt-24 md:mt-32 transition-all duration-1000 ease-out ${
+            className={`relative mt-16 sm:mt-20 md:mt-24 transition-all duration-1000 ease-out ${
               isVisible['cta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className={`border rounded-3xl p-8 md:p-12 text-center backdrop-blur-sm ${
+            <div className={`border rounded-3xl p-6 md:p-10 text-center backdrop-blur-sm ${
               isDark 
                 ? 'bg-white/10 border-white/30' 
                 : 'bg-black/5 border-black/30'
             }`}>
-              <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
+              <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-4 ${
                 isDark ? 'text-white' : 'text-black'
               }`}>
                 Ready to Transform Your Startup Journey?
               </h2>
-              <p className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto ${
-                isDark ? 'text-white/80' : 'text-black/70'
+              <p className={`text-base md:text-lg mb-8 max-w-2xl mx-auto ${
+                isDark ? 'text-white/70' : 'text-black/60'
               }`}>
-                Join thousands of entrepreneurs and investors who are already revolutionizing the startup ecosystem.
+                Join thousands of entrepreneurs and investors revolutionizing the startup ecosystem.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
