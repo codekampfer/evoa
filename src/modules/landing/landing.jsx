@@ -250,9 +250,7 @@ export default function Landing() {
                   Redefining Startup Investments
                 </h2>
               </div>
-              <p className={`text-sm leading-relaxed sm:text-base md:text-lg ${
-                isDark ? 'text-white/70' : 'text-black/60'
-              }`}>
+              <p className={`text-sm leading-relaxed sm:text-base md:text-lg ${isDark ? 'text-white/70' : 'text-black/60'}`}>
                 EVOA reshapes startup investments with an innovative platform that connects entrepreneurs 
                 with investors, fostering a vibrant ecosystem for groundbreaking ideas.
               </p>
