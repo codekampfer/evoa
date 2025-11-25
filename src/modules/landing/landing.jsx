@@ -247,7 +247,7 @@ export default function Landing() {
                   ? 'bg-white/10 border-white/30 text-white/90 shadow-lg shadow-white/5' 
                   : 'bg-black/5 border-black/20 text-black/90 shadow-lg shadow-black/5'
               }`}>
-                <HiRocketLaunch className="text-base sm:text-lg" />
+            
                 Trusted by 1000+ Startups
               </span>
             </div>
