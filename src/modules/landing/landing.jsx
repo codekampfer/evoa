@@ -271,6 +271,9 @@ export default function Landing() {
               </span>
             </h1>
 
+
+
+
             {/* Description */}
             <p className={`text-sm sm:text-base md:text-lg lg:text-xl tracking-wide leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4 ${
               isDark ? 'text-white/80' : 'text-gray-600'
