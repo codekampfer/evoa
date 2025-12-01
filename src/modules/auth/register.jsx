@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -11,6 +11,7 @@ export default function Register() {
   const [imagesVisible, setImagesVisible] = useState(false);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -117,7 +118,14 @@ export default function Register() {
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
           }`}>
-            <form className="space-y-3">
+            <form 
+              className="space-y-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Navigate to choice-role after sign up
+                navigate('/choice-role');
+              }}
+            >
               {/* Email Input */}
               <div>
                 <input

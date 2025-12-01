@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -10,6 +10,7 @@ export default function Login() {
   const [imagesVisible, setImagesVisible] = useState(false);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -19,7 +20,6 @@ export default function Login() {
     return () => clearTimeout(timer);
   }, []);
 
-  
   return (
     <div className={`min-h-screen flex transition-colors duration-300 ${
       isDark ? 'bg-black' : 'bg-white'
@@ -117,7 +117,14 @@ export default function Login() {
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
           }`}>
-            <form className="space-y-3">
+            <form 
+              className="space-y-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Navigate to startup page after login
+                navigate('/startup');
+              }}
+            >
               {/* Email/Username Input */}
               <div>
                 <input
@@ -184,6 +191,7 @@ export default function Login() {
               {/* Facebook Login */}
               <button
                 type="button"
+                onClick={() => navigate('/startup')}
                 className={`w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
                   isDark 
                     ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20' 

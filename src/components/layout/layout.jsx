@@ -6,7 +6,7 @@ export default function Layout() {
   const location = useLocation();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const authPages = ['/login', '/register', '/forget-password', '/verify-otp', '/create-new-password'];
+  const authPages = ['/login', '/register', '/choice-role', '/forget-password', '/verify-otp', '/create-new-password'];
   const isAuthPage = authPages.includes(location.pathname);
 
   return (
