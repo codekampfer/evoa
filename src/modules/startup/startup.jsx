@@ -156,35 +156,35 @@ export default function Startup() {
       isDark ? 'bg-black' : 'bg-gray-50'
     }`}>
       {/* Main Content Area */}
-      <main className="lg:ml-64">
-        <div className="max-w-2xl mx-auto py-4 sm:py-8 px-4">
+      <main className="lg:ml-64 pt-16 lg:pt-0">
+        <div className="max-w-2xl mx-auto py-2 sm:py-4 lg:py-8 px-2 sm:px-4">
         {/* Feed Posts */}
-        <div className="space-y-8">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {posts.map((post) => (
             <div
               key={post.id}
-              className={`rounded-lg overflow-hidden transition-colors duration-300 ${
+              className={`rounded-lg sm:rounded-xl overflow-hidden transition-colors duration-300 ${
                 isDark ? 'bg-black border border-white/10' : 'bg-white border border-gray-200'
               }`}
             >
               {/* Post Header - User Info */}
-              <div className="flex items-center justify-between px-4 py-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
+              <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0">
                     <img
                       src={post.userAvatar}
                       alt={post.username}
                       className="w-full h-full rounded-full object-cover"
                     />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`font-semibold text-sm ${
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <span className={`font-semibold text-xs sm:text-sm ${
                       isDark ? 'text-white' : 'text-black'
                     }`}>
                       {post.username}
                     </span>
                     {post.type === "reel" && (
-                      <span className={`text-xs px-2 py-0.5 rounded ${
+                      <span className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded ${
                         isDark ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-700'
                       }`}>
                         Reel
@@ -192,8 +192,8 @@ export default function Startup() {
                     )}
                   </div>
                 </div>
-                <button className={`p-1 ${isDark ? 'text-white' : 'text-black'}`}>
-                  <FaEllipsisH size={16} />
+                <button className={`p-1 sm:p-1.5 ${isDark ? 'text-white' : 'text-black'}`}>
+                  <FaEllipsisH size={14} className="sm:w-4 sm:h-4" />
                 </button>
               </div>
 
@@ -228,17 +228,17 @@ export default function Startup() {
                     {/* Play/Pause Overlay Button */}
                     <button
                       onClick={() => toggleVideoPlay(post.id)}
-                      className={`absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity ${
+                      className={`absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity touch-manipulation ${
                         !post.isPlaying ? 'opacity-100' : ''
                       }`}
                     >
                       {!post.isPlaying ? (
-                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
-                          <FaPlay size={24} className="text-black ml-1" />
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/90 flex items-center justify-center">
+                          <FaPlay size={18} className="sm:w-6 sm:h-6 text-black ml-0.5 sm:ml-1" />
                         </div>
                       ) : (
-                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
-                          <FaPause size={24} className="text-black" />
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/90 flex items-center justify-center">
+                          <FaPause size={18} className="sm:w-6 sm:h-6 text-black" />
                         </div>
                       )}
                     </button>
@@ -253,70 +253,70 @@ export default function Startup() {
               </div>
 
               {/* Action Buttons */}
-              <div className="px-4 py-3">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-4">
+              <div className="px-3 sm:px-4 py-2 sm:py-3">
+                <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <button
                       onClick={() => toggleLike(post.id)}
-                      className={`transition-colors ${
+                      className={`transition-colors p-1 -ml-1 ${
                         post.liked
                           ? 'text-red-500'
                           : isDark ? 'text-white' : 'text-black'
                       }`}
                     >
                       {post.liked ? (
-                        <FaHeart size={24} fill="currentColor" />
+                        <FaHeart size={20} className="sm:w-6 sm:h-6" fill="currentColor" />
                       ) : (
-                        <FaRegHeart size={24} />
+                        <FaRegHeart size={20} className="sm:w-6 sm:h-6" />
                       )}
                     </button>
-                    <button className={isDark ? 'text-white' : 'text-black'}>
-                      <FaRegComment size={24} />
+                    <button className={`p-1 ${isDark ? 'text-white' : 'text-black'}`}>
+                      <FaRegComment size={20} className="sm:w-6 sm:h-6" />
                     </button>
-                    <button className={isDark ? 'text-white' : 'text-black'}>
-                      <FaRegPaperPlane size={24} />
+                    <button className={`p-1 ${isDark ? 'text-white' : 'text-black'}`}>
+                      <FaRegPaperPlane size={20} className="sm:w-6 sm:h-6" />
                     </button>
                   </div>
                   <button
                     onClick={() => toggleSave(post.id)}
-                    className={`transition-colors ${
+                    className={`transition-colors p-1 -mr-1 ${
                       post.saved
                         ? 'text-yellow-500'
                         : isDark ? 'text-white' : 'text-black'
                     }`}
                   >
                     {post.saved ? (
-                      <FaBookmark size={24} fill="currentColor" />
+                      <FaBookmark size={20} className="sm:w-6 sm:h-6" fill="currentColor" />
                     ) : (
-                      <FaRegBookmark size={24} />
+                      <FaRegBookmark size={20} className="sm:w-6 sm:h-6" />
                     )}
                   </button>
                 </div>
 
                 {/* Likes Count */}
-                <div className={`mb-2 ${
+                <div className={`mb-1.5 sm:mb-2 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>
-                  <span className="font-semibold text-sm">
+                  <span className="font-semibold text-xs sm:text-sm">
                     {post.likes.toLocaleString()} likes
                   </span>
                 </div>
 
                 {/* Caption */}
-                <div className={`mb-2 ${
+                <div className={`mb-1.5 sm:mb-2 ${
                   isDark ? 'text-white' : 'text-black'
                 }`}>
-                  <span className="font-semibold text-sm mr-2">
+                  <span className="font-semibold text-xs sm:text-sm mr-1.5 sm:mr-2">
                     {post.username}
                   </span>
-                  <span className="text-sm">
+                  <span className="text-xs sm:text-sm leading-relaxed">
                     {post.caption}
                   </span>
                 </div>
 
                 {/* View Comments */}
                 {post.comments > 0 && (
-                  <button className={`text-sm mb-2 ${
+                  <button className={`text-xs sm:text-sm mb-1.5 sm:mb-2 ${
                     isDark ? 'text-white/60' : 'text-gray-500'
                   }`}>
                     View all {post.comments} comments
@@ -324,7 +324,7 @@ export default function Startup() {
                 )}
 
                 {/* Time Ago */}
-                <div className={`text-xs uppercase ${
+                <div className={`text-[10px] sm:text-xs uppercase ${
                   isDark ? 'text-white/40' : 'text-gray-400'
                 }`}>
                   {post.timeAgo}
@@ -332,11 +332,11 @@ export default function Startup() {
               </div>
 
               {/* Comment Input */}
-              <div className={`px-4 py-3 border-t ${
+              <div className={`px-3 sm:px-4 py-2 sm:py-3 border-t ${
                 isDark ? 'border-white/10' : 'border-gray-200'
               }`}>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden shrink-0">
                     <img
                       src="https://i.pravatar.cc/150?img=5"
                       alt="Your avatar"
@@ -346,13 +346,13 @@ export default function Startup() {
                   <input
                     type="text"
                     placeholder="Add a comment..."
-                    className={`flex-1 bg-transparent border-none outline-none text-sm ${
+                    className={`flex-1 bg-transparent border-none outline-none text-xs sm:text-sm py-1 ${
                       isDark
                         ? 'text-white placeholder-white/40'
                         : 'text-black placeholder-gray-400'
                     }`}
                   />
-                  <button className={`text-sm font-semibold ${
+                  <button className={`text-xs sm:text-sm font-semibold px-2 py-1 ${
                     isDark ? 'text-blue-400' : 'text-blue-500'
                   }`}>
                     Post

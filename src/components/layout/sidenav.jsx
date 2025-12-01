@@ -8,7 +8,8 @@ import {
   FaUsers,
   FaRocket,
   FaDollarSign,
-  FaBars
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 import logo from "../../assets/logo.avif";
@@ -24,18 +25,22 @@ export default function Sidenav() {
       {/* Mobile Menu Toggle Button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className={`fixed top-4 left-4 z-50 lg:hidden p-2 rounded-lg transition-colors ${
+        className={`absolute top-4 left-4 z-50 lg:hidden p-2.5 rounded-lg transition-all duration-300 flex items-center justify-center ${
           isDark ? 'bg-black/80 text-white border border-white/10' : 'bg-white text-black border border-gray-200'
-        } shadow-lg`}
+        } shadow-lg ${isMobileMenuOpen ? 'left-56' : ''}`}
         aria-label="Toggle menu"
       >
-        <FaBars size={20} />
+        {isMobileMenuOpen ? (
+          <FaTimes size={20} className="leading-none" />
+        ) : (
+          <FaBars size={20} className="leading-none" />
+        )}
       </button>
 
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -47,7 +52,7 @@ export default function Sidenav() {
         isMobileMenuOpen 
           ? 'translate-x-0' 
           : '-translate-x-full lg:translate-x-0'
-      } lg:block`}>
+      }`}>
       <div className="flex flex-col h-full px-3 sm:px-4 py-4 sm:py-6">
         {/* Evoa Logo */}
         <div className="mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3">
@@ -59,18 +64,6 @@ export default function Sidenav() {
           <h1 className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>
             Evoa
           </h1>
-          {/* Mobile Close Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(false)}
-            className={`ml-auto lg:hidden p-1 rounded-lg transition-colors ${
-              isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
-            }`}
-            aria-label="Close menu"
-          >
-            <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-black'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
         </div>
 
         {/* Navigation Items */}
