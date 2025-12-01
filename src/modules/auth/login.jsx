@@ -19,6 +19,7 @@ export default function Login() {
     return () => clearTimeout(timer);
   }, []);
 
+  
   return (
     <div className={`min-h-screen flex transition-colors duration-300 ${
       isDark ? 'bg-black' : 'bg-white'
