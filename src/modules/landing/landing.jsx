@@ -252,6 +252,13 @@ export default function Landing() {
               </span>
             </div>
 
+            {/* Tagline */}
+            <p className={`text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 px-2 ${
+              isDark ? 'text-white/90' : 'text-gray-700'
+            }`}>
+              Join the Future of Startup–Investor Ecosystem
+            </p>
+
             {/* Main Heading */}
             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-4 sm:mb-6 md:mb-8 px-2 ${
               isDark ? 'text-white' : 'text-gray-900'
@@ -293,7 +300,7 @@ export default function Landing() {
                       : 'bg-black text-white hover:bg-black/95 shadow-lg shadow-black/20'
                   }`}
               >
-                <span className="relative z-10">Start Your Journey Free</span>
+                <span className="relative z-10">Create Your Account</span>
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                   isDark ? 'bg-gradient-to-r from-white/20 to-transparent' : 'bg-gradient-to-r from-black/20 to-transparent'
                 }`}></div>
@@ -308,7 +315,7 @@ export default function Landing() {
                       : 'border-black/40 text-black hover:bg-black/10 hover:border-black/60 bg-black/5'
                   }`}
               >
-                Sign In
+                Sign in with Email
               </Link>
             </div>
             

@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
+import StatusComponent from "../../components/shared/StatusComponent";
 import { 
   FaHeart,
   FaBookmark,
@@ -9,12 +11,16 @@ import {
   FaRegComment,
   FaRegPaperPlane,
   FaPlay,
-  FaPause
+  FaPause,
+  FaBell,
+  FaSearch
 } from "react-icons/fa";
+import logo from "../../assets/logo.avif";
 
 export default function Startup() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
 
   // Sample posts data (Instagram-like feed with different images and reels)
   const [posts, setPosts] = useState([
@@ -155,9 +161,31 @@ export default function Startup() {
     <div className={`min-h-screen transition-colors duration-300 ${
       isDark ? 'bg-black' : 'bg-gray-50'
     }`}>
+      {/* Top Bar */}
+      <div className={`fixed top-0 left-0 right-0 z-50 ${isDark ? 'bg-black border-b border-white/10' : 'bg-white border-b border-gray-200'}`}>
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 max-w-2xl mx-auto">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <img src={logo} alt="EVO-A" className="h-7 w-7 sm:h-8 sm:w-8 object-contain" />
+            <span className={`text-lg sm:text-xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>EVO-A</span>
+          </div>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button onClick={() => navigate('/explore')} className={isDark ? 'text-white' : 'text-black'}>
+              <FaSearch size={18} className="sm:w-5 sm:h-5" />
+            </button>
+            <button onClick={() => navigate('/notifications')} className={isDark ? 'text-white' : 'text-black'}>
+              <FaBell size={18} className="sm:w-5 sm:h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Main Content Area */}
-      <main className="lg:ml-64 pt-16 lg:pt-0">
+      <main className="pt-16 sm:pt-20">
         <div className="max-w-2xl mx-auto py-2 sm:py-4 lg:py-8 px-2 sm:px-4">
+          {/* Status Component */}
+          <div className="mb-4">
+            <StatusComponent />
+          </div>
         {/* Feed Posts */}
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {posts.map((post) => (

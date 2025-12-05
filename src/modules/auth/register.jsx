@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FaFacebook } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
 import logo from "../../assets/logo.avif";
 
@@ -214,7 +214,7 @@ export default function Register() {
                 }`}></div>
               </div>
 
-              {/* Facebook Sign Up */}
+              {/* Google Sign Up */}
               <button
                 type="button"
                 className={`w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
@@ -223,8 +223,8 @@ export default function Register() {
                     : 'bg-black/5 text-black border border-black/20 hover:bg-black/10'
                 }`}
               >
-                <FaFacebook size={18} />
-                Sign up with Facebook
+                <FaGoogle size={18} />
+                Continue with Google
               </button>
             </form>
           </div>

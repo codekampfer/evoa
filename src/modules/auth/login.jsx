@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
 import logo from "../../assets/logo.avif";
 
@@ -102,7 +102,7 @@ export default function Login() {
             <h1 className={`text-xl sm:text-2xl font-semibold mb-1 ${
               isDark ? 'text-white' : 'text-black'
             }`}>
-              Welcome Back
+              Hey, Login Now!
             </h1>
             <p className={`text-xs sm:text-sm ${
               isDark ? 'text-white/60' : 'text-black/60'
@@ -125,11 +125,11 @@ export default function Login() {
                 navigate('/startup');
               }}
             >
-              {/* Email/Username Input */}
+              {/* Email Input */}
               <div>
                 <input
-                  type="text"
-                  placeholder="Username or email"
+                  type="email"
+                  placeholder="Email"
                   className={`w-full px-4 py-2.5 sm:py-3 rounded-lg text-sm border focus:outline-none focus:ring-1 transition-all ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
@@ -172,7 +172,7 @@ export default function Login() {
                     : 'bg-black text-white hover:bg-black/90'
                 }`}
               >
-                Log in
+                Sign in
               </button>
 
               {/* Divider */}
@@ -188,7 +188,7 @@ export default function Login() {
                 }`}></div>
               </div>
 
-              {/* Facebook Login */}
+              {/* Google Login */}
               <button
                 type="button"
                 onClick={() => navigate('/startup')}
@@ -198,8 +198,8 @@ export default function Login() {
                     : 'bg-black/5 text-black border border-black/20 hover:bg-black/10'
                 }`}
               >
-                <FaFacebook size={18} />
-                Log in with Facebook
+                <FaGoogle size={18} />
+                Login with Google
               </button>
 
               {/* Forgot Password */}

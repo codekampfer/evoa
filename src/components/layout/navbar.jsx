@@ -38,21 +38,32 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-4 text-sm font-medium md:flex md:gap-5">
-            <button className={`rounded-full border px-4 py-1.5 text-sm tracking-wide transition md:px-5 md:py-1.5 ${
-              isDark 
-                ? 'border-white/60 text-white hover:bg-white/10 hover:border-white' 
-                : 'border-black/60 text-black hover:bg-black/10 hover:border-black'
+          <nav className="hidden items-center gap-3 text-sm font-medium md:flex md:gap-4">
+            <Link to="/blog" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+              isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
-              For Startups
-            </button>
-            <button className={`rounded-full border px-4 py-1.5 text-sm tracking-wide transition md:px-5 md:py-1.5 ${
-              isDark 
-                ? 'border-white/60 text-white hover:bg-white/10 hover:border-white' 
-                : 'border-black/60 text-black hover:bg-black/10 hover:border-black'
+              Blog
+            </Link>
+            <Link to="/pitch-us" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+              isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
-              For Investors
-            </button>
+              Pitch Us
+            </Link>
+            <Link to="/portfolio" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+              isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
+            }`}>
+              Portfolio
+            </Link>
+            <Link to="/about" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+              isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
+            }`}>
+              About
+            </Link>
+            <Link to="/contact" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+              isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
+            }`}>
+              Contact
+            </Link>
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
@@ -118,46 +129,151 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu - Slides down */}
+        {/* Mobile Menu - Full Screen Slides from right to left */}
+        {/* Backdrop */}
+        {isMobileMenuOpen && (
+          <div
+            onClick={closeMobileMenu}
+            className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+              isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          />
+        )}
+        
+        {/* Full Screen Menu */}
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          className={`fixed top-0 right-0 h-full w-full z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } ${isDark ? 'bg-black' : 'bg-white'}`}
         >
-          <nav className={`flex flex-col gap-4 border-t bg-transparent pb-4 pt-4 ${
-            isDark ? 'border-white/20' : 'border-black/30'
-          }`}>
-            <button
-              onClick={closeMobileMenu}
-              className={`w-full rounded-lg border px-4 py-2.5 text-left text-sm font-medium transition ${
-                isDark 
-                  ? 'border-white/60 text-white hover:bg-white/10 hover:border-white' 
-                  : 'border-black/60 text-black hover:bg-black/10 hover:border-black'
-              }`}
-            >
-              For Startups
-            </button>
-            <button
-              onClick={closeMobileMenu}
-              className={`w-full rounded-lg border px-4 py-2.5 text-left text-sm font-medium transition ${
-                isDark 
-                  ? 'border-white/60 text-white hover:bg-white/10 hover:border-white' 
-                  : 'border-black/60 text-black hover:bg-black/10 hover:border-black'
-              }`}
-            >
-              For Investors
-            </button>
-            <Link
-              to="/login"
-              onClick={closeMobileMenu}
-              className={`w-full rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition ${
-                isDark 
-                  ? 'bg-white text-black hover:bg-white/90' 
-                  : 'bg-black text-white hover:bg-black/90'
-              }`}
-            >
-              Sign in
-            </Link>
+          <nav className={`flex flex-col h-full ${isDark ? 'bg-black' : 'bg-white'}`}>
+            {/* Header with Logo and Close Button */}
+            <div className={`flex items-center justify-between px-6 py-5 border-b ${
+              isDark ? 'border-white/10' : 'border-gray-200'
+            }`}>
+              <Link 
+                to="/" 
+                onClick={closeMobileMenu}
+                className="flex items-center gap-3 group transition-transform duration-300 hover:scale-105"
+              >
+                <img 
+                  src={logo} 
+                  alt="EVO-A Logo" 
+                  className="h-12 w-12 object-contain"
+                />
+                <span className={`text-2xl font-bold tracking-wide transition-colors duration-300 ${
+                  isDark ? 'text-white group-hover:text-white/90' : 'text-gray-900 group-hover:text-gray-700'
+                }`}>
+                  EVO-A
+                </span>
+              </Link>
+              <button
+                onClick={closeMobileMenu}
+                className={`p-2.5 rounded-xl transition-all ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 active:scale-95' 
+                    : 'text-gray-900 hover:bg-gray-100 active:scale-95'
+                }`}
+                aria-label="Close menu"
+              >
+                <HiX className="h-7 w-7" />
+              </button>
+            </div>
+
+            {/* Menu Links */}
+            <div className="flex flex-col flex-1 px-6 py-8 gap-1">
+              <Link
+                to="/blog"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all active:scale-98 ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 hover:text-white' 
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                }`}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/pitch-us"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all active:scale-98 ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 hover:text-white' 
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                }`}
+              >
+                Pitch Us
+              </Link>
+              <Link
+                to="/portfolio"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all active:scale-98 ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 hover:text-white' 
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                }`}
+              >
+                Portfolio
+              </Link>
+              <Link
+                to="/about"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all active:scale-98 ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 hover:text-white' 
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                }`}
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all active:scale-98 ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10 hover:text-white' 
+                    : 'text-gray-900 hover:bg-gray-100 hover:text-black'
+                }`}
+              >
+                Contact
+              </Link>
+            </div>
+
+            {/* Footer with Theme Toggle and Sign in Button */}
+            <div className={`px-6 py-6 border-t space-y-4 ${
+              isDark ? 'border-white/10' : 'border-gray-200'
+            }`}>
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className={`w-full rounded-xl px-5 py-4 text-left text-lg font-semibold transition-all flex items-center justify-between ${
+                  isDark 
+                    ? 'text-white hover:bg-white/10' 
+                    : 'text-gray-900 hover:bg-gray-100'
+                }`}
+                aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+              >
+                <span>Theme</span>
+                {isDark ? (
+                  <HiSun className="h-6 w-6" />
+                ) : (
+                  <HiMoon className="h-6 w-6" />
+                )}
+              </button>
+
+              {/* Sign in Button */}
+              <Link
+                to="/login"
+                onClick={closeMobileMenu}
+                className={`w-full rounded-xl px-5 py-4 text-center text-lg font-bold transition-all active:scale-98 block ${
+                  isDark 
+                    ? 'bg-white text-black hover:bg-white/90 shadow-lg' 
+                    : 'bg-black text-white hover:bg-black/90 shadow-lg'
+                }`}
+              >
+                Sign in
+              </Link>
+            </div>
           </nav>
         </div>
       </div>
