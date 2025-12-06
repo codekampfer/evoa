@@ -103,7 +103,7 @@ export default function Blog() {
         <header className="text-center mb-10 sm:mb-14 lg:mb-16">
           <h1
             id="blog-heading"
-            className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >

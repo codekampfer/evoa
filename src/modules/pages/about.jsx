@@ -83,7 +83,7 @@ export default function About() {
         <header className="mb-10 sm:mb-14 lg:mb-16">
           <h1
             id="about-heading"
-            className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-4 ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >

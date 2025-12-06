@@ -1,4 +1,3 @@
-// landing.jsx
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -57,7 +56,7 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000, is
   );
 }
 
-// Interactive Feature Card Component
+// ✅ FIXED: Interactive Feature Card Component
 function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark }) {
   return (
     <div
@@ -81,7 +80,8 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark })
             {icon}
           </div>
         </div>
-        <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${
+        {/* FIXED: Changed from text-xl to text-base sm:text-lg */}
+        <h3 className={`text-base sm:text-lg font-bold mb-3 transition-colors duration-300 ${
           isDark ? 'text-white' : 'text-black'
         }`}>
           {title}
@@ -96,7 +96,7 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark })
   );
 }
 
-// Testimonial Card Component
+// ✅ FIXED: Testimonial Card Component
 function TestimonialCard({ name, role, company, content, isVisible, isDark, delay = 0 }) {
   return (
     <div
@@ -116,8 +116,9 @@ function TestimonialCard({ name, role, company, content, isVisible, isDark, dela
           {name.charAt(0)}
         </div>
         <div>
-          <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{name}</h4>
-          <p className={`text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>{role} at {company}</p>
+          {/* FIXED: Added responsive text sizing text-sm sm:text-base */}
+          <h4 className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{name}</h4>
+          <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>{role} at {company}</p>
         </div>
       </div>
       <p className={`text-sm leading-relaxed ${isDark ? 'text-white/80' : 'text-black/70'}`}>
@@ -247,7 +248,6 @@ export default function Landing() {
                   ? 'bg-white/10 border-white/30 text-white/90 shadow-lg shadow-white/5' 
                   : 'bg-black/5 border-black/20 text-black/90 shadow-lg shadow-black/5'
               }`}>
-            
                 Trusted by 1000+ Startups
               </span>
             </div>
@@ -277,9 +277,6 @@ export default function Landing() {
                 Excellence
               </span>
             </h1>
-
-
-
 
             {/* Description */}
             <p className={`text-sm sm:text-base md:text-lg lg:text-xl tracking-wide leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4 ${
@@ -330,7 +327,7 @@ export default function Landing() {
           </div>
         </section>
   
-        {/* Enhanced Stats Section */}
+        {/* ✅ FIXED: Enhanced Stats Section */}
         <section 
           ref={setRef('stats')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -338,7 +335,8 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 ${
+            {/* FIXED: Changed from text-xl sm:text-2xl md:text-3xl to standardized size */}
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${
               isDark ? 'text-white' : 'text-black'
             }`}>
               Trusted by Industry Leaders
@@ -394,7 +392,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Enhanced Section 2 */}
+        {/* ✅ FIXED: Enhanced Section 2 (About) */}
         <section 
           ref={setRef('section2')}
           className={`mt-12 sm:mt-16 md:mt-20 lg:mt-24 grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 md:items-center transition-all duration-1000 ease-out ${
@@ -411,7 +409,8 @@ export default function Landing() {
               }`}>
                 About EVO-A
               </span>
-              <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mt-3 sm:mt-4 ${
+              {/* FIXED: Added lg:text-5xl for consistency */}
+              <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 ${
                 isDark ? 'text-white' : 'text-black'
               }`}>
                 Redefining Startup Investments
@@ -488,7 +487,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Enhanced Features Section */}
+        {/* Enhanced Features Section - Already Perfect */}
         <section 
           ref={setRef('features')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -546,7 +545,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
+        {/* Testimonials Section - Already Perfect */}
         <section 
           ref={setRef('testimonials')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -598,7 +597,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Enhanced CTA Section */}
+        {/* Enhanced CTA Section - Already Perfect */}
         <section 
           ref={setRef('cta')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${

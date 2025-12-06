@@ -65,7 +65,7 @@ export default function PitchUs() {
           
           <h1
             id="pitch-heading"
-            className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4 ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
