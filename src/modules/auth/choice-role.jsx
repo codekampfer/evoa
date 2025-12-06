@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
 import { 
-  FaRocket, 
-  FaChartLine, 
-  FaBuilding, 
-  FaEye,
-  FaCheckCircle
-} from "react-icons/fa";
+  IoRocketSharp,
+  IoTrendingUp,
+  IoBusinessSharp,
+  IoGlasses,
+  IoArrowForward,
+  IoCheckmarkCircle
+} from "react-icons/io5";
+
+
 import logo from "../../assets/logo.avif";
 
 export default function ChoiceRole() {
   const [selectedRole, setSelectedRole] = useState(null);
+  const [hoveredRole, setHoveredRole] = useState(null);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const navigate = useNavigate();
@@ -20,29 +24,29 @@ export default function ChoiceRole() {
     {
       id: 'startup',
       name: 'Startup',
-      icon: FaRocket,
-      description: 'Launch your ideas and connect with investors',
+      icon: IoRocketSharp, // Modern rocket icon
+      description: 'Launch your innovative ideas and connect with investors',
       features: ['Pitch your startup', 'Connect with investors', 'Raise funding']
     },
     {
       id: 'investor',
       name: 'Investor',
-      icon: FaChartLine,
+      icon: IoTrendingUp, // Trending up chart icon
       description: 'Discover and invest in promising startups',
       features: ['Discover startups', 'Make investments', 'Track portfolio']
     },
     {
       id: 'incubator',
       name: 'Incubator',
-      icon: FaBuilding,
-      description: 'Nurture and support startups',
+      icon: IoBusinessSharp, // Business building icon
+      description: 'Nurture and support startups in your program',
       features: ['Manage programs', 'Support startups', 'Build network']
     },
     {
       id: 'viewer',
       name: 'Viewer',
-      icon: FaEye,
-      description: 'Explore the startup ecosystem',
+      icon: IoGlasses, // Glasses/explore icon
+      description: 'Explore and discover opportunities',
       features: ['Explore startups', 'Learn from pitches', 'Stay updated']
     }
   ];
@@ -59,97 +63,124 @@ export default function ChoiceRole() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center px-4 py-8 ${
-      isDark ? 'bg-black' : 'bg-gray-50'
+    <div className={`min-h-screen flex items-center justify-center px-6 py-12 ${
+      isDark ? 'bg-black' : 'bg-white'
     }`}>
-      
-      <div className="w-full max-w-4xl">
-        {/* Header */}
-        <div className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <img src={logo} alt="Logo" className="h-10 w-10 rounded-lg" />
-            <span className={`text-2xl sm:text-3xl font-bold ${
+      <div className="w-full max-w-6xl">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center gap-3 mb-8">
+            <div className={`p-3 rounded-2xl ${
+              isDark ? 'bg-white/10' : 'bg-black/5'
+            }`}>
+              <img src={logo} alt="EVO-A" className="h-11 w-11 rounded-xl object-contain" />
+            </div>
+            <span className={`text-5xl font-bold tracking-tight ${
               isDark ? 'text-white' : 'text-black'
             }`}>
               EVO-A
             </span>
           </div>
-          <h1 className={`text-2xl sm:text-3xl font-bold mb-2 ${
-            isDark ? 'text-white' : 'text-gray-900'
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 tracking-tight ${
+            isDark ? 'text-white' : 'text-black'
           }`}>
             Choose Your Role
           </h1>
-          <p className={`text-sm sm:text-base ${
-            isDark ? 'text-white/60' : 'text-gray-600'
+          <p className={`text-lg max-w-2xl mx-auto ${
+            isDark ? 'text-gray-400' : 'text-gray-600'
           }`}>
-            Select the role that best describes you
+            Select the role that best describes you to get started
           </p>
         </div>
 
-        {/* Role Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Role Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
           {roles.map((role) => {
             const IconComponent = role.icon;
             const isSelected = selectedRole === role.id;
+            const isHovered = hoveredRole === role.id;
             
             return (
               <button
                 key={role.id}
                 onClick={() => setSelectedRole(role.id)}
-                className={`relative rounded-2xl p-5 transition-all duration-200 hover:scale-[1.02] ${
-                  isDark
-                    ? isSelected
-                      ? 'bg-white text-black shadow-xl'
-                      : 'bg-white/10 text-white hover:bg-white/15 border border-white/20'
-                    : isSelected
-                      ? 'bg-black text-white shadow-xl'
-                      : 'bg-white text-black border border-gray-200 hover:border-gray-300 hover:shadow-md'
+                onMouseEnter={() => setHoveredRole(role.id)}
+                onMouseLeave={() => setHoveredRole(null)}
+                className={`relative rounded-3xl p-7 transition-all duration-300 border-2 ${
+                  isSelected 
+                    ? isDark
+                      ? 'bg-white text-black border-white shadow-2xl transform scale-105'
+                      : 'bg-black text-white border-black shadow-2xl transform scale-105'
+                    : isDark
+                      ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-lg'
                 }`}
               >
-                {/* Checkmark */}
+                {/* Selection Checkmark */}
                 {isSelected && (
-                  <FaCheckCircle 
-                    className={`absolute top-3 right-3 ${
-                      isDark ? 'text-black' : 'text-white'
-                    }`} 
-                    size={18} 
-                  />
+                  <div className="absolute top-5 right-5">
+                    <IoCheckmarkCircle 
+                      size={24} 
+                      className={isDark ? 'text-black' : 'text-white'}
+                    />
+                  </div>
                 )}
 
-                {/* Icon */}
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center ${
-                  isDark
-                    ? isSelected ? 'bg-black/10' : 'bg-white/10'
-                    : isSelected ? 'bg-white/20' : 'bg-gray-100'
-                }`}>
-                  <IconComponent size={32} />
+                {/* Icon Container */}
+                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                  isSelected 
+                    ? isDark
+                      ? 'bg-black/10'
+                      : 'bg-white/20'
+                    : isDark
+                      ? 'bg-white/10'
+                      : 'bg-gray-200'
+                } ${isHovered && !isSelected ? 'transform scale-110' : ''}`}>
+                  <IconComponent 
+                    size={38} 
+                    className={
+                      isSelected 
+                        ? isDark ? 'text-black' : 'text-white'
+                        : isDark ? 'text-white' : 'text-black'
+                    }
+                  />
                 </div>
 
-                {/* Title */}
-                <h3 className="text-lg font-bold mb-2">{role.name}</h3>
+                {/* Role Title */}
+                <h3 className={`text-xl font-bold mb-3 ${
+                  isSelected 
+                    ? isDark ? 'text-black' : 'text-white'
+                    : isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {role.name}
+                </h3>
                 
                 {/* Description */}
-                <p className={`text-sm mb-3 ${
-                  isSelected
+                <p className={`text-sm mb-5 leading-relaxed min-h-[60px] ${
+                  isSelected 
                     ? isDark ? 'text-black/70' : 'text-white/80'
-                    : isDark ? 'text-white/60' : 'text-gray-600'
+                    : isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>
                   {role.description}
                 </p>
 
-                {/* Features */}
-                <div className="space-y-1.5">
+                {/* Features List */}
+                <div className={`space-y-2.5 pt-5 border-t ${
+                  isSelected
+                    ? isDark ? 'border-black/20' : 'border-white/20'
+                    : isDark ? 'border-white/10' : 'border-gray-200'
+                }`}>
                   {role.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
+                    <div key={idx} className="flex items-center gap-2.5">
                       <div className={`w-1.5 h-1.5 rounded-full ${
-                        isSelected
-                          ? isDark ? 'bg-black/50' : 'bg-white/60'
-                          : isDark ? 'bg-white/40' : 'bg-gray-400'
+                        isSelected 
+                          ? isDark ? 'bg-black/60' : 'bg-white/80'
+                          : isDark ? 'bg-white/50' : 'bg-gray-500'
                       }`}></div>
                       <span className={`text-xs ${
-                        isSelected
+                        isSelected 
                           ? isDark ? 'text-black/60' : 'text-white/70'
-                          : isDark ? 'text-white/50' : 'text-gray-500'
+                          : isDark ? 'text-gray-500' : 'text-gray-600'
                       }`}>
                         {feature}
                       </span>
@@ -162,25 +193,34 @@ export default function ChoiceRole() {
         </div>
 
         {/* Continue Button */}
-        {selectedRole && (
-          <div className="mt-8 text-center">
-            <button
-              onClick={handleContinue}
-              className={`px-10 py-3.5 rounded-xl text-base font-bold transition-all hover:scale-105 ${
-                isDark 
-                  ? 'bg-white text-black hover:bg-white/95 shadow-lg' 
-                  : 'bg-black text-white hover:bg-black/95 shadow-lg'
+        <div className="text-center">
+          <button
+            onClick={handleContinue}
+            disabled={!selectedRole}
+            className={`group inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-base font-semibold transition-all duration-300 ${
+              selectedRole 
+                ? isDark
+                  ? 'bg-white text-black hover:scale-105 hover:shadow-2xl'
+                  : 'bg-black text-white hover:scale-105 hover:shadow-2xl'
+                : isDark
+                  ? 'bg-white/10 text-gray-600 cursor-not-allowed'
+                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+            }`}
+          >
+            Continue to Registration
+            <IoArrowForward 
+              size={18} 
+              className={`transition-transform duration-300 ${
+                selectedRole ? 'group-hover:translate-x-1' : ''
               }`}
-            >
-              Continue →
-            </button>
-            <p className={`mt-3 text-xs ${
-              isDark ? 'text-white/40' : 'text-gray-400'
-            }`}>
-              You can change this later in settings
-            </p>
-          </div>
-        )}
+            />
+          </button>
+          <p className={`mt-6 text-sm ${
+            isDark ? 'text-gray-600' : 'text-gray-400'
+          }`}>
+            You can change your role anytime in settings
+          </p>
+        </div>
       </div>
     </div>
   );
