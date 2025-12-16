@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import Footer from '../../components/layout/footer';
 import landingImageSeven from '../../assets/landing image seven.jpg';
-import landingImageTwo from '../../assets/landing image two.jpg';
-import landingImageThree from '../../assets/landing image three.jpg';
-import landingImageFour from '../../assets/landing image four.jpg';
 import landingImageFive from '../../assets/landing image five.jpg';
-import landingImageSix from '../../assets/landing image six.jpg';
 
 import { 
   HiRocketLaunch,
@@ -18,7 +14,19 @@ import {
   HiCheckCircle,
   HiGlobeAlt,
   HiSparkles,
-  HiArrowDown
+  HiArrowDown,
+  HiUserGroup,
+  HiChartBar,
+  HiLightBulb,
+  HiShieldCheck,
+  HiTrophy,
+  HiChatBubbleLeftRight,
+  HiPlayCircle,
+  HiDocumentText,
+  HiArrowRight,
+  HiBolt,
+  HiCheckBadge,
+  HiHandThumbUp
 } from 'react-icons/hi2';
 
 // Animated Counter Component
@@ -33,7 +41,6 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000, is
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
       
-      // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const currentCount = Math.floor(easeOutQuart * target);
       
@@ -56,7 +63,7 @@ function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000, is
   );
 }
 
-// ✅ FIXED: Interactive Feature Card Component
+// Interactive Feature Card Component
 function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark }) {
   return (
     <div
@@ -80,7 +87,6 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark })
             {icon}
           </div>
         </div>
-        {/* FIXED: Changed from text-xl to text-base sm:text-lg */}
         <h3 className={`text-base sm:text-lg font-bold mb-3 transition-colors duration-300 ${
           isDark ? 'text-white' : 'text-black'
         }`}>
@@ -96,7 +102,7 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark })
   );
 }
 
-// ✅ FIXED: Testimonial Card Component
+// Testimonial Card Component
 function TestimonialCard({ name, role, company, content, isVisible, isDark, delay = 0 }) {
   return (
     <div
@@ -116,7 +122,6 @@ function TestimonialCard({ name, role, company, content, isVisible, isDark, dela
           {name.charAt(0)}
         </div>
         <div>
-          {/* FIXED: Added responsive text sizing text-sm sm:text-base */}
           <h4 className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-black'}`}>{name}</h4>
           <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>{role} at {company}</p>
         </div>
@@ -203,9 +208,7 @@ export default function Landing() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
-      isDark 
-        ? 'bg-black' 
-        : 'bg-white'
+      isDark ? 'bg-black' : 'bg-white'
     }`}>
       {/* Enhanced Decorative background elements with mouse tracking */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -223,7 +226,6 @@ export default function Landing() {
           }`}
           style={{
             transform: `translate(${(mousePosition.x - 50) * -0.1}px, ${(mousePosition.y - 50) * -0.1}px)`,
-            animationDelay: '1s'
           }}
         ></div>
       </div>
@@ -239,7 +241,6 @@ export default function Landing() {
             isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Text */}
           <div className="w-full text-center max-w-5xl px-2 sm:px-4 md:px-6">
             {/* Badge */}
             <div className="inline-flex items-center justify-center mb-6 sm:mb-8">
@@ -248,14 +249,16 @@ export default function Landing() {
                   ? 'bg-white/10 border-white/30 text-white/90 shadow-lg shadow-white/5' 
                   : 'bg-black/5 border-black/20 text-black/90 shadow-lg shadow-black/5'
               }`}>
+              
                 Trusted by 1000+ Startups
               </span>
             </div>
 
             {/* Tagline */}
-            <p className={`text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 px-2 ${
+            <p className={`text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6 px-2 flex items-center justify-center gap-2 ${
               isDark ? 'text-white/90' : 'text-gray-700'
             }`}>
+              <HiGlobeAlt className="text-2xl" />
               Join the Future of Startup–Investor Ecosystem
             </p>
 
@@ -291,13 +294,14 @@ export default function Landing() {
               <Link 
                 to="/register" 
                 className={`group relative w-full sm:w-auto rounded-xl px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 text-sm sm:text-base font-semibold text-center
-                  overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                  overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 ${
                     isDark 
                       ? 'bg-white text-black hover:bg-white/95 shadow-lg shadow-white/20' 
                       : 'bg-black text-white hover:bg-black/95 shadow-lg shadow-black/20'
                   }`}
               >
                 <span className="relative z-10">Create Your Account</span>
+                <HiArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                   isDark ? 'bg-gradient-to-r from-white/20 to-transparent' : 'bg-gradient-to-r from-black/20 to-transparent'
                 }`}></div>
@@ -306,12 +310,13 @@ export default function Landing() {
               <Link 
                 to="/login" 
                 className={`w-full sm:w-auto rounded-xl border-2 px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 text-sm sm:text-base font-semibold text-center
-                  transition-all duration-300 hover:scale-105 backdrop-blur-sm ${
+                  transition-all duration-300 hover:scale-105 backdrop-blur-sm flex items-center justify-center gap-2 ${
                     isDark 
                       ? 'border-white/40 text-white hover:bg-white/10 hover:border-white/60 bg-white/5' 
                       : 'border-black/40 text-black hover:bg-black/10 hover:border-black/60 bg-black/5'
                   }`}
               >
+                <HiLockClosed />
                 Sign in with Email
               </Link>
             </div>
@@ -327,7 +332,7 @@ export default function Landing() {
           </div>
         </section>
   
-        {/* ✅ FIXED: Enhanced Stats Section */}
+        {/* Stats Section */}
         <section 
           ref={setRef('stats')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -335,10 +340,10 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            {/* FIXED: Changed from text-xl sm:text-2xl md:text-3xl to standardized size */}
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 ${
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 flex items-center justify-center gap-3 ${
               isDark ? 'text-white' : 'text-black'
             }`}>
+              <HiTrophy className="text-3xl sm:text-4xl lg:text-5xl" />
               Trusted by Industry Leaders
             </h2>
             <p className={`text-xs sm:text-sm md:text-base ${isDark ? 'text-white/60' : 'text-black/60'}`}>
@@ -347,7 +352,6 @@ export default function Landing() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {statsData.map((stat, index) => {
-              // Render icon based on index
               const renderIcon = () => {
                 switch(index) {
                   case 0: return <HiRocketLaunch className="text-3xl" />;
@@ -392,14 +396,189 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* ✅ FIXED: Enhanced Section 2 (About) */}
+        {/* User Types Section */}
+        <section 
+          ref={setRef('userTypes')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['userTypes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-3 sm:mb-4 ${
+              isDark 
+                ? 'bg-white/10 border-white/30 text-white/80' 
+                : 'bg-black/5 border-black/30 text-black/80'
+            }`}>
+              For Everyone
+            </span>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Choose Your Path
+            </h2>
+            <p className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto ${
+              isDark ? 'text-white/60' : 'text-black/60'
+            }`}>
+              Whether you're building the future or investing in it, EVO-A has you covered
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              {
+                icon: <HiRocketLaunch className="text-3xl" />,
+                title: 'For Startups',
+                desc: 'Showcase your pitch, connect with investors, and secure funding',
+                features: ['Upload Pitch Video', 'Get Verified', 'Direct Investor Access']
+              },
+              {
+                icon: <HiCurrencyDollar className="text-3xl" />,
+                title: 'For Investors',
+                desc: 'Discover verified startups and make smart investment decisions',
+                features: ['SEBI Verified', 'Deal Flow Access', 'Portfolio Tracking']
+              },
+              {
+                icon: <HiLightBulb className="text-3xl" />,
+                title: 'For Incubators',
+                desc: 'Find promising startups and manage your acceleration programs',
+                features: ['Startup Discovery', 'Program Management', 'Mentor Network']
+              },
+              {
+                icon: <HiUserGroup className="text-3xl" />,
+                title: 'For Viewers',
+                desc: 'Explore innovative startups and stay updated on startup trends',
+                features: ['Free Access', 'Trending Pitches', 'Learn & Support']
+              }
+            ].map((type, index) => (
+              <div
+                key={index}
+                className={`group relative backdrop-blur-sm border rounded-2xl p-6 transition-all duration-500 hover:scale-105 cursor-pointer ${
+                  isVisible['userTypes'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                } ${
+                  isDark 
+                    ? 'bg-black/40 border-white/20 hover:border-white/40 hover:bg-black/60' 
+                    : 'bg-white border-black/20 hover:border-black/40 hover:bg-gray-50'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 ${
+                  isDark ? 'bg-white/20 group-hover:bg-white/30' : 'bg-black/10 group-hover:bg-black/20'
+                }`}>
+                  <div className={isDark ? 'text-white' : 'text-black'}>
+                    {type.icon}
+                  </div>
+                </div>
+                <h3 className={`text-lg sm:text-xl font-bold mb-3 ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {type.title}
+                </h3>
+                <p className={`text-sm mb-4 leading-relaxed ${
+                  isDark ? 'text-white/60' : 'text-black/60'
+                }`}>
+                  {type.desc}
+                </p>
+                <div className="space-y-2">
+                  {type.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <HiCheckCircle className={`w-4 h-4 flex-shrink-0 ${isDark ? 'text-white/80' : 'text-black/80'}`} />
+                      <span className={`text-xs ${isDark ? 'text-white/70' : 'text-black/70'}`}>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section 
+          ref={setRef('howItWorks')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['howItWorks'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-3 sm:mb-4 ${
+              isDark 
+                ? 'bg-white/10 border-white/30 text-white/80' 
+                : 'bg-black/5 border-black/30 text-black/80'
+            }`}>
+              Simple Process
+            </span>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Get Started in 3 Easy Steps
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                step: '01',
+                title: 'Create Your Profile',
+                desc: 'Sign up and complete your verification in minutes. Choose your role and get instant access.',
+                icon: <HiUserGroup className="text-2xl" />
+              },
+              {
+                step: '02',
+                title: 'Upload Your Pitch',
+                desc: 'Share your startup story with a 90-second video pitch and detailed business plan.',
+                icon: <HiPlayCircle className="text-2xl" />
+              },
+              {
+                step: '03',
+                title: 'Connect & Grow',
+                desc: 'Get discovered by verified investors, participate in pitch battles, and secure funding.',
+                icon: <HiChartBar className="text-2xl" />
+              }
+            ].map((step, index) => (
+              <div
+                key={index}
+                className={`relative backdrop-blur-sm border rounded-2xl p-6 sm:p-8 transition-all duration-500 ${
+                  isVisible['howItWorks'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                } ${
+                  isDark 
+                    ? 'bg-black/40 border-white/20 hover:border-white/40' 
+                    : 'bg-white border-black/20 hover:border-black/40'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className={`text-6xl font-bold mb-4 ${
+                  isDark ? 'text-white/10' : 'text-black/10'
+                }`}>
+                  {step.step}
+                </div>
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+                  isDark ? 'bg-white/20' : 'bg-black/10'
+                }`}>
+                  <div className={isDark ? 'text-white' : 'text-black'}>
+                    {step.icon}
+                  </div>
+                </div>
+                <h3 className={`text-lg sm:text-xl font-bold mb-3 ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {step.title}
+                </h3>
+                <p className={`text-sm leading-relaxed ${
+                  isDark ? 'text-white/60' : 'text-black/60'
+                }`}>
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section 2 (About) */}
         <section 
           ref={setRef('section2')}
           className={`mt-12 sm:mt-16 md:mt-20 lg:mt-24 grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 md:items-center transition-all duration-1000 ease-out ${
             isVisible['section2'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          {/* Content - Left side on desktop */}
           <div className="order-1 md:order-1 space-y-6">
             <div>
               <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block ${
@@ -409,7 +588,6 @@ export default function Landing() {
               }`}>
                 About EVO-A
               </span>
-              {/* FIXED: Added lg:text-5xl for consistency */}
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4 ${
                 isDark ? 'text-white' : 'text-black'
               }`}>
@@ -423,7 +601,6 @@ export default function Landing() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
               {featuresData.map((feature, index) => {
-                // Render icon based on index
                 const renderIcon = () => {
                   switch(index) {
                     case 0: return <HiLockClosed className="text-2xl" />;
@@ -457,7 +634,6 @@ export default function Landing() {
             </div>
           </div>
   
-          {/* Image - Right side on desktop */}
           <div 
             ref={setRef('section2Image')}
             className={`order-2 flex justify-center md:order-2 md:justify-end transition-all duration-1000 ease-out delay-300 ${
@@ -466,14 +642,10 @@ export default function Landing() {
           >
             <div className="relative h-48 w-full max-w-xs sm:h-64 sm:max-w-sm md:h-80 md:max-w-md lg:h-96 lg:max-w-lg group mx-auto md:mx-0">
               <div className={`absolute inset-0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 ${
-                isDark 
-                  ? 'bg-white/10' 
-                  : 'bg-black/10'
+                isDark ? 'bg-white/10' : 'bg-black/10'
               }`}></div>
               <div className={`relative rounded-2xl p-2 shadow-2xl group-hover:scale-105 transition-transform duration-500 ${
-                isDark 
-                  ? 'bg-black/80' 
-                  : 'bg-white'
+                isDark ? 'bg-black/80' : 'bg-white'
               }`}>
                 <div className="h-full w-full rounded-xl overflow-hidden">
                   <img
@@ -487,7 +659,56 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Enhanced Features Section - Already Perfect */}
+        {/* Industries Section */}
+        <section 
+          ref={setRef('industries')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['industries'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-3 sm:mb-4 ${
+              isDark 
+                ? 'bg-white/10 border-white/30 text-white/80' 
+                : 'bg-black/5 border-black/30 text-black/80'
+            }`}>
+              Diverse Sectors
+            </span>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Startups Across All Industries
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+            {[
+              'AI/ML', 'FinTech', 'HealthTech', 'EdTech', 'SaaS', 'E-commerce',
+              'GreenTech', 'FoodTech', 'AgriTech', 'Web3', 'DeepTech', 'Mobility'
+            ].map((industry, index) => (
+              <div
+                key={index}
+                className={`backdrop-blur-sm border rounded-xl p-4 text-center transition-all duration-300 hover:scale-105 cursor-pointer ${
+                  isVisible['industries'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                } ${
+                  isDark 
+                    ? 'bg-black/40 border-white/20 hover:border-white/40 hover:bg-black/60' 
+                    : 'bg-white border-black/20 hover:border-black/40 hover:bg-gray-50'
+                }`}
+                style={{ transitionDelay: `${index * 50}ms` }}
+              >
+                <HiBolt className={`w-6 h-6 mx-auto mb-2 ${isDark ? 'text-white/80' : 'text-black/80'}`} />
+                <p className={`text-xs sm:text-sm font-semibold ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {industry}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Features Section */}
         <section 
           ref={setRef('features')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -514,7 +735,6 @@ export default function Landing() {
             </p>
           </div>
 
-          {/* Feature Image */}
           <div 
             ref={setRef('featureImage')}
             className={`flex justify-center mt-6 md:mt-8 transition-all duration-1000 ease-out ${
@@ -536,16 +756,129 @@ export default function Landing() {
                   }`}
                 />
                 <div className={`absolute inset-0 transition-all duration-300 group-hover:opacity-0 ${
-                  isDark 
-                    ? 'bg-black/20' 
-                    : 'bg-white/10'
+                  isDark ? 'bg-black/20' : 'bg-white/10'
                 }`}></div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Testimonials Section - Already Perfect */}
+        {/* Key Features Grid */}
+        <section 
+          ref={setRef('keyFeatures')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['keyFeatures'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {[
+              {
+                icon: <HiShieldCheck className="text-2xl" />,
+                title: 'Verified Ecosystem',
+                desc: 'All investors and startups undergo thorough verification for maximum trust'
+              },
+              {
+                icon: <HiPlayCircle className="text-2xl" />,
+                title: 'Video Pitches',
+                desc: 'Showcase your startup with engaging 90-second pitch videos'
+              },
+              {
+                icon: <HiTrophy className="text-2xl" />,
+                title: 'Pitch Battles',
+                desc: 'Compete in live pitch battles and win investor attention'
+              },
+              {
+                icon: <HiChatBubbleLeftRight className="text-2xl" />,
+                title: 'Direct Messaging',
+                desc: 'Connect directly with investors and mentors on the platform'
+              },
+              {
+                icon: <HiDocumentText className="text-2xl" />,
+                title: 'Smart Matching',
+                desc: 'AI-powered matching connects you with the right investors'
+              },
+              {
+                icon: <HiChartBar className="text-2xl" />,
+                title: 'Analytics Dashboard',
+                desc: 'Track pitch views, engagement, and investor interest in real-time'
+              }
+            ].map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.desc}
+                delay={index * 100}
+                isVisible={isVisible['keyFeatures']}
+                isDark={isDark}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Trust & Security Section */}
+        <section 
+          ref={setRef('trust')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['trust'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className={`relative border rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 backdrop-blur-sm overflow-hidden ${
+            isDark 
+              ? 'bg-black/40 border-white/20' 
+              : 'bg-white border-black/20'
+          }`}>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-4 ${
+                  isDark 
+                    ? 'bg-white/10 border-white/30 text-white/80' 
+                    : 'bg-black/5 border-black/30 text-black/80'
+                }`}>
+                  Trust & Security
+                </span>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  Your Security is Our Priority
+                </h2>
+                <p className={`text-sm sm:text-base leading-relaxed mb-6 ${
+                  isDark ? 'text-white/70' : 'text-black/60'
+                }`}>
+                  We employ industry-leading security measures to protect your data and ensure safe transactions
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: <HiShieldCheck />, label: 'SSL Encrypted' },
+                  { icon: <HiCheckBadge />, label: 'SEBI Verified' },
+                  { icon: <HiLockClosed />, label: 'Data Protected' },
+                  { icon: <HiCheckCircle />, label: 'KYC Compliant' }
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className={`p-4 rounded-xl border text-center transition-all duration-300 hover:scale-105 ${
+                      isDark 
+                        ? 'bg-black/40 border-white/20 hover:border-white/40' 
+                        : 'bg-white border-black/20 hover:border-black/40'
+                    }`}
+                  >
+                    <div className={`text-3xl mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
+                      {item.icon}
+                    </div>
+                    <p className={`text-xs sm:text-sm font-semibold ${
+                      isDark ? 'text-white/90' : 'text-black/90'
+                    }`}>
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
         <section 
           ref={setRef('testimonials')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
@@ -597,7 +930,74 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* Enhanced CTA Section - Already Perfect */}
+        {/* FAQ Section */}
+        <section 
+          ref={setRef('faq')}
+          className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
+            isVisible['faq'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-3 sm:mb-4 ${
+              isDark 
+                ? 'bg-white/10 border-white/30 text-white/80' 
+                : 'bg-black/5 border-black/30 text-black/80'
+            }`}>
+              FAQ
+            </span>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-black'
+            }`}>
+              Common Questions Answered
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: 'Is EVO-A free to use?',
+                a: 'Yes! Basic access is completely free. Premium features are available for advanced users.'
+              },
+              {
+                q: 'How long does verification take?',
+                a: 'Most verifications complete within 24-48 hours. SEBI-verified investors get instant green badges.'
+              },
+              {
+                q: 'Can I upload multiple pitches?',
+                a: 'Absolutely! You can update your pitch anytime and showcase multiple products or services.'
+              },
+              {
+                q: 'What makes EVO-A different?',
+                a: 'We focus on verified connections, video pitches, live pitch battles, and direct investor-startup communication.'
+              }
+            ].map((faq, index) => (
+              <div
+                key={index}
+                className={`backdrop-blur-sm border rounded-xl p-5 sm:p-6 transition-all duration-300 hover:border-opacity-60 ${
+                  isVisible['faq'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                } ${
+                  isDark 
+                    ? 'bg-black/40 border-white/20 hover:border-white/40' 
+                    : 'bg-white border-black/20 hover:border-black/40'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <h3 className={`text-base sm:text-lg font-semibold mb-2 ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {faq.q}
+                </h3>
+                <p className={`text-sm leading-relaxed ${
+                  isDark ? 'text-white/60' : 'text-black/60'
+                }`}>
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Enhanced CTA Section */}
         <section 
           ref={setRef('cta')}
           className={`relative mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-32 transition-all duration-1000 ease-out ${
