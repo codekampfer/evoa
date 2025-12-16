@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../components/layout/layout';
-import Landing from '../modules/landing/landing';
+import Landing from '../modules/landing/landingpage';
 import Login from '../modules/auth/login';
 import Register from '../modules/auth/register';
 import ForgetPassword from '../modules/auth/forget-password';
