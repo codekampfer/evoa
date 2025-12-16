@@ -715,29 +715,9 @@ export default function Landing() {
             isVisible['features'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
-            <span className={`text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border inline-block mb-3 sm:mb-4 ${
-              isDark 
-                ? 'bg-white/10 border-white/30 text-white/80' 
-                : 'bg-black/5 border-black/30 text-black/80'
-            }`}>
-              Why EVO-A?
-            </span>
-            <h2 className={`mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Everything You Need to Succeed
-            </h2>
-            <p className={`mt-3 sm:mt-4 text-sm sm:text-base md:text-lg max-w-2xl mx-auto ${
-              isDark ? 'text-white/60' : 'text-black/60'
-            }`}>
-              Powerful features designed to help startups connect with the right investors and grow faster
-            </p>
-          </div>
-
           <div 
             ref={setRef('featureImage')}
-            className={`flex justify-center mt-6 md:mt-8 transition-all duration-1000 ease-out ${
+            className={`flex justify-center transition-all duration-1000 ease-out ${
               isVisible['featureImage'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -756,8 +736,25 @@ export default function Landing() {
                   }`}
                 />
                 <div className={`absolute inset-0 transition-all duration-300 group-hover:opacity-0 ${
-                  isDark ? 'bg-black/20' : 'bg-white/10'
+                  isDark ? 'bg-black/30' : 'bg-black/20'
                 }`}></div>
+                
+                {/* Text Content Overlay - Directly on Image */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10">
+                  <div className="text-center max-w-4xl w-full">
+                   
+                    <h2 className={`mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg ${
+                      isDark ? 'text-white' : 'text-white'
+                    }`}>
+                      Everything You Need to Succeed
+                    </h2>
+                    <p className={`mt-3 sm:mt-4 text-sm sm:text-base md:text-lg max-w-2xl mx-auto drop-shadow-md ${
+                      isDark ? 'text-white/90' : 'text-white/90'
+                    }`}>
+                      Powerful features designed to help startups connect with the right investors and grow faster
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
