@@ -67,7 +67,7 @@ export default function Navbar() {
             {/* Theme Toggle - Reduced size */}
             <button
               onClick={toggleTheme}
-              className={`rounded-full border px-2.5 py-1.5 text-sm transition flex items-center justify-center ${
+              className={`border px-2.5 py-1.5 text-sm transition flex items-center justify-center ${
                 isDark 
                   ? 'border-white/60 hover:bg-white/10 hover:border-white' 
                   : 'border-black/60 hover:bg-black/10 hover:border-black'
@@ -82,7 +82,7 @@ export default function Navbar() {
             </button>
             <Link 
               to="/login"
-              className={`rounded-full px-4 py-1.5 text-sm font-semibold transition hover:scale-105 ${
+              className={`px-4 py-1.5 text-sm font-semibold transition hover:scale-105 ${
                 isDark 
                   ? 'bg-white text-black hover:bg-white/90' 
                   : 'bg-black text-white hover:bg-black/90'
@@ -96,7 +96,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className={`inline-flex h-8 w-8 items-center justify-center rounded-md transition focus:outline-none focus:ring-2 ${
+              className={`inline-flex h-8 w-8 items-center justify-center transition focus:outline-none focus:ring-2 ${
                 isDark 
                   ? 'bg-white/0 hover:bg-white/10 focus:ring-white' 
                   : 'bg-gray-900/0 hover:bg-gray-900/10 focus:ring-gray-900'
@@ -112,7 +112,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleMobileMenu}
-              className={`inline-flex h-8 w-8 items-center justify-center rounded-md transition focus:outline-none focus:ring-2 ${
+              className={`inline-flex h-8 w-8 items-center justify-center transition focus:outline-none focus:ring-2 ${
                 isDark 
                   ? 'bg-white/0 hover:bg-white/10 focus:ring-white' 
                   : 'bg-gray-900/0 hover:bg-gray-900/10 focus:ring-gray-900'
@@ -168,7 +168,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={closeMobileMenu}
-                className={`p-2 rounded-xl transition-all ${
+                className={`p-2 transition-all ${
                   isDark 
                     ? 'text-white hover:bg-white/10 active:scale-95' 
                     : 'text-gray-900 hover:bg-gray-100 active:scale-95'
@@ -184,7 +184,7 @@ export default function Navbar() {
               <Link
                 to="/blog"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -195,7 +195,7 @@ export default function Navbar() {
               <Link
                 to="/pitch-us"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -206,7 +206,7 @@ export default function Navbar() {
               <Link
                 to="/portfolio"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -217,7 +217,7 @@ export default function Navbar() {
               <Link
                 to="/about"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -228,7 +228,7 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -245,7 +245,7 @@ export default function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className={`w-full rounded-xl px-4 py-3 text-left text-base font-semibold transition-all flex items-center justify-between ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all flex items-center justify-between ${
                   isDark 
                     ? 'text-white hover:bg-white/10' 
                     : 'text-gray-900 hover:bg-gray-100'
@@ -264,7 +264,7 @@ export default function Navbar() {
               <Link
                 to="/login"
                 onClick={closeMobileMenu}
-                className={`w-full rounded-xl px-4 py-3 text-center text-base font-bold transition-all active:scale-98 block ${
+                className={`w-full px-4 py-3 text-center text-base font-bold transition-all active:scale-98 block ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90 shadow-lg' 
                     : 'bg-black text-white hover:bg-black/90 shadow-lg'

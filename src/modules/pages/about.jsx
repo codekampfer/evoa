@@ -100,19 +100,19 @@ export default function About() {
         </header>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20 space-y-16 sm:space-y-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 space-y-12 sm:space-y-16 md:space-y-20">
         {/* Mission & Vision */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           <div>
             <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-5 ${
+              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-5 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
             >
               Our mission
             </h2>
             <p
-              className={`text-sm sm:text-base lg:text-lg mb-4 leading-relaxed ${
+              className={`text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 leading-relaxed ${
                 isDark ? "text-white/80" : "text-gray-700"
               }`}
             >
@@ -121,7 +121,7 @@ export default function About() {
               traditional networks.
             </p>
             <p
-              className={`text-sm sm:text-base lg:text-lg leading-relaxed ${
+              className={`text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed ${
                 isDark ? "text-white/80" : "text-gray-700"
               }`}
             >
@@ -132,15 +132,15 @@ export default function About() {
           </div>
 
           <div
-            className={`p-6 sm:p-8 rounded-2xl ${
+            className={`p-4 sm:p-6 md:p-8 border ${
               isDark
-                ? "bg-white/5 border border-white/10"
-                : "bg-white border border-gray-200 shadow-sm"
+                ? "bg-black/40 border-white/20"
+                : "bg-white border-black/20"
             }`}
           >
             <div className="flex flex-col items-center text-center">
               <div
-                className={`w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full mb-4 ${
+                className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center mb-3 sm:mb-4 ${
                   isDark ? "bg-white/10" : "bg-black/5"
                 }`}
               >
@@ -151,14 +151,14 @@ export default function About() {
                 />
               </div>
               <h3
-                className={`text-xl sm:text-2xl font-bold mb-2 ${
+                className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 ${
                   isDark ? "text-white" : "text-gray-900"
                 }`}
               >
                 Vision 2030
               </h3>
               <p
-                className={`text-sm sm:text-base ${
+                className={`text-xs sm:text-sm md:text-base ${
                   isDark ? "text-white/70" : "text-gray-600"
                 }`}
               >
@@ -173,26 +173,26 @@ export default function About() {
         <section aria-labelledby="values-heading">
           <h2
             id="values-heading"
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center ${
+            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
             Our core values
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
             {values.map((value, idx) => {
               const IconComponent = value.icon;
               return (
                 <div
                   key={idx}
-                  className={`p-6 rounded-2xl text-center h-full transition-transform duration-150 hover:-translate-y-1 ${
+                  className={`p-4 sm:p-5 md:p-6 border text-center h-full transition-transform duration-150 hover:-translate-y-1 ${
                     isDark
-                      ? "bg-black/60 border border-white/10"
-                      : "bg-white border border-gray-200 shadow-sm"
+                      ? "bg-black/40 border-white/20"
+                      : "bg-white border-black/20"
                   }`}
                 >
                   <div
-                    className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full mb-4 ${
+                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 sm:mb-4 ${
                       isDark ? "bg-white/10" : "bg-black/5"
                     }`}
                   >
@@ -203,14 +203,14 @@ export default function About() {
                     />
                   </div>
                   <h3
-                    className={`text-lg sm:text-xl font-semibold mb-2 ${
+                    className={`text-base sm:text-lg md:text-xl font-semibold mb-2 ${
                       isDark ? "text-white" : "text-gray-900"
                     }`}
                   >
                     {value.title}
                   </h3>
                   <p
-                    className={`text-sm sm:text-base ${
+                    className={`text-xs sm:text-sm md:text-base ${
                       isDark ? "text-white/70" : "text-gray-600"
                     }`}
                   >
@@ -226,7 +226,7 @@ export default function About() {
         <section aria-labelledby="journey-heading">
           <h2
             id="journey-heading"
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center ${
+            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
@@ -244,7 +244,7 @@ export default function About() {
               {milestones.map((milestone, idx) => (
                 <li key={idx} className="relative flex items-start gap-5 md:gap-7">
                   <div
-                    className={`shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-semibold text-sm sm:text-base ${
+                    className={`shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center font-semibold text-xs sm:text-sm md:text-base ${
                       isDark ? "bg-white text-black" : "bg-black text-white"
                     }`}
                   >
@@ -276,23 +276,23 @@ export default function About() {
         <section aria-labelledby="team-heading">
           <h2
             id="team-heading"
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center ${
+            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
             Meet the team
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-7">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
             {team.map((member, idx) => (
               <div
                 key={idx}
-                className={`text-center p-5 sm:p-6 rounded-2xl transition-transform duration-150 hover:-translate-y-1 ${
+                className={`text-center p-4 sm:p-5 md:p-6 border transition-transform duration-150 hover:-translate-y-1 ${
                   isDark
-                    ? "bg-black/60 border border-white/10"
-                    : "bg-white border border-gray-200 shadow-sm"
+                    ? "bg-black/40 border-white/20"
+                    : "bg-white border-black/20"
                 }`}
               >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden mx-auto mb-3 sm:mb-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 overflow-hidden mx-auto mb-3 sm:mb-4">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -301,14 +301,14 @@ export default function About() {
                   />
                 </div>
                 <h3
-                  className={`text-sm sm:text-base font-semibold mb-1 ${
+                  className={`text-xs sm:text-sm md:text-base font-semibold mb-1 ${
                     isDark ? "text-white" : "text-gray-900"
                   }`}
                 >
                   {member.name}
                 </h3>
                 <p
-                  className={`text-xs sm:text-sm ${
+                  className={`text-[10px] sm:text-xs md:text-sm ${
                     isDark ? "text-white/60" : "text-gray-600"
                   }`}
                 >

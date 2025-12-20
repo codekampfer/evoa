@@ -59,20 +59,20 @@ export default function PitchUs() {
       }`}
       aria-labelledby="pitch-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <header className="text-center mb-10 sm:mb-14 lg:mb-16">
+        <header className="text-center mb-8 sm:mb-10 md:mb-14 lg:mb-16">
           
           <h1
             id="pitch-heading"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
+            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
             Pitch your startup
           </h1>
           <p
-            className={`text-base sm:text-lg max-w-2xl mx-auto ${
+            className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto ${
               isDark ? "text-white/70" : "text-gray-600"
             }`}
           >
@@ -81,12 +81,12 @@ export default function PitchUs() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start">
           {/* Benefits */}
-          <aside className="space-y-8">
+          <aside className="space-y-6 sm:space-y-8">
             <div>
               <h2
-                className={`text-xl sm:text-2xl font-bold mb-4 ${
+                className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 ${
                   isDark ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -116,24 +116,24 @@ export default function PitchUs() {
 
             {/* Stats */}
             <div
-              className={`mt-4 p-6 rounded-2xl ${
+              className={`mt-4 p-4 sm:p-5 md:p-6 border ${
                 isDark
-                  ? "bg-white/5 border border-white/10"
-                  : "bg-white border border-gray-200 shadow-sm"
+                  ? "bg-black/40 border-white/20"
+                  : "bg-white border-black/20"
               }`}
               aria-label="Platform highlights"
             >
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <div
-                    className={`text-2xl sm:text-3xl font-bold mb-1 ${
+                    className={`text-xl sm:text-2xl md:text-3xl font-bold mb-1 ${
                       isDark ? "text-white" : "text-gray-900"
                     }`}
                   >
                     500+
                   </div>
                   <div
-                    className={`text-xs sm:text-sm ${
+                    className={`text-[10px] sm:text-xs md:text-sm ${
                       isDark ? "text-white/60" : "text-gray-600"
                     }`}
                   >
@@ -142,14 +142,14 @@ export default function PitchUs() {
                 </div>
                 <div>
                   <div
-                    className={`text-2xl sm:text-3xl font-bold mb-1 ${
+                    className={`text-xl sm:text-2xl md:text-3xl font-bold mb-1 ${
                       isDark ? "text-white" : "text-gray-900"
                     }`}
                   >
                     ₹2,000Cr+
                   </div>
                   <div
-                    className={`text-xs sm:text-sm ${
+                    className={`text-[10px] sm:text-xs md:text-sm ${
                       isDark ? "text-white/60" : "text-gray-600"
                     }`}
                   >
@@ -164,15 +164,15 @@ export default function PitchUs() {
           <div className="lg:col-span-2">
             <form
               onSubmit={handleSubmit}
-              className={`p-5 sm:p-6 md:p-8 rounded-2xl ${
+              className={`p-4 sm:p-5 md:p-6 lg:p-8 border ${
                 isDark
-                  ? "bg-black/60 border border-white/10"
-                  : "bg-white border border-gray-200 shadow-sm"
+                  ? "bg-black/40 border-white/20"
+                  : "bg-white border-black/20"
               }`}
               noValidate
             >
               <h2
-                className={`text-xl sm:text-2xl font-bold mb-6 ${
+                className={`text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-5 md:mb-6 ${
                   isDark ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -198,7 +198,7 @@ export default function PitchUs() {
                     onChange={handleChange}
                     required
                     autoComplete="name"
-                    className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border text-xs sm:text-sm md:text-base ${
                       isDark
                         ? "bg-black/50 border-white/20 text-white placeholder-white/40"
                         : "bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400"
@@ -281,7 +281,7 @@ export default function PitchUs() {
                     value={formData.company}
                     onChange={handleChange}
                     required
-                    className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border text-sm sm:text-base ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border text-xs sm:text-sm md:text-base ${
                       isDark
                         ? "bg-black/50 border-white/20 text-white placeholder-white/40"
                         : "bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400"
@@ -308,7 +308,7 @@ export default function PitchUs() {
                           key={type.id}
                           type="button"
                           onClick={() => handlePitchTypeChange(type.id)}
-                          className={`p-3 sm:p-4 rounded-lg border text-left text-xs sm:text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          className={`p-2.5 sm:p-3 md:p-4 border text-left text-xs sm:text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                             selected
                               ? isDark
                                 ? "bg-white text-black border-white"
@@ -380,7 +380,7 @@ export default function PitchUs() {
                 <div className="pt-1">
                   <button
                     type="submit"
-                    className={`w-full inline-flex items-center justify-center gap-2 rounded-lg font-semibold text-sm sm:text-base px-4 py-3 sm:py-3.5 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                    className={`w-full inline-flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm md:text-base px-4 py-2.5 sm:py-3 md:py-3.5 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                       isDark
                         ? "bg-white text-black hover:bg-white/90 focus:ring-white focus:ring-offset-black"
                         : "bg-black text-white hover:bg-black/90 focus:ring-black focus:ring-offset-gray-50"
