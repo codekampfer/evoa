@@ -107,7 +107,7 @@ export default function IncubatorRegistration() {
               placeholder="Incubator Name"
               value={formData.incubatorName}
               onChange={(e) => handleInputChange('incubatorName', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <label className={`block text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
               Logo Upload
@@ -117,7 +117,7 @@ export default function IncubatorRegistration() {
                 onChange={(e) => handleFileUpload('logo', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-2" size={24} />
                 <span className="text-xs">Click to upload</span>
               </div>
@@ -127,14 +127,14 @@ export default function IncubatorRegistration() {
               placeholder="Official Email ID"
               value={formData.officialEmail}
               onChange={(e) => handleInputChange('officialEmail', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Website URL"
               value={formData.websiteUrl}
               onChange={(e) => handleInputChange('websiteUrl', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -148,7 +148,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.state}
               onChange={(e) => handleInputChange('state', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Select State</option>
               {states.map(state => (
@@ -160,21 +160,21 @@ export default function IncubatorRegistration() {
               placeholder="City"
               value={formData.city}
               onChange={(e) => handleInputChange('city', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <textarea
               placeholder="Full Address (Optional)"
               value={formData.fullAddress}
               onChange={(e) => handleInputChange('fullAddress', e.target.value)}
               rows={3}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="tel"
               placeholder="Phone Number"
               value={formData.phoneNumber}
               onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -188,7 +188,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.organizationType}
               onChange={(e) => handleInputChange('organizationType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Type of Organization</option>
               {organizationTypes.map(type => (
@@ -198,7 +198,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.affiliationType}
               onChange={(e) => handleInputChange('affiliationType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Affiliation Type</option>
               {affiliationTypes.map(type => (
@@ -217,7 +217,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.verificationDocumentType}
               onChange={(e) => handleInputChange('verificationDocumentType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Choose Your Verification Document</option>
               {verificationDocTypes.map(type => (
@@ -233,7 +233,7 @@ export default function IncubatorRegistration() {
                   onChange={(e) => handleFileUpload('verificationDocument', e.target.files[0])}
                   className="hidden"
                 />
-                <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                   <FiUpload className="mx-auto mb-1 sm:mb-2" size={20} />
                   <span className="text-xs">Click to upload</span>
                 </div>
@@ -251,7 +251,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.programType}
               onChange={(e) => handleInputChange('programType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Program Type</option>
               {programTypes.map(type => (
@@ -264,7 +264,7 @@ export default function IncubatorRegistration() {
               </label>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {sectors.map(sector => (
-                  <label key={sector} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                  <label key={sector} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                     <input
                       type="checkbox"
                       checked={formData.sectorFocus.includes(sector)}
@@ -279,7 +279,7 @@ export default function IncubatorRegistration() {
             <select
               value={formData.equityPolicy}
               onChange={(e) => handleInputChange('equityPolicy', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Equity Policy</option>
               {equityPolicies.map(policy => (
@@ -292,13 +292,13 @@ export default function IncubatorRegistration() {
                 placeholder="Enter Custom Equity"
                 value={formData.customEquity}
                 onChange={(e) => handleInputChange('customEquity', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
             )}
             <select
               value={formData.fundingSupport}
               onChange={(e) => handleInputChange('fundingSupport', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Funding Support</option>
               {fundingSupports.map(support => (
@@ -310,21 +310,21 @@ export default function IncubatorRegistration() {
               placeholder="Program Duration (Weeks/Months)"
               value={formData.programDuration}
               onChange={(e) => handleInputChange('programDuration', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="number"
               placeholder="Cohort Size"
               value={formData.cohortSize}
               onChange={(e) => handleInputChange('cohortSize', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="number"
               placeholder="Number of Mentors"
               value={formData.numberOfMentors}
               onChange={(e) => handleInputChange('numberOfMentors', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -337,7 +337,7 @@ export default function IncubatorRegistration() {
             </h2>
             <div className="space-y-2 max-h-60 overflow-y-auto">
               {facilities.map(facility => (
-                <label key={facility} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                <label key={facility} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                   <input
                     type="checkbox"
                     checked={formData.facilities.includes(facility)}
@@ -362,35 +362,35 @@ export default function IncubatorRegistration() {
               value={formData.portfolioStartups}
               onChange={(e) => handleInputChange('portfolioStartups', e.target.value)}
               rows={3}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <textarea
               placeholder="Top Startup Success Stories"
               value={formData.successStories}
               onChange={(e) => handleInputChange('successStories', e.target.value)}
               rows={3}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="LinkedIn Profile"
               value={formData.linkedinProfile}
               onChange={(e) => handleInputChange('linkedinProfile', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Instagram (Optional)"
               value={formData.instagram}
               onChange={(e) => handleInputChange('instagram', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="YouTube (Optional)"
               value={formData.youtube}
               onChange={(e) => handleInputChange('youtube', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -406,14 +406,14 @@ export default function IncubatorRegistration() {
               placeholder="Email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="tel"
               placeholder="Phone"
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <div className="relative">
               <input
@@ -421,7 +421,7 @@ export default function IncubatorRegistration() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => handleInputChange('password', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -437,7 +437,7 @@ export default function IncubatorRegistration() {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -453,14 +453,14 @@ export default function IncubatorRegistration() {
                 placeholder="Email OTP"
                 value={formData.emailOTP}
                 onChange={(e) => handleInputChange('emailOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <input
                 type="text"
                 placeholder="Phone OTP"
                 value={formData.phoneOTP}
                 onChange={(e) => handleInputChange('phoneOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
             </div>
           </div>
@@ -487,14 +487,14 @@ export default function IncubatorRegistration() {
           </p>
         </div>
 
-        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 rounded-full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
+        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
           <div
-            className={`h-full rounded-full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
+            className={`h-full -full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
             style={{ width: `${(currentStep / 8) * 100}%` }}
           />
         </div>
 
-        <div className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           {renderStep()}
         </div>
 
@@ -503,7 +503,7 @@ export default function IncubatorRegistration() {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
@@ -517,7 +517,7 @@ export default function IncubatorRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'
@@ -529,7 +529,7 @@ export default function IncubatorRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'

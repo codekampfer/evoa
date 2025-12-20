@@ -38,7 +38,7 @@ export default function Login() {
               <img
                 src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Startup meeting"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -51,7 +51,7 @@ export default function Login() {
               <img
                 src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=500"
                 alt="Team collaboration"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -64,7 +64,7 @@ export default function Login() {
               <img
                 src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Business growth"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -77,7 +77,7 @@ export default function Login() {
               <img
                 src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Innovation"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function Login() {
           </div>
 
           {/* Form Container */}
-          <div className={`rounded-2xl p-5 sm:p-6 ${
+          <div className={`-2xl p-5 sm:p-6 ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -130,7 +130,7 @@ export default function Login() {
                 <input
                   type="email"
                   placeholder="Email"
-                  className={`w-full px-4 py-2.5 sm:py-3 rounded-lg text-sm border focus:outline-none focus:ring-1 transition-all ${
+                  className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
                       : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
@@ -144,7 +144,7 @@ export default function Login() {
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className={`w-full px-4 py-2.5 sm:py-3 rounded-lg text-sm border focus:outline-none focus:ring-1 transition-all pr-12 ${
+                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 ${
                       isDark 
                         ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
                         : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
@@ -166,7 +166,7 @@ export default function Login() {
               {/* Login Button */}
               <button
                 type="submit"
-                className={`w-full py-2.5 sm:py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90' 
                     : 'bg-black text-white hover:bg-black/90'
@@ -192,7 +192,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => navigate('/startup')}
-                className={`w-full py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
+                className={`w-full py-2.5  text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
                   isDark 
                     ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20' 
                     : 'bg-black/5 text-black border border-black/20 hover:bg-black/10'
@@ -217,7 +217,7 @@ export default function Login() {
           </div>
 
           {/* Sign Up Link */}
-          <div className={`mt-4 text-center py-4 rounded-2xl ${
+          <div className={`mt-4 text-center py-4 -2xl ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'

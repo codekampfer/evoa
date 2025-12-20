@@ -86,7 +86,7 @@ export default function ViewerRegistration() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={`rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <form onSubmit={handleSubmit} className={` p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
             1. Basic Identity
           </h2>
@@ -96,7 +96,7 @@ export default function ViewerRegistration() {
             value={formData.fullName}
             onChange={handleNameChange}
             required
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
           <input
             type="text"
@@ -104,7 +104,7 @@ export default function ViewerRegistration() {
             value={formData.username}
             onChange={(e) => handleInputChange('username', e.target.value)}
             required
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
           <label className={`block text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
             Profile Photo Upload (Optional but recommended)
@@ -114,7 +114,7 @@ export default function ViewerRegistration() {
               onChange={(e) => handleFileUpload('profilePhoto', e.target.files[0])}
               className="hidden"
             />
-              <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-1 sm:mb-2" size={20} />
                 <span className="text-xs">Click to upload</span>
               </div>
@@ -129,7 +129,7 @@ export default function ViewerRegistration() {
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             required
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
           <input
             type="tel"
@@ -137,7 +137,7 @@ export default function ViewerRegistration() {
             value={formData.mobile}
             onChange={(e) => handleInputChange('mobile', e.target.value)}
             required
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
 
           <h2 className={`text-lg sm:text-xl font-semibold mt-4 sm:mt-6 mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
@@ -146,7 +146,7 @@ export default function ViewerRegistration() {
           <select
             value={formData.state}
             onChange={(e) => handleInputChange('state', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           >
             <option value="">Select State</option>
             {states.map(state => (
@@ -158,14 +158,14 @@ export default function ViewerRegistration() {
             placeholder="City"
             value={formData.city}
             onChange={(e) => handleInputChange('city', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
           <input
             type="text"
             placeholder="Country"
             value={formData.country}
             onChange={(e) => handleInputChange('country', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
 
           <h2 className={`text-lg sm:text-xl font-semibold mt-4 sm:mt-6 mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
@@ -173,7 +173,7 @@ export default function ViewerRegistration() {
           </h2>
           <div className="space-y-2 max-h-60 overflow-y-auto">
             {interests.map(interest => (
-              <label key={interest} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+              <label key={interest} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                 <input
                   type="checkbox"
                   checked={formData.interests.includes(interest)}
@@ -193,14 +193,14 @@ export default function ViewerRegistration() {
             placeholder="Occupation (Student, Working Professional, etc.)"
             value={formData.occupation}
             onChange={(e) => handleInputChange('occupation', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
           <input
             type="url"
             placeholder="LinkedIn Profile (Optional)"
             value={formData.linkedinProfile}
             onChange={(e) => handleInputChange('linkedinProfile', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
           />
 
           <h2 className={`text-lg sm:text-xl font-semibold mt-4 sm:mt-6 mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
@@ -213,7 +213,7 @@ export default function ViewerRegistration() {
               value={formData.password}
               onChange={(e) => handleInputChange('password', e.target.value)}
               required
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <button
               type="button"
@@ -230,7 +230,7 @@ export default function ViewerRegistration() {
               value={formData.confirmPassword}
               onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
               required
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <button
               type="button"
@@ -266,7 +266,7 @@ export default function ViewerRegistration() {
 
           <button
             type="submit"
-            className={`w-full py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-semibold transition-all mt-4 sm:mt-6 shrink-0 ${
+            className={`w-full py-2.5 sm:py-3  text-xs sm:text-sm font-semibold transition-all mt-4 sm:mt-6 shrink-0 ${
               isDark
                 ? 'bg-white text-black hover:bg-white/90'
                 : 'bg-black text-white hover:bg-black/90'

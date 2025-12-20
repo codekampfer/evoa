@@ -102,7 +102,7 @@ export default function InvestorRegistration() {
               placeholder="Full Name"
               value={formData.fullName}
               onChange={(e) => handleInputChange('fullName', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <label className={`block text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
               Profile Photo (Recommended)
@@ -112,7 +112,7 @@ export default function InvestorRegistration() {
                 onChange={(e) => handleFileUpload('profilePhoto', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-2" size={24} />
                 <span className="text-xs">Click to upload</span>
               </div>
@@ -122,7 +122,7 @@ export default function InvestorRegistration() {
               placeholder="Designation / Role (e.g., Angel Investor, Partner, Managing Director)"
               value={formData.designation}
               onChange={(e) => handleInputChange('designation', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -136,7 +136,7 @@ export default function InvestorRegistration() {
             <select
               value={formData.investorType}
               onChange={(e) => handleInputChange('investorType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Select Investor Type</option>
               {investorTypes.map(type => (
@@ -155,7 +155,7 @@ export default function InvestorRegistration() {
             <select
               value={formData.investmentRange}
               onChange={(e) => handleInputChange('investmentRange', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Investment Range</option>
               {investmentRanges.map(range => (
@@ -168,7 +168,7 @@ export default function InvestorRegistration() {
               </label>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {sectors.map(sector => (
-                  <label key={sector} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                  <label key={sector} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                     <input
                       type="checkbox"
                       checked={formData.sectorFocus.includes(sector)}
@@ -192,7 +192,7 @@ export default function InvestorRegistration() {
             <select
               value={formData.verificationOption}
               onChange={(e) => handleInputChange('verificationOption', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Select Verification Option</option>
               <option value="SEBI">SEBI-Registered Investor</option>
@@ -205,7 +205,7 @@ export default function InvestorRegistration() {
                   placeholder="SEBI Registration Number (e.g., INZ000209921)"
                   value={formData.sebiNumber}
                   onChange={(e) => handleInputChange('sebiNumber', e.target.value)}
-                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                 />
                 <label className={`block text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
                   Upload SEBI Certificate (PDF)
@@ -215,7 +215,7 @@ export default function InvestorRegistration() {
                     onChange={(e) => handleFileUpload('sebiCertificate', e.target.files[0])}
                     className="hidden"
                   />
-                  <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                  <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                     <FiUpload className="mx-auto mb-1 sm:mb-2" size={20} />
                     <span className="text-xs">Click to upload</span>
                   </div>
@@ -229,21 +229,21 @@ export default function InvestorRegistration() {
                   placeholder="LinkedIn Profile (Mandatory)"
                   value={formData.linkedinProfile}
                   onChange={(e) => handleInputChange('linkedinProfile', e.target.value)}
-                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                 />
                 <input
                   type="url"
                   placeholder="Portfolio / Past Deals Link"
                   value={formData.portfolioLink}
                   onChange={(e) => handleInputChange('portfolioLink', e.target.value)}
-                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                 />
                 <input
                   type="text"
                   placeholder="PAN Number (Optional but recommended)"
                   value={formData.panNumber}
                   onChange={(e) => handleInputChange('panNumber', e.target.value)}
-                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                 />
                 <label className={`block text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
                   Upload ID Proof (Aadhaar/Passport/Driving License)
@@ -253,7 +253,7 @@ export default function InvestorRegistration() {
                     onChange={(e) => handleFileUpload('idProof', e.target.files[0])}
                     className="hidden"
                   />
-                  <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                  <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                     <FiUpload className="mx-auto mb-1 sm:mb-2" size={20} />
                     <span className="text-xs">Click to upload</span>
                   </div>
@@ -274,35 +274,35 @@ export default function InvestorRegistration() {
               placeholder="Company / Fund Name"
               value={formData.companyName}
               onChange={(e) => handleInputChange('companyName', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="email"
               placeholder="Company Email"
               value={formData.companyEmail}
               onChange={(e) => handleInputChange('companyEmail', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="number"
               placeholder="Work Experience Years"
               value={formData.workExperience}
               onChange={(e) => handleInputChange('workExperience', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <textarea
               placeholder="Short Bio / Investment Thesis"
               value={formData.bio}
               onChange={(e) => handleInputChange('bio', e.target.value)}
               rows={4}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Website / AngelList Link / Portfolio Site"
               value={formData.website}
               onChange={(e) => handleInputChange('website', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -318,12 +318,12 @@ export default function InvestorRegistration() {
               placeholder="City"
               value={formData.city}
               onChange={(e) => handleInputChange('city', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <select
               value={formData.state}
               onChange={(e) => handleInputChange('state', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Select State</option>
               {states.map(state => (
@@ -333,7 +333,7 @@ export default function InvestorRegistration() {
             <select
               value={formData.country}
               onChange={(e) => handleInputChange('country', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="India">India</option>
               <option value="Others">Others</option>
@@ -353,7 +353,7 @@ export default function InvestorRegistration() {
               </label>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {startupStages.map(stage => (
-                  <label key={stage} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                  <label key={stage} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                     <input
                       type="checkbox"
                       checked={formData.startupStagePreference.includes(stage)}
@@ -368,7 +368,7 @@ export default function InvestorRegistration() {
             <select
               value={formData.engagementType}
               onChange={(e) => handleInputChange('engagementType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Engagement Type</option>
               {engagementTypes.map(type => (
@@ -389,14 +389,14 @@ export default function InvestorRegistration() {
               placeholder="Email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="tel"
               placeholder="Mobile Number"
               value={formData.mobile}
               onChange={(e) => handleInputChange('mobile', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <div className="relative">
               <input
@@ -404,7 +404,7 @@ export default function InvestorRegistration() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => handleInputChange('password', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -420,7 +420,7 @@ export default function InvestorRegistration() {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -436,14 +436,14 @@ export default function InvestorRegistration() {
                 placeholder="Email OTP"
                 value={formData.emailOTP}
                 onChange={(e) => handleInputChange('emailOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <input
                 type="text"
                 placeholder="Phone OTP"
                 value={formData.phoneOTP}
                 onChange={(e) => handleInputChange('phoneOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
             </div>
           </div>
@@ -470,14 +470,14 @@ export default function InvestorRegistration() {
           </p>
         </div>
 
-        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 rounded-full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
+        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
           <div
-            className={`h-full rounded-full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
+            className={`h-full -full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
             style={{ width: `${(currentStep / 8) * 100}%` }}
           />
         </div>
 
-        <div className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           {renderStep()}
         </div>
 
@@ -486,7 +486,7 @@ export default function InvestorRegistration() {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
@@ -500,7 +500,7 @@ export default function InvestorRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'
@@ -512,7 +512,7 @@ export default function InvestorRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'

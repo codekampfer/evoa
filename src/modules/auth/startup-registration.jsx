@@ -132,7 +132,7 @@ export default function StartupRegistration() {
               1. Founders' Details
             </h2>
             {formData.founders.map((founder, index) => (
-              <div key={index} className={`p-3 sm:p-4 rounded-lg border ${isDark ? 'bg-black/50 border-white/10' : 'bg-white border-black/10'}`}>
+              <div key={index} className={`p-3 sm:p-4  border ${isDark ? 'bg-black/50 border-white/10' : 'bg-white border-black/10'}`}>
                 <div className="flex justify-between items-center mb-2 sm:mb-3">
                   <h3 className={`text-sm sm:text-base font-semibold ${isDark ? 'text-white' : 'text-black'}`}>
                     Founder {index + 1}
@@ -157,7 +157,7 @@ export default function StartupRegistration() {
                       newFounders[index].name = e.target.value;
                       setFormData(prev => ({ ...prev, founders: newFounders }));
                     }}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                   <input
                     type="email"
@@ -168,7 +168,7 @@ export default function StartupRegistration() {
                       newFounders[index].email = e.target.value;
                       setFormData(prev => ({ ...prev, founders: newFounders }));
                     }}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                   <input
                     type="tel"
@@ -179,7 +179,7 @@ export default function StartupRegistration() {
                       newFounders[index].mobile = e.target.value;
                       setFormData(prev => ({ ...prev, founders: newFounders }));
                     }}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                   <select
                     value={founder.role}
@@ -188,7 +188,7 @@ export default function StartupRegistration() {
                       newFounders[index].role = e.target.value;
                       setFormData(prev => ({ ...prev, founders: newFounders }));
                     }}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   >
                     <option value="">Select Founder Role</option>
                     {founderRoles.map(role => (
@@ -207,7 +207,7 @@ export default function StartupRegistration() {
                       }}
                       className="hidden"
                     />
-                    <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                    <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                       <FiUpload className="mx-auto mb-2" size={24} />
                       <span className="text-xs">Click to upload</span>
                     </div>
@@ -218,7 +218,7 @@ export default function StartupRegistration() {
             <button
               type="button"
               onClick={addFounder}
-              className={`w-full py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold border ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-black/20 text-black hover:bg-black/10'}`}
+              className={`w-full py-2 sm:py-2.5  text-xs sm:text-sm font-semibold border ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-black/20 text-black hover:bg-black/10'}`}
             >
               + Add Another Founder
             </button>
@@ -236,14 +236,14 @@ export default function StartupRegistration() {
               placeholder="Startup Name"
               value={formData.startupName}
               onChange={(e) => handleInputChange('startupName', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="text"
               placeholder="Startup Username (@handle)"
               value={formData.startupUsername}
               onChange={(e) => handleInputChange('startupUsername', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <label className={`block text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
               Startup Logo Upload
@@ -253,7 +253,7 @@ export default function StartupRegistration() {
                 onChange={(e) => handleFileUpload('startupLogo', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-2" size={24} />
                 <span className="text-xs">Click to upload logo</span>
               </div>
@@ -263,26 +263,26 @@ export default function StartupRegistration() {
               placeholder="Website URL"
               value={formData.websiteUrl}
               onChange={(e) => handleInputChange('websiteUrl', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="email"
               placeholder="Company Email"
               value={formData.companyEmail}
               onChange={(e) => handleInputChange('companyEmail', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="text"
               placeholder="City"
               value={formData.city}
               onChange={(e) => handleInputChange('city', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <select
               value={formData.state}
               onChange={(e) => handleInputChange('state', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Select State</option>
               {states.map(state => (
@@ -292,7 +292,7 @@ export default function StartupRegistration() {
             <select
               value={formData.country}
               onChange={(e) => handleInputChange('country', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="India">India</option>
               <option value="Others">Others</option>
@@ -312,7 +312,7 @@ export default function StartupRegistration() {
               </label>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {industries.map(industry => (
-                  <label key={industry} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                  <label key={industry} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                     <input
                       type="checkbox"
                       checked={formData.industries.includes(industry)}
@@ -331,7 +331,7 @@ export default function StartupRegistration() {
               <select
                 value={formData.stage}
                 onChange={(e) => handleInputChange('stage', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               >
                 <option value="">Select Stage</option>
                 {stages.map(stage => (
@@ -351,7 +351,7 @@ export default function StartupRegistration() {
             <select
               value={formData.entityType}
               onChange={(e) => handleInputChange('entityType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             >
               <option value="">Type of Entity</option>
               {entityTypes.map(type => (
@@ -367,7 +367,7 @@ export default function StartupRegistration() {
                   <select
                     value={formData.verificationType}
                     onChange={(e) => handleInputChange('verificationType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   >
                     <option value="">Select Verification Type</option>
                     <option value="CIN">CIN (Company Identification Number)</option>
@@ -381,7 +381,7 @@ export default function StartupRegistration() {
                     placeholder="Enter CIN"
                     value={formData.cin}
                     onChange={(e) => handleInputChange('cin', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                 )}
                 {formData.verificationType === 'GST' && (
@@ -390,7 +390,7 @@ export default function StartupRegistration() {
                     placeholder="Enter GSTIN"
                     value={formData.gstin}
                     onChange={(e) => handleInputChange('gstin', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                 )}
                 {formData.verificationType === 'Udyam' && (
@@ -399,7 +399,7 @@ export default function StartupRegistration() {
                     placeholder="Enter Udyam Registration Number"
                     value={formData.udyamNumber}
                     onChange={(e) => handleInputChange('udyamNumber', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
                   />
                 )}
               </div>
@@ -414,7 +414,7 @@ export default function StartupRegistration() {
                     onChange={(e) => handleFileUpload('idProof', e.target.files[0])}
                     className="hidden"
                   />
-                  <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                  <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                     <FiUpload className="mx-auto mb-2" size={24} />
                     <span className="text-xs">Click to upload</span>
                   </div>
@@ -427,7 +427,7 @@ export default function StartupRegistration() {
                     onChange={(e) => handleFileUpload('businessProof', e.target.files[0])}
                     className="hidden"
                   />
-                  <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+                  <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                     <FiUpload className="mx-auto mb-2" size={24} />
                     <span className="text-xs">Click to upload</span>
                   </div>
@@ -451,7 +451,7 @@ export default function StartupRegistration() {
                 onChange={(e) => handleFileUpload('pitchVideo', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-2" size={24} />
                 <span className="text-xs">Click to upload video</span>
               </div>
@@ -464,7 +464,7 @@ export default function StartupRegistration() {
                 onChange={(e) => handleFileUpload('pitchDeck', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-2" size={24} />
                 <span className="text-xs">Click to upload PDF</span>
               </div>
@@ -475,14 +475,14 @@ export default function StartupRegistration() {
               onChange={(e) => handleInputChange('shortDescription', e.target.value)}
               maxLength={250}
               rows={4}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="text"
               placeholder="Hashtags (#Fintech #AI #D2C etc.)"
               value={formData.hashtags}
               onChange={(e) => handleInputChange('hashtags', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <div className="grid grid-cols-2 gap-3">
               <input
@@ -490,14 +490,14 @@ export default function StartupRegistration() {
                 placeholder="Amount Raising (₹)"
                 value={formData.amountRaising}
                 onChange={(e) => handleInputChange('amountRaising', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <input
                 type="number"
                 placeholder="Equity Giving (%)"
                 value={formData.equityGiving}
                 onChange={(e) => handleInputChange('equityGiving', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
             </div>
             <input
@@ -505,7 +505,7 @@ export default function StartupRegistration() {
               placeholder="Pre-money Valuation (Auto-calculated option)"
               value={formData.preMoneyValuation}
               onChange={(e) => handleInputChange('preMoneyValuation', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
           </div>
         );
@@ -521,35 +521,35 @@ export default function StartupRegistration() {
               placeholder="LinkedIn Page"
               value={formData.linkedin}
               onChange={(e) => handleInputChange('linkedin', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Instagram"
               value={formData.instagram}
               onChange={(e) => handleInputChange('instagram', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="YouTube"
               value={formData.youtube}
               onChange={(e) => handleInputChange('youtube', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Play Store / App Store"
               value={formData.playStore}
               onChange={(e) => handleInputChange('playStore', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="url"
               placeholder="Product Demo Link"
               value={formData.productDemo}
               onChange={(e) => handleInputChange('productDemo', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <label className={`block text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
               Company Brochure PDF (Optional)
@@ -559,7 +559,7 @@ export default function StartupRegistration() {
                 onChange={(e) => handleFileUpload('brochure', e.target.files[0])}
                 className="hidden"
               />
-              <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed rounded-lg cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
+              <div className={`mt-2 p-3 sm:p-4 border-2 border-dashed  cursor-pointer text-center ${isDark ? 'border-white/20 hover:border-white/40' : 'border-black/20 hover:border-black/40'}`}>
                 <FiUpload className="mx-auto mb-1 sm:mb-2" size={20} />
                 <span className="text-xs">Click to upload</span>
               </div>
@@ -578,7 +578,7 @@ export default function StartupRegistration() {
             </p>
             <button
               type="button"
-              className={`w-full py-2.5 rounded-lg text-sm font-semibold border ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-black/20 text-black hover:bg-black/10'}`}
+              className={`w-full py-2.5  text-sm font-semibold border ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-black/20 text-black hover:bg-black/10'}`}
             >
               + Add Team Member
             </button>
@@ -593,7 +593,7 @@ export default function StartupRegistration() {
             </h2>
             <div className="space-y-2">
               {categoryTags.map(tag => (
-                <label key={tag} className={`flex items-center gap-2 p-2 rounded cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
+                <label key={tag} className={`flex items-center gap-2 p-2  cursor-pointer ${isDark ? 'hover:bg-white/5' : 'hover:bg-black/5'}`}>
                   <input
                     type="checkbox"
                     checked={formData.categoryTags.includes(tag)}
@@ -618,14 +618,14 @@ export default function StartupRegistration() {
               placeholder="Email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <input
               type="tel"
               placeholder="Phone"
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
             <div className="relative">
               <input
@@ -633,7 +633,7 @@ export default function StartupRegistration() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => handleInputChange('password', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -649,7 +649,7 @@ export default function StartupRegistration() {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border pr-10 sm:pr-12 ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <button
                 type="button"
@@ -665,14 +665,14 @@ export default function StartupRegistration() {
                 placeholder="Email OTP"
                 value={formData.emailOTP}
                 onChange={(e) => handleInputChange('emailOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
               <input
                 type="text"
                 placeholder="Phone OTP"
                 value={formData.phoneOTP}
                 onChange={(e) => handleInputChange('phoneOTP', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
+                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
               />
             </div>
           </div>
@@ -701,15 +701,15 @@ export default function StartupRegistration() {
         </div>
 
         {/* Progress Bar - Fixed */}
-        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 rounded-full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
+        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
           <div
-            className={`h-full rounded-full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
+            className={`h-full -full transition-all duration-300 ${isDark ? 'bg-white' : 'bg-black'}`}
             style={{ width: `${(currentStep / 9) * 100}%` }}
           />
         </div>
 
         {/* Form Container - Scrollable */}
-        <div className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           {renderStep()}
         </div>
 
@@ -719,7 +719,7 @@ export default function StartupRegistration() {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
@@ -733,7 +733,7 @@ export default function StartupRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'
@@ -745,7 +745,7 @@ export default function StartupRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
                 isDark
                   ? 'bg-white text-black hover:bg-white/90'
                   : 'bg-black text-white hover:bg-black/90'

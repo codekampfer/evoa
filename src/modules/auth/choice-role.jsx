@@ -70,10 +70,10 @@ export default function ChoiceRole() {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center gap-3 mb-8">
-            <div className={`p-3 rounded-2xl ${
-              isDark ? 'bg-white/10' : 'bg-black/5'
+            <div className={`p-3 border ${
+              isDark ? 'bg-white/10 border-white/20' : 'bg-black/5 border-black/20'
             }`}>
-              <img src={logo} alt="EVO-A" className="h-11 w-11 rounded-xl object-contain" />
+              <img src={logo} alt="EVO-A" className="h-11 w-11 object-contain" />
             </div>
             <span className={`text-5xl font-bold tracking-tight ${
               isDark ? 'text-white' : 'text-black'
@@ -106,7 +106,7 @@ export default function ChoiceRole() {
                 onClick={() => setSelectedRole(role.id)}
                 onMouseEnter={() => setHoveredRole(role.id)}
                 onMouseLeave={() => setHoveredRole(null)}
-                className={`relative rounded-3xl p-7 transition-all duration-300 border-2 ${
+                className={`relative p-7 transition-all duration-300 border-2 ${
                   isSelected 
                     ? isDark
                       ? 'bg-white text-black border-white shadow-2xl transform scale-105'
@@ -127,7 +127,7 @@ export default function ChoiceRole() {
                 )}
 
                 {/* Icon Container */}
-                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                <div className={`w-20 h-20 mx-auto mb-6 flex items-center justify-center transition-all duration-300 ${
                   isSelected 
                     ? isDark
                       ? 'bg-black/10'
@@ -172,7 +172,7 @@ export default function ChoiceRole() {
                 }`}>
                   {role.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2.5">
-                      <div className={`w-1.5 h-1.5 rounded-full ${
+                      <div className={`w-1.5 h-1.5 ${
                         isSelected 
                           ? isDark ? 'bg-black/60' : 'bg-white/80'
                           : isDark ? 'bg-white/50' : 'bg-gray-500'
@@ -197,7 +197,7 @@ export default function ChoiceRole() {
           <button
             onClick={handleContinue}
             disabled={!selectedRole}
-            className={`group inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-base font-semibold transition-all duration-300 ${
+            className={`group inline-flex items-center gap-3 px-10 py-4 text-base font-semibold transition-all duration-300 ${
               selectedRole 
                 ? isDark
                   ? 'bg-white text-black hover:scale-105 hover:shadow-2xl'

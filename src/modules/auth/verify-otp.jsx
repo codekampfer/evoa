@@ -71,7 +71,7 @@ export default function VerifyOTP() {
               <img
                 src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Startup meeting"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -84,7 +84,7 @@ export default function VerifyOTP() {
               <img
                 src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=500"
                 alt="Team collaboration"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -97,7 +97,7 @@ export default function VerifyOTP() {
               <img
                 src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Business growth"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
             
@@ -110,7 +110,7 @@ export default function VerifyOTP() {
               <img
                 src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400"
                 alt="Innovation"
-                className="w-full h-full object-cover rounded-lg border-2 border-white/20"
+                className="w-full h-full object-cover  border-2 border-white/20"
               />
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function VerifyOTP() {
           </div>
 
           {/* Form Container */}
-          <div className={`rounded-2xl p-5 sm:p-6 ${
+          <div className={`-2xl p-5 sm:p-6 ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -166,7 +166,7 @@ export default function VerifyOTP() {
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
                     onPaste={handlePaste}
-                    className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-center text-xl sm:text-2xl font-bold rounded-lg border focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-center text-xl sm:text-2xl font-bold  border focus:outline-none focus:ring-1 transition-all ${
                       isDark 
                         ? 'bg-black/80 border-white/30 text-white focus:ring-white/20 focus:border-white/50' 
                         : 'bg-white border-black/40 text-black focus:ring-black/20 focus:border-black/50'
@@ -179,7 +179,7 @@ export default function VerifyOTP() {
               <button
                 type="button"
                 onClick={handleVerify}
-                className={`w-full py-2.5 sm:py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90' 
                     : 'bg-black text-white hover:bg-black/90'
@@ -191,7 +191,7 @@ export default function VerifyOTP() {
           </div>
 
           {/* Resend OTP Link */}
-          <div className={`mt-4 text-center py-4 rounded-2xl ${
+          <div className={`mt-4 text-center py-4 -2xl ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
