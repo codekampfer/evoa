@@ -67,7 +67,7 @@ export default function Navbar() {
             {/* Theme Toggle - Reduced size */}
             <button
               onClick={toggleTheme}
-              className={`border px-2.5 py-1.5 text-sm transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 ${
+              className={`border px-2.5 py-1.5 text-sm transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110 active:scale-95 ${
                 isDark 
                   ? 'border-white/60 hover:bg-white/10 hover:border-white' 
                   : 'border-black/60 hover:bg-black/10 hover:border-black'
