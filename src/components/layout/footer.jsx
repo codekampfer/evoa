@@ -21,7 +21,7 @@ export default function Footer() {
   const isDark = theme === 'dark';
 
   return (
-    <footer className={`border-t mt-20 transition-colors duration-300 ${
+    <footer className={`border-t mt-20 transition-all duration-500 animate-slide-up ${
       isDark 
         ? 'bg-black border-white/20' 
         : 'bg-white border-black/30'
@@ -40,22 +40,22 @@ export default function Footer() {
             </p>
             {/* Social Links */}
             <div className="flex gap-4 mt-6">
-              <a href="#" className={`transition-colors ${
+              <a href="#" className={`transition-all duration-300 hover:scale-125 active:scale-95 ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
               }`} aria-label="LinkedIn">
                 <FaLinkedin size={20} />
               </a>
-              <a href="#" className={`transition-colors ${
+              <a href="#" className={`transition-all duration-300 hover:scale-125 active:scale-95 ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
               }`} aria-label="X (Twitter)">
                 <XIcon size={20} />
               </a>
-              <a href="#" className={`transition-colors ${
+              <a href="#" className={`transition-all duration-300 hover:scale-125 active:scale-95 ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
               }`} aria-label="Facebook">
                 <FaFacebook size={20} />
               </a>
-              <a href="#" className={`transition-colors ${
+              <a href="#" className={`transition-all duration-300 hover:scale-125 active:scale-95 ${
                 isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
               }`} aria-label="Instagram">
                 <FaInstagram size={20} />
@@ -70,28 +70,28 @@ export default function Footer() {
             }`}>Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className={`transition-colors text-sm ${
+                <Link to="/" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/login" className={`transition-colors text-sm ${
+                <Link to="/login" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Sign In
                 </Link>
               </li>
               <li>
-                <Link to="/register" className={`transition-colors text-sm ${
+                <Link to="/register" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Sign Up
                 </Link>
               </li>
               <li>
-                <a href="#" className={`transition-colors text-sm ${
+                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   About Us
@@ -107,28 +107,28 @@ export default function Footer() {
             }`}>Support</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className={`transition-colors text-sm ${
+                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Help Center
                 </a>
               </li>
               <li>
-                <a href="#" className={`transition-colors text-sm ${
+                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#" className={`transition-colors text-sm ${
+                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className={`transition-colors text-sm ${
+                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Terms of Service

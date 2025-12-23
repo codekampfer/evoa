@@ -19,14 +19,14 @@ export default function Navbar() {
   const isDark = theme === 'dark';
 
   return (
-    <header className={`bg-transparent transition-colors duration-300 ${
+    <header className={`bg-transparent backdrop-blur-sm transition-all duration-500 sticky top-0 z-50 ${
       isDark ? 'text-white' : 'text-gray-900'
     }`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
         {/* Main navbar */}
-        <div className="flex items-center justify-between py-3 md:py-4">
+        <div className="flex items-center justify-between py-3 md:py-4 animate-slide-up">
           {/* Logo - Reduced size */}
-          <Link to="/" className="flex items-center gap-2 md:gap-2.5 group transition-transform duration-300 hover:scale-105">
+          <Link to="/" className="flex items-center gap-2 md:gap-2.5 group transition-all duration-300 hover:scale-110 active:scale-95">
             <img 
               src={logo} 
               alt="EVO-A Logo" 
@@ -39,27 +39,27 @@ export default function Navbar() {
 
           {/* Desktop Navigation - Reduced spacing */}
           <nav className="hidden items-center gap-2 text-sm font-medium md:flex md:gap-3">
-            <Link to="/blog" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+            <Link to="/blog" className={`px-3 py-1.5 text-sm tracking-wide transition-all duration-300 hover:opacity-100 hover:scale-105 ${
               isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
               Blog
             </Link>
-            <Link to="/pitch-us" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+            <Link to="/pitch-us" className={`px-3 py-1.5 text-sm tracking-wide transition-all duration-300 hover:opacity-100 hover:scale-105 ${
               isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
               Pitch Us
             </Link>
-            <Link to="/portfolio" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+            <Link to="/portfolio" className={`px-3 py-1.5 text-sm tracking-wide transition-all duration-300 hover:opacity-100 hover:scale-105 ${
               isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
               Portfolio
             </Link>
-            <Link to="/about" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+            <Link to="/about" className={`px-3 py-1.5 text-sm tracking-wide transition-all duration-300 hover:opacity-100 hover:scale-105 ${
               isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
               About
             </Link>
-            <Link to="/contact" className={`px-3 py-1.5 text-sm tracking-wide transition hover:opacity-80 ${
+            <Link to="/contact" className={`px-3 py-1.5 text-sm tracking-wide transition-all duration-300 hover:opacity-100 hover:scale-105 ${
               isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'
             }`}>
               Contact
@@ -67,7 +67,7 @@ export default function Navbar() {
             {/* Theme Toggle - Reduced size */}
             <button
               onClick={toggleTheme}
-              className={`border px-2.5 py-1.5 text-sm transition flex items-center justify-center ${
+              className={`border px-2.5 py-1.5 text-sm transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-95 ${
                 isDark 
                   ? 'border-white/60 hover:bg-white/10 hover:border-white' 
                   : 'border-black/60 hover:bg-black/10 hover:border-black'
@@ -82,7 +82,7 @@ export default function Navbar() {
             </button>
             <Link 
               to="/login"
-              className={`px-4 py-1.5 text-sm font-semibold transition hover:scale-105 ${
+              className={`px-4 py-1.5 text-sm font-semibold transition-all duration-300 hover:scale-110 active:scale-95 ${
                 isDark 
                   ? 'bg-white text-black hover:bg-white/90' 
                   : 'bg-black text-white hover:bg-black/90'
@@ -133,7 +133,7 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div
             onClick={closeMobileMenu}
-            className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+            className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-500 md:hidden ${
               isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
           />
@@ -141,8 +141,8 @@ export default function Navbar() {
         
         {/* Full Screen Menu - Optimized sizing */}
         <div
-          className={`fixed top-0 right-0 h-full w-full z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`fixed top-0 right-0 h-full w-full z-50 transform transition-all duration-500 ease-in-out md:hidden ${
+            isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           } ${isDark ? 'bg-black' : 'bg-white'}`}
         >
           <nav className={`flex flex-col h-full ${isDark ? 'bg-black' : 'bg-white'}`}>
@@ -184,7 +184,7 @@ export default function Navbar() {
               <Link
                 to="/blog"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -195,7 +195,7 @@ export default function Navbar() {
               <Link
                 to="/pitch-us"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -206,7 +206,7 @@ export default function Navbar() {
               <Link
                 to="/portfolio"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -217,7 +217,7 @@ export default function Navbar() {
               <Link
                 to="/about"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -228,7 +228,7 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all active:scale-98 ${
+                className={`w-full px-4 py-3 text-left text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                   isDark 
                     ? 'text-white hover:bg-white/10 hover:text-white' 
                     : 'text-gray-900 hover:bg-gray-100 hover:text-black'
@@ -264,7 +264,7 @@ export default function Navbar() {
               <Link
                 to="/login"
                 onClick={closeMobileMenu}
-                className={`w-full px-4 py-3 text-center text-base font-bold transition-all active:scale-98 block ${
+                className={`w-full px-4 py-3 text-center text-base font-bold transition-all duration-300 hover:scale-105 active:scale-95 block ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90 shadow-lg' 
                     : 'bg-black text-white hover:bg-black/90 shadow-lg'
