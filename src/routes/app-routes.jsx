@@ -23,6 +23,7 @@ import PitchUs from '../modules/pages/pitch-us';
 import Portfolio from '../modules/pages/portfolio';
 import About from '../modules/pages/about';
 import Contact from '../modules/pages/contact';
+import PrivacyPolicy from '../modules/pages/privacy-policy';
 
 export default function AppRoutes() {
   return (
@@ -51,6 +52,7 @@ export default function AppRoutes() {
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
       </Route>
     </Routes>
   );

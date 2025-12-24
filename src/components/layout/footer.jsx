@@ -121,11 +121,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
+                <Link to="/privacy-policy" className={`transition-all duration-300 hover:scale-105 text-sm ${
                   isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'
                 }`}>
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className={`transition-all duration-300 hover:scale-105 text-sm ${
