@@ -4,15 +4,30 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    // Get theme from localStorage or default to 'dark'
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'dark';
+    // Safely get theme from localStorage or default to 'dark'
+    // Check if we're in browser environment before accessing localStorage
+    if (typeof window !== 'undefined') {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme || 'dark';
+      } catch (error) {
+        console.warn('Failed to access localStorage:', error);
+        return 'dark';
+      }
+    }
+    return 'dark';
   });
 
   useEffect(() => {
     // Apply theme to document root
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    if (typeof window !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', theme);
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (error) {
+        console.warn('Failed to save theme to localStorage:', error);
+      }
+    }
   }, [theme]);
 
   const toggleTheme = () => {
