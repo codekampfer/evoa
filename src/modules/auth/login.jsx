@@ -3,11 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
+import { login, googleAuth } from "../../services";
 import logo from "../../assets/logo.avif";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [imagesVisible, setImagesVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const navigate = useNavigate();
@@ -19,6 +26,125 @@ export default function Login() {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error when user starts typing
+    if (error) setError(null);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await login({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      // Login successful - navigate based on user role
+      const user = response.data.user || response.data;
+      const role = user.role?.toLowerCase();
+
+      // Navigate based on role
+      if (role === 'startup') {
+        navigate('/startup');
+      } else if (role === 'investor') {
+        navigate('/investor');
+      } else if (role === 'incubator') {
+        navigate('/incubator');
+      } else {
+        navigate('/viewer');
+      }
+    } catch (err) {
+      // Handle different error types
+      let errorMessage = 'An error occurred. Please try again.';
+      
+      // Log full error details for debugging
+      console.error('Login error details:', {
+        status: err.status,
+        message: err.message,
+        data: err.data,
+        fullError: err
+      });
+      
+      if (err.status === 500) {
+        // Show server error message if available, otherwise generic message
+        if (err.data && (err.data.message || err.data.error || typeof err.data === 'string')) {
+          const serverMessage = err.data.message || err.data.error || err.data;
+          // If it's just a generic "Internal server error", provide more context
+          if (serverMessage === 'Internal server error' || serverMessage === 'Internal server error.') {
+            errorMessage = 'Server error occurred. This might be a temporary issue. Please:\n' +
+                          '1. Check your email and password are correct\n' +
+                          '2. Try again in a few moments\n' +
+                          '3. Contact support if the issue persists';
+          } else {
+            errorMessage = `Server error: ${serverMessage}`;
+          }
+        } else if (err.message && err.message !== 'Request failed') {
+          errorMessage = `Server error: ${err.message}`;
+        } else {
+          errorMessage = 'Server error. Please check the console for details or try again later.';
+        }
+      } else if (err.status === 401) {
+        errorMessage = 'Invalid email or password. Please check your credentials.';
+      } else if (err.status === 400) {
+        errorMessage = err.message || 'Invalid request. Please check your input.';
+      } else if (err.status === 404) {
+        errorMessage = 'API endpoint not found. Please contact support.';
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Note: In a real implementation, you would get the idToken from Google OAuth
+      // This is a placeholder - you'll need to integrate Google OAuth SDK
+      const idToken = await getGoogleIdToken(); // Implement this function
+      
+      const response = await googleAuth({ idToken });
+      
+      // Navigate based on user role
+      const user = response.data.user || response.data;
+      const role = user.role?.toLowerCase();
+
+      if (role === 'startup') {
+        navigate('/startup');
+      } else if (role === 'investor') {
+        navigate('/investor');
+      } else if (role === 'incubator') {
+        navigate('/incubator');
+      } else {
+        navigate('/viewer');
+      }
+    } catch (err) {
+      setError(err.message || 'Google authentication failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Placeholder for Google OAuth integration
+  const getGoogleIdToken = async () => {
+    // TODO: Implement Google OAuth integration
+    // This should use Google Sign-In SDK to get the idToken
+    throw new Error('Google OAuth not implemented yet');
+  };
 
   return (
     <div className={`min-h-screen flex transition-colors duration-300 ${
@@ -119,18 +245,30 @@ export default function Login() {
           }`}>
             <form 
               className="space-y-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-                // Navigate to startup page after login
-                navigate('/startup');
-              }}
+              onSubmit={handleSubmit}
             >
+              {/* Error Message */}
+              {error && (
+                <div className={`p-3 text-sm border ${
+                  isDark 
+                    ? 'bg-red-500/10 border-red-500/30 text-red-400' 
+                    : 'bg-red-50 border-red-200 text-red-600'
+                }`}>
+                  {error}
+                </div>
+              )}
+
               {/* Email Input */}
               <div>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email"
-                  className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all ${
+                  required
+                  disabled={loading}
+                  className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
                       : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
@@ -143,8 +281,13 @@ export default function Login() {
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     placeholder="Password"
-                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 ${
+                    required
+                    disabled={loading}
+                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 disabled:opacity-50 disabled:cursor-not-allowed ${
                       isDark 
                         ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
                         : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
@@ -166,13 +309,14 @@ export default function Login() {
               {/* Login Button */}
               <button
                 type="submit"
-                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 ${
+                disabled={loading}
+                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
                   isDark 
                     ? 'bg-white text-black hover:bg-white/90' 
                     : 'bg-black text-white hover:bg-black/90'
                 }`}
               >
-                Sign in
+                {loading ? 'Signing in...' : 'Sign in'}
               </button>
 
               {/* Divider */}
@@ -191,15 +335,16 @@ export default function Login() {
               {/* Google Login */}
               <button
                 type="button"
-                onClick={() => navigate('/startup')}
-                className={`w-full py-2.5  text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
+                onClick={handleGoogleLogin}
+                disabled={loading}
+                className={`w-full py-2.5  text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                   isDark 
                     ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20' 
                     : 'bg-black/5 text-black border border-black/20 hover:bg-black/10'
                 }`}
               >
                 <FaGoogle size={18} />
-                Login with Google
+                {loading ? 'Authenticating...' : 'Login with Google'}
               </button>
 
               {/* Forgot Password */}
