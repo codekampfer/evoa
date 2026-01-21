@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
-import { login, googleAuth } from "../../services";
+import { login, googleAuth } from "../../services/authService";
 import logo from "../../assets/logo.avif";
 
 export default function Login() {
