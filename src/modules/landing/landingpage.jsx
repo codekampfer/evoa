@@ -2,185 +2,136 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import Footer from '../../components/layout/footer';
-import heroDarkTheme from '../../assets/llustration/hero dark them.png';
-import heroWhiteTheme from '../../assets/llustration/hero white them.png';
-
-import { 
+import { ScrollProgress, FloatingAnimatedIcons, FeatureCard, FAQItem } from './components';
+import {
+  faqData,
+  whyEvoaFeatures,
+  howItWorksSteps,
+  powerfulFeatures,
+  userJourneyData,
+  generateSmokeParticles
+} from './constants';
+import {
   HiRocketLaunch,
-  HiBriefcase,
   HiCurrencyDollar,
-  HiStar,
-  HiLockClosed,
   HiCheckCircle,
-  HiGlobeAlt,
-  HiSparkles,
-  HiArrowDown,
-  HiUserGroup,
-  HiChartBar,
-  HiLightBulb,
-  HiShieldCheck,
-  HiTrophy,
-  HiChatBubbleLeftRight,
-  HiPlayCircle,
-  HiDocumentText,
   HiArrowRight,
-  HiBolt,
-  HiCheckBadge,
-  HiHandThumbUp,
-  HiMagnifyingGlass,
-  HiBell,
-  HiBookmark,
-  HiHeart,
-  HiShare,
-  HiEye,
   HiQuestionMarkCircle,
+  HiLightBulb,
   HiAcademicCap,
-  HiBuildingOffice,
   HiUsers,
-  HiArrowPath,
-  HiClipboardDocumentCheck,
+  HiArrowDown,
+  HiCheckBadge,
   HiVideoCamera,
-  HiDocumentMagnifyingGlass,
-  HiBanknotes,
+  HiMagnifyingGlass,
+  HiUserGroup,
   HiHome,
-  HiFire,
-  HiTag,
-  HiEnvelope,
-  HiPhone
+  HiBell,
+  HiShieldCheck,
+  HiClipboardDocumentCheck,
+  HiChatBubbleLeftRight
 } from 'react-icons/hi2';
 
-// Scroll Progress Indicator
-function ScrollProgress({ isDark }) {
-  const [progress, setProgress] = useState(0);
+// Icon mapping helper
+const iconMap = {
+  HiCheckBadge,
+  HiVideoCamera,
+  HiMagnifyingGlass,
+  HiUserGroup,
+  HiHome,
+  HiBell,
+  HiShieldCheck,
+  HiClipboardDocumentCheck,
+  HiChatBubbleLeftRight
+};
 
-  useEffect(() => {
-    const updateProgress = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight - windowHeight;
-      const scrolled = window.scrollY;
-      setProgress((scrolled / documentHeight) * 100);
-    };
+const getIcon = (iconName, className = 'text-2xl') => {
+  const IconComponent = iconMap[iconName];
+  return IconComponent ? <IconComponent className={className} /> : null;
+};
 
-    window.addEventListener('scroll', updateProgress);
-    return () => window.removeEventListener('scroll', updateProgress);
-  }, []);
+// Animation Styles
+const animationStyles = `
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes smokeFlow {
+    0% {
+      opacity: 0;
+      transform: translateX(-200px) translateY(0) scale(0.3);
+    }
+    5% {
+      opacity: 0.4;
+    }
+    30% {
+      opacity: 0.7;
+      transform: translateX(100px) translateY(-30px) scale(0.8);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateX(300px) translateY(-60px) scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(600px) translateY(-100px) scale(1.8);
+    }
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-20px) rotate(5deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-10px) rotate(-5deg);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-15px) rotate(3deg);
+      opacity: 0.5;
+    }
+  }
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+  }
+  @keyframes rotate-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  .animate-rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+`;
 
-  return (
-    <div className={`fixed top-0 left-0 right-0 h-1 z-50 ${
-      isDark ? 'bg-white/20' : 'bg-black/20'
-    }`}>
-      <div 
-        className="h-full transition-all duration-300 bg-white"
-        style={{ width: `${progress}%` }}
-      />
-    </div>
-  );
-}
-
-// Animated Counter Component
-function AnimatedCounter({ target, suffix = '', prefix = '', duration = 2000, isVisible = false }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime = null;
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      const currentCount = Math.floor(easeOutQuart * target);
-      
-      setCount(currentCount);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setCount(target);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [target, duration, isVisible]);
-
-  return (
-    <span>
-      {prefix}{count}{suffix}
-    </span>
-  );
-}
-
-// Feature Card Component
-function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark }) {
-  return (
-    <div
-      className={`group relative backdrop-blur-sm border p-6 transition-all duration-700 cursor-pointer ${
-        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
-      } ${
-        isDark 
-          ? 'bg-black/40 border-white/20 hover:border-white/40 hover:bg-black/60 hover:scale-105' 
-          : 'bg-white border-black/20 hover:border-black/40 hover:bg-gray-50 hover:scale-105'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-        isDark ? 'bg-gradient-to-br from-white/5 to-transparent' : 'bg-gradient-to-br from-black/5 to-transparent'
-      }`}></div>
-      <div className="relative z-10">
-        <div className={`w-14 h-14 flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${
-          isDark ? 'bg-white/20 group-hover:bg-white/30' : 'bg-black/10 group-hover:bg-black/20'
-        }`}>
-          <div className="transition-transform duration-300 group-hover:scale-110">
-            {icon}
-          </div>
-        </div>
-        <h3 className={`text-base sm:text-lg font-bold mb-3 transition-colors duration-300 ${
-          isDark ? 'text-white' : 'text-black'
-        }`}>
-          {title}
-        </h3>
-        <p className={`text-sm leading-relaxed transition-colors duration-300 ${
-          isDark ? 'text-white/60' : 'text-black/60'
-        }`}>
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// FAQ Accordion Component
-function FAQItem({ question, answer, isOpen, onToggle, isDark }) {
-  return (
-    <div className={`border transition-all duration-300 ${
-      isDark ? 'border-white/20 bg-black/40' : 'border-black/20 bg-white'
-    }`}>
-      <button
-        onClick={onToggle}
-        className={`w-full px-4 py-4 text-left flex items-center justify-between transition-all duration-300 ${
-          isDark ? 'hover:bg-black/60' : 'hover:bg-gray-50'
-        }`}
-      >
-        <span className={`font-semibold text-sm sm:text-base transition-all duration-300 ${
-          isDark ? 'text-white' : 'text-black'
-        }`}>
-          {question}
-        </span>
-        <HiArrowDown className={`w-5 h-5 transition-transform duration-300 ${
-          isOpen ? 'rotate-180' : ''
-        } ${isDark ? 'text-white' : 'text-black'}`} />
-      </button>
-      {isOpen && (
-        <div className={`px-4 pb-4 animate-slide-up ${
-          isDark ? 'text-white/70' : 'text-black/70'
-        }`}>
-          <p className="text-sm leading-relaxed">{answer}</p>
-        </div>
-      )}
-    </div>
-  );
-}
+// Typing words - moved outside component to prevent recreation
+const TYPING_WORDS = ["Next Unicorn", "Right Investors", "Top Startups", "Your Future", "Success Stories", "Dream Team"];
 
 export default function Landing() {
   const [isVisible, setIsVisible] = useState({});
@@ -189,6 +140,25 @@ export default function Landing() {
   const sectionRefs = useRef({});
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  
+  const [smokeParticles] = useState(() => generateSmokeParticles());
+  
+  // Auto-typing state
+  const [textIndex, setTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingText, setTypingText] = useState('');
+  const typingTimeoutRef = useRef(null);
+  const typingTextRef = useRef('');
+  const isDeletingRef = useRef(false);
+  const textIndexRef = useRef(0);
+  const isFirstRender = useRef(true);
+
+  // Keep refs in sync
+  useEffect(() => {
+    typingTextRef.current = typingText;
+    isDeletingRef.current = isDeleting;
+    textIndexRef.current = textIndex;
+  }, [typingText, isDeleting, textIndex]);
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -198,20 +168,17 @@ export default function Landing() {
         y: (e.clientY / window.innerHeight) * 100,
       });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Intersection Observer for scroll animations
   useEffect(() => {
-    // Set initial hero visibility
-    setIsVisible({ hero: true, heroImage: true });
-
+    setIsVisible({ hero: true });
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -237,6 +204,78 @@ export default function Landing() {
     };
   }, []);
 
+  // Reset when word index changes
+  useEffect(() => {
+    setTypingText('');
+    setIsDeleting(false);
+  }, [textIndex]);
+
+  // Auto-typing effect - properly fixed with refs
+  useEffect(() => {
+    // Clear any existing timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    const currentWord = TYPING_WORDS[textIndexRef.current];
+    if (!currentWord) return;
+
+    const typeSpeed = isDeletingRef.current ? 80 : 180;
+    
+    const type = () => {
+      const currentText = typingTextRef.current;
+      const currentWord = TYPING_WORDS[textIndexRef.current];
+      const deleting = isDeletingRef.current;
+      
+      if (!deleting) {
+        // Typing mode
+        const newText = currentWord.substring(0, currentText.length + 1);
+        
+        if (newText.length === currentWord.length) {
+          // Word complete, wait then start deleting
+          setTypingText(newText);
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 2500);
+          return;
+        }
+        
+        // Continue typing
+        setTypingText(newText);
+        typingTimeoutRef.current = setTimeout(type, typeSpeed);
+      } else {
+        // Deleting mode
+        const newText = currentWord.substring(0, currentText.length - 1);
+        
+        if (newText.length === 0) {
+          // Word deleted, move to next word
+          setTypingText('');
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % TYPING_WORDS.length);
+          return;
+        }
+        
+        // Continue deleting
+        setTypingText(newText);
+        typingTimeoutRef.current = setTimeout(type, typeSpeed);
+      }
+    };
+
+    // Initial delay on first render
+    const initialDelay = isFirstRender.current ? 500 : 0;
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    }
+    
+    typingTimeoutRef.current = setTimeout(type, typeSpeed + initialDelay);
+
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+    };
+  }, [isDeleting, textIndex]);
+
   const setRef = (section) => (el) => {
     if (el) {
       sectionRefs.current[section] = el;
@@ -248,141 +287,165 @@ export default function Landing() {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
-  // FAQ Data
-  const faqData = [
-    {
-      question: 'Is EVO-A free?',
-      answer: 'Currently, EVO-A provides free access for startups, investors, and viewers. Advanced features and premium services may be added in the future.'
-    },
-    {
-      question: 'Is verification compulsory?',
-      answer: 'Verification is strongly recommended for high trust and visibility. In some critical flows (investor offers, incubator matching), verification may be mandatory.'
-    },
-    {
-      question: 'Can I have multiple roles?',
-      answer: 'Currently, an account starts with one primary role. Future updates may add multi-role support if you need multiple perspectives.'
-    },
-    {
-      question: 'How long should the pitch video be?',
-      answer: 'Minimum 90 seconds (1.5 minutes) and maximum 3 minutes. This maintains investor attention span and keeps the message clear.'
-    },
-    {
-      question: 'Is GST/CIN mandatory for startup verification?',
-      answer: 'No. If you are a registered entity, you can use GST or CIN. Otherwise, founder ID proof and optional business proof are sufficient.'
-    },
-    {
-      question: 'Is SEBI registration required for investors?',
-      answer: 'No. SEBI registered investors get an instant green badge. Non-SEBI angels can pass manual review with LinkedIn + PAN + ID proof.'
-    },
-    {
-      question: 'Can incubators be unregistered?',
-      answer: 'Every incubator should have verification documents (government, university, corporate affiliation, MSME, etc.). These establish credibility.'
-    }
-  ];
+  const SectionTitle = ({ children }) => (
+    <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r ${
+      isDark 
+        ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
+        : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
+    }`}>
+      {children}
+    </h2>
+  );
+
+  const CardContainer = ({ children, className = '' }) => (
+    <div className={`group relative p-6 sm:p-8 md:p-10 rounded-2xl transition-all duration-500 overflow-hidden ${
+      isDark 
+        ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.02] hover:-translate-y-1' 
+        : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.02] hover:-translate-y-1'
+    } ${className}`}>
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
+  );
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       isDark ? 'bg-black' : 'bg-white'
     }`}>
-      {/* Scroll Progress Indicator */}
+      <style>{animationStyles}</style>
+      
       <ScrollProgress isDark={isDark} />
+      <FloatingAnimatedIcons isDark={isDark} />
 
-      {/* Decorative background elements with mouse tracking */}
+      {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        {smokeParticles.map((particle) => (
+          <div
+            key={particle.id}
+            className={`absolute left-0 rounded-full ${particle.blur}`}
+            style={{
+              width: `${particle.width}px`,
+              height: `${particle.height}px`,
+              background: `radial-gradient(circle, rgba(176, 255, 250, ${particle.opacity}) 0%, rgba(176, 255, 250, ${particle.opacity * 0.3}) 40%, transparent 80%)`,
+              top: `${particle.top}%`,
+              animation: `smokeFlow ${particle.duration}s ease-out infinite`,
+              animationDelay: `${particle.delay}s`,
+              willChange: 'transform, opacity',
+            }}
+          />
+        ))}
+        
         <div 
-          className={`absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl transition-all duration-700 ${
-            isDark ? 'bg-white/5' : 'bg-black/5'
-          }`}
+          className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-40"
           style={{
             transform: `translate(${(mousePosition.x - 50) * 0.1}px, ${(mousePosition.y - 50) * 0.1}px)`,
+            background: 'radial-gradient(circle, #B0FFFA 0%, transparent 70%)',
           }}
-        ></div>
+        />
         <div 
-          className={`absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl transition-all duration-700 ${
-            isDark ? 'bg-white/3' : 'bg-black/3'
-          }`}
+          className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-40"
+          style={{
+            transform: `translate(${(mousePosition.x - 50) * -0.1}px, ${(mousePosition.y - 50) * 0.1}px)`,
+            background: 'radial-gradient(circle, #B0FFFA 0%, transparent 70%)',
+          }}
+        />
+        <div 
+          className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl transition-all duration-700 opacity-20"
           style={{
             transform: `translate(${(mousePosition.x - 50) * -0.1}px, ${(mousePosition.y - 50) * -0.1}px)`,
+            background: 'radial-gradient(circle, #80E5FF 0%, transparent 70%)',
           }}
-        ></div>
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full blur-3xl transition-all duration-1000 opacity-10"
+          style={{
+            transform: `translate(${(mousePosition.x - 50) * 0.05}px, ${(mousePosition.y - 50) * 0.05}px) translate(-50%, -50%)`,
+            background: 'radial-gradient(circle, #B0FFFA 0%, transparent 60%)',
+          }}
+        />
       </div>
 
-      {/* MAIN */}
       <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 pt-0">
-
         {/* Hero Section */}
         <section 
-          ref={setRef('hero')}
-          className={`grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center transition-all duration-1000 ease-out 
-            py-6 sm:py-8 md:py-10 lg:py-12 mb-0 ${
+        ref={setRef('hero')}
+        className={`relative flex flex-col items-center justify-center min-h-[85vh] transition-all duration-1000 ease-out 
+          py-12 sm:py-20 px-4 overflow-hidden ${
+          isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {/* Background Glow Spot */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] -z-10 opacity-30 ${
+          isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#00B8A9]/10'
+        }`}></div>
+
+        <div className="w-full max-w-5xl mx-auto text-center space-y-8 sm:space-y-10 z-10">
+          
+          {/* Main Headline with Auto-Typing */}
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 transition-all duration-1000 delay-200 text-center ${
             isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          {/* Left Side - Text Content */}
-          <div className="order-2 md:order-1 space-y-4 sm:space-y-5 md:space-y-6 px-2 sm:px-0">
-            {/* Main Heading */}
-            <h1 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight transition-all duration-1000 ${
-              isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            } ${isDark ? 'text-white' : 'text-black'}`} style={{ transitionDelay: '200ms' }}>
-              Join the Future of Startup–Investor Ecosystem
-            </h1>
+          } ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            <span className="whitespace-nowrap inline-flex items-baseline justify-center">
+              <span className="inline-block whitespace-pre">Connect with </span>
+              {/* Typing Container - Fixed width to prevent shifting */}
+              <span className={`bg-gradient-to-r bg-clip-text text-transparent inline-block w-[280px] sm:w-[380px] md:w-[450px] lg:w-[520px] text-left ${
+                isDark 
+                  ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
+                  : 'from-[#00B8A9] via-teal-600 to-[#00B8A9]'
+              }`}>
+                {typingText || '\u00A0'}
+                {/* Blinking Cursor */}
+                <span className={`inline-block w-1 h-[1em] align-middle ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
+              </span>
+            </span>
+          </h1>
 
-            {/* Description */}
-            <p className={`text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl transition-all duration-1000 ${
-              isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            } ${isDark ? 'text-white/80' : 'text-gray-700'}`} style={{ transitionDelay: '400ms' }}>
-              EVO-A is a smart platform that connects startups, investors, incubators, and viewers in one place – pitching, funding, and discovery all in one app.
-            </p>
+          {/* Subheading */}
+          <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto font-light transition-all duration-1000 delay-300 ${
+            isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          } ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            India's most trusted platform where 
+            <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> startups meet investors, </span> 
+            incubators showcase talent, and 
+            <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> dreams turn into reality. </span>
+            Join the future of funding today!
+          </p>
 
-            {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 transition-all duration-1000 ${
-              isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`} style={{ transitionDelay: '600ms' }}>
-              <Link 
-                to="/register" 
-                className={`group w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base font-semibold text-center
-                  transition-all duration-300 hover:opacity-90 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${
-                    isDark 
-                      ? 'bg-white text-black' 
-                      : 'bg-black text-white'
-                  }`}
-              >
-                <span>Create Your Account</span>
-                <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </Link>
-
-              <Link 
-                to="/login" 
-                className={`w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 border text-sm sm:text-base font-semibold text-center
-                  transition-all duration-300 hover:opacity-80 hover:scale-105 active:scale-95 ${
-                    isDark 
-                      ? 'border-white text-white bg-transparent' 
-                      : 'border-black text-black bg-white'
-                  }`}
-              >
-                Sign in with Email
-              </Link>
-            </div>
+          {/* Buttons */}
+          <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 transition-all duration-1000 delay-500 ${
+            isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <Link 
+              to="/register" 
+              className={`px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-200 ${
+                isDark 
+                  ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm' 
+                  : 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm'
+              }`}
+            >
+              Create Free Account
+            </Link>
+            
+            <Link 
+              to="/login" 
+              className={`px-6 py-2.5 rounded-md font-medium text-sm border transition-all duration-200 flex items-center gap-1.5 ${
+                isDark 
+                  ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
+                  : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+              }`}
+            >
+              <span>Log In</span>
+              <HiArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
-          {/* Right Side - Hero Image */}
-          <div 
-            ref={setRef('heroImage')}
-            className={`order-1 md:order-2 hidden md:flex justify-center md:justify-end transition-all duration-1000 ease-out delay-300 ${
-              isVisible['heroImage'] ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-8 scale-95'
-            }`}
-          >
-            <div className="relative w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl">
-              <div className="h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] w-full overflow-hidden relative flex items-center justify-center">
-                <img
-                  src={isDark ? heroDarkTheme : heroWhiteTheme}
-                  alt="EVO-A platform interface"
-                  className="h-full w-full object-contain transition-all duration-700 ease-in-out"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
+      </section>
+
+
 
         {/* Problem & Solution Section */}
         <section 
@@ -392,48 +455,43 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 ${
-                  isDark ? 'text-white' : 'text-black'
-                }`}>
-              Startup Funding and Discovery Made Easy
-            </h2>
+            <SectionTitle>Transform Your Startup Journey</SectionTitle>
+            <p className={`text-base sm:text-lg mt-4 max-w-2xl mx-auto ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              From pitch to funding, we've got you covered
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-            {/* Problem */}
-            <div className={`border p-6 sm:p-8 md:p-10 ${
-              isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-            }`}>
+            <CardContainer className="hover:scale-[1.02]">
               <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-4 flex items-center gap-2 ${
-                isDark ? 'text-white' : 'text-black'
+                isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
               }`}>
                 <HiQuestionMarkCircle className="text-2xl sm:text-3xl" />
                 <span>The Problem</span>
-                </h3>
+              </h3>
               <ul className={`space-y-3 text-sm sm:text-base leading-relaxed ${
-                  isDark ? 'text-white/70' : 'text-black/70'
-                }`}>
+                isDark ? 'text-white/70' : 'text-black/70'
+              }`}>
                 <li className="flex items-start gap-2">
-                  <HiArrowRight className="mt-1 shrink-0" />
-                  <span>Startups struggle to reach the right investors</span>
+                  <HiArrowRight className={`mt-1 shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                  <span>Startups waste months searching for the right investors</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <HiArrowRight className="mt-1 shrink-0" />
-                  <span>Investors don't get quality, verified deals</span>
+                  <HiArrowRight className={`mt-1 shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                  <span>Investors miss out on quality deals buried in noise</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <HiArrowRight className="mt-1 shrink-0" />
-                  <span>Incubators need a scalable way to showcase their startups</span>
+                  <HiArrowRight className={`mt-1 shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                  <span>Incubators struggle to showcase their portfolio effectively</span>
                 </li>
               </ul>
-            </div>
+            </CardContainer>
 
-            {/* Solution */}
-            <div className={`border p-6 sm:p-8 md:p-10 ${
-              isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-            }`}>
+            <CardContainer className="hover:scale-[1.02]">
               <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-4 flex items-center gap-2 ${
-                isDark ? 'text-white' : 'text-black'
+                isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
               }`}>
                 <HiLightBulb className="text-2xl sm:text-3xl" />
                 <span>The Solution</span>
@@ -441,9 +499,9 @@ export default function Landing() {
               <p className={`text-sm sm:text-base leading-relaxed ${
                 isDark ? 'text-white/70' : 'text-black/70'
               }`}>
-                EVO-A is a verified, structured, and interactive platform where startups share their pitch decks and videos, investors view deal terms, and incubators highlight their portfolio companies.
-                </p>
-              </div>
+                EVO-A brings everything together in one intelligent platform. Startups pitch with confidence, investors discover verified opportunities instantly, and incubators showcase their success stories. All verified, all trusted, all in one place.
+              </p>
+            </CardContainer>
           </div>
         </section>
   
@@ -455,274 +513,419 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Why EVO-A?
-            </h2>
+            <SectionTitle>Why EVO-A?</SectionTitle>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-            <FeatureCard
-              icon={<HiCheckBadge className="text-2xl sm:text-3xl" />}
-              title="Verified Profiles & Documents"
-              description="Details like CIN, GST, Udyam, and SEBI registration help build trust between startups and investors."
-              delay={0}
-              isVisible={isVisible['whyEvoa']}
-              isDark={isDark}
-            />
-            <FeatureCard
-              icon={<HiVideoCamera className="text-2xl sm:text-3xl" />}
-              title="Investor-First Pitch Experience"
-              description="Pitch video, deck, and deal terms (amount raising, equity, valuation) all on one screen – for quick and informed decisions."
-              delay={100}
-              isVisible={isVisible['whyEvoa']}
-              isDark={isDark}
-            />
-            <FeatureCard
-              icon={<HiMagnifyingGlass className="text-2xl sm:text-3xl" />}
-              title="Smart Matching & Filters"
-              description="Personalized recommendations for investors and incubators based on sector, ticket size, startup stage, and location."
-              delay={200}
-              isVisible={isVisible['whyEvoa']}
-              isDark={isDark}
-            />
-            <FeatureCard
-              icon={<HiUserGroup className="text-2xl sm:text-3xl" />}
-              title="Multi-Role Ecosystem"
-              description="Customized dashboard and experience for everyone – Startup, Investor, Incubator, and Viewer."
-              delay={300}
-              isVisible={isVisible['whyEvoa']}
-              isDark={isDark}
-            />
+            {whyEvoaFeatures.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={getIcon(feature.iconName, 'text-2xl sm:text-3xl')}
+                title={feature.title}
+                description={feature.description}
+                delay={index * 100}
+                isVisible={isVisible['whyEvoa']}
+                isDark={isDark}
+              />
+            ))}
           </div>
         </section>
+{/* User Roles Section */}
+<section 
+  ref={setRef('userRoles')}
+  className={`relative mt-16 sm:mt-20 md:mt-24 lg:mt-32 py-12 transition-all duration-1000 ease-out ${
+    isVisible['userRoles'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  }`}
+>
+  <div className="text-center mb-12 sm:mb-16 md:mb-20 px-4">
+    {/* Badge */}
+    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
+      isDark 
+        ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+        : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+    }`}>
+      <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">For Everyone</span>
+    </div>
+    
+    <SectionTitle>Who is EVO-A For?</SectionTitle>
+    
+    <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
+      isDark ? 'text-white/70' : 'text-gray-600'
+    }`}>
+      Choose your role and join the ecosystem
+    </p>
+  </div>
 
-        {/* User Roles Section */}
-        <section 
-          ref={setRef('userRoles')}
-          className={`relative mt-8 sm:mt-12 md:mt-16 lg:mt-20 transition-all duration-1000 ease-out ${
-            isVisible['userRoles'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
+  {/* Circular Layout Container */}
+  <div className="relative max-w-7xl mx-auto px-4">
+    
+    {/* Desktop & Tablet: Circular Layout */}
+    <div className="hidden md:block">
+      <div className="relative mx-auto flex items-center justify-center" style={{ width: '900px', height: '900px', maxWidth: '100%' }}>
+        
+        {/* Center Circle - Platform Logo/Name */}
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
+          w-56 h-56 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-4
+          shadow-[0_0_60px_rgba(176,255,250,0.3)] ${
+          isDark 
+            ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 border-[#B0FFFA]/40' 
+            : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 border-[#B0FFFA]/50'
+        }`}>
+          {/* Animated Glow */}
+          <div className={`absolute inset-0 rounded-full blur-2xl opacity-50 animate-pulse ${
+            isDark ? 'bg-[#B0FFFA]/30' : 'bg-[#00B8A9]/20'
+          }`}></div>
+          
+          <div className="relative z-10 text-center px-4">
+            <div className={`text-4xl font-black mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark 
+                ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
+                : 'from-[#00B8A9] via-teal-600 to-[#008C81]'
             }`}>
-              Who is EVO-A For?
-            </h2>
+              EVO-A
+            </div>
+            <p className={`text-sm font-semibold ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+              One Platform
+            </p>
+            <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
+              Four Possibilities
+            </p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {/* For Startups */}
-            <div className={`border p-6 sm:p-8 transition-all duration-300 hover:scale-105 ${
-              isDark ? 'bg-black/40 border-white/20 hover:border-white/40' : 'bg-white border-black/20 hover:border-black/40'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+        {/* SVG Animated Dashed Circle - Fixed Centering */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <svg 
+            width="720" 
+            height="720"
+            viewBox="0 0 720 720"
+            className="absolute"
+            style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+          >
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Dashed Circle - Exact center with proper radius */}
+            <circle
+              cx="360"
+              cy="360"
+              r="360"
+              fill="none"
+              stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
+              strokeWidth="2"
+              strokeDasharray="15 10"
+              className="animate-dash-rotate"
+            />
+            
+            {/* Animated Glowing Dots */}
+            <circle
+              r="6"
+              fill={isDark ? '#B0FFFA' : '#00B8A9'}
+              filter="url(#glow)"
+            >
+              <animateMotion
+                dur="8s"
+                repeatCount="indefinite"
+                path="M 360,0 a 360,360 0 1,1 0,720 a 360,360 0 1,1 0,-720"
+              />
+            </circle>
+            
+            <circle
+              r="6"
+              fill={isDark ? '#80E5FF' : '#00E5D0'}
+              filter="url(#glow)"
+            >
+              <animateMotion
+                dur="8s"
+                repeatCount="indefinite"
+                path="M 360,0 a 360,360 0 1,1 0,720 a 360,360 0 1,1 0,-720"
+                begin="-4s"
+              />
+            </circle>
+          </svg>
+        </div>
+
+        {/* Card 1 - Startups (Top) */}
+        <div 
+          className={`absolute transition-all duration-700 ${
+            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+          }`}
+          style={{ 
+            top: '0',
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+            transitionDelay: '100ms'
+          }}
+        >
+          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+            transition-all duration-500 hover:scale-110 cursor-pointer ${
+            isDark 
+              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
+              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
+          }`}>
+            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
+              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+            }`}></div>
+
+            <div className="relative z-10 text-center">
+              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
+                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiRocketLaunch className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
+                <HiRocketLaunch className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
-              <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${
-                isDark ? 'text-white' : 'text-black'
-              }`}>
+              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Startups
               </h3>
-              <p className={`text-sm sm:text-base mb-4 leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>
-                Founder details, startup basics, industry & stage, verification docs, pitch video & deck, team info – all in one clean form.
+              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+                Pitch your vision & get funded
               </p>
-              <ul className={`space-y-2 mb-6 text-sm ${
-                isDark ? 'text-white/60' : 'text-black/60'
-              }`}>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Register multiple founders</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Upload pitch video (90 sec to 3 min)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Upload pitch deck (PDF format)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Add deal terms (amount, equity, valuation)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Social links integration</span>
-                </li>
-              </ul>
               <Link 
                 to="/register/startup"
-                className={`inline-block px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
+                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
+                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
+                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
                 }`}
               >
-                For Startups – Create Your Account
-              </Link>
-          </div>
-
-            {/* For Investors */}
-            <div className={`border p-6 sm:p-8 transition-all duration-300 hover:scale-105 ${
-              isDark ? 'bg-black/40 border-white/20 hover:border-white/40' : 'bg-white border-black/20 hover:border-black/40'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
-              }`}>
-                <HiCurrencyDollar className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
-              </div>
-              <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${
-                isDark ? 'text-white' : 'text-black'
-              }`}>
-                For Investors
-              </h3>
-              <p className={`text-sm sm:text-base mb-4 leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>
-                Ticket size, sector focus, deal preferences, SEBI or LinkedIn-based verification, portfolio info – so the right deals come to you.
-              </p>
-              <ul className={`space-y-2 mb-6 text-sm ${
-                isDark ? 'text-white/60' : 'text-black/60'
-              }`}>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Investor type selection (Angel, VC, Fund, etc.)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Investment range setting (10L to 10Cr+)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Sector focus multi-select</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>SEBI registration ya LinkedIn verification</span>
-                </li>
-              </ul>
-              <Link 
-                to="/register/investor"
-                className={`inline-block px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
-                  isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
-                }`}
-              >
-                For Investors – Join EVO-A
+                Create Account
               </Link>
             </div>
+          </div>
+        </div>
 
-            {/* For Incubators */}
-            <div className={`border p-6 sm:p-8 transition-all duration-300 hover:scale-105 ${
-              isDark ? 'bg-black/40 border-white/20 hover:border-white/40' : 'bg-white border-black/20 hover:border-black/40'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+        {/* Card 2 - Investors (Right) */}
+        <div 
+          className={`absolute transition-all duration-700 ${
+            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+          }`}
+          style={{ 
+            top: '50%',
+            right: '0',
+            transform: 'translate(0, -50%)',
+            transitionDelay: '250ms'
+          }}
+        >
+          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+            transition-all duration-500 hover:scale-110 cursor-pointer ${
+            isDark 
+              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
+              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
+          }`}>
+            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
+              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+            }`}></div>
+
+            <div className="relative z-10 text-center">
+              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
+                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiAcademicCap className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
-                  </div>
-              <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${
-                  isDark ? 'text-white' : 'text-black'
-                }`}>
-                For Incubators
-                </h3>
-              <p className={`text-sm sm:text-base mb-4 leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>
-                Create a trusted incubator profile with program details, sector focus, facilities, portfolio startups, and verification documents.
+                <HiCurrencyDollar className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+              </div>
+              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+                For Investors
+              </h3>
+              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+                Discover & fund unicorns
               </p>
-              <ul className={`space-y-2 mb-6 text-sm ${
-                isDark ? 'text-white/60' : 'text-black/60'
+              <Link 
+                to="/register/investor"
+                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
+                  isDark 
+                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
+                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
+                }`}
+              >
+                Join EVO-A
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Card 3 - Incubators (Bottom) */}
+        <div 
+          className={`absolute transition-all duration-700 ${
+            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+          }`}
+          style={{ 
+            bottom: '0',
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+            transitionDelay: '400ms'
+          }}
+        >
+          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+            transition-all duration-500 hover:scale-110 cursor-pointer ${
+            isDark 
+              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
+              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
+          }`}>
+            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
+              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+            }`}></div>
+
+            <div className="relative z-10 text-center">
+              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
+                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Incubator type (Government, University, Corporate, Private)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Program type (Pre-Incubation, Incubation, Acceleration)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Portfolio startups showcase</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Verification documents upload</span>
-                </li>
-              </ul>
+                <HiAcademicCap className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+              </div>
+              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+                For Incubators
+              </h3>
+              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+                Nurture & scale startups
+              </p>
               <Link 
                 to="/register/incubator"
-                className={`inline-block px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
+                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
+                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
+                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
                 }`}
               >
-                For Incubators – Get Started
+                Get Started
               </Link>
-                    </div>
+            </div>
+          </div>
+        </div>
 
-            {/* For Viewers */}
-            <div className={`border p-6 sm:p-8 transition-all duration-300 hover:scale-105 ${
-              isDark ? 'bg-black/40 border-white/20 hover:border-white/40' : 'bg-white border-black/20 hover:border-black/40'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+        {/* Card 4 - Viewers (Left) */}
+        <div 
+          className={`absolute transition-all duration-700 ${
+            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+          }`}
+          style={{ 
+            top: '50%',
+            left: '0',
+            transform: 'translate(0, -50%)',
+            transitionDelay: '550ms'
+          }}
+        >
+          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+            transition-all duration-500 hover:scale-110 cursor-pointer ${
+            isDark 
+              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
+              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
+          }`}>
+            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
+              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+            }`}></div>
+
+            <div className="relative z-10 text-center">
+              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+                isDark 
+                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
+                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiUsers className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
-                </div>
-              <h3 className={`text-xl sm:text-2xl font-bold mb-3 ${
-                isDark ? 'text-white' : 'text-black'
-              }`}>
+                <HiUsers className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+              </div>
+              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Viewers
               </h3>
-              <p className={`text-sm sm:text-base mb-4 leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-black/70'
-              }`}>
-                Trending pitches, startup stories, learning content, and events – all in a personalized feed.
+              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+                Explore & learn daily
               </p>
-              <ul className={`space-y-2 mb-6 text-sm ${
-                isDark ? 'text-white/60' : 'text-black/60'
-              }`}>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Interest-based content feed</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Explore curated pitches</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Like, comment, share, save features</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
-                  <span>Follow startups and investors</span>
-                </li>
-              </ul>
               <Link 
                 to="/register/viewer"
-                className={`inline-block px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
+                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
+                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
+                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
                 }`}
               >
-                For Viewers – Start Exploring
+                Start Exploring
               </Link>
-              </div>
+            </div>
           </div>
-        </section>
+        </div>
+
+      </div>
+    </div>
+
+    {/* Mobile: Same as before */}
+    <div className="md:hidden space-y-6">
+      {[
+        { icon: HiRocketLaunch, title: 'For Startups', desc: 'Pitch your vision & get funded', link: '/register/startup', cta: 'Create Account' },
+        { icon: HiCurrencyDollar, title: 'For Investors', desc: 'Discover & fund unicorns', link: '/register/investor', cta: 'Join EVO-A' },
+        { icon: HiAcademicCap, title: 'For Incubators', desc: 'Nurture & scale startups', link: '/register/incubator', cta: 'Get Started' },
+        { icon: HiUsers, title: 'For Viewers', desc: 'Explore & learn daily', link: '/register/viewer', cta: 'Start Exploring' }
+      ].map((role, index) => (
+        <div
+          key={index}
+          className={`group relative w-full max-w-sm mx-auto transition-all duration-700 ${
+            isVisible['userRoles'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: `${index * 150}ms` }}
+        >
+          <div className={`relative p-6 rounded-3xl backdrop-blur-xl border-2 transition-all duration-500 hover:scale-105 ${
+            isDark 
+              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
+              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
+          }`}>
+            <div className="flex items-center gap-4">
+              <div className={`w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-2xl ${
+                isDark 
+                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
+                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
+              }`}>
+                <role.icon className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+              </div>
+              <div className="flex-1">
+                <h3 className={`text-lg font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+                  {role.title}
+                </h3>
+                <p className={`text-sm ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+                  {role.desc}
+                </p>
+              </div>
+            </div>
+            <Link 
+              to={role.link}
+              className={`mt-4 block w-full text-center px-4 py-2.5 text-sm font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg ${
+                isDark 
+                  ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+                  : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+              }`}
+            >
+              {role.cta}
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+{/* Animations */}
+<style>{`
+  @keyframes dash-rotate {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 200;
+    }
+  }
+
+  .animate-dash-rotate {
+    animation: dash-rotate 20s linear infinite;
+  }
+`}</style>
+
 
         {/* How It Works Section */}
         <section 
@@ -732,73 +935,49 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              How It Works?
-            </h2>
+            <SectionTitle>How It Works?</SectionTitle>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-            {[
-              {
-                step: '01',
-                title: 'Create Your Account',
-                desc: 'Sign up with email/phone, choose your role – Startup, Investor, Incubator, or Viewer.',
-                icon: <HiUserGroup className="text-2xl" />
-              },
-              {
-                step: '02',
-                title: 'Complete Your Profile',
-                desc: 'Startups: founder details, verification & pitch. Investors: ticket size, sector focus, verification. Incubators: program & documents.',
-                icon: <HiClipboardDocumentCheck className="text-2xl" />
-              },
-              {
-                step: '03',
-                title: 'Discover & Pitch',
-                desc: 'Discover pitches from Home feed, Explore page, and Battleground. Watch pitch reels, like, comment, share, and support.',
-                icon: <HiMagnifyingGlass className="text-2xl" />
-              },
-              {
-                step: '04',
-                title: 'Connect & Close Deals',
-                desc: 'Comments, messages, offers, battlegrounds – all lead you to real conversations and deals.',
-                icon: <HiChatBubbleLeftRight className="text-2xl" />
-              }
-            ].map((step, index) => (
+            {howItWorksSteps.map((step, index) => (
               <div
                 key={index}
-                className={`relative backdrop-blur-sm border p-4 sm:p-5 md:p-6 lg:p-8 transition-all duration-500 ${
+                className={`group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-2xl transition-all duration-500 overflow-hidden ${
                   isVisible['howItWorks'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 } ${
                   isDark 
-                    ? 'bg-black/40 border-white/20 hover:border-white/40' 
-                    : 'bg-white border-black/20 hover:border-black/40'
+                    ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_8px_32px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.02] hover:-translate-y-1' 
+                    : 'bg-gradient-to-br from-white/90 via-white/70 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_8px_32px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.02] hover:-translate-y-1'
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 ${
-                  isDark ? 'text-white/10' : 'text-black/10'
-                }`}>
-                  {step.step}
-                </div>
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-3 sm:mb-4 ${
-                  isDark ? 'bg-white/20' : 'bg-black/10'
-                }`}>
-                  <div className={`${isDark ? 'text-white' : 'text-black'} text-xl sm:text-2xl`}>
-                    {step.icon}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
+                <div className="relative z-10">
+                  <div className={`text-5xl sm:text-6xl md:text-7xl font-black mb-4 sm:mb-5 bg-gradient-to-br ${
+                    isDark ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent' : 'from-[#00B8A9]/30 to-[#80E5FF]/30 bg-clip-text text-transparent'
+                  }`}>
+                    {step.step}
                   </div>
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-5 rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
+                    isDark 
+                      ? 'bg-gradient-to-br from-[#B0FFFA]/20 to-[#80E5FF]/20 group-hover:from-[#B0FFFA]/30 group-hover:to-[#80E5FF]/30 shadow-lg shadow-[#B0FFFA]/10' 
+                      : 'bg-gradient-to-br from-[#B0FFFA]/25 to-[#80E5FF]/25 group-hover:from-[#B0FFFA]/35 group-hover:to-[#80E5FF]/35 shadow-lg shadow-[#00B8A9]/10'
+                  }`}>
+                    <div className={`${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'} text-2xl sm:text-3xl transition-transform duration-300 group-hover:scale-110`}>
+                      {getIcon(step.iconName, 'text-2xl')}
+                    </div>
+                  </div>
+                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 transition-all duration-300 ${
+                    isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
+                  }`}>
+                    {step.title}
+                  </h3>
+                  <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
+                    isDark ? 'text-white/70 group-hover:text-white/90' : 'text-gray-600 group-hover:text-gray-800'
+                  }`}>
+                    {step.desc}
+                  </p>
                 </div>
-                <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 ${
-                  isDark ? 'text-white' : 'text-black'
-                }`}>
-                  {step.title}
-                </h3>
-                <p className={`text-xs sm:text-sm leading-relaxed ${
-                  isDark ? 'text-white/60' : 'text-black/60'
-                }`}>
-                  {step.desc}
-                </p>
               </div>
             ))}
           </div>
@@ -812,44 +991,14 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Powerful Features For Every Role
-            </h2>
+            <SectionTitle>Powerful Features For Every Role</SectionTitle>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {[
-              {
-                icon: <HiHome className="text-2xl" />,
-                title: 'Role-Specific Dashboards',
-                description: 'Startup, Investor, Incubator, Viewer – everyone gets a customized home page with metrics, pitch cards, and interactions.'
-              },
-              {
-                icon: <HiVideoCamera className="text-2xl" />,
-                title: 'Pitch Reel & Detail View',
-                description: 'Vertical pitch videos, like/share/comment/support buttons, deal info, and pitch deck viewer (for investors & incubators).'
-              },
-              {
-                icon: <HiMagnifyingGlass className="text-2xl" />,
-                title: 'Explore & Smart Search',
-                description: 'Search investors, startups, hashtags; curated lists like Top Performing Pitch, Investor Spotlight, Battleground Spotlight.'
-              },
-              {
-                icon: <HiBell className="text-2xl" />,
-                title: 'Notifications & Offers',
-                description: 'Offers, battlegrounds, trending rankings, system alerts – all managed from one notification center.'
-              },
-              {
-                icon: <HiShieldCheck className="text-2xl" />,
-                title: 'Secure Account & OTP Verification',
-                description: 'Email/phone OTP, password reset, role-based access – secure and compliant experience.'
-              }
-            ].map((feature, index) => (
+            {powerfulFeatures.map((feature, index) => (
               <FeatureCard
                 key={index}
-                icon={feature.icon}
+                icon={getIcon(feature.iconName, 'text-2xl')}
                 title={feature.title}
                 description={feature.description}
                 delay={index * 100}
@@ -868,22 +1017,15 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Trust-First Design
-            </h2>
+            <SectionTitle>Trust-First Design</SectionTitle>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Startup Verification */}
-            <div className={`border p-6 sm:p-8 ${
-              isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+            <CardContainer>
+              <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+                isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
               }`}>
-                <HiRocketLaunch className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
+                <HiRocketLaunch className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
               <h3 className={`text-xl font-bold mb-3 ${
                 isDark ? 'text-white' : 'text-black'
@@ -899,28 +1041,25 @@ export default function Landing() {
                 isDark ? 'text-white/60' : 'text-black/60'
               }`}>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Auto-Verify: CIN upload</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Manual-Verify: GST or Udyam</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>For Unregistered: Founder ID proof</span>
                 </li>
               </ul>
-            </div>
+            </CardContainer>
 
-            {/* Investor Verification */}
-            <div className={`border p-6 sm:p-8 ${
-              isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+            <CardContainer>
+              <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+                isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
               }`}>
-                <HiCurrencyDollar className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
+                <HiCurrencyDollar className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
               <h3 className={`text-xl font-bold mb-3 ${
                 isDark ? 'text-white' : 'text-black'
@@ -936,28 +1075,25 @@ export default function Landing() {
                 isDark ? 'text-white/60' : 'text-black/60'
               }`}>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>SEBI: Instant auto-verification</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Non-SEBI: LinkedIn + PAN + ID</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Community Verified badge</span>
                 </li>
               </ul>
-            </div>
+            </CardContainer>
 
-            {/* Incubator Verification */}
-            <div className={`border p-6 sm:p-8 ${
-              isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-            }`}>
-              <div className={`w-16 h-16 flex items-center justify-center mb-4 ${
-                isDark ? 'bg-white/20' : 'bg-black/10'
+            <CardContainer>
+              <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+                isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
               }`}>
-                <HiAcademicCap className={`text-3xl ${isDark ? 'text-white' : 'text-black'}`} />
+                <HiAcademicCap className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
               <h3 className={`text-xl font-bold mb-3 ${
                 isDark ? 'text-white' : 'text-black'
@@ -973,22 +1109,21 @@ export default function Landing() {
                 isDark ? 'text-white/60' : 'text-black/60'
               }`}>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Government Registration</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>University Affiliation</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <HiCheckCircle className="shrink-0" />
+                  <HiCheckCircle className={`shrink-0 ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                   <span>Corporate Legal Certificate</span>
                 </li>
               </ul>
-            </div>
+            </CardContainer>
           </div>
         </section>
-
       
         {/* User Journey Summary */}
         <section 
@@ -998,41 +1133,14 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Your EVO-A Journey
-            </h2>
+            <SectionTitle>Your EVO-A Journey</SectionTitle>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                day: 'Day 1',
-                title: 'Signup & Profile',
-                description: 'Create account → Choose role → Complete profile form → Upload verification docs'
-              },
-              {
-                day: 'Day 2-3',
-                title: 'Discovery & Exploration',
-                description: 'Browse home feed and explore page → Discover pitches and investors → Like, comment, save'
-              },
-              {
-                day: 'Day 4+',
-                title: 'Active Engagement',
-                description: 'Send messages to interested parties → Receive offers and notifications → Participate in battlegrounds → Close connections'
-              }
-            ].map((journey, index) => (
-              <div
-                key={index}
-                className={`border p-6 sm:p-8 transition-all duration-300 ${
-                  isDark 
-                    ? 'bg-black/40 border-white/20 hover:border-white/40' 
-                    : 'bg-white border-black/20 hover:border-black/40'
-                }`}
-              >
+            {userJourneyData.map((journey, index) => (
+              <CardContainer key={index}>
                 <div className={`text-2xl sm:text-3xl font-bold mb-2 ${
-                  isDark ? 'text-white/50' : 'text-black/50'
+                  isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
                 }`}>
                   {journey.day}
                 </div>
@@ -1046,7 +1154,7 @@ export default function Landing() {
                 }`}>
                   {journey.description}
                 </p>
-              </div>
+              </CardContainer>
             ))}
           </div>
         </section>
@@ -1059,11 +1167,7 @@ export default function Landing() {
           }`}
         >
           <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              Frequently Asked Questions
-            </h2>
+            <SectionTitle>Frequently Asked Questions</SectionTitle>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
@@ -1087,45 +1191,45 @@ export default function Landing() {
             isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className={`relative border p-4 sm:p-6 md:p-8 text-center ${
+          <div className={`relative border-2 rounded-xl p-4 sm:p-6 md:p-8 text-center ${
             isDark 
-              ? 'bg-black/40 border-white/20' 
-              : 'bg-white border-black/20'
+              ? 'bg-black/40 border-[#B0FFFA]/30 shadow-[0_0_30px_rgba(176,255,250,0.2)]' 
+              : 'bg-white border-[#B0FFFA]/40 shadow-[0_0_30px_rgba(176,255,250,0.15)]'
           }`}>
             <div className="max-w-2xl mx-auto px-2 sm:px-4">
-              <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight ${
-                isDark ? 'text-white' : 'text-black'
+              <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight bg-gradient-to-r ${
+                isDark 
+                  ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
+                  : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
               }`}>
-                Ready to Pitch, Invest or Incubate with Confidence?
+                Ready to Transform Your Startup Journey?
               </h2>
               <h3 className={`text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 ${
                 isDark ? 'text-white/90' : 'text-black/90'
               }`}>
-                Join EVO-A Today – India's Startup-Investor Ecosystem Platform
+                Join EVO-A Today – Where Dreams Meet Opportunities
               </h3>
               <p className={`text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed ${
                 isDark ? 'text-white/80' : 'text-black/70'
               }`}>
-                Whether you're a founder pitching your dream, an investor discovering the next unicorn, or an incubator scaling impact – EVO-A is your trusted partner.
+                Whether you're a founder ready to pitch your vision, an investor seeking the next big opportunity, or an incubator building the future – EVO-A connects you with the right people at the right time. Start your journey today!
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4">
                 <Link 
                   to="/register" 
-                  className={`group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${
-                    isDark 
-                      ? 'bg-white text-black hover:bg-white/90' 
-                      : 'bg-black text-white hover:bg-black/90'
-                  }`}
+                  className="group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden
+                    bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[0_0_30px_rgba(176,255,250,0.5)]"
                 >
-                  <span>Create Your Account Now</span>
-                  <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Create Your Account Now</span>
+                  <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
                   to="/login" 
-                  className={`w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 border text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
+                  className={`w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 border-2 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
                     isDark 
-                      ? 'border-white text-white hover:bg-white/10' 
-                      : 'border-black text-black hover:bg-black/10'
+                      ? 'border-[#B0FFFA]/50 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA]' 
+                      : 'border-[#B0FFFA] text-[#00B8A9] hover:bg-[#B0FFFA]/10 hover:border-[#00B8A9]'
                   }`}
                 >
                   Sign in with Email
@@ -1141,7 +1245,6 @@ export default function Landing() {
         </section>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
