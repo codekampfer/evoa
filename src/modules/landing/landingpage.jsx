@@ -372,39 +372,40 @@ export default function Landing() {
         {/* Hero Section */}
         <section 
         ref={setRef('hero')}
-        className={`relative flex flex-col items-center justify-center min-h-[85vh] transition-all duration-1000 ease-out 
-          py-12 sm:py-20 px-4 overflow-hidden ${
+        className={`relative flex flex-col items-center justify-center min-h-[75vh] sm:min-h-[85vh] transition-all duration-1000 ease-out 
+          py-8 sm:py-12 md:py-20 px-3 sm:px-4 overflow-hidden ${
           isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
         {/* Background Glow Spot */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] -z-10 opacity-30 ${
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-10 opacity-20 sm:opacity-25 md:opacity-30 ${
           isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#00B8A9]/10'
         }`}></div>
 
-        <div className="w-full max-w-5xl mx-auto text-center space-y-8 sm:space-y-10 z-10">
+        <div className="w-full max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 md:space-y-10 z-10 px-4">
           
           {/* Main Headline with Auto-Typing */}
-          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 transition-all duration-1000 delay-200 text-center ${
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.2] sm:leading-[1.1] mb-4 sm:mb-6 transition-all duration-1000 delay-200 text-center ${
             isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           } ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            <span className="whitespace-nowrap inline-flex items-baseline justify-center">
-              <span className="inline-block whitespace-pre">Connect with </span>
+            {/* Mobile: Stack vertically, Desktop: Inline */}
+            <span className="inline-flex flex-col sm:flex-row items-center sm:items-baseline justify-center gap-2 sm:gap-2">
+              <span className="inline-block whitespace-nowrap">Connect with</span>
               {/* Typing Container - Fixed width to prevent shifting */}
-              <span className={`bg-gradient-to-r bg-clip-text text-transparent inline-block w-[280px] sm:w-[380px] md:w-[450px] lg:w-[520px] text-left ${
+              <span className={`bg-gradient-to-r bg-clip-text text-transparent inline-block w-[200px] sm:w-[300px] md:w-[380px] lg:w-[450px] xl:w-[520px] text-center sm:text-left ${
                 isDark 
                   ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
                   : 'from-[#00B8A9] via-teal-600 to-[#00B8A9]'
               }`}>
                 {typingText || '\u00A0'}
                 {/* Blinking Cursor */}
-                <span className={`inline-block w-1 h-[1em] align-middle ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
+                <span className={`inline-block w-0.5 sm:w-1 h-[1em] align-middle ml-0.5 sm:ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
               </span>
             </span>
           </h1>
 
           {/* Subheading */}
-          <p className={`text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto font-light transition-all duration-1000 delay-300 ${
+          <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto font-light px-2 transition-all duration-1000 delay-300 ${
             isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           } ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
             India's most trusted platform where 
@@ -415,12 +416,12 @@ export default function Landing() {
           </p>
 
           {/* Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 transition-all duration-1000 delay-500 ${
+          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center pt-4 sm:pt-6 transition-all duration-1000 delay-500 px-2 ${
             isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <Link 
               to="/register" 
-              className={`px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-md font-medium text-sm sm:text-base transition-all duration-200 text-center ${
                 isDark 
                   ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm' 
                   : 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm'
@@ -431,7 +432,7 @@ export default function Landing() {
             
             <Link 
               to="/login" 
-              className={`px-6 py-2.5 rounded-md font-medium text-sm border transition-all duration-200 flex items-center gap-1.5 ${
+              className={`w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-md font-medium text-sm sm:text-base border transition-all duration-200 flex items-center justify-center gap-1.5 ${
                 isDark 
                   ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
                   : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
