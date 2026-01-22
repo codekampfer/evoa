@@ -954,10 +954,13 @@ export default function Landing() {
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
                 <div className="relative z-10">
-                  <div className={`text-5xl sm:text-6xl md:text-7xl font-black mb-4 sm:mb-5 bg-gradient-to-br ${
-                    isDark ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent' : 'from-[#00B8A9]/30 to-[#80E5FF]/30 bg-clip-text text-transparent'
-                  }`}>
-                    {step.step}
+                  <div className={`text-5xl sm:text-6xl md:text-7xl font-black mb-4 sm:mb-5 flex items-baseline`}>
+                    <span className={isDark ? 'text-white' : 'text-gray-900'}>{step.step.charAt(0)}</span>
+                    <span className={`bg-gradient-to-br ${
+                      isDark ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent' : 'from-[#00B8A9] to-[#008C81] bg-clip-text text-transparent'
+                    }`}>
+                      {step.step.charAt(1)}
+                    </span>
                   </div>
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-5 rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
                     isDark 
