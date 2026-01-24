@@ -538,7 +538,7 @@ export default function Landing() {
     isVisible['userRoles'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
   }`}
 >
-  <div className="text-center mb-12 sm:mb-16 md:mb-20 px-4">
+  <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
     {/* Badge */}
     <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
       isDark 
@@ -560,13 +560,19 @@ export default function Landing() {
   {/* Circular Layout Container */}
   <div className="relative max-w-7xl mx-auto px-4">
     
-    {/* Desktop & Tablet: Circular Layout */}
+    {/* Desktop & Tablet: Circular Layout - OPTIMIZED SIZE */}
     <div className="hidden md:block">
-      <div className="relative mx-auto flex items-center justify-center" style={{ width: '900px', height: '900px', maxWidth: '100%' }}>
+      <div className="relative mx-auto flex items-center justify-center" 
+        style={{ 
+          width: 'min(650px, 90vw)', 
+          height: 'min(650px, 85vh)', 
+          maxWidth: '100%',
+          aspectRatio: '1/1'
+        }}>
         
-        {/* Center Circle - Platform Logo/Name */}
+        {/* Center Circle - REDUCED SIZE */}
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
-          w-56 h-56 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-4
+          w-36 h-36 lg:w-44 lg:h-44 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-4
           shadow-[0_0_60px_rgba(176,255,250,0.3)] ${
           isDark 
             ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 border-[#B0FFFA]/40' 
@@ -578,82 +584,89 @@ export default function Landing() {
           }`}></div>
           
           <div className="relative z-10 text-center px-4">
-            <div className={`text-4xl font-black mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
+            <div className={`text-2xl lg:text-3xl font-black mb-1 lg:mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
               isDark 
                 ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
                 : 'from-[#00B8A9] via-teal-600 to-[#008C81]'
             }`}>
               EVO-A
             </div>
-            <p className={`text-sm font-semibold ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+            <p className={`text-xs lg:text-sm font-semibold ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
               One Platform
             </p>
-            <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
+            <p className={`text-[10px] lg:text-xs ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
               Four Possibilities
             </p>
           </div>
         </div>
 
-        {/* SVG Animated Dashed Circle - Fixed Centering */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <svg 
-            width="720" 
-            height="720"
-            viewBox="0 0 720 720"
-            className="absolute"
-            style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-          >
-            <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            
-            {/* Dashed Circle - Exact center with proper radius */}
-            <circle
-              cx="360"
-              cy="360"
-              r="360"
-              fill="none"
-              stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
-              strokeWidth="2"
-              strokeDasharray="15 10"
-              className="animate-dash-rotate"
-            />
-            
-            {/* Animated Glowing Dots */}
-            <circle
-              r="6"
-              fill={isDark ? '#B0FFFA' : '#00B8A9'}
-              filter="url(#glow)"
-            >
-              <animateMotion
-                dur="8s"
-                repeatCount="indefinite"
-                path="M 360,0 a 360,360 0 1,1 0,720 a 360,360 0 1,1 0,-720"
-              />
-            </circle>
-            
-            <circle
-              r="6"
-              fill={isDark ? '#80E5FF' : '#00E5D0'}
-              filter="url(#glow)"
-            >
-              <animateMotion
-                dur="8s"
-                repeatCount="indefinite"
-                path="M 360,0 a 360,360 0 1,1 0,720 a 360,360 0 1,1 0,-720"
-                begin="-4s"
-              />
-            </circle>
-          </svg>
-        </div>
+        {/* SVG Animated Dashed Circle - ADJUSTED RADIUS */}
+        {/* SVG Animated Dashed Circle - CORRECTED POSITION */}
+<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+  <svg 
+    width="100%" 
+    height="100%"
+    viewBox="0 0 650 650"
+    className="absolute"
+    style={{ 
+      top: '50%', 
+      left: '50%', 
+      transform: 'translate(-50%, -50%)',
+      maxWidth: '100%',
+      maxHeight: '100%'
+    }}
+  >
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+    {/* Dashed Circle - Cards ke beech mein */}
+    <circle
+      cx="325"
+      cy="325"
+      r="245"
+      fill="none"
+      stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
+      strokeWidth="2"
+      strokeDasharray="15 10"
+      className="animate-dash-rotate"
+    />
+    
+    {/* Animated Glowing Dots */}
+    <circle
+      r="6"
+      fill={isDark ? '#B0FFFA' : '#00B8A9'}
+      filter="url(#glow)"
+    >
+      <animateMotion
+        dur="8s"
+        repeatCount="indefinite"
+        path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
+      />
+    </circle>
+    
+    <circle
+      r="6"
+      fill={isDark ? '#80E5FF' : '#00E5D0'}
+      filter="url(#glow)"
+    >
+      <animateMotion
+        dur="8s"
+        repeatCount="indefinite"
+        path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
+        begin="-4s"
+      />
+    </circle>
+  </svg>
+</div>
 
-        {/* Card 1 - Startups (Top) */}
+        {/* Card 1 - Startups (Top) - REDUCED SIZE */}
         <div 
           className={`absolute transition-all duration-700 ${
             isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
@@ -665,7 +678,7 @@ export default function Landing() {
             transitionDelay: '100ms'
           }}
         >
-          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
             transition-all duration-500 hover:scale-110 cursor-pointer ${
             isDark 
               ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
@@ -676,22 +689,22 @@ export default function Landing() {
             }`}></div>
 
             <div className="relative z-10 text-center">
-              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
                 isDark 
                   ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
                   : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiRocketLaunch className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                <HiRocketLaunch className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
-              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Startups
               </h3>
-              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
                 Pitch your vision & get funded
               </p>
               <Link 
                 to="/register/startup"
-                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
+                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
@@ -715,7 +728,7 @@ export default function Landing() {
             transitionDelay: '250ms'
           }}
         >
-          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
             transition-all duration-500 hover:scale-110 cursor-pointer ${
             isDark 
               ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
@@ -726,22 +739,22 @@ export default function Landing() {
             }`}></div>
 
             <div className="relative z-10 text-center">
-              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
                 isDark 
                   ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
                   : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiCurrencyDollar className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                <HiCurrencyDollar className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
-              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Investors
               </h3>
-              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
                 Discover & fund unicorns
               </p>
               <Link 
                 to="/register/investor"
-                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
+                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
@@ -765,7 +778,7 @@ export default function Landing() {
             transitionDelay: '400ms'
           }}
         >
-          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
             transition-all duration-500 hover:scale-110 cursor-pointer ${
             isDark 
               ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
@@ -776,22 +789,22 @@ export default function Landing() {
             }`}></div>
 
             <div className="relative z-10 text-center">
-              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
                 isDark 
                   ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
                   : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiAcademicCap className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                <HiAcademicCap className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
-              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Incubators
               </h3>
-              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
                 Nurture & scale startups
               </p>
               <Link 
                 to="/register/incubator"
-                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
+                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
@@ -815,7 +828,7 @@ export default function Landing() {
             transitionDelay: '550ms'
           }}
         >
-          <div className={`group relative w-48 h-48 rounded-full flex flex-col items-center justify-center p-5 
+          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
             transition-all duration-500 hover:scale-110 cursor-pointer ${
             isDark 
               ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
@@ -826,22 +839,22 @@ export default function Landing() {
             }`}></div>
 
             <div className="relative z-10 text-center">
-              <div className={`w-14 h-14 mx-auto mb-2 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
+              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
                 isDark 
                   ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
                   : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
               }`}>
-                <HiUsers className={`text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                <HiUsers className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
               </div>
-              <h3 className={`text-base font-bold mb-1 ${isDark ? 'text-white' : 'text-black'}`}>
+              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
                 For Viewers
               </h3>
-              <p className={`text-xs mb-2 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
+              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
                 Explore & learn daily
               </p>
               <Link 
                 to="/register/viewer"
-                className={`inline-block px-3 py-1 text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
+                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
@@ -856,7 +869,7 @@ export default function Landing() {
       </div>
     </div>
 
-    {/* Mobile: Same as before */}
+    {/* Mobile: Grid Layout */}
     <div className="md:hidden space-y-6">
       {[
         { icon: HiRocketLaunch, title: 'For Startups', desc: 'Pitch your vision & get funded', link: '/register/startup', cta: 'Create Account' },
@@ -926,7 +939,6 @@ export default function Landing() {
     animation: dash-rotate 20s linear infinite;
   }
 `}</style>
-
 
         {/* How It Works Section */}
         <section 
