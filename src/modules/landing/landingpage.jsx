@@ -560,7 +560,7 @@ export default function Landing() {
   {/* Circular Layout Container */}
   <div className="relative max-w-7xl mx-auto px-4">
     
-    {/* Desktop & Tablet: Circular Layout - OPTIMIZED SIZE */}
+    {/* Desktop & Tablet: Circular Layout */}
     <div className="hidden md:block">
       <div className="relative mx-auto flex items-center justify-center" 
         style={{ 
@@ -570,7 +570,7 @@ export default function Landing() {
           aspectRatio: '1/1'
         }}>
         
-        {/* Center Circle - REDUCED SIZE */}
+        {/* Center Circle - Platform Logo/Name */}
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
           w-36 h-36 lg:w-44 lg:h-44 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-4
           shadow-[0_0_60px_rgba(176,255,250,0.3)] ${
@@ -600,271 +600,374 @@ export default function Landing() {
           </div>
         </div>
 
-        {/* SVG Animated Dashed Circle - ADJUSTED RADIUS */}
-        {/* SVG Animated Dashed Circle - CORRECTED POSITION */}
-<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-  <svg 
-    width="100%" 
-    height="100%"
-    viewBox="0 0 650 650"
-    className="absolute"
-    style={{ 
-      top: '50%', 
-      left: '50%', 
-      transform: 'translate(-50%, -50%)',
-      maxWidth: '100%',
-      maxHeight: '100%'
-    }}
-  >
-    <defs>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
+        {/* SVG Animated Dashed Circle */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <svg 
+            width="100%" 
+            height="100%"
+            viewBox="0 0 650 650"
+            className="absolute"
+            style={{ 
+              top: '50%', 
+              left: '50%', 
+              transform: 'translate(-50%, -50%)',
+              maxWidth: '100%',
+              maxHeight: '100%'
+            }}
+          >
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Dashed Circle */}
+            <circle
+              cx="325"
+              cy="325"
+              r="245"
+              fill="none"
+              stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
+              strokeWidth="2"
+              strokeDasharray="15 10"
+              className="animate-dash-rotate"
+            />
+            
+            {/* Animated Glowing Dots */}
+            <circle
+              r="6"
+              fill={isDark ? '#B0FFFA' : '#00B8A9'}
+              filter="url(#glow)"
+            >
+              <animateMotion
+                dur="8s"
+                repeatCount="indefinite"
+                path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
+              />
+            </circle>
+            
+            <circle
+              r="6"
+              fill={isDark ? '#80E5FF' : '#00E5D0'}
+              filter="url(#glow)"
+            >
+              <animateMotion
+                dur="8s"
+                repeatCount="indefinite"
+                path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
+                begin="-4s"
+              />
+            </circle>
+          </svg>
+        </div>
+
+        {/* Card 1 - Startups (Top) */}
+       {/* Card 1 - Startups (Top) - FIXED SPACING */}
+<Link 
+  to="/register/startup"
+  className={`absolute transition-all duration-700 group/card ${
+    isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+  }`}
+  style={{ 
+    top: '0',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+    transitionDelay: '100ms'
+  }}
+>
+  <div className={`relative rounded-full 
+    w-40 h-40 lg:w-44 lg:h-44
+    group-hover/card:w-48 group-hover/card:h-48 lg:group-hover/card:w-52 lg:group-hover/card:h-52
+    flex flex-col items-center justify-center
+    transition-all duration-500 cursor-pointer p-5 ${
+    isDark 
+      ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] group-hover/card:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
+      : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] group-hover/card:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
+  }`}>
     
-    {/* Dashed Circle - Cards ke beech mein */}
-    <circle
-      cx="325"
-      cy="325"
-      r="245"
-      fill="none"
-      stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
-      strokeWidth="2"
-      strokeDasharray="15 10"
-      className="animate-dash-rotate"
-    />
+    {/* Glow Effect */}
+    <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
+      isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+    }`}></div>
+
+    {/* Content with Proper Spacing */}
+    <div className="relative z-10 text-center flex flex-col items-center justify-between h-full w-full">
+      
+      {/* Top Spacer */}
+      <div className="flex-shrink-0"></div>
+
+      {/* Icon */}
+      <div className={`w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full 
+        transition-all duration-500 group-hover/card:scale-110 flex-shrink-0 ${
+        isDark 
+          ? 'bg-[#B0FFFA]/20 group-hover/card:bg-[#B0FFFA]/30' 
+          : 'bg-[#B0FFFA]/30 group-hover/card:bg-[#B0FFFA]/40'
+      }`}>
+        <HiRocketLaunch className={`text-3xl lg:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+      </div>
+      
+      {/* Text Content */}
+      <div className="flex-grow flex flex-col items-center justify-center gap-1 py-2">
+        <h3 className={`text-base lg:text-lg font-bold transition-all duration-300 ${
+          isDark 
+            ? 'text-white group-hover/card:text-[#B0FFFA]' 
+            : 'text-black group-hover/card:text-[#00B8A9]'
+        }`}>
+          For Startups
+        </h3>
+        
+        <p className={`text-xs lg:text-sm leading-relaxed transition-all duration-300 ${
+          isDark 
+            ? 'text-white/70 group-hover/card:text-white/90' 
+            : 'text-black/70 group-hover/card:text-black/90'
+        }`}>
+          Pitch your vision &<br/>get funded
+        </p>
+      </div>
+
+      {/* Button - Appears on Hover */}
+      <div className={`transition-all duration-500 transform flex-shrink-0
+        opacity-0 scale-75 h-0 overflow-hidden
+        group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:h-auto`}>
+        <div className={`px-5 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap ${
+          isDark 
+            ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+            : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+        }`}>
+          Create Account
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</Link>
+
+{/* Card 2 - Investors (Right) */}
+<Link 
+  to="/register/investor"
+  className={`absolute transition-all duration-700 group/card ${
+    isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+  }`}
+  style={{ 
+    top: '50%',
+    right: '0',
+    transform: 'translate(0, -50%)',
+    transitionDelay: '250ms'
+  }}
+>
+  <div className={`relative rounded-full 
+    w-40 h-40 lg:w-44 lg:h-44
+    group-hover/card:w-48 group-hover/card:h-48 lg:group-hover/card:w-52 lg:group-hover/card:h-52
+    flex flex-col items-center justify-center
+    transition-all duration-500 cursor-pointer p-5 ${
+    isDark 
+      ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] group-hover/card:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
+      : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] group-hover/card:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
+  }`}>
     
-    {/* Animated Glowing Dots */}
-    <circle
-      r="6"
-      fill={isDark ? '#B0FFFA' : '#00B8A9'}
-      filter="url(#glow)"
-    >
-      <animateMotion
-        dur="8s"
-        repeatCount="indefinite"
-        path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
-      />
-    </circle>
+    <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
+      isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+    }`}></div>
+
+    <div className="relative z-10 text-center flex flex-col items-center justify-between h-full w-full">
+      
+      <div className="flex-shrink-0"></div>
+
+      <div className={`w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full 
+        transition-all duration-500 group-hover/card:scale-110 flex-shrink-0 ${
+        isDark 
+          ? 'bg-[#B0FFFA]/20 group-hover/card:bg-[#B0FFFA]/30' 
+          : 'bg-[#B0FFFA]/30 group-hover/card:bg-[#B0FFFA]/40'
+      }`}>
+        <HiCurrencyDollar className={`text-3xl lg:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+      </div>
+      
+      <div className="flex-grow flex flex-col items-center justify-center gap-1 py-2">
+        <h3 className={`text-base lg:text-lg font-bold transition-all duration-300 ${
+          isDark 
+            ? 'text-white group-hover/card:text-[#B0FFFA]' 
+            : 'text-black group-hover/card:text-[#00B8A9]'
+        }`}>
+          For Investors
+        </h3>
+        
+        <p className={`text-xs lg:text-sm leading-relaxed transition-all duration-300 ${
+          isDark 
+            ? 'text-white/70 group-hover/card:text-white/90' 
+            : 'text-black/70 group-hover/card:text-black/90'
+        }`}>
+          Discover & fund<br/>unicorns
+        </p>
+      </div>
+
+      <div className={`transition-all duration-500 transform flex-shrink-0
+        opacity-0 scale-75 h-0 overflow-hidden
+        group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:h-auto`}>
+        <div className={`px-5 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap ${
+          isDark 
+            ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+            : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+        }`}>
+          Join EVO-A
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</Link>
+
+{/* Card 3 - Incubators (Bottom) */}
+<Link 
+  to="/register/incubator"
+  className={`absolute transition-all duration-700 group/card ${
+    isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+  }`}
+  style={{ 
+    bottom: '0',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
+    transitionDelay: '400ms'
+  }}
+>
+  <div className={`relative rounded-full 
+    w-40 h-40 lg:w-44 lg:h-44
+    group-hover/card:w-48 group-hover/card:h-48 lg:group-hover/card:w-52 lg:group-hover/card:h-52
+    flex flex-col items-center justify-center
+    transition-all duration-500 cursor-pointer p-5 ${
+    isDark 
+      ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] group-hover/card:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
+      : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] group-hover/card:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
+  }`}>
     
-    <circle
-      r="6"
-      fill={isDark ? '#80E5FF' : '#00E5D0'}
-      filter="url(#glow)"
-    >
-      <animateMotion
-        dur="8s"
-        repeatCount="indefinite"
-        path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
-        begin="-4s"
-      />
-    </circle>
-  </svg>
-</div>
+    <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
+      isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+    }`}></div>
 
-        {/* Card 1 - Startups (Top) - REDUCED SIZE */}
-        <div 
-          className={`absolute transition-all duration-700 ${
-            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-          style={{ 
-            top: '0',
-            left: '50%',
-            transform: 'translate(-50%, 0)',
-            transitionDelay: '100ms'
-          }}
-        >
-          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
-            transition-all duration-500 hover:scale-110 cursor-pointer ${
-            isDark 
-              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
-              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
-          }`}>
-            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
-            }`}></div>
+    <div className="relative z-10 text-center flex flex-col items-center justify-between h-full w-full">
+      
+      <div className="flex-shrink-0"></div>
 
-            <div className="relative z-10 text-center">
-              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
-                isDark 
-                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
-                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
-              }`}>
-                <HiRocketLaunch className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              </div>
-              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
-                For Startups
-              </h3>
-              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
-                Pitch your vision & get funded
-              </p>
-              <Link 
-                to="/register/startup"
-                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isDark 
-                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
-                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
-                }`}
-              >
-                Create Account
-              </Link>
-            </div>
-          </div>
+      <div className={`w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full 
+        transition-all duration-500 group-hover/card:scale-110 flex-shrink-0 ${
+        isDark 
+          ? 'bg-[#B0FFFA]/20 group-hover/card:bg-[#B0FFFA]/30' 
+          : 'bg-[#B0FFFA]/30 group-hover/card:bg-[#B0FFFA]/40'
+      }`}>
+        <HiAcademicCap className={`text-3xl lg:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+      </div>
+      
+      <div className="flex-grow flex flex-col items-center justify-center gap-1 py-2">
+        <h3 className={`text-base lg:text-lg font-bold transition-all duration-300 ${
+          isDark 
+            ? 'text-white group-hover/card:text-[#B0FFFA]' 
+            : 'text-black group-hover/card:text-[#00B8A9]'
+        }`}>
+          For Incubators
+        </h3>
+        
+        <p className={`text-xs lg:text-sm leading-relaxed transition-all duration-300 ${
+          isDark 
+            ? 'text-white/70 group-hover/card:text-white/90' 
+            : 'text-black/70 group-hover/card:text-black/90'
+        }`}>
+          Nurture & scale<br/>startups
+        </p>
+      </div>
+
+      <div className={`transition-all duration-500 transform flex-shrink-0
+        opacity-0 scale-75 h-0 overflow-hidden
+        group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:h-auto`}>
+        <div className={`px-5 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap ${
+          isDark 
+            ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+            : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+        }`}>
+          Get Started
         </div>
+      </div>
+      
+    </div>
+  </div>
+</Link>
 
-        {/* Card 2 - Investors (Right) */}
-        <div 
-          className={`absolute transition-all duration-700 ${
-            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-          style={{ 
-            top: '50%',
-            right: '0',
-            transform: 'translate(0, -50%)',
-            transitionDelay: '250ms'
-          }}
-        >
-          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
-            transition-all duration-500 hover:scale-110 cursor-pointer ${
-            isDark 
-              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
-              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
-          }`}>
-            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
-            }`}></div>
+{/* Card 4 - Viewers (Left) */}
+<Link 
+  to="/register/viewer"
+  className={`absolute transition-all duration-700 group/card ${
+    isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+  }`}
+  style={{ 
+    top: '50%',
+    left: '0',
+    transform: 'translate(0, -50%)',
+    transitionDelay: '550ms'
+  }}
+>
+  <div className={`relative rounded-full 
+    w-40 h-40 lg:w-44 lg:h-44
+    group-hover/card:w-48 group-hover/card:h-48 lg:group-hover/card:w-52 lg:group-hover/card:h-52
+    flex flex-col items-center justify-center
+    transition-all duration-500 cursor-pointer p-5 ${
+    isDark 
+      ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] group-hover/card:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
+      : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] group-hover/card:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
+  }`}>
+    
+    <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
+      isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
+    }`}></div>
 
-            <div className="relative z-10 text-center">
-              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
-                isDark 
-                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
-                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
-              }`}>
-                <HiCurrencyDollar className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              </div>
-              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
-                For Investors
-              </h3>
-              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
-                Discover & fund unicorns
-              </p>
-              <Link 
-                to="/register/investor"
-                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isDark 
-                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
-                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
-                }`}
-              >
-                Join EVO-A
-              </Link>
-            </div>
-          </div>
+    <div className="relative z-10 text-center flex flex-col items-center justify-between h-full w-full">
+      
+      <div className="flex-shrink-0"></div>
+
+      <div className={`w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full 
+        transition-all duration-500 group-hover/card:scale-110 flex-shrink-0 ${
+        isDark 
+          ? 'bg-[#B0FFFA]/20 group-hover/card:bg-[#B0FFFA]/30' 
+          : 'bg-[#B0FFFA]/30 group-hover/card:bg-[#B0FFFA]/40'
+      }`}>
+        <HiUsers className={`text-3xl lg:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+      </div>
+      
+      <div className="flex-grow flex flex-col items-center justify-center gap-1 py-2">
+        <h3 className={`text-base lg:text-lg font-bold transition-all duration-300 ${
+          isDark 
+            ? 'text-white group-hover/card:text-[#B0FFFA]' 
+            : 'text-black group-hover/card:text-[#00B8A9]'
+        }`}>
+          For Viewers
+        </h3>
+        
+        <p className={`text-xs lg:text-sm leading-relaxed transition-all duration-300 ${
+          isDark 
+            ? 'text-white/70 group-hover/card:text-white/90' 
+            : 'text-black/70 group-hover/card:text-black/90'
+        }`}>
+          Explore & learn<br/>daily
+        </p>
+      </div>
+
+      <div className={`transition-all duration-500 transform flex-shrink-0
+        opacity-0 scale-75 h-0 overflow-hidden
+        group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:h-auto`}>
+        <div className={`px-5 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap ${
+          isDark 
+            ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+            : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+        }`}>
+          Start Exploring
         </div>
+      </div>
+      
+    </div>
+  </div>
+</Link>
 
-        {/* Card 3 - Incubators (Bottom) */}
-        <div 
-          className={`absolute transition-all duration-700 ${
-            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-          style={{ 
-            bottom: '0',
-            left: '50%',
-            transform: 'translate(-50%, 0)',
-            transitionDelay: '400ms'
-          }}
-        >
-          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
-            transition-all duration-500 hover:scale-110 cursor-pointer ${
-            isDark 
-              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
-              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
-          }`}>
-            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
-            }`}></div>
-
-            <div className="relative z-10 text-center">
-              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
-                isDark 
-                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
-                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
-              }`}>
-                <HiAcademicCap className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              </div>
-              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
-                For Incubators
-              </h3>
-              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
-                Nurture & scale startups
-              </p>
-              <Link 
-                to="/register/incubator"
-                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isDark 
-                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
-                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
-                }`}
-              >
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 4 - Viewers (Left) */}
-        <div 
-          className={`absolute transition-all duration-700 ${
-            isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-          style={{ 
-            top: '50%',
-            left: '0',
-            transform: 'translate(0, -50%)',
-            transitionDelay: '550ms'
-          }}
-        >
-          <div className={`group relative w-36 h-36 lg:w-40 lg:h-40 rounded-full flex flex-col items-center justify-center p-4 
-            transition-all duration-500 hover:scale-110 cursor-pointer ${
-            isDark 
-              ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/60 shadow-[0_12px_40px_rgba(176,255,250,0.2)]' 
-              : 'bg-gradient-to-br from-white/95 via-white/85 to-white/95 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA]/70 shadow-[0_12px_40px_rgba(0,184,169,0.15)]'
-          }`}>
-            <div className={`absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-              isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
-            }`}></div>
-
-            <div className="relative z-10 text-center">
-              <div className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-1.5 flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110 ${
-                isDark 
-                  ? 'bg-gradient-to-br from-[#B0FFFA]/30 to-[#80E5FF]/30' 
-                  : 'bg-gradient-to-br from-[#B0FFFA]/40 to-[#80E5FF]/40'
-              }`}>
-                <HiUsers className={`text-xl lg:text-2xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              </div>
-              <h3 className={`text-xs lg:text-sm font-bold mb-0.5 ${isDark ? 'text-white' : 'text-black'}`}>
-                For Viewers
-              </h3>
-              <p className={`text-[10px] mb-1.5 leading-tight px-1 ${isDark ? 'text-white/70' : 'text-black/70'}`}>
-                Explore & learn daily
-              </p>
-              <Link 
-                to="/register/viewer"
-                className={`inline-block px-2.5 py-1 text-[10px] lg:text-xs font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg ${
-                  isDark 
-                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
-                    : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.5)]'
-                }`}
-              >
-                Start Exploring
-              </Link>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -939,6 +1042,7 @@ export default function Landing() {
     animation: dash-rotate 20s linear infinite;
   }
 `}</style>
+
 
         {/* How It Works Section */}
         <section 
