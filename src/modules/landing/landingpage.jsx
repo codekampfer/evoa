@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 import Footer from '../../components/layout/footer';
 import { ScrollProgress, FloatingAnimatedIcons, FeatureCard, FAQItem } from './components';
+import heroImage from '../../assets/handshake.png';
 import {
   faqData,
   whyEvoaFeatures,
@@ -370,81 +371,313 @@ export default function Landing() {
 
       <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 pt-0">
         {/* Hero Section */}
-        <section 
-        ref={setRef('hero')}
-        className={`relative flex flex-col items-center justify-center min-h-[75vh] sm:min-h-[85vh] transition-all duration-1000 ease-out 
-          py-8 sm:py-12 md:py-20 px-3 sm:px-4 overflow-hidden ${
-          isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        {/* Background Glow Spot */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-10 opacity-20 sm:opacity-25 md:opacity-30 ${
-          isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#00B8A9]/10'
-        }`}></div>
-
-        <div className="w-full max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 md:space-y-10 z-10 px-4">
-          
-          {/* Main Headline with Auto-Typing */}
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.2] sm:leading-[1.1] mb-4 sm:mb-6 transition-all duration-1000 delay-200 text-center ${
-            isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          } ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            {/* Mobile: Stack vertically, Desktop: Inline */}
-            <span className="inline-flex flex-col sm:flex-row items-center sm:items-baseline justify-center gap-2 sm:gap-2">
-              <span className="inline-block whitespace-nowrap">Connect with</span>
-              {/* Typing Container - Fixed width to prevent shifting */}
-              <span className={`bg-gradient-to-r bg-clip-text text-transparent inline-block w-[200px] sm:w-[300px] md:w-[380px] lg:w-[450px] xl:w-[520px] text-center sm:text-left ${
-                isDark 
-                  ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
-                  : 'from-[#00B8A9] via-teal-600 to-[#00B8A9]'
-              }`}>
-                {typingText || '\u00A0'}
-                {/* Blinking Cursor */}
-                <span className={`inline-block w-0.5 sm:w-1 h-[1em] align-middle ml-0.5 sm:ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
-              </span>
+{/* Hero Section - BIGGER IMAGE WITH ADJUSTED BUBBLE GAPS */}
+<section 
+  ref={setRef('hero')}
+  className={`relative flex items-center min-h-[85vh] transition-all duration-1000 ease-out 
+    py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden ${
+    isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  }`}
+>
+  <div className="w-full max-w-7xl mx-auto z-10">
+    
+    {/* Two Column Grid Layout */}
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      {/* ========== LEFT COLUMN - Content ========== */}
+      <div className={`space-y-6 sm:space-y-7 transition-all duration-1000 delay-200 ${
+        isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+      }`}>
+        
+        {/* Main Headline with Typing Animation */}
+        <div>
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            <span className="block mb-2">Connect with</span>
+            <span className={`bg-gradient-to-r bg-clip-text text-transparent block ${
+              isDark 
+                ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
+                : 'from-[#00B8A9] via-teal-600 to-[#00B8A9]'
+            }`}>
+              {typingText || '\u00A0'}
+              <span className={`inline-block w-1 h-[0.9em] align-middle ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
             </span>
           </h1>
+        </div>
 
-          {/* Subheading */}
-          <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto font-light px-2 transition-all duration-1000 delay-300 ${
-            isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          } ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-            India's most trusted platform where 
-            <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> startups meet investors, </span> 
-            incubators showcase talent, and 
-            <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> dreams turn into reality. </span>
-            Join the future of funding today!
-          </p>
+        {/* Subheading/Description */}
+        <p className={`text-base sm:text-lg md:text-xl leading-relaxed max-w-lg ${
+          isDark ? 'text-gray-300' : 'text-gray-600'
+        }`}>
+          India's most trusted platform where 
+          <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> startups meet investors</span>, 
+          incubators showcase talent, and 
+          <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> dreams turn into reality</span>.
+        </p>
 
-          {/* Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center pt-4 sm:pt-6 transition-all duration-1000 delay-500 px-2 ${
-            isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        {/* Key Features Grid */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg">
+          
+          {/* Feature 1 */}
+          <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+            isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
           }`}>
-            <Link 
-              to="/register" 
-              className={`w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-md font-medium text-sm sm:text-base transition-all duration-200 text-center ${
-                isDark 
-                  ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm' 
-                  : 'bg-[#00B8A9] text-white hover:bg-[#00A896] active:bg-[#009685] shadow-sm'
-              }`}
-            >
-              Create Free Account
-            </Link>
-            
-            <Link 
-              to="/login" 
-              className={`w-full sm:w-auto px-6 py-3 sm:py-2.5 rounded-md font-medium text-sm sm:text-base border transition-all duration-200 flex items-center justify-center gap-1.5 ${
-                isDark 
-                  ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
-                  : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-              }`}
-            >
-              <span>Log In</span>
-              <HiArrowRight className="w-4 h-4" />
-            </Link>
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+              isDark ? 'bg-[#00B8A9]/20' : 'bg-[#00B8A9]/10'
+            }`}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#00B8A9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Instant Matching
+              </h4>
+              <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                AI-powered connections
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+            isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
+          }`}>
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+              isDark ? 'bg-purple-500/20' : 'bg-purple-500/10'
+            }`}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                100% Secure
+              </h4>
+              <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                Bank-level encryption
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+            isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
+          }`}>
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+              isDark ? 'bg-cyan-500/20' : 'bg-cyan-500/10'
+            }`}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                ₹125Cr+ Funded
+              </h4>
+              <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                2,800+ startups
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 4 */}
+          <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+            isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
+          }`}>
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+              isDark ? 'bg-pink-500/20' : 'bg-pink-500/10'
+            }`}>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                10,000+ Users
+              </h4>
+              <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                Active community
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+          <Link 
+            to="/register" 
+            className={`group px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-center shadow-lg hover:shadow-xl ${
+              isDark 
+                ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]' 
+                : 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]'
+            }`}
+          >
+            Get Started Free
+            <HiArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          
+          <Link 
+            to="/login" 
+            className={`px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-base sm:text-lg border-2 transition-all duration-300 text-center ${
+              isDark 
+                ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+            }`}
+          >
+            Watch Demo
+          </Link>
+        </div>
+
+      </div>
+
+      {/* ========== RIGHT COLUMN - ADJUSTED GAPS ========== */}
+      <div className={`relative h-[500px] sm:h-[550px] lg:h-[600px] flex items-center justify-center transition-all duration-1000 delay-400 ${
+        isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+      }`}>
+        
+        {/* Center Hero Image - BIGGER */}
+        <div className={`relative z-40 text-center group cursor-pointer`}>
+          <img 
+            src={heroImage} 
+            alt="EVO-A Platform" 
+            className="w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[380px] lg:h-[380px] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto"
+          />
+        </div>
+
+        {/* Floating Bubbles - ADJUSTED POSITIONS FOR BIGGER IMAGE */}
+        <div className="absolute inset-0 pointer-events-none z-10">
+          
+          {/* Bubble 1 - Top Right Corner (MOVED CLOSER TO EDGE) */}
+          <div 
+            className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+              isDark ? 'bg-gradient-to-br from-[#00B8A9]/15 to-[#B0FFFA]/8' : 'bg-white/95'
+            } backdrop-blur-md border-2 ${
+              isDark ? 'border-[#00B8A9]/30' : 'border-[#00B8A9]/20'
+            } shadow-2xl animate-float1 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+            style={{
+              top: '5%',
+              right: '5%',
+              boxShadow: isDark 
+                ? '0 8px 32px rgba(0, 184, 169, 0.25)' 
+                : '0 8px 32px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+              isDark ? 'bg-[#00B8A9]/25' : 'bg-[#00B8A9]/15'
+            } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B8A9]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+              </svg>
+            </div>
+            <h3 className={`text-xs sm:text-sm font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            } text-center leading-tight`}>For Startups</h3>
+            <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>Pitch & get funded</p>
+          </div>
+
+          {/* Bubble 2 - Bottom Right Corner (MOVED CLOSER TO EDGE) */}
+          <div 
+            className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+              isDark ? 'bg-gradient-to-br from-purple-500/15 to-blue-500/8' : 'bg-white/95'
+            } backdrop-blur-md border-2 ${
+              isDark ? 'border-purple-500/30' : 'border-purple-500/20'
+            } shadow-2xl animate-float2 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+            style={{
+              bottom: '5%',
+              right: '5%',
+              boxShadow: isDark 
+                ? '0 8px 32px rgba(147, 51, 234, 0.25)' 
+                : '0 8px 32px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+              isDark ? 'bg-purple-500/25' : 'bg-purple-500/15'
+            } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"/>
+              </svg>
+            </div>
+            <h3 className={`text-xs sm:text-sm font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            } text-center leading-tight`}>For Investors</h3>
+            <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>Discover unicorns</p>
+          </div>
+
+          {/* Bubble 3 - Bottom Left Corner (MOVED CLOSER TO EDGE) */}
+          <div 
+            className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+              isDark ? 'bg-gradient-to-br from-cyan-500/15 to-emerald-500/8' : 'bg-white/95'
+            } backdrop-blur-md border-2 ${
+              isDark ? 'border-cyan-500/30' : 'border-cyan-500/20'
+            } shadow-2xl animate-float3 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+            style={{
+              bottom: '5%',
+              left: '5%',
+              boxShadow: isDark 
+                ? '0 8px 32px rgba(6, 182, 212, 0.25)' 
+                : '0 8px 32px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+              isDark ? 'bg-cyan-500/25' : 'bg-cyan-500/15'
+            } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+              </svg>
+            </div>
+            <h3 className={`text-xs sm:text-sm font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            } text-center leading-tight`}>For Incubators</h3>
+            <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>Nurture startups</p>
+          </div>
+
+          {/* Bubble 4 - Top Left Corner (MOVED CLOSER TO EDGE) */}
+          <div 
+            className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+              isDark ? 'bg-gradient-to-br from-pink-500/15 to-rose-500/8' : 'bg-white/95'
+            } backdrop-blur-md border-2 ${
+              isDark ? 'border-pink-500/30' : 'border-pink-500/20'
+            } shadow-2xl animate-float4 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+            style={{
+              top: '5%',
+              left: '5%',
+              boxShadow: isDark 
+                ? '0 8px 32px rgba(236, 72, 153, 0.25)' 
+                : '0 8px 32px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+              isDark ? 'bg-pink-500/25' : 'bg-pink-500/15'
+            } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+              </svg>
+            </div>
+            <h3 className={`text-xs sm:text-sm font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            } text-center leading-tight`}>For Viewers</h3>
+            <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>Explore daily</p>
           </div>
 
         </div>
-      </section>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 
 
