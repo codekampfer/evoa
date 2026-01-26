@@ -30,7 +30,8 @@ import {
   HiBell,
   HiShieldCheck,
   HiClipboardDocumentCheck,
-  HiChatBubbleLeftRight
+  HiChatBubbleLeftRight,
+  HiBolt
 } from 'react-icons/hi2';
 
 // Icon mapping helper
@@ -427,9 +428,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       isDark ? 'bg-[#00B8A9]/20' : 'bg-[#00B8A9]/10'
                     }`}>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#00B8A9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
+                      <HiBolt className="w-4 h-4 sm:w-5 sm:h-5 text-[#00B8A9]" />
                     </div>
                     <div>
                       <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -448,9 +447,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       isDark ? 'bg-purple-500/20' : 'bg-purple-500/10'
                     }`}>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
+                      <HiShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                     </div>
                     <div>
                       <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -469,9 +466,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       isDark ? 'bg-cyan-500/20' : 'bg-cyan-500/10'
                     }`}>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <HiCurrencyDollar className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />
                     </div>
                     <div>
                       <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -490,9 +485,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                       isDark ? 'bg-pink-500/20' : 'bg-pink-500/10'
                     }`}>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
+                      <HiUsers className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" />
                     </div>
                     <div>
                       <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -506,22 +499,22 @@ export default function Landing() {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-2">
                   <Link 
                     to="/register" 
-                    className={`group px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 text-center shadow-lg hover:shadow-xl ${
+                    className={`group px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 text-center shadow-md hover:shadow-lg ${
                       isDark 
                         ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]' 
                         : 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]'
                     }`}
                   >
                     Get Started Free
-                    <HiArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <HiArrowRight className="inline-block ml-1.5 w-4 h-4 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   
                   <Link 
                     to="/login" 
-                    className={`px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-semibold text-base sm:text-lg border-2 transition-all duration-300 text-center ${
+                    className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base border-2 transition-all duration-300 text-center ${
                       isDark 
                         ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
                         : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
@@ -568,9 +561,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
                       isDark ? 'bg-[#00B8A9]/25' : 'bg-[#00B8A9]/15'
                     } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B8A9]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
-                      </svg>
+                      <HiRocketLaunch className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B8A9]" />
                     </div>
                     <h3 className={`text-xs sm:text-sm font-bold ${
                       isDark ? 'text-white' : 'text-gray-900'
@@ -598,10 +589,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
                       isDark ? 'bg-purple-500/25' : 'bg-purple-500/15'
                     } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"/>
-                      </svg>
+                      <HiCurrencyDollar className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
                     </div>
                     <h3 className={`text-xs sm:text-sm font-bold ${
                       isDark ? 'text-white' : 'text-gray-900'
@@ -629,9 +617,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
                       isDark ? 'bg-cyan-500/25' : 'bg-cyan-500/15'
                     } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
-                      </svg>
+                      <HiAcademicCap className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" />
                     </div>
                     <h3 className={`text-xs sm:text-sm font-bold ${
                       isDark ? 'text-white' : 'text-gray-900'
@@ -659,9 +645,7 @@ export default function Landing() {
                     <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
                       isDark ? 'bg-pink-500/25' : 'bg-pink-500/15'
                     } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
-                      </svg>
+                      <HiUsers className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />
                     </div>
                     <h3 className={`text-xs sm:text-sm font-bold ${
                       isDark ? 'text-white' : 'text-gray-900'
