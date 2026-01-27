@@ -5,10 +5,10 @@ import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
 import { login, googleAuth } from "../../services/authService";
 import logo from "../../assets/logo.avif";
+import VideoReel from "../../components/shared/VideoReel";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [imagesVisible, setImagesVisible] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,14 +18,6 @@ export default function Login() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Trigger animation after component mounts
-    const timer = setTimeout(() => {
-      setImagesVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -150,64 +142,9 @@ export default function Login() {
     <div className={`min-h-screen flex transition-colors duration-300 ${
       isDark ? 'bg-black' : 'bg-white'
     }`}>
-      {/* Left Side - Image Collage */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center p-1 lg:p-2 pl-2 lg:pl-4 pr-0.5 lg:pr-1">
-          {/* Image Collage Container */}
-          <div className="relative w-full max-w-xs lg:max-w-sm xl:max-w-md h-[400px] lg:h-[450px] xl:h-[550px] 2xl:h-[600px]">
-            {/* Image 1 - Top Left - Animates from top-left */}
-            <div className={`absolute top-0 left-0 w-32 h-32 lg:w-36 lg:h-36 xl:w-44 xl:h-44 transform -rotate-12 shadow-2xl transition-all duration-700 ease-out ${
-              imagesVisible 
-                ? 'translate-x-0 translate-y-0 opacity-100' 
-                : '-translate-x-full -translate-y-full opacity-0'
-            }`} style={{ transitionDelay: '0.1s' }}>
-              <img
-                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
-                alt="Startup meeting"
-                className="w-full h-full object-cover  border-2 border-white/20"
-              />
-            </div>
-            
-            {/* Image 2 - Center Large - Animates from bottom */}
-            <div className={`absolute top-8 lg:top-10 xl:top-16 left-8 lg:left-12 xl:left-20 w-44 h-56 lg:w-52 lg:h-64 xl:w-60 xl:h-72 2xl:w-64 2xl:h-80 transform rotate-6 shadow-2xl z-10 transition-all duration-700 ease-out ${
-              imagesVisible 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-full opacity-0'
-            }`} style={{ transitionDelay: '0.3s' }}>
-              <img
-                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=500"
-                alt="Team collaboration"
-                className="w-full h-full object-cover  border-2 border-white/20"
-              />
-            </div>
-            
-            {/* Image 3 - Bottom Right - Animates from right */}
-            <div className={`absolute bottom-0 right-0 w-36 h-36 lg:w-40 lg:h-40 xl:w-48 xl:h-48 transform rotate-12 shadow-2xl transition-all duration-700 ease-out ${
-              imagesVisible 
-                ? 'translate-x-0 opacity-100' 
-                : 'translate-x-full opacity-0'
-            }`} style={{ transitionDelay: '0.2s' }}>
-              <img
-                src="https://images.pexels.com/photos/1181641/pexels-photo-1181641.jpeg?auto=compress&cs=tinysrgb&w=400"
-                alt="Business growth"
-                className="w-full h-full object-cover  border-2 border-white/20"
-              />
-            </div>
-            
-            {/* Image 4 - Bottom Left - Animates from left */}
-            <div className={`absolute bottom-4 lg:bottom-6 xl:bottom-8 left-0 w-28 h-28 lg:w-32 lg:h-32 xl:w-40 xl:h-40 transform -rotate-6 shadow-2xl transition-all duration-700 ease-out ${
-              imagesVisible 
-                ? 'translate-x-0 opacity-100' 
-                : '-translate-x-full opacity-0'
-            }`} style={{ transitionDelay: '0.4s' }}>
-              <img
-                src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=400"
-                alt="Innovation"
-                className="w-full h-full object-cover  border-2 border-white/20"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Left Side - Video Reel */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-black">
+        <VideoReel />
       </div>
 
       {/* Right Side - Login Form */}
@@ -268,10 +205,10 @@ export default function Login() {
                   placeholder="Email"
                   required
                   disabled={loading}
-                  className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     isDark 
-                      ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
-                      : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
+                      ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
+                      : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
                   }`}
                 />
               </div>
@@ -287,10 +224,10 @@ export default function Login() {
                     placeholder="Password"
                     required
                     disabled={loading}
-                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 disabled:opacity-50 disabled:cursor-not-allowed ${
+                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all pr-12 disabled:opacity-50 disabled:cursor-not-allowed ${
                       isDark 
-                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
-                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
+                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
+                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
                     }`}
                   />
                   <button
@@ -310,11 +247,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
-                  isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
-                }`}
+                className="w-full py-2.5 sm:py-3 text-sm font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30"
               >
                 {loading ? 'Signing in...' : 'Sign in'}
               </button>
@@ -351,9 +284,7 @@ export default function Login() {
               <div className="text-center mt-4">
                 <Link 
                   to="/forget-password" 
-                  className={`text-xs transition-colors ${
-                    isDark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'
-                  }`}
+                  className="text-xs transition-colors text-[#00B8A9] hover:text-[#00A89A] font-medium"
                 >
                   Forgot password?
                 </Link>
@@ -373,9 +304,7 @@ export default function Login() {
               Don't have an account?{' '}
               <Link 
                 to="/register" 
-                className={`font-semibold transition-colors ${
-                  isDark ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'
-                }`}
+                className="font-semibold transition-colors text-[#00B8A9] hover:text-[#00A89A]"
               >
                 Sign up
               </Link>
