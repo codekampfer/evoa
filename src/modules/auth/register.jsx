@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
@@ -12,49 +12,125 @@ export default function Register() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const navigate = useNavigate();
+  const particlesRef = useRef([]);
+
+  // Create floating particles
+  useEffect(() => {
+    const particles = [];
+    const particleCount = 15;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 2,
+        duration: Math.random() * 20 + 15,
+        delay: Math.random() * 5,
+      });
+    }
+    
+    particlesRef.current = particles;
+  }, []);
 
   return (
-    <div className={`min-h-screen flex transition-colors duration-300 ${
+    <div className={`min-h-screen flex transition-colors duration-300 relative overflow-hidden ${
       isDark ? 'bg-black' : 'bg-white'
     }`}>
+      {/* Floating Particles Background Animation */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {particlesRef.current.map((particle) => (
+          <div
+            key={particle.id}
+            className={`absolute rounded-full ${
+              isDark ? 'bg-[#00B8A9]/20' : 'bg-[#00B8A9]/10'
+            }`}
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animation: `float ${particle.duration}s ease-in-out infinite`,
+              animationDelay: `${particle.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Floating circles */}
+        <div 
+          className={`absolute rounded-full blur-xl ${
+            isDark ? 'bg-[#00B8A9]/10' : 'bg-[#00B8A9]/5'
+          }`}
+          style={{
+            width: '300px',
+            height: '300px',
+            top: '10%',
+            right: '5%',
+            animation: 'floatSlow 20s ease-in-out infinite',
+          }}
+        />
+        <div 
+          className={`absolute rounded-full blur-xl ${
+            isDark ? 'bg-[#00B8A9]/10' : 'bg-[#00B8A9]/5'
+          }`}
+          style={{
+            width: '200px',
+            height: '200px',
+            bottom: '15%',
+            left: '10%',
+            animation: 'floatSlow 25s ease-in-out infinite',
+            animationDelay: '2s',
+          }}
+        />
+      </div>
+
       {/* Left Side - Video Reel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-black">
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-black z-10">
         <VideoReel />
       </div>
 
       {/* Right Side - Register Form */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 lg:pl-1 lg:pr-4 xl:pl-2 xl:pr-8 2xl:pr-12">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 lg:pl-1 lg:pr-4 xl:pl-2 xl:pr-8 2xl:pr-12 relative z-10">
         <div className="w-full max-w-md">
-          {/* Logo/Brand */}
-          <div className="mb-6 sm:mb-8 text-center lg:text-left">
+          {/* Logo/Brand with Animation */}
+          <div className="mb-6 sm:mb-8 text-center lg:text-left animate-fadeInUp">
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-              <img 
-                src={logo} 
-                alt="EVO-A Logo" 
-                className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
-              />
-              <span className={`text-2xl sm:text-3xl font-bold tracking-wide ${
+              <div className="relative">
+                <img 
+                  src={logo} 
+                  alt="EVO-A Logo" 
+                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain animate-pulseGlow"
+                />
+                {/* Glow effect */}
+                <div className={`absolute inset-0 rounded-full blur-md opacity-50 ${
+                  isDark ? 'bg-[#00B8A9]' : 'bg-[#00B8A9]/30'
+                } animate-pulseGlow`} style={{ zIndex: -1 }} />
+              </div>
+              <span className={`text-2xl sm:text-3xl font-bold tracking-wide animate-slideInRight ${
                 isDark ? 'text-white' : 'text-black'
               }`}>EVO-A</span>
             </div>
-            <h1 className={`text-xl sm:text-2xl font-semibold mb-1 ${
+            <h1 className={`text-xl sm:text-2xl font-semibold mb-1 animate-fadeInUp ${
               isDark ? 'text-white' : 'text-black'
-            }`}>
+            }`} style={{ animationDelay: '0.1s' }}>
               Create Account
             </h1>
-            <p className={`text-xs sm:text-sm ${
+            <p className={`text-xs sm:text-sm animate-fadeInUp ${
               isDark ? 'text-white/60' : 'text-black/60'
-            }`}>
+            }`} style={{ animationDelay: '0.2s' }}>
               Join us and start your journey today
             </p>
           </div>
 
-          {/* Form Container */}
-          <div className={`-2xl p-5 sm:p-6 ${
+          {/* Form Container with Animation */}
+          <div className={`-2xl p-5 sm:p-6 animate-fadeInUp ${
             isDark 
-              ? 'bg-black/50 border border-white/10' 
-              : 'bg-white border border-black/10'
-          }`}>
+              ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
+              : 'bg-white/90 border border-black/10 backdrop-blur-sm'
+          }`} style={{ animationDelay: '0.3s' }}>
             <form 
               className="space-y-3"
               onSubmit={(e) => {
@@ -63,12 +139,12 @@ export default function Register() {
                 navigate('/choice-role');
               }}
             >
-              {/* Email Input */}
-              <div>
+              {/* Email Input with Animation */}
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
                 <input
                   type="email"
                   placeholder="Email"
-                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all ${
+                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 transform hover:scale-[1.02] focus:scale-[1.02] ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                       : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -76,13 +152,13 @@ export default function Register() {
                 />
               </div>
 
-              {/* Password Input */}
-              <div>
+              {/* Password Input with Animation */}
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all pr-12 ${
+                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 pr-12 transform hover:scale-[1.02] focus:scale-[1.02] ${
                       isDark 
                         ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                         : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -90,7 +166,7 @@ export default function Register() {
                   />
                   <button
                     type="button"
-                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors p-1.5 ${
+                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 p-1.5 hover:scale-110 ${
                       isDark ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'
                     }`}
                     onClick={() => setShowPassword(!showPassword)}
@@ -101,13 +177,13 @@ export default function Register() {
                 </div>
               </div>
 
-              {/* Confirm Password Input */}
-              <div>
+              {/* Confirm Password Input with Animation */}
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm Password"
-                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all pr-12 ${
+                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 pr-12 transform hover:scale-[1.02] focus:scale-[1.02] ${
                       isDark 
                         ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                         : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -115,7 +191,7 @@ export default function Register() {
                   />
                   <button
                     type="button"
-                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors p-1.5 ${
+                    className={`absolute right-3 top-1/2 transform -translate-y-1/2 transition-all duration-300 p-1.5 hover:scale-110 ${
                       isDark ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'
                     }`}
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -126,55 +202,61 @@ export default function Register() {
                 </div>
               </div>
 
-              {/* Sign Up Button */}
-              <button
-                type="submit"
-                className="w-full py-2.5 sm:py-3 text-sm font-semibold transition-all duration-200 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30"
-              >
-                Sign up
-              </button>
+              {/* Sign Up Button with Enhanced Animation */}
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.7s' }}>
+                <button
+                  type="submit"
+                  className="w-full py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] relative overflow-hidden group"
+                >
+                  <span className="relative z-10">Sign up</span>
+                  {/* Shimmer effect */}
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                </button>
+              </div>
 
-              {/* Divider */}
-              <div className="flex items-center my-4">
-                <div className={`flex-1 h-px ${
+              {/* Divider with Animation */}
+              <div className="flex items-center my-4 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
+                <div className={`flex-1 h-px transition-all duration-500 ${
                   isDark ? 'bg-white/20' : 'bg-black/20'
                 }`}></div>
                 <span className={`px-4 text-xs font-medium ${
                   isDark ? 'text-white/60' : 'text-black/60'
                 }`}>OR</span>
-                <div className={`flex-1 h-px ${
+                <div className={`flex-1 h-px transition-all duration-500 ${
                   isDark ? 'bg-white/20' : 'bg-black/20'
                 }`}></div>
               </div>
 
-              {/* Google Sign Up */}
-              <button
-                type="button"
-                className={`w-full py-2.5  text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
-                  isDark 
-                    ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20' 
-                    : 'bg-black/5 text-black border border-black/20 hover:bg-black/10'
-                }`}
-              >
-                <FaGoogle size={18} />
-                Continue with Google
-              </button>
+              {/* Google Sign Up with Enhanced Animation */}
+              <div className="animate-fadeInUp" style={{ animationDelay: '0.9s' }}>
+                <button
+                  type="button"
+                  className={`w-full py-2.5 text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98] ${
+                    isDark 
+                      ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30' 
+                      : 'bg-black/5 text-black border border-black/20 hover:bg-black/10 hover:border-black/30'
+                  }`}
+                >
+                  <FaGoogle size={18} className="transition-transform duration-300 group-hover:rotate-12" />
+                  Continue with Google
+                </button>
+              </div>
             </form>
           </div>
 
-          {/* Sign In Link */}
-          <div className={`mt-4 text-center py-4 -2xl ${
+          {/* Sign In Link with Animation */}
+          <div className={`mt-4 text-center py-4 -2xl animate-fadeInUp ${
             isDark 
-              ? 'bg-black/50 border border-white/10' 
-              : 'bg-white border border-black/10'
-          }`}>
+              ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
+              : 'bg-white/90 border border-black/10 backdrop-blur-sm'
+          }`} style={{ animationDelay: '1s' }}>
             <p className={`text-sm ${
               isDark ? 'text-white/60' : 'text-black/60'
             }`}>
               Already have an account?{' '}
               <Link 
                 to="/login" 
-                className="font-semibold transition-colors text-[#00B8A9] hover:text-[#00A89A]"
+                className="font-semibold transition-all duration-300 text-[#00B8A9] hover:text-[#00A89A] inline-block transform hover:scale-105"
               >
                 Sign in
               </Link>
@@ -182,6 +264,86 @@ export default function Register() {
           </div>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px);
+            opacity: 0.3;
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px);
+            opacity: 0.6;
+          }
+          50% {
+            transform: translateY(-40px) translateX(-10px);
+            opacity: 0.4;
+          }
+          75% {
+            transform: translateY(-20px) translateX(5px);
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes floatSlow {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) scale(1);
+          }
+          33% {
+            transform: translateY(-30px) translateX(20px) scale(1.1);
+          }
+          66% {
+            transform: translateY(20px) translateX(-20px) scale(0.9);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pulseGlow {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.05);
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slideInRight {
+          animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        .animate-pulseGlow {
+          animation: pulseGlow 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
