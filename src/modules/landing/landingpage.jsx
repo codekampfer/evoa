@@ -298,7 +298,7 @@ export default function Landing() {
   };
 
   const SectionTitle = ({ children }) => (
-    <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r ${
+    <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 bg-gradient-to-r ${
       isDark 
         ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
         : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
@@ -308,13 +308,13 @@ export default function Landing() {
   );
 
   const CardContainer = ({ children, className = '' }) => (
-    <div className={`group relative p-6 sm:p-8 md:p-10 rounded-2xl transition-all duration-500 overflow-hidden ${
+    <div className={`group relative p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl transition-all duration-500 overflow-hidden ${
       isDark 
-        ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.02] hover:-translate-y-1' 
-        : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.02] hover:-translate-y-1'
+        ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1' 
+        : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1'
     } ${className}`}>
       {/* Animated gradient overlay */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl sm:rounded-2xl"></div>
       <div className="relative z-10">
         {children}
       </div>
@@ -330,12 +330,12 @@ export default function Landing() {
       <ScrollProgress isDark={isDark} />
       <FloatingAnimatedIcons isDark={isDark} />
 
-      {/* Decorative background elements */}
+        {/* Decorative background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         {smokeParticles.map((particle) => (
           <div
             key={particle.id}
-            className={`absolute left-0 rounded-full ${particle.blur}`}
+            className={`absolute left-0 rounded-full ${particle.blur} hidden sm:block`}
             style={{
               width: `${particle.width}px`,
               height: `${particle.height}px`,
@@ -349,28 +349,28 @@ export default function Landing() {
         ))}
         
         <div 
-          className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-40"
+          className="absolute top-0 left-0 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-20 sm:opacity-30 md:opacity-40"
           style={{
             transform: `translate(${(mousePosition.x - 50) * 0.1}px, ${(mousePosition.y - 50) * 0.1}px)`,
             background: 'radial-gradient(circle, #B0FFFA 0%, transparent 70%)',
           }}
         />
         <div 
-          className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-40"
+          className="absolute top-0 right-0 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] rounded-full blur-3xl transition-all duration-700 opacity-20 sm:opacity-30 md:opacity-40"
           style={{
             transform: `translate(${(mousePosition.x - 50) * -0.1}px, ${(mousePosition.y - 50) * 0.1}px)`,
             background: 'radial-gradient(circle, #B0FFFA 0%, transparent 70%)',
           }}
         />
         <div 
-          className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl transition-all duration-700 opacity-20"
+          className="absolute bottom-0 left-0 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 rounded-full blur-3xl transition-all duration-700 opacity-10 sm:opacity-15 md:opacity-20"
           style={{
             transform: `translate(${(mousePosition.x - 50) * -0.1}px, ${(mousePosition.y - 50) * -0.1}px)`,
             background: 'radial-gradient(circle, #80E5FF 0%, transparent 70%)',
           }}
         />
         <div 
-          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full blur-3xl transition-all duration-1000 opacity-10"
+          className="absolute top-1/2 left-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full blur-3xl transition-all duration-1000 opacity-5 sm:opacity-8 md:opacity-10"
           style={{
             transform: `translate(${(mousePosition.x - 50) * 0.05}px, ${(mousePosition.y - 50) * 0.05}px) translate(-50%, -50%)`,
             background: 'radial-gradient(circle, #B0FFFA 0%, transparent 60%)',
@@ -378,7 +378,7 @@ export default function Landing() {
         />
       </div>
 
-      <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 pt-0">
+      <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 pt-0 overflow-x-hidden">
         <HeroSection 
           isVisible={isVisible}
           isDark={isDark}
@@ -453,42 +453,42 @@ export default function Landing() {
             isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <div className={`relative border-2 rounded-xl p-4 sm:p-6 md:p-8 text-center ${
+          <div className={`relative border-2 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center ${
             isDark 
               ? 'bg-black/40 border-[#B0FFFA]/30 shadow-[0_0_30px_rgba(176,255,250,0.2)]' 
               : 'bg-white border-[#B0FFFA]/40 shadow-[0_0_30px_rgba(176,255,250,0.15)]'
           }`}>
             <div className="max-w-2xl mx-auto px-2 sm:px-4">
-              <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 leading-tight bg-gradient-to-r ${
+              <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight bg-gradient-to-r ${
                 isDark 
                   ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
                   : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
               }`}>
                 Ready to Transform Your Startup Journey?
               </h2>
-              <h3 className={`text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 ${
+              <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 ${
                 isDark ? 'text-white/90' : 'text-black/90'
               }`}>
                 Join EVO-A Today – Where Dreams Meet Opportunities
               </h3>
-              <p className={`text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed ${
+              <p className={`text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed ${
                 isDark ? 'text-white/80' : 'text-black/70'
               }`}>
                 Whether you're a founder ready to pitch your vision, an investor seeking the next big opportunity, or an incubator building the future – EVO-A connects you with the right people at the right time. Start your journey today!
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-4 sm:mb-5">
                 <Link 
                   to="/register" 
-                  className="group relative w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden
+                  className="group relative w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm sm:text-base md:text-lg font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden
                     bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[0_0_30px_rgba(176,255,250,0.5)]"
                 >
                   <span className="relative z-10">Create Your Account Now</span>
-                  <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
                   to="/login" 
-                  className={`w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 border-2 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
+                  className={`w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-3 md:px-8 md:py-3.5 border-2 rounded-lg text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center ${
                     isDark 
                       ? 'border-[#B0FFFA]/50 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA]' 
                       : 'border-[#B0FFFA] text-[#00B8A9] hover:bg-[#B0FFFA]/10 hover:border-[#00B8A9]'
@@ -497,7 +497,7 @@ export default function Landing() {
                   Sign in with Email
                 </Link>
               </div>
-              <p className={`text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
+              <p className={`text-xs sm:text-sm md:text-base flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
                 isDark ? 'text-white/60' : 'text-black/60'
               }`}>
                 <span>Already have an account? Sign in with email or continue with Google.</span>

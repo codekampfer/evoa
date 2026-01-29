@@ -12,24 +12,24 @@ export default function TrustDesignSection({ isVisible, isDark, setRef, SectionT
         <SectionTitle>Trust-First Design</SectionTitle>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <CardContainer>
-          <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 rounded-lg ${
             isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
           }`}>
-            <HiRocketLaunch className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+            <HiRocketLaunch className={`text-2xl sm:text-2xl md:text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
           </div>
-          <h3 className={`text-xl font-bold mb-3 ${
+          <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 ${
             isDark ? 'text-white' : 'text-black'
           }`}>
             Startup Verification
           </h3>
-          <p className={`text-sm mb-4 leading-relaxed ${
+          <p className={`text-xs sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed ${
             isDark ? 'text-white/70' : 'text-black/70'
           }`}>
             Startup verification flow through Private Limited, LLP, MSME, GST, Udyam, or founder ID documents.
           </p>
-          <ul className={`space-y-2 text-sm ${
+          <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${
             isDark ? 'text-white/60' : 'text-black/60'
           }`}>
             <li className="flex items-center gap-2">
@@ -48,22 +48,22 @@ export default function TrustDesignSection({ isVisible, isDark, setRef, SectionT
         </CardContainer>
 
         <CardContainer>
-          <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 rounded-lg ${
             isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
           }`}>
-            <HiCurrencyDollar className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+            <HiCurrencyDollar className={`text-2xl sm:text-2xl md:text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
           </div>
-          <h3 className={`text-xl font-bold mb-3 ${
+          <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 ${
             isDark ? 'text-white' : 'text-black'
           }`}>
             Investor Verification
           </h3>
-          <p className={`text-sm mb-4 leading-relaxed ${
+          <p className={`text-xs sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed ${
             isDark ? 'text-white/70' : 'text-black/70'
           }`}>
             For SEBI registered investors: registration number + certificate. For non-SEBI angels: LinkedIn, PAN, ID proof, and manual review.
           </p>
-          <ul className={`space-y-2 text-sm ${
+          <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${
             isDark ? 'text-white/60' : 'text-black/60'
           }`}>
             <li className="flex items-center gap-2">
@@ -82,22 +82,22 @@ export default function TrustDesignSection({ isVisible, isDark, setRef, SectionT
         </CardContainer>
 
         <CardContainer>
-          <div className={`w-16 h-16 flex items-center justify-center mb-4 rounded-lg ${
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 rounded-lg ${
             isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#B0FFFA]/20'
           }`}>
-            <HiAcademicCap className={`text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+            <HiAcademicCap className={`text-2xl sm:text-2xl md:text-3xl ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
           </div>
-          <h3 className={`text-xl font-bold mb-3 ${
+          <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 ${
             isDark ? 'text-white' : 'text-black'
           }`}>
             Incubator Verification
           </h3>
-          <p className={`text-sm mb-4 leading-relaxed ${
+          <p className={`text-xs sm:text-sm md:text-base mb-3 sm:mb-4 leading-relaxed ${
             isDark ? 'text-white/70' : 'text-black/70'
           }`}>
             For Government / University / Corporate / Private incubators: upload registration, affiliation, MSME/Udyam, or incorporation documents.
           </p>
-          <ul className={`space-y-2 text-sm ${
+          <ul className={`space-y-1.5 sm:space-y-2 text-xs sm:text-sm ${
             isDark ? 'text-white/60' : 'text-black/60'
           }`}>
             <li className="flex items-center gap-2">

@@ -72,11 +72,11 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
           </svg>
         </div>
 
-        <div className="space-y-12 sm:space-y-16 md:space-y-20 relative">
+        <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20 relative">
           {features.map((feature, index) => (
             <div 
               key={index}
-              className={`relative flex items-center transition-all duration-700 ${
+              className={`relative flex flex-col md:flex-row items-start md:items-center transition-all duration-700 ${
                 isVisible['powerfulFeatures'] 
                   ? 'opacity-100 translate-x-0' 
                   : feature.side === 'right' ? 'opacity-0 translate-x-8' : 'opacity-0 -translate-x-8'
@@ -85,19 +85,19 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
             >
               {feature.side === 'left' ? (
                 <>
-                  <div className="w-full md:w-1/2 md:pr-8 md:text-right">
-                    <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 ${
+                  <div className="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                    <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                       {feature.title}
                     </h3>
-                    <p className={`text-sm sm:text-base leading-relaxed ${
+                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
                       isDark ? 'text-gray-300' : 'text-gray-600'
                     }`}>
                       {feature.desc}
                     </p>
                   </div>
-                  <div className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 z-10 ${
+                  <div className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-3 h-3 md:w-4 md:h-4 rounded-full border-2 z-10 ${
                     isDark ? 'bg-black border-[#B0FFFA]' : 'bg-white border-[#00B8A9]'
                   }`}></div>
                   <div className="hidden md:block md:w-1/2 md:pl-8"></div>
@@ -105,16 +105,16 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
               ) : (
                 <>
                   <div className="hidden md:block md:w-1/2 md:pr-8"></div>
-                  <div className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-2 z-10 ${
+                  <div className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-3 h-3 md:w-4 md:h-4 rounded-full border-2 z-10 ${
                     isDark ? 'bg-black border-[#B0FFFA]' : 'bg-white border-[#00B8A9]'
                   }`}></div>
                   <div className="w-full md:w-1/2 md:pl-8 md:text-left">
-                    <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 ${
+                    <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                       {feature.title}
                     </h3>
-                    <p className={`text-sm sm:text-base leading-relaxed ${
+                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
                       isDark ? 'text-gray-300' : 'text-gray-600'
                     }`}>
                       {feature.desc}

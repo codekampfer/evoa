@@ -148,40 +148,40 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
   return (
     <section 
       ref={setRef('hero')}
-      className={`relative flex items-center min-h-[85vh] transition-all duration-1000 ease-out 
-        py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden ${
+      className={`relative flex items-center min-h-[85vh] sm:min-h-[90vh] transition-all duration-1000 ease-out 
+        py-6 sm:py-8 md:py-10 lg:py-12 px-3 sm:px-4 md:px-6 lg:px-8 overflow-hidden ${
         isVisible['hero'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
       <div className="w-full max-w-7xl mx-auto z-10">
         
         {/* Two Column Grid Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
           
           {/* LEFT COLUMN - Content */}
-          <div className={`space-y-6 sm:space-y-7 transition-all duration-1000 delay-200 ${
+          <div className={`space-y-5 sm:space-y-6 md:space-y-7 transition-all duration-1000 delay-200 ${
             isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
             
             {/* Main Headline with Typing Animation */}
             <div>
-              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] ${
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] sm:leading-[1.15] ${
                 isDark ? 'text-white' : 'text-gray-900'
               }`}>
-                <span className="block mb-2">Connect with</span>
-                <span className={`bg-gradient-to-r bg-clip-text text-transparent block ${
+                <span className="block mb-1 sm:mb-2">Connect with</span>
+                <span className={`bg-gradient-to-r bg-clip-text text-transparent block min-h-[1.2em] ${
                   isDark 
                     ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
                     : 'from-[#00B8A9] via-teal-600 to-[#00B8A9]'
                 }`}>
                   {typingText || '\u00A0'}
-                  <span className={`inline-block w-1 h-[0.9em] align-middle ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
+                  <span className={`inline-block w-0.5 sm:w-1 h-[0.9em] align-middle ml-1 animate-pulse ${isDark ? 'bg-[#B0FFFA]' : 'bg-[#00B8A9]'}`}></span>
                 </span>
               </h1>
             </div>
 
             {/* Subheading/Description */}
-            <p className={`text-base sm:text-lg md:text-xl leading-relaxed max-w-lg ${
+            <p className={`text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-lg ${
               isDark ? 'text-gray-300' : 'text-gray-600'
             }`}>
               India's most trusted platform where 
@@ -191,79 +191,79 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
             </p>
 
             {/* Key Features Grid */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 max-w-lg">
               
               {/* Feature 1 */}
-              <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+              <div className={`flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
                 isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
               }`}>
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                   isDark ? 'bg-[#00B8A9]/20' : 'bg-[#00B8A9]/10'
                 }`}>
-                  <HiBolt className="w-4 h-4 sm:w-5 sm:h-5 text-[#00B8A9]" />
+                  <HiBolt className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#00B8A9]" />
                 </div>
-                <div>
-                  <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <div className="min-w-0 flex-1">
+                  <h4 className={`text-[10px] sm:text-xs md:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     Instant Matching
                   </h4>
-                  <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-[9px] sm:text-[10px] md:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     AI-powered connections
                   </p>
                 </div>
               </div>
 
               {/* Feature 2 */}
-              <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+              <div className={`flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
                 isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
               }`}>
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                   isDark ? 'bg-purple-500/20' : 'bg-purple-500/10'
                 }`}>
-                  <HiShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
+                  <HiShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-purple-500" />
                 </div>
-                <div>
-                  <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <div className="min-w-0 flex-1">
+                  <h4 className={`text-[10px] sm:text-xs md:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     100% Secure
                   </h4>
-                  <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-[9px] sm:text-[10px] md:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     Bank-level encryption
                   </p>
                 </div>
               </div>
 
               {/* Feature 3 - WITH COUNTER */}
-              <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+              <div className={`flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
                 isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
               }`}>
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                   isDark ? 'bg-cyan-500/20' : 'bg-cyan-500/10'
                 }`}>
-                  <HiCurrencyDollar className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />
+                  <HiCurrencyDollar className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-cyan-500" />
                 </div>
-                <div>
-                  <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <div className="min-w-0 flex-1">
+                  <h4 className={`text-[10px] sm:text-xs md:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     ₹{fundedCount}Cr+ Funded
                   </h4>
-                  <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-[9px] sm:text-[10px] md:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     {formatNumber(startupsCount)}+ startups
                   </p>
                 </div>
               </div>
 
               {/* Feature 4 - WITH COUNTER */}
-              <div className={`flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 ${
+              <div className={`flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
                 isDark ? 'bg-gray-800/30 hover:bg-gray-800/50' : 'bg-gray-50/50 hover:bg-gray-100/80'
               }`}>
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
                   isDark ? 'bg-pink-500/20' : 'bg-pink-500/10'
                 }`}>
-                  <HiUsers className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" />
+                  <HiUsers className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-pink-500" />
                 </div>
-                <div>
-                  <h4 className={`text-xs sm:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <div className="min-w-0 flex-1">
+                  <h4 className={`text-[10px] sm:text-xs md:text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     {formatNumber(usersCount)}+ Users
                   </h4>
-                  <p className={`text-[10px] sm:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-[9px] sm:text-[10px] md:text-xs mt-0.5 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     Active community
                   </p>
                 </div>
@@ -274,19 +274,19 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
             <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-2">
               <Link 
                 to="/register" 
-                className={`group px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 text-center shadow-md hover:shadow-lg ${
+                className={`group px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-lg font-medium text-sm sm:text-base md:text-lg transition-all duration-300 text-center shadow-md hover:shadow-lg active:scale-95 ${
                   isDark 
                     ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]' 
                     : 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]'
                 }`}
               >
                 Get Started Free
-                <HiArrowRight className="inline-block ml-1.5 w-4 h-4 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                <HiArrowRight className="inline-block ml-1.5 w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               
               <Link 
                 to="/login" 
-                className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base border-2 transition-all duration-300 text-center ${
+                className={`px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-lg font-medium text-sm sm:text-base md:text-lg border-2 transition-all duration-300 text-center active:scale-95 ${
                   isDark 
                     ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
                     : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
@@ -299,12 +299,12 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className={`relative h-[500px] sm:h-[550px] lg:h-[600px] flex items-center justify-center transition-all duration-1000 delay-400 ${
+          <div className={`relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center transition-all duration-1000 delay-400 ${
             isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}>
             
             {/* CONNECTION LINES SVG */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-5">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-5 hidden md:block">
               {/* Line to Bubble 1 (Top Right) */}
               <line 
                 x1="50%" 
@@ -362,7 +362,7 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               <img 
                 src={heroImage} 
                 alt="EVO-A Platform" 
-                className="w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] md:w-[340px] md:h-[340px] lg:w-[380px] lg:h-[380px] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto"
+                className="w-[200px] h-[200px] xs:w-[240px] xs:h-[240px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] xl:w-[380px] xl:h-[380px] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto"
               />
             </div>
 
@@ -371,11 +371,11 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               
               {/* Bubble 1 - Top Right */}
               <div 
-                className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+                className={`hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full ${
                   isDark ? 'bg-gradient-to-br from-[#00B8A9]/15 to-[#B0FFFA]/8' : 'bg-white/95'
                 } backdrop-blur-md border-2 ${
                   isDark ? 'border-[#00B8A9]/30' : 'border-[#00B8A9]/20'
-                } shadow-2xl animate-float1 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+                } shadow-2xl animate-float1 flex-col items-center justify-center p-2 xl:p-3 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
                 style={{
                   top: '5%',
                   right: '5%',
@@ -384,26 +384,26 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                     : '0 8px 32px rgba(0, 0, 0, 0.1)'
                 }}
               >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+                <div className={`w-8 h-8 xl:w-9 xl:h-9 rounded-full ${
                   isDark ? 'bg-[#00B8A9]/25' : 'bg-[#00B8A9]/15'
-                } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                  <HiRocketLaunch className="w-5 h-5 sm:w-6 sm:h-6 text-[#00B8A9]" />
+                } flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
+                  <HiRocketLaunch className="w-4 h-4 xl:w-5 xl:h-5 text-[#00B8A9]" />
                 </div>
-                <h3 className={`text-xs sm:text-sm font-bold ${
+                <h3 className={`text-[10px] xl:text-xs font-bold ${
                   isDark ? 'text-white' : 'text-gray-900'
                 } text-center leading-tight`}>For Startups</h3>
-                <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+                <p className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>Pitch & get funded</p>
               </div>
 
               {/* Bubble 2 - Bottom Right */}
               <div 
-                className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+                className={`hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full ${
                   isDark ? 'bg-gradient-to-br from-purple-500/15 to-blue-500/8' : 'bg-white/95'
                 } backdrop-blur-md border-2 ${
                   isDark ? 'border-purple-500/30' : 'border-purple-500/20'
-                } shadow-2xl animate-float2 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+                } shadow-2xl animate-float2 flex-col items-center justify-center p-2 xl:p-3 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
                 style={{
                   bottom: '5%',
                   right: '5%',
@@ -412,26 +412,26 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                     : '0 8px 32px rgba(0, 0, 0, 0.1)'
                 }}
               >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+                <div className={`w-8 h-8 xl:w-9 xl:h-9 rounded-full ${
                   isDark ? 'bg-purple-500/25' : 'bg-purple-500/15'
-                } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                  <HiCurrencyDollar className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" />
+                } flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
+                  <HiCurrencyDollar className="w-4 h-4 xl:w-5 xl:h-5 text-purple-500" />
                 </div>
-                <h3 className={`text-xs sm:text-sm font-bold ${
+                <h3 className={`text-[10px] xl:text-xs font-bold ${
                   isDark ? 'text-white' : 'text-gray-900'
                 } text-center leading-tight`}>For Investors</h3>
-                <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+                <p className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>Discover unicorns</p>
               </div>
 
               {/* Bubble 3 - Bottom Left */}
               <div 
-                className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+                className={`hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full ${
                   isDark ? 'bg-gradient-to-br from-cyan-500/15 to-emerald-500/8' : 'bg-white/95'
                 } backdrop-blur-md border-2 ${
                   isDark ? 'border-cyan-500/30' : 'border-cyan-500/20'
-                } shadow-2xl animate-float3 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+                } shadow-2xl animate-float3 flex-col items-center justify-center p-2 xl:p-3 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
                 style={{
                   bottom: '5%',
                   left: '5%',
@@ -440,26 +440,26 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                     : '0 8px 32px rgba(0, 0, 0, 0.1)'
                 }}
               >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+                <div className={`w-8 h-8 xl:w-9 xl:h-9 rounded-full ${
                   isDark ? 'bg-cyan-500/25' : 'bg-cyan-500/15'
-                } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                  <HiAcademicCap className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500" />
+                } flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
+                  <HiAcademicCap className="w-4 h-4 xl:w-5 xl:h-5 text-cyan-500" />
                 </div>
-                <h3 className={`text-xs sm:text-sm font-bold ${
+                <h3 className={`text-[10px] xl:text-xs font-bold ${
                   isDark ? 'text-white' : 'text-gray-900'
                 } text-center leading-tight`}>For Incubators</h3>
-                <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+                <p className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>Nurture startups</p>
               </div>
 
               {/* Bubble 4 - Top Left */}
               <div 
-                className={`hidden md:flex absolute w-[120px] h-[120px] sm:w-[135px] sm:h-[135px] lg:w-[145px] lg:h-[145px] rounded-full ${
+                className={`hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full ${
                   isDark ? 'bg-gradient-to-br from-pink-500/15 to-rose-500/8' : 'bg-white/95'
                 } backdrop-blur-md border-2 ${
                   isDark ? 'border-pink-500/30' : 'border-pink-500/20'
-                } shadow-2xl animate-float4 flex-col items-center justify-center p-3 sm:p-4 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
+                } shadow-2xl animate-float4 flex-col items-center justify-center p-2 xl:p-3 group cursor-pointer hover:scale-110 transition-all duration-300 pointer-events-auto`}
                 style={{
                   top: '5%',
                   left: '5%',
@@ -468,15 +468,15 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                     : '0 8px 32px rgba(0, 0, 0, 0.1)'
                 }}
               >
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${
+                <div className={`w-8 h-8 xl:w-9 xl:h-9 rounded-full ${
                   isDark ? 'bg-pink-500/25' : 'bg-pink-500/15'
-                } flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform duration-300`}>
-                  <HiUsers className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />
+                } flex items-center justify-center mb-1 group-hover:scale-110 transition-transform duration-300`}>
+                  <HiUsers className="w-4 h-4 xl:w-5 xl:h-5 text-pink-500" />
                 </div>
-                <h3 className={`text-xs sm:text-sm font-bold ${
+                <h3 className={`text-[10px] xl:text-xs font-bold ${
                   isDark ? 'text-white' : 'text-gray-900'
                 } text-center leading-tight`}>For Viewers</h3>
-                <p className={`text-[9px] sm:text-[10px] text-center mt-0.5 leading-tight ${
+                <p className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
                   isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>Explore daily</p>
               </div>

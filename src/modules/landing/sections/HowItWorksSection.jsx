@@ -41,11 +41,11 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
       </div>
 
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 relative z-10">
           {howItWorksSteps.map((step, index) => (
             <div
               key={index}
-              className={`group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-2xl transition-all duration-500 overflow-visible ${
+              className={`group relative p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl transition-all duration-500 overflow-visible ${
                 isVisible['howItWorks'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               } ${
                 isDark 
@@ -186,7 +186,7 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
               <div className="absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
               
               <div className="relative z-10">
-                <div className={`text-5xl sm:text-6xl md:text-7xl font-black mb-4 sm:mb-5 flex items-baseline`}>
+                <div className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-4 md:mb-5 flex items-baseline`}>
                   <span className={isDark ? 'text-white' : 'text-gray-900'}>{step.step.charAt(0)}</span>
                   <span className={`bg-gradient-to-br ${
                     isDark ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent' : 'from-[#00B8A9] to-[#008C81] bg-clip-text text-transparent'
@@ -195,23 +195,23 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
                   </span>
                 </div>
                 
-                <div className={`w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-5 rounded-2xl transition-all duration-500 ${
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 md:mb-5 rounded-xl sm:rounded-2xl transition-all duration-500 ${
                   isDark 
                     ? 'bg-gradient-to-br from-[#B0FFFA]/20 to-[#80E5FF]/20 shadow-lg shadow-[#B0FFFA]/10' 
                     : 'bg-gradient-to-br from-[#B0FFFA]/25 to-[#80E5FF]/25 shadow-lg shadow-[#00B8A9]/10'
                 }`}>
-                  <div className={`${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'} text-2xl sm:text-3xl transition-transform duration-300`}>
-                    {getIcon(step.iconName, 'text-2xl')}
+                  <div className={`${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'} text-xl sm:text-2xl md:text-3xl transition-transform duration-300`}>
+                    {getIcon(step.iconName, 'text-xl sm:text-2xl')}
                   </div>
                 </div>
                 
-                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 transition-all duration-300 ${
+                <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 transition-all duration-300 ${
                   isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
                 }`}>
                   {step.title}
                 </h3>
                 
-                <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
+                <p className={`text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-300 ${
                   isDark ? 'text-white/70' : 'text-gray-600'
                 }`}>
                   {step.desc}
