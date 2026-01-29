@@ -98,8 +98,8 @@ export default function ForgetPassword() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 lg:pl-1 lg:pr-4 xl:pl-2 xl:pr-8 2xl:pr-12 relative z-10">
         <div className="w-full max-w-md">
           {/* Logo/Brand with Animation */}
-          <div className="mb-6 sm:mb-8 text-center lg:text-left animate-fadeInUp">
-            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+          <div className="mb-6 sm:mb-8 text-center animate-fadeInUp">
+            <div className="flex items-center justify-center gap-3 mb-4">
               <div className="relative">
                 <img 
                   src={logo} 
@@ -128,7 +128,7 @@ export default function ForgetPassword() {
           </div>
 
           {/* Form Container with Animation */}
-          <div className={`-2xl p-5 sm:p-6 animate-fadeInUp ${
+          <div className={`rounded-2xl p-5 sm:p-6 animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'
@@ -165,7 +165,7 @@ export default function ForgetPassword() {
           </div>
 
           {/* Sign In Link with Animation */}
-          <div className={`mt-4 text-center py-4 -2xl animate-fadeInUp ${
+          <div className={`mt-4 text-center py-4 rounded-2xl animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'
