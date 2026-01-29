@@ -72,14 +72,14 @@ const VideoReel = () => {
   };
 
   useEffect(() => {
-    // Auto-scroll to next video every 5 seconds (very fast)
+    // Auto-scroll to next video every 8 seconds (more professional timing)
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % videos.length;
         playVideo(nextIndex);
         return nextIndex;
       });
-    }, 5000);
+    }, 8000);
 
     // Play first video on mount
     setTimeout(() => {
@@ -109,48 +109,50 @@ const VideoReel = () => {
 
   return (
     <div className="relative w-full h-full bg-black overflow-hidden">
-      {/* Show only current video with animated transitions */}
+      {/* Show only current video with smooth fade transitions */}
       {videos.map((video, index) => (
         <div
           key={index}
-          className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${
+          className={`absolute inset-0 w-full h-full ${
             index === currentIndex 
-              ? 'opacity-100 scale-100 z-10' 
-              : 'opacity-0 scale-105 z-0'
+              ? 'opacity-100 z-10' 
+              : 'opacity-0 z-0 pointer-events-none'
           }`}
           style={{
-            transform: index === currentIndex 
-              ? 'scale(1) translateX(0)' 
-              : index < currentIndex 
-                ? 'scale(1.05) translateX(-100%)' 
-                : 'scale(1.05) translateX(100%)',
-            transition: 'opacity 0.7s ease-in-out, transform 0.7s ease-in-out',
+            transition: 'opacity 1s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
-          {/* Background Image with animated zoom */}
+          {/* Background Image - no zoom, static */}
           <div className="absolute inset-0 w-full h-full overflow-hidden">
             <img
               src={video.image}
               alt={video.title}
-              className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${
-                index === currentIndex ? 'scale-100' : 'scale-110'
-              }`}
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: 'center',
+              }}
               onError={(e) => {
                 e.target.src = 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200';
               }}
             />
+            {/* Subtle overlay for better text readability if needed */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
           </div>
 
-          {/* Video with animated fade */}
+          {/* Video with smooth fade */}
           {video.url && !videoErrors[index] && (
             <video
               ref={(el) => {
                 if (el) videoRefs.current[index] = el;
               }}
               src={video.url}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${
+              className={`absolute inset-0 w-full h-full object-cover ${
                 index === currentIndex ? 'opacity-100' : 'opacity-0'
               }`}
+              style={{
+                transition: 'opacity 1s cubic-bezier(0.4, 0, 0.2, 1)',
+                objectPosition: 'center',
+              }}
               loop={false}
               muted={true}
               playsInline
@@ -167,25 +169,25 @@ const VideoReel = () => {
         </div>
       ))}
 
-      {/* Navigation Buttons */}
+      {/* Navigation Buttons - More subtle and professional */}
       <button
         onClick={handlePrevious}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
         aria-label="Previous video"
       >
-        <FaChevronLeft size={20} />
+        <FaChevronLeft size={18} />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
         aria-label="Next video"
       >
-        <FaChevronRight size={20} />
+        <FaChevronRight size={18} />
       </button>
 
-      {/* Video indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30 flex gap-2">
+      {/* Video indicators - More professional styling */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex gap-2.5">
         {videos.map((_, i) => (
           <button
             key={i}
@@ -193,10 +195,10 @@ const VideoReel = () => {
               setCurrentIndex(i);
               playVideo(i);
             }}
-            className={`rounded-full transition-all duration-300 ${
+            className={`rounded-full transition-all duration-500 ease-in-out ${
               i === currentIndex 
-                ? 'bg-[#00B8A9] w-8 h-2' 
-                : 'bg-white/40 w-2 h-2 hover:bg-white/60'
+                ? 'bg-[#00B8A9] w-10 h-2 shadow-lg shadow-[#00B8A9]/50' 
+                : 'bg-white/30 w-2 h-2 hover:bg-white/50 hover:w-3'
             }`}
             aria-label={`Go to video ${i + 1}`}
           />
