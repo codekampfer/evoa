@@ -1,0 +1,9 @@
+export { default as HeroSection } from './HeroSection';
+export { default as TransformJourneySection } from './TransformJourneySection';
+export { default as WhyEvoaSection } from './WhyEvoaSection';
+export { default as WhoIsEvoaSection } from './WhoIsEvoaSection';
+export { default as HowItWorksSection } from './HowItWorksSection';
+export { default as PowerfulFeaturesSection } from './PowerfulFeaturesSection';
+export { default as TrustDesignSection } from './TrustDesignSection';
+export { default as UserJourneySection } from './UserJourneySection';
+export { default as FAQSection } from './FAQSection';
