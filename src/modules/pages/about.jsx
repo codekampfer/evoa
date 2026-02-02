@@ -1,11 +1,37 @@
 import React from "react";
 import { useTheme } from "../../contexts/ThemeContext";
-import { HiUsers, HiChartBar } from "react-icons/hi";
+import { HiUsers, HiChartBar } from "react-icons/hi2";
 import { FaRocket, FaHandPaper, FaLightbulb, FaStar } from "react-icons/fa";
+import Footer from "../../components/layout/footer";
 
 export default function About() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+
+  const SectionTitle = ({ children }) => (
+    <h2
+      className={`text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold leading-snug mb-3 sm:mb-4 bg-gradient-to-r ${
+        isDark
+          ? "from-white via-[#B0FFFA] to-white bg-clip-text text-transparent"
+          : "from-black via-[#00B8A9] to-black bg-clip-text text-transparent"
+      }`}
+    >
+      {children}
+    </h2>
+  );
+
+  const CardContainer = ({ children, className = "" }) => (
+    <div
+      className={`group relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-xl sm:rounded-2xl transition-all duration-500 overflow-hidden ${
+        isDark
+          ? "bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1"
+          : "bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1"
+      } ${className}`}
+    >
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl sm:rounded-2xl"></div>
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
 
   const values = [
     {
@@ -72,47 +98,55 @@ export default function About() {
   ];
 
   return (
-    <section
-      className={`min-h-screen py-10 sm:py-12 lg:py-16 transition-colors duration-300 ${
-        isDark ? "bg-black" : "bg-gray-50"
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDark ? "bg-black" : "bg-white"
       }`}
-      aria-labelledby="about-heading"
     >
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <header className="mb-10 sm:mb-14 lg:mb-16">
-          <h1
-            id="about-heading"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide leading-tight mb-4 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            About EVO‑A
-          </h1>
-          <p
-            className={`text-base sm:text-lg lg:text-xl max-w-3xl mx-auto ${
-              isDark ? "text-white/70" : "text-gray-600"
-            }`}
-          >
-            EVO‑A connects ambitious founders with visionary investors, creating a trusted
-            platform for funding, mentorship, and long‑term growth in the startup ecosystem.
-          </p>
-        </header>
-      </div>
+      <section
+        className="py-8 sm:py-10 md:py-12"
+        aria-labelledby="about-heading"
+      >
+        {/* Hero Section */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 text-center">
+          <header className="mb-8 sm:mb-10 md:mb-12">
+            <div
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 backdrop-blur-xl border ${
+                isDark
+                  ? "bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]"
+                  : "bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]"
+              }`}
+            >
+              <span className="text-xs font-bold tracking-wider uppercase">
+                About EVO‑A
+              </span>
+            </div>
+            <SectionTitle>Building the future of startup funding</SectionTitle>
+            <p
+              className={`text-sm sm:text-base md:text-lg max-w-3xl mx-auto mt-3 ${
+                isDark ? "text-white/70" : "text-gray-600"
+              }`}
+            >
+              EVO‑A connects ambitious founders with visionary investors, creating a
+              trusted platform for funding, mentorship, and long‑term growth in the
+              startup ecosystem.
+            </p>
+          </header>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 space-y-12 sm:space-y-16 md:space-y-20">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 space-y-10 sm:space-y-14 md:space-y-16">
         {/* Mission & Vision */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-          <div>
-            <h2
-              className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-5 ${
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start">
+          <CardContainer className="text-left">
+            <h3
+              className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
             >
               Our mission
-            </h2>
+            </h3>
             <p
-              className={`text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 leading-relaxed ${
+              className={`text-sm sm:text-base md:text-lg mb-3 sm:mb-4 leading-relaxed ${
                 isDark ? "text-white/80" : "text-gray-700"
               }`}
             >
@@ -121,7 +155,7 @@ export default function About() {
               traditional networks.
             </p>
             <p
-              className={`text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed ${
+              className={`text-sm sm:text-base md:text-lg leading-relaxed ${
                 isDark ? "text-white/80" : "text-gray-700"
               }`}
             >
@@ -129,76 +163,56 @@ export default function About() {
               startups and investors to discover the right opportunities faster, with
               greater confidence and transparency.
             </p>
-          </div>
+          </CardContainer>
 
-          <div
-            className={`p-4 sm:p-6 md:p-8 border ${
-              isDark
-                ? "bg-black/40 border-white/20"
-                : "bg-white border-black/20"
-            }`}
-          >
-            <div className="flex flex-col items-center text-center">
-              <div
-                className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center mb-3 sm:mb-4 ${
-                  isDark ? "bg-white/10" : "bg-black/5"
-                }`}
-              >
-                <FaLightbulb
-                  size={32}
-                  className={isDark ? "text-white" : "text-gray-900"}
-                  aria-hidden="true"
-                />
-              </div>
-              <h3
-                className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Vision 2030
-              </h3>
-              <p
-                className={`text-xs sm:text-sm md:text-base ${
-                  isDark ? "text-white/70" : "text-gray-600"
-                }`}
-              >
-                To be India’s most trusted startup–investor platform, enabling ₹10,000+
-                crores in funding and empowering thousands of founders by 2030.
-              </p>
+          <CardContainer className="flex flex-col items-center text-center">
+            <div
+              className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center mb-3 sm:mb-4 rounded-full ${
+                isDark ? "bg-[#B0FFFA]/10" : "bg-[#00B8A9]/10"
+              }`}
+            >
+              <FaLightbulb
+                size={32}
+                className={isDark ? "text-[#B0FFFA]" : "text-[#00B8A9]"}
+                aria-hidden="true"
+              />
             </div>
-          </div>
+            <h3
+              className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
+            >
+              Vision 2030
+            </h3>
+            <p
+              className={`text-sm sm:text-base md:text-lg ${
+                isDark ? "text-white/70" : "text-gray-600"
+              }`}
+            >
+              To be India’s most trusted startup–investor platform, enabling ₹10,000+
+              crores in funding and empowering thousands of founders by 2030.
+            </p>
+          </CardContainer>
         </section>
 
         {/* Values */}
         <section aria-labelledby="values-heading">
-          <h2
-            id="values-heading"
-            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Our core values
-          </h2>
+          <div className="text-center mb-5 sm:mb-7 md:mb-8">
+            <SectionTitle>Our core values</SectionTitle>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
             {values.map((value, idx) => {
               const IconComponent = value.icon;
               return (
-                <div
-                  key={idx}
-                  className={`p-4 sm:p-5 md:p-6 border text-center h-full transition-transform duration-150 hover:-translate-y-1 ${
-                    isDark
-                      ? "bg-black/40 border-white/20"
-                      : "bg-white border-black/20"
-                  }`}
-                >
+                <CardContainer key={idx} className="text-center h-full">
                   <div
-                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 sm:mb-4 ${
-                      isDark ? "bg-white/10" : "bg-black/5"
+                    className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 sm:mb-4 rounded-full ${
+                      isDark ? "bg-[#B0FFFA]/10" : "bg-[#00B8A9]/10"
                     }`}
                   >
                     <IconComponent
                       size={28}
-                      className={isDark ? "text-white" : "text-gray-900"}
+                      className={isDark ? "text-[#B0FFFA]" : "text-[#00B8A9]"}
                       aria-hidden="true"
                     />
                   </div>
@@ -216,7 +230,7 @@ export default function About() {
                   >
                     {value.description}
                   </p>
-                </div>
+                </CardContainer>
               );
             })}
           </div>
@@ -224,48 +238,38 @@ export default function About() {
 
         {/* Journey / Timeline */}
         <section aria-labelledby="journey-heading">
-          <h2
-            id="journey-heading"
-            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Our journey
-          </h2>
+          <div className="text-center mb-5 sm:mb-7 md:mb-8">
+            <SectionTitle>Our journey</SectionTitle>
+          </div>
           <div className="relative">
-            {/* Vertical line for md+ */}
-            <div
-              className={`hidden md:block absolute left-8 top-0 bottom-0 w-px ${
-                isDark ? "bg-white/15" : "bg-gray-300"
-              }`}
-              aria-hidden="true"
-            />
-            <ol className="space-y-7 sm:space-y-8">
+            <ol className="space-y-5 sm:space-y-6">
               {milestones.map((milestone, idx) => (
-                <li key={idx} className="relative flex items-start gap-5 md:gap-7">
-                  <div
-                    className={`shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center font-semibold text-xs sm:text-sm md:text-base ${
-                      isDark ? "bg-white text-black" : "bg-black text-white"
-                    }`}
-                  >
-                    {milestone.year}
-                  </div>
-                  <div className="flex-1 pt-1">
-                    <h3
-                      className={`text-lg sm:text-xl font-semibold mb-1.5 ${
-                        isDark ? "text-white" : "text-gray-900"
+                <li key={idx}>
+                  <CardContainer className="flex items-start gap-4 sm:gap-5">
+                    <div
+                      className={`shrink-0 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-semibold text-xs sm:text-sm md:text-base rounded-full ${
+                        isDark ? "bg-[#B0FFFA] text-black" : "bg-[#00B8A9] text-white"
                       }`}
                     >
-                      {milestone.title}
-                    </h3>
-                    <p
-                      className={`text-sm sm:text-base ${
-                        isDark ? "text-white/70" : "text-gray-600"
-                      }`}
-                    >
-                      {milestone.description}
-                    </p>
-                  </div>
+                      {milestone.year}
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <h3
+                        className={`text-base sm:text-lg md:text-xl font-semibold mb-1.5 ${
+                          isDark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
+                        {milestone.title}
+                      </h3>
+                      <p
+                        className={`text-sm sm:text-base ${
+                          isDark ? "text-white/70" : "text-gray-600"
+                        }`}
+                      >
+                        {milestone.description}
+                      </p>
+                    </div>
+                  </CardContainer>
                 </li>
               ))}
             </ol>
@@ -274,25 +278,16 @@ export default function About() {
 
         {/* Team */}
         <section aria-labelledby="team-heading">
-          <h2
-            id="team-heading"
-            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 md:mb-10 text-center ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Meet the team
-          </h2>
+          <div className="text-center mb-5 sm:mb-7 md:mb-8">
+            <SectionTitle>Meet the team</SectionTitle>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
             {team.map((member, idx) => (
-              <div
+              <CardContainer
                 key={idx}
-                className={`text-center p-4 sm:p-5 md:p-6 border transition-transform duration-150 hover:-translate-y-1 ${
-                  isDark
-                    ? "bg-black/40 border-white/20"
-                    : "bg-white border-black/20"
-                }`}
+                className="text-center p-4 sm:p-5 md:p-6"
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 overflow-hidden mx-auto mb-3 sm:mb-4">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 overflow-hidden mx-auto mb-3 sm:mb-4 rounded-full border border-white/20">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -314,11 +309,13 @@ export default function About() {
                 >
                   {member.role}
                 </p>
-              </div>
+              </CardContainer>
             ))}
           </div>
         </section>
-      </div>
-    </section>
+        </div>
+      </section>
+      <Footer />
+    </div>
   );
 }
