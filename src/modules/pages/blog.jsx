@@ -1,10 +1,75 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
-import { HiCalendar, HiUser, HiArrowRight } from "react-icons/hi";
+import { HiCalendar, HiUser, HiArrowRight } from "react-icons/hi2";
+import Footer from "../../components/layout/footer";
 
 export default function Blog() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isVisible, setIsVisible] = useState({});
+  const sectionRefs = useRef({});
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible((prev) => ({
+            ...prev,
+            [entry.target.dataset.section]: true
+          }));
+        }
+      });
+    }, observerOptions);
+
+    const timeoutId = setTimeout(() => {
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const setRef = (section) => (el) => {
+    if (el) {
+      sectionRefs.current[section] = el;
+      el.dataset.section = section;
+    }
+  };
+
+  const SectionTitle = ({ children }) => (
+    <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold leading-snug mb-2 sm:mb-3 bg-gradient-to-r ${
+      isDark 
+        ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
+        : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
+    }`}>
+      {children}
+    </h2>
+  );
+
+  const CardContainer = ({ children, className = '' }) => (
+    <div className={`group relative p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl transition-all duration-500 overflow-hidden ${
+      isDark 
+        ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1' 
+        : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1'
+    } ${className}`}>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl sm:rounded-2xl"></div>
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
+  );
 
   const blogPosts = [
     {
@@ -91,152 +156,171 @@ export default function Blog() {
     "Sustainability",
   ];
 
+  const filteredPosts = selectedCategory === "All" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
+
   return (
-    <section
-      className={`min-h-screen py-10 sm:py-12 lg:py-16 transition-colors duration-300 ${
-        isDark ? "bg-black" : "bg-gray-50"
-      }`}
-      aria-labelledby="blog-heading"
-    >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        {/* Header */}
-        <header className="text-center mb-8 sm:mb-10 md:mb-14 lg:mb-16">
-          <h1
-            id="blog-heading"
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}>
+      <section
+        ref={setRef('blog')}
+        className={`relative py-8 sm:py-10 md:py-12 transition-all duration-1000 ease-out ${
+          isVisible['blog'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+        aria-labelledby="blog-heading"
+      >
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+          {/* Header */}
+          <header className="text-center mb-6 sm:mb-8 md:mb-10 px-4">
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 backdrop-blur-xl border ${
+              isDark 
+                ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+                : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+            }`}>
+              <span className="text-xs font-bold tracking-wider uppercase">Insights & Stories</span>
+            </div>
+            <SectionTitle>EVO‑A Blog</SectionTitle>
+            <p className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto mt-3 ${
+              isDark ? 'text-white/70' : 'text-gray-600'
+            }`}>
+              Insights, stories, and expert advice on startups, investing, and the entrepreneurial ecosystem.
+            </p>
+          </header>
+
+          {/* Categories */}
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10 justify-center">
+            {categories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+                className={`px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-300 ${
+                  selectedCategory === category
+                    ? isDark
+                      ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg'
+                      : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white shadow-lg'
+                    : isDark
+                      ? 'bg-black/40 text-white hover:bg-black/60 border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50'
+                      : 'bg-white/90 text-gray-700 hover:bg-white border border-[#00B8A9]/30 hover:border-[#00B8A9]/50'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Blog Posts Grid */}
+          <main
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
+            aria-label="Blog articles"
           >
-            EVO‑A Blog
-          </h1>
-          <p
-            className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto ${
-              isDark ? "text-white/70" : "text-gray-600"
-            }`}
-          >
-            Insights, stories, and expert advice on startups, investing, and the
-            entrepreneurial ecosystem.
-          </p>
-        </header>
-
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3 mb-6 sm:mb-8 md:mb-12 justify-center">
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              className={`px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 md:py-2 text-[10px] sm:text-xs md:text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 border ${
-                isDark
-                  ? "bg-white/10 text-white hover:bg-white/20 focus:ring-white focus:ring-offset-black border-white/20"
-                  : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 focus:ring-black focus:ring-offset-gray-50"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Blog Posts Grid */}
-        <main
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8"
-          aria-label="Blog articles"
-        >
-          {blogPosts.map((post) => (
-            <article
-              key={post.id}
-              className={`group flex flex-col border overflow-hidden transition-transform duration-200 hover:-translate-y-1 ${
-                isDark
-                  ? "bg-black/40 border-white/20"
-                  : "bg-white border-black/20"
-              }`}
-            >
-              {/* Image */}
-              <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <span
-                  className={`absolute top-2 sm:top-3 left-2 sm:left-3 px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold ${
-                    isDark
-                      ? "bg-black/80 text-white"
-                      : "bg-white/90 text-gray-900"
-                  }`}
-                >
-                  {post.category}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-3 sm:p-4 md:p-5">
-                <h2
-                  className={`text-base sm:text-lg md:text-xl font-semibold mb-2 line-clamp-2 ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  {post.title}
-                </h2>
-                <p
-                  className={`text-xs sm:text-sm md:text-[15px] mb-3 sm:mb-4 line-clamp-3 ${
-                    isDark ? "text-white/70" : "text-gray-600"
-                  }`}
-                >
-                  {post.excerpt}
-                </p>
-
-                {/* Meta Info */}
-                <div
-                  className={`mt-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[10px] sm:text-[11px] md:text-xs mb-3 sm:mb-4 ${
-                    isDark ? "text-white/50" : "text-gray-500"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 md:gap-3">
-                    <span className="inline-flex items-center gap-1 sm:gap-1.5">
-                      <HiUser size={10} className="sm:w-3 sm:h-3" aria-hidden="true" />
-                      <span>{post.author}</span>
-                    </span>
-                    <span className="inline-flex items-center gap-1 sm:gap-1.5">
-                      <HiCalendar size={10} className="sm:w-3 sm:h-3" aria-hidden="true" />
-                      <span>{post.date}</span>
-                    </span>
+            {filteredPosts.map((post, index) => (
+              <CardContainer
+                key={post.id}
+                className={`flex flex-col overflow-hidden transition-all duration-700 ${
+                  isVisible['blog'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                {/* Image */}
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-lg mb-4 sm:mb-5">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${
+                    isDark 
+                      ? 'from-black/90 via-black/40 to-transparent' 
+                      : 'from-black/80 via-black/30 to-transparent'
+                  } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <button className={`w-full py-2.5 sm:py-3 font-semibold text-sm sm:text-base flex items-center justify-center gap-2 rounded-lg transition-all duration-300 ${
+                        isDark 
+                          ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-lg' 
+                          : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg'
+                      }`}>
+                        Read Article
+                        <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
                   </div>
-                  <span>{post.readTime}</span>
+                  <span className={`absolute top-3 sm:top-4 left-3 sm:left-4 px-3 py-1 rounded-lg text-xs sm:text-sm font-semibold backdrop-blur-xl ${
+                    isDark 
+                      ? 'bg-[#B0FFFA]/20 border border-[#B0FFFA]/30 text-[#B0FFFA]' 
+                      : 'bg-white/90 border border-[#00B8A9]/30 text-[#00B8A9]'
+                  }`}>
+                    {post.category}
+                  </span>
                 </div>
 
-                {/* Read More */}
-                <button
-                  type="button"
-                  className={`inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold mt-auto transition-colors focus:outline-none ${
-                    isDark
-                      ? "text-white hover:text-white/80"
-                      : "text-gray-900 hover:text-gray-700"
-                  }`}
-                  aria-label={`Read more: ${post.title}`}
-                >
-                  Read more
-                  <HiArrowRight size={12} className="sm:w-3.5 sm:h-3.5" aria-hidden="true" />
-                </button>
-              </div>
-            </article>
-          ))}
-        </main>
+                {/* Content */}
+                <div className="flex flex-col flex-1">
+                  <h2 className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 line-clamp-2 ${
+                    isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-black group-hover:text-[#00B8A9]'
+                  } transition-colors duration-300`}>
+                    {post.title}
+                  </h2>
+                  <p className={`text-sm sm:text-base md:text-lg mb-3 sm:mb-4 line-clamp-3 leading-relaxed ${
+                    isDark ? 'text-white/80' : 'text-gray-700'
+                  }`}>
+                    {post.excerpt}
+                  </p>
 
-        {/* Load More */}
-        <div className="text-center mt-8 sm:mt-10 md:mt-12">
-          <button
-            type="button"
-            className={`px-5 sm:px-6 md:px-7 lg:px-8 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              isDark
-                ? "bg-white text-black hover:bg-white/90 focus:ring-white focus:ring-offset-black"
-                : "bg-black text-white hover:bg-black/90 focus:ring-black focus:ring-offset-gray-50"
-            }`}
-          >
-            Load more articles
-          </button>
+                  {/* Meta Info */}
+                  <div className={`mt-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs sm:text-sm mb-3 sm:mb-4 ${
+                    isDark ? 'text-white/60' : 'text-gray-600'
+                  }`}>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span className="inline-flex items-center gap-1.5">
+                        <HiUser className="w-4 h-4" aria-hidden="true" />
+                        <span>{post.author}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <HiCalendar className="w-4 h-4" aria-hidden="true" />
+                        <span>{post.date}</span>
+                      </span>
+                    </div>
+                    <span className="font-medium">{post.readTime}</span>
+                  </div>
+
+                  {/* Read More */}
+                  <button
+                    type="button"
+                    className={`inline-flex items-center gap-2 text-sm sm:text-base font-semibold transition-all duration-300 ${
+                      isDark
+                        ? 'text-[#B0FFFA] hover:text-[#80E5FF]'
+                        : 'text-[#00B8A9] hover:text-[#008C81]'
+                    }`}
+                    aria-label={`Read more: ${post.title}`}
+                  >
+                    Read more
+                    <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                  </button>
+                </div>
+              </CardContainer>
+            ))}
+          </main>
+
+          {/* Load More */}
+          <div className="text-center mt-8 sm:mt-10 md:mt-12">
+            <button
+              type="button"
+              className={`px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 font-bold text-sm sm:text-base md:text-lg rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
+                isDark
+                  ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-xl hover:shadow-[0_0_40px_rgba(176,255,250,0.5)]'
+                  : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white shadow-xl hover:shadow-[0_0_40px_rgba(0,184,169,0.3)]'
+              }`}
+            >
+              Load more articles
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </div>
   );
 }

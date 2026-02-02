@@ -1,10 +1,76 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { FaExternalLinkAlt, FaArrowUp } from "react-icons/fa";
+import { HiArrowRight } from "react-icons/hi2";
+import Footer from "../../components/layout/footer";
 
 export default function Portfolio() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isVisible, setIsVisible] = useState({});
+  const sectionRefs = useRef({});
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible((prev) => ({
+            ...prev,
+            [entry.target.dataset.section]: true
+          }));
+        }
+      });
+    }, observerOptions);
+
+    const timeoutId = setTimeout(() => {
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const setRef = (section) => (el) => {
+    if (el) {
+      sectionRefs.current[section] = el;
+      el.dataset.section = section;
+    }
+  };
+
+  const SectionTitle = ({ children }) => (
+    <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r ${
+      isDark 
+        ? 'from-white via-[#B0FFFA] to-white bg-clip-text text-transparent' 
+        : 'from-black via-[#00B8A9] to-black bg-clip-text text-transparent'
+    }`}>
+      {children}
+    </h2>
+  );
+
+  const CardContainer = ({ children, className = '' }) => (
+    <div className={`group relative p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl transition-all duration-500 overflow-hidden ${
+      isDark 
+        ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_12px_40px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1' 
+        : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_12px_40px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1'
+    } ${className}`}>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl sm:rounded-2xl"></div>
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
+  );
 
   const portfolioItems = [
     {
@@ -78,140 +144,184 @@ export default function Portfolio() {
 
   const categories = ["All", "SaaS", "CleanTech", "EdTech", "HealthTech", "FinTech", "AgriTech"];
 
+  const filteredItems = selectedCategory === "All" 
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === selectedCategory);
+
   return (
-    <section
-      className={`min-h-screen py-10 sm:py-12 lg:py-16 transition-colors duration-300 ${
-        isDark ? "bg-black" : "bg-gray-50"
-      }`}
-      aria-labelledby="pitch-heading"
-    >
-         <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
-        <h1
-            id="pitch-heading"
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Our Portfolio
-          </h1>
-          <p className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
-            Discover the innovative startups we've supported and the impact they're making in the ecosystem
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-10 md:mb-12">
-          {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className={`p-4 sm:p-5 md:p-6 border text-center ${
-                isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-              }`}
-            >
-              <div className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
-                {stat.value}
-              </div>
-              <div className={`text-xs sm:text-sm md:text-base ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
-                {stat.label}
-              </div>
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}>
+      <section
+        ref={setRef('portfolio')}
+        className={`relative py-8 sm:py-10 md:py-12 transition-all duration-1000 ease-out ${
+          isVisible['portfolio'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+        aria-labelledby="portfolio-heading"
+      >
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+          {/* Header */}
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 px-4">
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 backdrop-blur-xl border ${
+              isDark 
+                ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+                : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+            }`}>
+              <span className="text-xs font-bold tracking-wider uppercase">Our Success Stories</span>
             </div>
-          ))}
-        </div>
+            <SectionTitle>Our Portfolio</SectionTitle>
+            <p className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto mt-3 ${
+              isDark ? 'text-white/70' : 'text-gray-600'
+            }`}>
+              Discover the innovative startups we've supported and the impact they're making in the ecosystem
+            </p>
+          </div>
 
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-12 justify-center">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-medium transition-all ${
-                isDark
-                  ? 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8 md:mb-10">
+            {stats.map((stat, idx) => (
+              <CardContainer
+                key={idx}
+                className="text-center p-4 sm:p-5 md:p-6"
+              >
+                <div className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-r ${
+                  isDark 
+                    ? 'from-[#B0FFFA] via-white to-[#80E5FF] bg-clip-text text-transparent' 
+                    : 'from-[#00B8A9] via-teal-600 to-[#008C81] bg-clip-text text-transparent'
+                }`}>
+                  {stat.value}
+                </div>
+                <div className={`text-xs sm:text-sm md:text-base font-medium ${
+                  isDark ? 'text-white/80' : 'text-gray-700'
+                }`}>
+                  {stat.label}
+                </div>
+              </CardContainer>
+            ))}
+          </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          {portfolioItems.map((item) => (
-            <div
-              key={item.id}
-              className={`group border overflow-hidden transition-all duration-300 hover:scale-105 ${
-                isDark ? 'bg-black/40 border-white/20' : 'bg-white border-black/20'
-              }`}
-            >
-              {/* Image */}
-              <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                    <button className={`w-full py-1.5 sm:py-2 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 ${
-                      isDark ? 'bg-white text-black' : 'bg-black text-white'
+          {/* Categories */}
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10 justify-center">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-300 ${
+                  selectedCategory === category
+                    ? isDark
+                      ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg'
+                      : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white shadow-lg'
+                    : isDark
+                      ? 'bg-black/40 text-white hover:bg-black/60 border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50'
+                      : 'bg-white/90 text-gray-700 hover:bg-white border border-[#00B8A9]/30 hover:border-[#00B8A9]/50'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Portfolio Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+            {filteredItems.map((item, index) => (
+              <CardContainer
+                key={item.id}
+                className={`overflow-hidden transition-all duration-700 ${
+                  isVisible['portfolio'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                {/* Image */}
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-lg mb-4 sm:mb-5">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${
+                    isDark 
+                      ? 'from-black/90 via-black/40 to-transparent' 
+                      : 'from-black/80 via-black/30 to-transparent'
+                  } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <button className={`w-full py-2.5 sm:py-3 font-semibold text-sm sm:text-base flex items-center justify-center gap-2 rounded-lg transition-all duration-300 ${
+                        isDark 
+                          ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-lg' 
+                          : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg'
+                      }`}>
+                        View Details
+                        <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className={`absolute top-3 sm:top-4 right-3 sm:right-4 px-3 py-1 rounded-lg text-xs sm:text-sm font-semibold backdrop-blur-xl ${
+                    isDark 
+                      ? 'bg-[#B0FFFA]/20 border border-[#B0FFFA]/30 text-[#B0FFFA]' 
+                      : 'bg-white/90 border border-[#00B8A9]/30 text-[#00B8A9]'
+                  }`}>
+                    {item.status}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-lg ${
+                      isDark 
+                        ? 'bg-[#B0FFFA]/20 text-[#B0FFFA] border border-[#B0FFFA]/30' 
+                        : 'bg-[#00B8A9]/20 text-[#00B8A9] border border-[#00B8A9]/30'
                     }`}>
-                      View Details
-                      <FaArrowUp size={12} className="sm:w-3.5 sm:h-3.5" />
+                      {item.category}
+                    </span>
+                    <span className={`text-xs sm:text-sm font-medium ${
+                      isDark ? 'text-white/60' : 'text-gray-600'
+                    }`}>
+                      {item.year}
+                    </span>
+                  </div>
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 ${
+                    isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-black group-hover:text-[#00B8A9]'
+                  } transition-colors duration-300`}>
+                    {item.title}
+                  </h3>
+                  <p className={`text-sm sm:text-base md:text-lg mb-4 sm:mb-5 leading-relaxed line-clamp-2 ${
+                    isDark ? 'text-white/80' : 'text-gray-700'
+                  }`}>
+                    {item.description}
+                  </p>
+                  <div className={`flex items-center justify-between pt-4 border-t ${
+                    isDark ? 'border-[#B0FFFA]/20' : 'border-[#00B8A9]/20'
+                  }`}>
+                    <div>
+                      <div className={`text-xs sm:text-sm font-medium mb-1 ${
+                        isDark ? 'text-white/60' : 'text-gray-600'
+                      }`}>
+                        Funding Raised
+                      </div>
+                      <div className={`text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r ${
+                        isDark 
+                          ? 'from-[#B0FFFA] to-[#80E5FF] bg-clip-text text-transparent' 
+                          : 'from-[#00B8A9] to-[#008C81] bg-clip-text text-transparent'
+                      }`}>
+                        {item.funding}
+                      </div>
+                    </div>
+                    <button className={`p-2 sm:p-3 rounded-lg transition-all duration-300 ${
+                      isDark
+                        ? 'bg-[#B0FFFA]/20 text-[#B0FFFA] hover:bg-[#B0FFFA]/30 hover:scale-110'
+                        : 'bg-[#00B8A9]/20 text-[#00B8A9] hover:bg-[#00B8A9]/30 hover:scale-110'
+                    }`}>
+                      <FaExternalLinkAlt size={16} className="sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>
-                <div className={`absolute top-3 sm:top-4 right-3 sm:right-4 px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold ${
-                  isDark ? 'bg-black/80 text-white' : 'bg-white/90 text-black'
-                }`}>
-                  {item.status}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-4 sm:p-5 md:p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 ${
-                    isDark ? 'bg-white/10 text-white' : 'bg-black/5 text-black'
-                  }`}>
-                    {item.category}
-                  </span>
-                  <span className={`text-[10px] sm:text-xs ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
-                    {item.year}
-                  </span>
-                </div>
-                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                  {item.title}
-                </h3>
-                <p className={`text-xs sm:text-sm md:text-base mb-3 sm:mb-4 line-clamp-2 ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
-                  {item.description}
-                </p>
-                <div className={`flex items-center justify-between pt-3 sm:pt-4 border-t ${
-                  isDark ? 'border-white/10' : 'border-gray-200'
-                }`}>
-                  <div>
-                    <div className={`text-[10px] sm:text-xs ${isDark ? 'text-white/50' : 'text-gray-500'}`}>
-                      Funding Raised
-                    </div>
-                    <div className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-black'}`}>
-                      {item.funding}
-                    </div>
-                  </div>
-                  <button className={`p-1.5 sm:p-2 transition-colors ${
-                    isDark
-                      ? 'bg-white/10 text-white hover:bg-white/20'
-                      : 'bg-black/5 text-black hover:bg-black/10'
-                  }`}>
-                    <FaExternalLinkAlt size={14} className="sm:w-4 sm:h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+              </CardContainer>
+            ))}
+          </div>
         </div>
-      </div>
-   </section>
+      </section>
+      <Footer />
+    </div>
   );
 }
 
