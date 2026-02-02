@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { HiRocketLaunch, HiCurrencyDollar, HiAcademicCap, HiUsers } from 'react-icons/hi2';
 
+
 export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTitle }) {
   return (
     <section 
@@ -27,19 +28,20 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
         </p>
       </div>
 
+
       <div className="relative max-w-7xl mx-auto px-3 sm:px-4">
         <div className="hidden md:block">
           <div className="relative mx-auto flex items-center justify-center" 
             style={{ 
-              width: 'min(600px, 90vw)', 
-              height: 'min(600px, 80vh)', 
+              width: 'min(750px, 90vw)', 
+              height: 'min(750px, 85vh)', 
               maxWidth: '100%',
               aspectRatio: '1/1'
             }}>
             
             {/* Center Circle */}
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20
-              w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 xl:w-44 xl:h-44 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-3 md:border-4
+              w-32 h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 xl:w-48 xl:h-48 rounded-full flex flex-col items-center justify-center backdrop-blur-2xl border-3 md:border-4
               shadow-[0_0_60px_rgba(176,255,250,0.3)] ${
               isDark 
                 ? 'bg-gradient-to-br from-black/80 via-black/60 to-black/80 border-[#B0FFFA]/40' 
@@ -50,28 +52,29 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
               }`}></div>
               
               <div className="relative z-10 text-center px-2 sm:px-3 md:px-4">
-                <div className={`text-xl md:text-2xl lg:text-3xl font-black mb-1 lg:mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
+                <div className={`text-2xl md:text-3xl lg:text-4xl font-black mb-1 lg:mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
                   isDark 
                     ? 'from-[#B0FFFA] via-white to-[#80E5FF]' 
                     : 'from-[#00B8A9] via-teal-600 to-[#008C81]'
                 }`}>
                   EVO-A
                 </div>
-                <p className={`text-[10px] md:text-xs lg:text-sm font-semibold ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+                <p className={`text-xs md:text-sm lg:text-base font-semibold ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
                   One Platform
                 </p>
-                <p className={`text-[9px] md:text-[10px] lg:text-xs ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
+                <p className={`text-[10px] md:text-xs lg:text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>
                   Four Possibilities
                 </p>
               </div>
             </div>
 
-            {/* SVG Circle */}
+
+            {/* SVG Circle - UPDATED */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <svg 
                 width="100%" 
                 height="100%"
-                viewBox="0 0 650 650"
+                viewBox="0 0 750 750"
                 className="absolute"
                 style={{ 
                   top: '50%', 
@@ -83,98 +86,158 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
               >
                 <defs>
                   <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                   </filter>
+                  
+                  {/* Gradient for dotted line */}
+                  <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor={isDark ? '#B0FFFA' : '#00B8A9'} stopOpacity="0.4" />
+                    <stop offset="50%" stopColor={isDark ? '#80E5FF' : '#00E5D0'} stopOpacity="0.25" />
+                    <stop offset="100%" stopColor={isDark ? '#B0FFFA' : '#00B8A9'} stopOpacity="0.4" />
+                  </linearGradient>
                 </defs>
                 
+                {/* Main dotted circle - refined */}
                 <circle
-                  cx="325"
-                  cy="325"
-                  r="245"
+                  cx="375"
+                  cy="375"
+                  r="300"
                   fill="none"
-                  stroke={isDark ? 'rgba(176, 255, 250, 0.3)' : 'rgba(0, 184, 169, 0.3)'}
-                  strokeWidth="2"
-                  strokeDasharray="15 10"
+                  stroke="url(#circleGradient)"
+                  strokeWidth="2.5"
+                  strokeDasharray="12 8"
+                  strokeLinecap="round"
                   className="animate-dash-rotate"
+                  opacity="0.9"
                 />
                 
+                {/* Animated dots on circle */}
                 <circle
-                  r="6"
+                  r="5"
                   fill={isDark ? '#B0FFFA' : '#00B8A9'}
                   filter="url(#glow)"
+                  opacity="0.8"
                 >
                   <animateMotion
-                    dur="8s"
+                    dur="10s"
                     repeatCount="indefinite"
-                    path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
+                    path="M 375,75 a 300,300 0 1,1 0,600 a 300,300 0 1,1 0,-600"
                   />
                 </circle>
                 
                 <circle
-                  r="6"
+                  r="5"
                   fill={isDark ? '#80E5FF' : '#00E5D0'}
                   filter="url(#glow)"
+                  opacity="0.8"
                 >
                   <animateMotion
-                    dur="8s"
+                    dur="10s"
                     repeatCount="indefinite"
-                    path="M 325,80 a 245,245 0 1,1 0,490 a 245,245 0 1,1 0,-490"
-                    begin="-4s"
+                    path="M 375,75 a 300,300 0 1,1 0,600 a 300,300 0 1,1 0,-600"
+                    begin="-5s"
+                  />
+                </circle>
+                
+                <circle
+                  r="4"
+                  fill={isDark ? '#FFFFFF' : '#008C81'}
+                  filter="url(#glow)"
+                  opacity="0.6"
+                >
+                  <animateMotion
+                    dur="12s"
+                    repeatCount="indefinite"
+                    path="M 375,75 a 300,300 0 1,1 0,600 a 300,300 0 1,1 0,-600"
+                    begin="-3s"
                   />
                 </circle>
               </svg>
             </div>
 
-            {/* Role Cards */}
+
+            {/* Role Cards - UPDATED POSITIONS */}
             {[
-              { icon: HiRocketLaunch, title: 'For Startups', desc: 'Pitch your vision &<br/>get funded', link: '/register/startup', cta: 'Create Account', position: { top: '0', left: '50%', transform: 'translate(-50%, 0)' }, delay: '100ms' },
-              { icon: HiCurrencyDollar, title: 'For Investors', desc: 'Discover & fund<br/>unicorns', link: '/register/investor', cta: 'Join EVO-A', position: { top: '50%', right: '0', transform: 'translate(0, -50%)' }, delay: '250ms' },
-              { icon: HiAcademicCap, title: 'For Incubators', desc: 'Nurture & scale<br/>startups', link: '/register/incubator', cta: 'Get Started', position: { bottom: '0', left: '50%', transform: 'translate(-50%, 0)' }, delay: '400ms' },
-              { icon: HiUsers, title: 'For Viewers', desc: 'Explore & learn<br/>daily', link: '/register/viewer', cta: 'Start Exploring', position: { top: '50%', left: '0', transform: 'translate(0, -50%)' }, delay: '550ms' }
-            ].map((role, index) => (
-              <Link 
-                key={index}
-                to={role.link}
-                className={`absolute transition-all duration-700 group/card ${
-                  isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-                }`}
-                style={{ 
-                  ...role.position,
-                  transitionDelay: role.delay
-                }}
-              >
+  { 
+    icon: HiRocketLaunch, 
+    title: 'For Startups', 
+    desc: 'Pitch your vision &<br/>get funded', 
+    link: '/register/startup', 
+    cta: 'Create Account', 
+    position: { top: '12%', left: '50%', transform: 'translate(-50%, -50%)' }, 
+    delay: '100ms' 
+  },
+  { 
+    icon: HiCurrencyDollar, 
+    title: 'For Investors', 
+    desc: 'Discover & fund<br/>unicorns', 
+    link: '/register/investor', 
+    cta: 'Join EVO-A', 
+    position: { top: '50%', left: '88%', transform: 'translate(-50%, -50%)' }, 
+    delay: '250ms' 
+  },
+  { 
+    icon: HiAcademicCap, 
+    title: 'For Incubators', 
+    desc: 'Nurture & scale<br/>startups', 
+    link: '/register/incubator', 
+    cta: 'Get Started', 
+    position: { top: '88%', left: '50%', transform: 'translate(-50%, -50%)' }, 
+    delay: '400ms' 
+  },
+  { 
+    icon: HiUsers, 
+    title: 'For Viewers', 
+    desc: 'Explore & learn<br/>daily', 
+    link: '/register/viewer', 
+    cta: 'Start Exploring', 
+    position: { top: '50%', left: '12%', transform: 'translate(-50%, -50%)' }, 
+    delay: '550ms' 
+  }
+].map((role, index) => (
+  <Link 
+    key={index}
+    to={role.link}
+    className={`absolute transition-all duration-700 group/card ${
+      isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+    }`}
+    style={{ 
+      ...role.position,
+      transitionDelay: role.delay
+    }}
+  >
                 <div className={`relative rounded-full 
-                  w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-44 xl:h-44
-                  group-hover/card:w-40 group-hover/card:h-40 md:group-hover/card:w-44 md:group-hover/card:h-44 lg:group-hover/card:w-48 lg:group-hover/card:h-48 xl:group-hover/card:w-52 xl:group-hover/card:h-52
+                  w-36 h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52
                   flex flex-col items-center justify-center
-                  transition-all duration-500 cursor-pointer p-3 md:p-4 lg:p-5 ${
+                  transition-all duration-500 cursor-pointer p-4 lg:p-5
+                  hover:scale-110
+                  ${
                   isDark 
-                    ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] group-hover/card:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
-                    : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 group-hover/card:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] group-hover/card:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
+                    ? 'bg-gradient-to-br from-black/90 to-black/70 backdrop-blur-xl border-2 border-[#B0FFFA]/30 hover:border-[#B0FFFA] shadow-[0_12px_40px_rgba(176,255,250,0.2)] hover:shadow-[0_20px_60px_rgba(176,255,250,0.6)]' 
+                    : 'bg-gradient-to-br from-white/95 to-white/85 backdrop-blur-xl border-2 border-[#B0FFFA]/40 hover:border-[#B0FFFA] shadow-[0_12px_40px_rgba(0,184,169,0.15)] hover:shadow-[0_20px_60px_rgba(0,184,169,0.5)]'
                 }`}>
                   
                   <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
                     isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
                   }`}></div>
 
-                  <div className="relative z-10 text-center flex flex-col items-center justify-between h-full w-full">
-                    <div className="flex-shrink-0"></div>
 
-                    <div className={`w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 flex items-center justify-center rounded-full 
+                  <div className="relative z-10 text-center flex flex-col items-center justify-center gap-2 lg:gap-3 h-full w-full">
+                    <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18 flex items-center justify-center rounded-full 
                       transition-all duration-500 group-hover/card:scale-110 flex-shrink-0 ${
                       isDark 
                         ? 'bg-[#B0FFFA]/20 group-hover/card:bg-[#B0FFFA]/30' 
                         : 'bg-[#B0FFFA]/30 group-hover/card:bg-[#B0FFFA]/40'
                     }`}>
-                      <role.icon className={`text-xl md:text-2xl lg:text-3xl xl:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
+                      <role.icon className={`text-2xl md:text-3xl lg:text-4xl transition-all ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
                     </div>
                     
-                    <div className="flex-grow flex flex-col items-center justify-center gap-0.5 md:gap-1 py-1 md:py-2">
-                      <h3 className={`text-xs md:text-sm lg:text-base xl:text-lg font-bold transition-all duration-300 ${
+                    <div className="flex flex-col items-center gap-1">
+                      <h3 className={`text-sm md:text-base lg:text-lg xl:text-xl font-bold transition-all duration-300 ${
                         isDark 
                           ? 'text-white group-hover/card:text-[#B0FFFA]' 
                           : 'text-black group-hover/card:text-[#00B8A9]'
@@ -182,17 +245,18 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                         {role.title}
                       </h3>
                       
-                      <p className={`text-[9px] md:text-[10px] lg:text-xs xl:text-sm leading-relaxed transition-all duration-300 ${
+                      <p className={`text-[10px] md:text-xs lg:text-sm leading-relaxed transition-all duration-300 ${
                         isDark 
                           ? 'text-white/70 group-hover/card:text-white/90' 
                           : 'text-black/70 group-hover/card:text-black/90'
                       }`} dangerouslySetInnerHTML={{ __html: role.desc }} />
                     </div>
 
-                    <div className={`transition-all duration-500 transform flex-shrink-0
-                      opacity-0 scale-75 h-0 overflow-hidden
-                      group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:h-auto`}>
-                      <div className={`px-3 md:px-4 lg:px-5 py-1 md:py-2 rounded-full text-[9px] md:text-[10px] lg:text-xs xl:text-sm font-bold whitespace-nowrap ${
+
+                    <div className={`transition-all duration-500 transform
+                      opacity-0 scale-75 max-h-0 overflow-hidden
+                      group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:max-h-20`}>
+                      <div className={`px-4 lg:px-5 py-1.5 lg:py-2 rounded-full text-[10px] md:text-xs lg:text-sm font-bold whitespace-nowrap ${
                         isDark 
                           ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
                           : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
@@ -206,6 +270,7 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
             ))}
           </div>
         </div>
+
 
         {/* Mobile Layout */}
         <div className="md:hidden space-y-4 sm:space-y-6">
