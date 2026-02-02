@@ -1,115 +1,209 @@
-import { HiQuestionMarkCircle, HiLightBulb, HiArrowRight } from 'react-icons/hi2';
+import { HiQuestionMarkCircle, HiLightBulb, HiSparkles, HiXMark, HiCheckCircle } from 'react-icons/hi2';
 
-// Journey Flow Illustration Component
-function JourneyIllustration({ isDark }) {
-  return (
-    <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 opacity-20 pointer-events-none">
-      <svg viewBox="0 0 200 200" className="w-full h-full">
-        <defs>
-          <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={isDark ? '#B0FFFA' : '#00B8A9'} stopOpacity="0.3" />
-            <stop offset="100%" stopColor={isDark ? '#80E5FF' : '#008C81'} stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-        {/* Flow path */}
-        <path
-          d="M 20 100 Q 50 50, 100 50 T 180 100"
-          fill="none"
-          stroke={isDark ? '#B0FFFA' : '#00B8A9'}
-          strokeWidth="2"
-          strokeDasharray="5,5"
-          opacity="0.4"
-          className="animate-dash"
-        />
-        {/* Start point */}
-        <circle cx="20" cy="100" r="8" fill={isDark ? '#B0FFFA' : '#00B8A9'} opacity="0.6" />
-        {/* Middle points */}
-        <circle cx="100" cy="50" r="6" fill={isDark ? '#B0FFFA' : '#00B8A9'} opacity="0.4" />
-        {/* End point */}
-        <circle cx="180" cy="100" r="10" fill={isDark ? '#B0FFFA' : '#00B8A9'} opacity="0.8">
-          <animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite" />
-        </circle>
-      </svg>
-    </div>
-  );
-}
+export default function TransformJourneySection({ isVisible, isDark, setRef, SectionTitle }) {
+  const problems = [
+    'Startups waste 6+ months searching for the right investors',
+    'Investors miss quality deals buried in thousands of cold emails',
+    'Incubators struggle to showcase their portfolio value',
+  ];
 
-export default function TransformJourneySection({ isVisible, isDark, setRef, SectionTitle, CardContainer }) {
+  const solutions = [
+    'AI-powered matching connects startups with ideal investors instantly',
+    'Verified profiles build trust and eliminate noise from the pipeline',
+    'All-in-one platform showcases pitch decks, metrics, and traction',
+  ];
+
   return (
     <section 
       ref={setRef('problemSolution')}
-      className={`relative transition-all duration-1000 ease-out ${
+      className={`relative py-10 sm:py-12 md:py-16 transition-all duration-1000 ease-out ${
         isVisible['problemSolution'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
-        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
-          isDark 
-            ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
-            : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
-        }`}>
-          <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Problem & Solution</span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div 
+          className={`text-center mb-8 sm:mb-10 transition-all duration-700 delay-100 overflow-visible ${
+            isVisible['problemSolution'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight overflow-visible ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}
+          style={{ lineHeight: '1.3' }}
+          >
+            From Chaos to Clarity.{' '}
+            <span className={`inline-block overflow-visible ${isDark 
+              ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] bg-clip-text text-transparent' 
+              : 'bg-gradient-to-r from-[#00B8A9] to-[#00C9B7] bg-clip-text text-transparent'
+            }`}
+            style={{ 
+              animation: isVisible['problemSolution'] ? 'gradient-shift 3s ease infinite' : 'none',
+              display: 'inline-block',
+              lineHeight: '1.3'
+            }}
+            >
+              One Growing Ecosystem.
+            </span>
+          </h2>
+          <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto ${
+            isDark ? 'text-white/70' : 'text-gray-600'
+          }`}>
+            Everything you need in one place.
+          </p>
         </div>
-        <SectionTitle>Transform Your Startup Journey</SectionTitle>
-        <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
-          isDark ? 'text-white/70' : 'text-gray-600'
-        }`}>
-          From pitch to funding, we've got you covered
-        </p>
-      </div>
 
-      <div className="relative">
-        <JourneyIllustration isDark={isDark} />
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Problem Column */}
+          <div 
+            className={`transition-all duration-700 delay-200 ${
+              isVisible['problemSolution'] ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+          >
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 transition-all duration-300 hover:scale-110 hover:rotate-6 ${
+                isDark ? 'bg-red-500/10' : 'bg-red-100'
+              }`}>
+                <HiQuestionMarkCircle className={`text-3xl ${
+                  isDark ? 'text-red-400' : 'text-red-600'
+                }`} />
+              </div>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-1 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                The Problem
+              </h3>
+              <p className={`text-sm ${
+                isDark ? 'text-white/60' : 'text-gray-600'
+              }`}>
+                The funding ecosystem is broken
+              </p>
+            </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
-        <CardContainer className="hover:scale-[1.01] sm:hover:scale-[1.02]">
-          <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-4 sm:mb-5 flex items-center gap-2 ${
-            isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
-          }`}>
-            <HiQuestionMarkCircle className="text-xl sm:text-2xl md:text-3xl flex-shrink-0" />
-            <span>The Problem</span>
-          </h3>
-          <ul className={`space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed ${
-            isDark ? 'text-white/80' : 'text-black/80'
-          }`}>
-            <li className="flex items-start gap-3">
-              <HiArrowRight className={`mt-1 shrink-0 text-lg ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              <span>Startups waste months searching for the right investors</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <HiArrowRight className={`mt-1 shrink-0 text-lg ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              <span>Investors miss out on quality deals buried in noise</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <HiArrowRight className={`mt-1 shrink-0 text-lg ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`} />
-              <span>Incubators struggle to showcase their portfolio effectively</span>
-            </li>
-          </ul>
-        </CardContainer>
-
-        <CardContainer className="hover:scale-[1.01] sm:hover:scale-[1.02]">
-          <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-4 sm:mb-5 flex items-center gap-2 ${
-            isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
-          }`}>
-            <HiLightBulb className="text-xl sm:text-2xl md:text-3xl flex-shrink-0" />
-            <span>The Solution</span>
-          </h3>
-          <div className={`space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed ${
-            isDark ? 'text-white/80' : 'text-black/80'
-          }`}>
-            <p>
-              <strong className={isDark ? 'text-white' : 'text-black'}>EVO-A brings everything together</strong> in one intelligent platform.
-            </p>
-            <p>
-              Startups pitch with confidence. Investors discover verified opportunities instantly. Incubators showcase their success stories.
-            </p>
-            <p className={`font-semibold ${isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'}`}>
-              All verified. All trusted. All in one place.
-            </p>
+            {/* Problem List */}
+            <div className="space-y-4">
+              {problems.map((problem, idx) => (
+                <div 
+                  key={idx} 
+                  className={`flex items-start gap-3 transition-all duration-500 hover:translate-x-2 ${
+                    isVisible['problemSolution'] 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 -translate-x-4'
+                  }`}
+                  style={{ transitionDelay: `${300 + idx * 100}ms` }}
+                >
+                  <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 transition-all duration-300 hover:scale-110 ${
+                    isDark ? 'bg-red-500/10 hover:bg-red-500/20' : 'bg-red-100 hover:bg-red-200'
+                  }`}>
+                    <HiXMark className={`text-lg ${
+                      isDark ? 'text-red-400' : 'text-red-600'
+                    }`} />
+                  </div>
+                  <p className={`text-sm sm:text-base leading-relaxed ${
+                    isDark ? 'text-white/80' : 'text-gray-700'
+                  }`}>
+                    {problem}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </CardContainer>
+
+          {/* Solution Column */}
+          <div 
+            className={`transition-all duration-700 delay-200 ${
+              isVisible['problemSolution'] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+          >
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 transition-all duration-300 hover:scale-110 hover:-rotate-6 ${
+                isDark ? 'bg-[#B0FFFA]/10' : 'bg-[#00B8A9]/10'
+              }`}>
+                <HiLightBulb className={`text-3xl ${
+                  isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+                }`} />
+              </div>
+              <h3 className={`text-xl sm:text-2xl font-bold mb-1 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+                The Solution
+              </h3>
+              <p className={`text-sm ${
+                isDark ? 'text-white/60' : 'text-gray-600'
+              }`}>
+                EVO-A brings everyone together
+              </p>
+            </div>
+
+            {/* Solution List */}
+            <div className="space-y-4">
+              {solutions.map((solution, idx) => (
+                <div 
+                  key={idx} 
+                  className={`flex items-start gap-3 transition-all duration-500 hover:translate-x-2 ${
+                    isVisible['problemSolution'] 
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-4'
+                  }`}
+                  style={{ transitionDelay: `${300 + idx * 100}ms` }}
+                >
+                  <div className={`p-1.5 rounded-lg shrink-0 mt-0.5 transition-all duration-300 hover:scale-110 ${
+                    isDark ? 'bg-[#B0FFFA]/10 hover:bg-[#B0FFFA]/20' : 'bg-[#00B8A9]/10 hover:bg-[#00B8A9]/20'
+                  }`}>
+                    <HiCheckCircle className={`text-lg ${
+                      isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+                    }`} />
+                  </div>
+                  <p className={`text-sm sm:text-base leading-relaxed ${
+                    isDark ? 'text-white/80' : 'text-gray-700'
+                  }`}>
+                    {solution}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div 
+              className={`mt-6 pt-6 border-t transition-all duration-700 delay-500 hover:scale-105 ${
+                isVisible['problemSolution'] ? 'opacity-100' : 'opacity-0'
+              }`} 
+              style={{
+                borderColor: isDark ? 'rgba(176, 255, 250, 0.1)' : 'rgba(0, 184, 169, 0.1)'
+              }}
+            >
+              <p className={`text-sm font-bold mb-1 flex items-center gap-2 ${
+                isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+              }`}>
+                <HiSparkles className="text-base animate-pulse" />
+                All verified. All trusted. All in one place.
+              </p>
+              <p className={`text-xs ${
+                isDark ? 'text-white/60' : 'text-gray-600'
+              }`}>
+                Join thousands transforming the funding ecosystem
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-size: 200% 200%;
+            background-position: left center;
+          }
+          50% {
+            background-size: 200% 200%;
+            background-position: right center;
+          }
+        }
+      `}</style>
     </section>
   );
 }
