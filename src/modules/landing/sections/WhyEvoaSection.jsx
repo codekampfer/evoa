@@ -1,31 +1,39 @@
 import { useState } from 'react';
 
-// Why EVO-A Features
+/* =========================
+   WHY EVO-A FEATURES (SHORT)
+========================= */
 const whyEvoaFeatures = [
   {
     iconName: 'HiCheckBadge',
-    title: "Verified Profiles & Documents",
-    description: "Details like CIN, GST, Udyam, and SEBI registration help build trust between startups and investors."
+    title: 'Verified Profiles',
+    description:
+      'CIN, GST, Udyam & SEBI verified profiles to build instant trust.',
   },
   {
     iconName: 'HiVideoCamera',
-    title: "Investor-First Pitch Experience",
-    description: "Pitch video, deck, and deal terms (amount raising, equity, valuation) all on one screen – for quick and informed decisions."
+    title: 'Investor-First Pitch',
+    description:
+      'Pitch video, deck, and deal terms — all in one clear view.',
   },
   {
     iconName: 'HiMagnifyingGlass',
-    title: "Smart Matching & Filters",
-    description: "Personalized recommendations for investors and incubators based on sector, ticket size, startup stage, and location."
+    title: 'Smart Matching',
+    description:
+      'Find the right startups or investors using intelligent filters.',
   },
   {
     iconName: 'HiUserGroup',
-    title: "Multi-Role Ecosystem",
-    description: "Customized dashboard and experience for everyone – Startup, Investor, Incubator, and Viewer."
-  }
+    title: 'Multi-Role Platform',
+    description:
+      'Tailored dashboards for Startups, Investors & Incubators.',
+  },
 ];
 
-// Animated GIF Icon Component
-function AnimatedGifIcon({ src, alt = '', className = '', fallbackIcon = null }) {
+/* =========================
+   ANIMATED GIF ICON
+========================= */
+function AnimatedGifIcon({ src, alt = '', className = '', fallbackIcon }) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError && fallbackIcon) {
@@ -43,62 +51,72 @@ function AnimatedGifIcon({ src, alt = '', className = '', fallbackIcon = null })
   );
 }
 
-// Feature Card Component
-function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark, gifIcon = null }) {
+/* =========================
+   FEATURE CARD
+========================= */
+function FeatureCard({
+  icon,
+  title,
+  description,
+  delay = 0,
+  isVisible,
+  isDark,
+  gifIcon = null,
+}) {
   return (
     <div
-      className={`group relative p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl transition-all duration-500 cursor-pointer overflow-hidden ${
-        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
-      } ${
-        isDark 
-          ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-[0_8px_32px_rgba(176,255,250,0.15),0_0_0_1px_rgba(176,255,250,0.1)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1' 
-          : 'bg-gradient-to-br from-white/90 via-white/70 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:shadow-[0_8px_32px_rgba(0,184,169,0.12),0_0_0_1px_rgba(176,255,250,0.2)] hover:scale-[1.01] sm:hover:scale-[1.02] hover:-translate-y-1'
-      }`}
+      className={`
+        group relative p-5 md:p-6 rounded-2xl border text-left transition-all duration-500
+        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+        ${
+          isDark
+            ? 'bg-black/50 border-white/10 hover:border-[#B0FFFA]/60 hover:bg-black/70'
+            : 'bg-white border-slate-200 hover:border-[#00B8A9]/60 hover:bg-white'
+        }
+        hover:-translate-y-1 hover:shadow-xl
+      `}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Animated gradient overlay on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl sm:rounded-2xl"></div>
-      
-      {/* Shine effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transform transition-transform duration-1000"></div>
-      
+      {/* Gradient hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl" />
+
       <div className="relative z-10">
-        {/* Icon with modern styling */}
-        <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 md:mb-5 rounded-xl sm:rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
-          isDark 
-            ? 'bg-gradient-to-br from-[#B0FFFA]/20 to-[#80E5FF]/20 group-hover:from-[#B0FFFA]/30 group-hover:to-[#80E5FF]/30 shadow-lg shadow-[#B0FFFA]/10' 
-            : 'bg-gradient-to-br from-[#B0FFFA]/25 to-[#80E5FF]/25 group-hover:from-[#B0FFFA]/35 group-hover:to-[#80E5FF]/35 shadow-lg shadow-[#00B8A9]/10'
-        }`}>
-          {gifIcon ? (
-            <AnimatedGifIcon
-              src={gifIcon}
-              alt={title}
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain animate-pulse-glow"
-              fallbackIcon={
-                <div className={`transition-transform duration-300 group-hover:scale-110 ${
-                  isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
-                }`}>
-                  {icon}
-                </div>
-              }
-            />
-          ) : (
-            <div className={`transition-transform duration-300 group-hover:scale-110 ${
-              isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
-            }`}>
-              {icon}
-            </div>
-          )}
+        {/* Icon + Title */}
+        <div className="flex items-center gap-3 mb-3">
+          <span
+            className={`inline-flex items-center justify-center w-9 h-9 rounded-full ${
+              isDark
+                ? 'bg-[#B0FFFA]/10 text-[#B0FFFA]'
+                : 'bg-[#00B8A9]/10 text-[#00B8A9]'
+            }`}
+          >
+            {gifIcon ? (
+              <AnimatedGifIcon
+                src={gifIcon}
+                alt={title}
+                className="w-4 h-4"
+                fallbackIcon={icon}
+              />
+            ) : (
+              icon
+            )}
+          </span>
+
+          <h3
+            className={`text-lg sm:text-xl font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}
+          >
+            {title}
+          </h3>
         </div>
-        
-        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 transition-all duration-300 ${
-          isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
-        }`}>
-          {title}
-        </h3>
-        <p className={`text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-300 ${
-          isDark ? 'text-white/80 group-hover:text-white/90' : 'text-gray-700 group-hover:text-gray-800'
-        }`}>
+
+        {/* Description */}
+        <p
+          className={`text-sm sm:text-base leading-relaxed ${
+            isDark ? 'text-white/75' : 'text-gray-700'
+          }`}
+        >
           {description}
         </p>
       </div>
@@ -106,42 +124,65 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark, g
   );
 }
 
-export default function WhyEvoaSection({ isVisible, isDark, setRef, SectionTitle, getIcon }) {
+/* =========================
+   MAIN SECTION
+========================= */
+export default function WhyEvoaSection({
+  isVisible,
+  isDark,
+  setRef,
+  SectionTitle,
+  getIcon,
+}) {
   return (
-    <section 
+    <section
       ref={setRef('whyEvoa')}
-      className={`relative transition-all duration-1000 ease-out ${
-        isVisible['whyEvoa'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`relative py-16 sm:py-20 transition-all duration-1000 ${
+        isVisible['whyEvoa']
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
-        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
-          isDark 
-            ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
-            : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
-        }`}>
-          <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Key Features</span>
-        </div>
-        <SectionTitle>Why EVO-A?</SectionTitle>
-        <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
-          isDark ? 'text-white/70' : 'text-gray-600'
-        }`}>
-          Everything you need to succeed, built into one platform
-        </p>
-      </div>
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-14">
+          <div
+            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 border backdrop-blur ${
+              isDark
+                ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]'
+                : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+            }`}
+          >
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">
+              Key Features
+            </span>
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-        {whyEvoaFeatures.map((feature, index) => (
-          <FeatureCard
-            key={index}
-            icon={getIcon(feature.iconName, 'text-xl sm:text-2xl md:text-3xl')}
-            title={feature.title}
-            description={feature.description}
-            delay={index * 100}
-            isVisible={isVisible['whyEvoa']}
-            isDark={isDark}
-          />
-        ))}
+          <SectionTitle>Why EVO-A?</SectionTitle>
+
+          <p
+            className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
+              isDark ? 'text-white/70' : 'text-gray-600'
+            }`}
+          >
+            One platform built for trust, speed, and real business outcomes.
+          </p>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {whyEvoaFeatures.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              icon={getIcon(feature.iconName, 'text-base')}
+              title={feature.title}
+              description={feature.description}
+              delay={index * 100}
+              isVisible={isVisible['whyEvoa']}
+              isDark={isDark}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

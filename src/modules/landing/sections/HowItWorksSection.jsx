@@ -198,15 +198,24 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
               <div className="absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-2xl"></div>
               
               <div className="relative z-10">
-                <div className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-4 md:mb-5 flex items-baseline`}>
-                  <span className={isDark ? 'text-white' : 'text-gray-900'}>{step.step.charAt(0)}</span>
-                  <span className={`bg-gradient-to-br ${
-                    isDark ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent' : 'from-[#00B8A9] to-[#008C81] bg-clip-text text-transparent'
-                  }`}>
+                {/* Step number */}
+                <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 sm:mb-4 md:mb-5 flex items-baseline">
+                  <span className={isDark ? 'text-white' : 'text-gray-900'}>
+                    {step.step.charAt(0)}
+                  </span>
+                  <span
+                    className={`bg-gradient-to-br ${
+                      isDark
+                        ? 'from-[#B0FFFA]/30 to-[#80E5FF]/30 bg-clip-text text-transparent'
+                        : 'from-[#00B8A9] to-[#008C81] bg-clip-text text-transparent'
+                    }`}
+                  >
                     {step.step.charAt(1)}
                   </span>
                 </div>
-                
+
+                {/* Center icon removed */}
+                {/*
                 <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center mb-3 sm:mb-4 md:mb-5 rounded-xl sm:rounded-2xl transition-all duration-500 ${
                   isDark 
                     ? 'bg-gradient-to-br from-[#B0FFFA]/20 to-[#80E5FF]/20 shadow-lg shadow-[#B0FFFA]/10' 
@@ -216,16 +225,22 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
                     {getIcon(step.iconName, 'text-xl sm:text-2xl')}
                   </div>
                 </div>
-                
-                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 transition-all duration-300 ${
-                  isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
-                }`}>
+                */}
+
+                {/* Title single line */}
+                <h3
+                  className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 whitespace-nowrap transition-all duration-300 ${
+                    isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
+                  }`}
+                >
                   {step.title}
                 </h3>
                 
-                <p className={`text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-300 ${
-                  isDark ? 'text-white/80' : 'text-gray-700'
-                }`}>
+                <p
+                  className={`text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-300 ${
+                    isDark ? 'text-white/80' : 'text-gray-700'
+                  }`}
+                >
                   {step.desc}
                 </p>
               </div>
