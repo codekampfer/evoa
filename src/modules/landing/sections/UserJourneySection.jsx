@@ -41,36 +41,41 @@ export default function UserJourneySection({ isVisible, isDark, setRef, SectionT
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-        {userJourneyData.map((journey, index) => (
-          <CardContainer key={index} className="relative">
-            {/* Timeline connector for desktop */}
-            {index < userJourneyData.length - 1 && (
-              <div className={`hidden lg:block absolute top-1/2 -right-5 w-10 h-0.5 ${
-                isDark ? 'bg-gradient-to-r from-[#B0FFFA]/50 to-transparent' : 'bg-gradient-to-r from-[#00B8A9]/50 to-transparent'
-              }`}></div>
-            )}
-            <div className={`inline-block px-3 py-1 rounded-lg mb-4 ${
-              isDark ? 'bg-[#B0FFFA]/20' : 'bg-[#00B8A9]/10'
-            }`}>
-              <div className={`text-lg sm:text-xl md:text-2xl font-bold ${
-                isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+      {/* Timeline Container */}
+      <div className="relative max-w-6xl mx-auto px-4">
+        {/* Timeline Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+          {userJourneyData.map((journey, index) => (
+            <CardContainer key={index} className="relative">
+                {/* Day Badge */}
+                <div className={`inline-block px-4 py-2 rounded-lg mb-4 ${
+                  isDark 
+                    ? 'bg-[#B0FFFA]/20 border border-[#B0FFFA]/30' 
+                    : 'bg-[#00B8A9]/20 border border-[#00B8A9]/30'
+                }`}>
+                  <div className={`text-base sm:text-lg md:text-xl font-bold ${
+                    isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+                  }`}>
+                    {journey.day}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className={`text-xl sm:text-2xl md:text-2xl font-bold mb-3 ${
+                  isDark ? 'text-white' : 'text-black'
+                }`}>
+                  {journey.title}
+                </h3>
+
+              {/* Description */}
+              <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
+                isDark ? 'text-white/80' : 'text-black/80'
               }`}>
-                {journey.day}
-              </div>
-            </div>
-            <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 ${
-              isDark ? 'text-white' : 'text-black'
-            }`}>
-              {journey.title}
-            </h3>
-            <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
-              isDark ? 'text-white/80' : 'text-black/80'
-            }`}>
-              {journey.description}
-            </p>
-          </CardContainer>
-        ))}
+                {journey.description}
+              </p>
+            </CardContainer>
+          ))}
+        </div>
       </div>
     </section>
   );
