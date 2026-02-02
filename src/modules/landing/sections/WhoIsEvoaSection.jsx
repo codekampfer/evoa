@@ -5,11 +5,11 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
   return (
     <section 
       ref={setRef('userRoles')}
-      className={`relative mt-16 sm:mt-20 md:mt-24 lg:mt-32 py-12 transition-all duration-1000 ease-out ${
+      className={`relative transition-all duration-1000 ease-out ${
         isVisible['userRoles'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4">
+      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
         <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
           isDark 
             ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 

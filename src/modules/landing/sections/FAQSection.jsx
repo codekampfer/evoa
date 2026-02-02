@@ -1,34 +1,26 @@
 import { HiArrowDown } from 'react-icons/hi2';
 
-// FAQ Data
+// FAQ Data - Reduced to 4-5 most important questions
 const faqData = [
   {
     question: 'Is EVO-A free?',
-    answer: 'Currently, EVO-A provides free access for startups, investors, and viewers. Advanced features and premium services may be added in the future.'
+    answer: 'Yes, EVO-A provides free access for startups, investors, and viewers. Advanced features and premium services may be added in the future.'
   },
   {
     question: 'Is verification compulsory?',
     answer: 'Verification is strongly recommended for high trust and visibility. In some critical flows (investor offers, incubator matching), verification may be mandatory.'
   },
   {
-    question: 'Can I have multiple roles?',
-    answer: 'Currently, an account starts with one primary role. Future updates may add multi-role support if you need multiple perspectives.'
-  },
-  {
     question: 'How long should the pitch video be?',
     answer: 'Minimum 90 seconds (1.5 minutes) and maximum 3 minutes. This maintains investor attention span and keeps the message clear.'
-  },
-  {
-    question: 'Is GST/CIN mandatory for startup verification?',
-    answer: 'No. If you are a registered entity, you can use GST or CIN. Otherwise, founder ID proof and optional business proof are sufficient.'
   },
   {
     question: 'Is SEBI registration required for investors?',
     answer: 'No. SEBI registered investors get an instant green badge. Non-SEBI angels can pass manual review with LinkedIn + PAN + ID proof.'
   },
   {
-    question: 'Can incubators be unregistered?',
-    answer: 'Every incubator should have verification documents (government, university, corporate affiliation, MSME, etc.). These establish credibility.'
+    question: 'Can I have multiple roles?',
+    answer: 'Currently, an account starts with one primary role. Future updates may add multi-role support if you need multiple perspectives.'
   }
 ];
 

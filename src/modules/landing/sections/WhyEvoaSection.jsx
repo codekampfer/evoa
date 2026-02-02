@@ -91,13 +91,13 @@ function FeatureCard({ icon, title, description, delay = 0, isVisible, isDark, g
           )}
         </div>
         
-        <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 transition-all duration-300 ${
+        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 transition-all duration-300 ${
           isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
         }`}>
           {title}
         </h3>
-        <p className={`text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-300 ${
-          isDark ? 'text-white/70 group-hover:text-white/90' : 'text-gray-600 group-hover:text-gray-800'
+        <p className={`text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-300 ${
+          isDark ? 'text-white/80 group-hover:text-white/90' : 'text-gray-700 group-hover:text-gray-800'
         }`}>
           {description}
         </p>
@@ -110,12 +110,24 @@ export default function WhyEvoaSection({ isVisible, isDark, setRef, SectionTitle
   return (
     <section 
       ref={setRef('whyEvoa')}
-      className={`relative mt-8 sm:mt-12 md:mt-16 lg:mt-20 transition-all duration-1000 ease-out ${
+      className={`relative transition-all duration-1000 ease-out ${
         isVisible['whyEvoa'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
+      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
+          isDark 
+            ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+            : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+        }`}>
+          <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Key Features</span>
+        </div>
         <SectionTitle>Why EVO-A?</SectionTitle>
+        <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
+          isDark ? 'text-white/70' : 'text-gray-600'
+        }`}>
+          Everything you need to succeed, built into one platform
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">

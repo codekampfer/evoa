@@ -181,13 +181,13 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
             </div>
 
             {/* Subheading/Description */}
-            <p className={`text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-lg ${
+            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-2xl ${
               isDark ? 'text-gray-300' : 'text-gray-600'
             }`}>
-              India's most trusted platform where 
-              <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> startups meet investors</span>, 
-              incubators showcase talent, and 
-              <span className={isDark ? 'text-white font-medium' : 'text-black font-medium'}> dreams turn into reality</span>.
+              India's most trusted platform where{' '}
+              <span className={isDark ? 'text-white font-semibold' : 'text-black font-semibold'}>startups meet investors</span>,{' '}
+              incubators showcase talent, and{' '}
+              <span className={isDark ? 'text-white font-semibold' : 'text-black font-semibold'}>dreams turn into reality</span>.
             </p>
 
             {/* Key Features Grid */}
@@ -271,25 +271,25 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <Link 
                 to="/register" 
-                className={`group px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-lg font-medium text-sm sm:text-base md:text-lg transition-all duration-300 text-center shadow-md hover:shadow-lg active:scale-95 ${
+                className={`group px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-bold text-base sm:text-lg md:text-xl transition-all duration-300 text-center shadow-xl hover:shadow-[0_0_40px_rgba(0,184,169,0.5)] active:scale-95 flex items-center justify-center gap-2 ${
                   isDark 
-                    ? 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]' 
-                    : 'bg-[#00B8A9] text-white hover:bg-[#00A896] hover:scale-[1.02]'
+                    ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:scale-105' 
+                    : 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:scale-105'
                 }`}
               >
-                Get Started Free
-                <HiArrowRight className="inline-block ml-1.5 w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                <span>Get Started Free</span>
+                <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
               </Link>
               
               <Link 
                 to="/login" 
-                className={`px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-lg font-medium text-sm sm:text-base md:text-lg border-2 transition-all duration-300 text-center active:scale-95 ${
+                className={`px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-semibold text-base sm:text-lg md:text-xl border-2 transition-all duration-300 text-center active:scale-95 ${
                   isDark 
-                    ? 'border-gray-600 text-gray-300 hover:bg-gray-800/50 hover:border-gray-500' 
-                    : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                    ? 'border-[#B0FFFA]/50 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA] hover:scale-105' 
+                    : 'border-[#B0FFFA] text-[#00B8A9] hover:bg-[#B0FFFA]/10 hover:border-[#00B8A9] hover:scale-105'
                 }`}
               >
                 Watch Demo

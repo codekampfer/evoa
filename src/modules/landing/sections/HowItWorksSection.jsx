@@ -32,12 +32,24 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
   return (
     <section 
       ref={setRef('howItWorks')}
-      className={`relative mt-8 sm:mt-12 md:mt-16 lg:mt-20 transition-all duration-1000 ease-out ${
+      className={`relative transition-all duration-1000 ease-out ${
         isVisible['howItWorks'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4">
-        <SectionTitle>How It Works?</SectionTitle>
+      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
+          isDark 
+            ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+            : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+        }`}>
+          <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Simple Process</span>
+        </div>
+        <SectionTitle>How It Works</SectionTitle>
+        <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
+          isDark ? 'text-white/70' : 'text-gray-600'
+        }`}>
+          Get started in four simple steps
+        </p>
       </div>
 
       <div className="relative">
@@ -205,14 +217,14 @@ export default function HowItWorksSection({ isVisible, isDark, setRef, SectionTi
                   </div>
                 </div>
                 
-                <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 transition-all duration-300 ${
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 transition-all duration-300 ${
                   isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
                 }`}>
                   {step.title}
                 </h3>
                 
-                <p className={`text-xs sm:text-sm md:text-base leading-relaxed transition-colors duration-300 ${
-                  isDark ? 'text-white/70' : 'text-gray-600'
+                <p className={`text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-300 ${
+                  isDark ? 'text-white/80' : 'text-gray-700'
                 }`}>
                   {step.desc}
                 </p>

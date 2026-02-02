@@ -1,9 +1,40 @@
+// Product Dashboard Mockup Illustration
+function DashboardIllustration({ isDark }) {
+  return (
+    <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-64 opacity-10 pointer-events-none z-0">
+      <svg viewBox="0 0 400 300" className="w-full h-full">
+        <defs>
+          <linearGradient id="dashboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={isDark ? '#B0FFFA' : '#00B8A9'} stopOpacity="0.2" />
+            <stop offset="100%" stopColor={isDark ? '#80E5FF' : '#008C81'} stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+        {/* Dashboard frame */}
+        <rect x="20" y="20" width="360" height="260" rx="8" fill={isDark ? 'rgba(176,255,250,0.1)' : 'rgba(0,184,169,0.1)'} stroke={isDark ? '#B0FFFA' : '#00B8A9'} strokeWidth="2" opacity="0.3" />
+        {/* Dashboard elements */}
+        <rect x="40" y="50" width="120" height="80" rx="4" fill={isDark ? 'rgba(176,255,250,0.15)' : 'rgba(0,184,169,0.15)'} />
+        <rect x="180" y="50" width="120" height="80" rx="4" fill={isDark ? 'rgba(176,255,250,0.15)' : 'rgba(0,184,169,0.15)'} />
+        <rect x="320" y="50" width="40" height="80" rx="4" fill={isDark ? 'rgba(176,255,250,0.15)' : 'rgba(0,184,169,0.15)'} />
+        <rect x="40" y="150" width="320" height="100" rx="4" fill={isDark ? 'rgba(176,255,250,0.1)' : 'rgba(0,184,169,0.1)'} />
+        {/* Chart lines */}
+        <polyline
+          points="60,200 100,180 140,190 180,170 220,175 260,165 300,160 340,155"
+          fill="none"
+          stroke={isDark ? '#B0FFFA' : '#00B8A9'}
+          strokeWidth="2"
+          opacity="0.4"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
   const features = [
-    { title: 'Instant AI-Powered Matching', desc: 'Start instantly with AI-powered connections to match startups with the right investors and incubators effortlessly.', side: 'right' },
-    { title: 'Secure Enterprise-Grade Platform', desc: 'Built with robust security and verification systems to keep your data protected and reliable at every scale.', side: 'left' },
+    { title: 'Instant AI-Powered Matching', desc: 'AI-powered connections match startups with the right investors and incubators effortlessly.', side: 'right' },
+    { title: 'Secure Enterprise-Grade Platform', desc: 'Robust security and verification systems keep your data protected and reliable at every scale.', side: 'left' },
     { title: 'Instant & Reliable Pitch Creation', desc: 'Generate high-quality pitch videos and decks instantly with consistent performance you can trust.', side: 'right' },
-    { title: 'Smart Discovery & Search', desc: 'Find hundreds of quality startups, investors, and opportunities at once to save time and streamline your search.', side: 'left' },
+    { title: 'Smart Discovery & Search', desc: 'Find hundreds of quality startups, investors, and opportunities at once to save time.', side: 'left' },
     { title: 'Real-Time Notifications & Updates', desc: 'Stay connected with instant alerts for offers, messages, battlegrounds, and trending updates.', side: 'right' },
     { title: 'Analytics & Performance Insights', desc: 'Access detailed engagement insights anytime with easy-to-track performance metrics and reports.', side: 'left' }
   ];
@@ -11,12 +42,19 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
   return (
     <section 
       ref={setRef('powerfulFeatures')}
-      className={`relative mt-8 sm:mt-12 md:mt-16 lg:mt-20 transition-all duration-1000 ease-out ${
+      className={`relative transition-all duration-1000 ease-out ${
         isVisible['powerfulFeatures'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
-      <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 px-4">
-        <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight ${
+      <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-xl border ${
+          isDark 
+            ? 'bg-[#B0FFFA]/5 border-[#B0FFFA]/20 text-[#B0FFFA]' 
+            : 'bg-[#00B8A9]/5 border-[#00B8A9]/20 text-[#00B8A9]'
+        }`}>
+          <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Powerful Features</span>
+        </div>
+        <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>
           Everything You Need.{' '}
@@ -26,14 +64,15 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
             Nothing You Don't.
           </span>
         </h2>
-        <p className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed ${
+        <p className={`text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
           isDark ? 'text-gray-300' : 'text-gray-600'
         }`}>
-          A powerful platform designed to simplify startup-investor connections, pitch management, and deal tracking, without unnecessary complexity.
+          A powerful platform designed to simplify startup-investor connections, pitch management, and deal tracking.
         </p>
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+        <DashboardIllustration isDark={isDark} />
         {/* Vertical Dashed Timeline */}
         <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 transform -translate-x-1/2 z-0 overflow-hidden">
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
@@ -99,13 +138,13 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
                   {index + 1}
                 </div>
                 
-                <h3 className={`text-base sm:text-lg font-bold mb-2 transition-all duration-300 ${
+                <h3 className={`text-lg sm:text-xl font-bold mb-3 transition-all duration-300 ${
                   isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
                 }`}>
                   {feature.title}
                 </h3>
-                <p className={`text-xs sm:text-sm leading-relaxed transition-colors duration-300 ${
-                  isDark ? 'text-white/70 group-hover:text-white/90' : 'text-gray-600 group-hover:text-gray-800'
+                <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
+                  isDark ? 'text-white/80 group-hover:text-white/90' : 'text-gray-700 group-hover:text-gray-800'
                 }`}>
                   {feature.desc}
                 </p>
@@ -129,13 +168,13 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
               {feature.side === 'left' ? (
                 <>
                   <div className="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
-                    <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 ${
+                    <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                       {feature.title}
                     </h3>
-                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
-                      isDark ? 'text-gray-300' : 'text-gray-600'
+                    <p className={`text-base sm:text-lg md:text-xl leading-relaxed ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {feature.desc}
                     </p>
@@ -152,13 +191,13 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
                     isDark ? 'bg-black border-[#B0FFFA]' : 'bg-white border-[#00B8A9]'
                   }`}></div>
                   <div className="w-full md:w-1/2 md:pl-8 md:text-left">
-                    <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 ${
+                    <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                       {feature.title}
                     </h3>
-                    <p className={`text-sm sm:text-base md:text-lg leading-relaxed ${
-                      isDark ? 'text-gray-300' : 'text-gray-600'
+                    <p className={`text-base sm:text-lg md:text-xl leading-relaxed ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {feature.desc}
                     </p>

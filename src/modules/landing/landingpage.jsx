@@ -19,7 +19,17 @@ import {
   HiBolt,
   HiStar,
   HiGlobeAlt,
-  HiTrophy
+  HiTrophy,
+  HiCheckBadge,
+  HiVideoCamera,
+  HiMagnifyingGlass,
+  HiUserGroup,
+  HiHome,
+  HiBell,
+  HiShieldCheck,
+  HiClipboardDocumentCheck,
+  HiChatBubbleLeftRight,
+  HiArrowRight
 } from 'react-icons/hi2';
 
 // Generate smoke particles
@@ -102,18 +112,6 @@ function FloatingAnimatedIcons({ isDark }) {
     </div>
   );
 }
-import {
-  HiCheckBadge,
-  HiVideoCamera,
-  HiMagnifyingGlass,
-  HiUserGroup,
-  HiHome,
-  HiBell,
-  HiShieldCheck,
-  HiClipboardDocumentCheck,
-  HiChatBubbleLeftRight,
-  HiArrowRight
-} from 'react-icons/hi2';
 
 // Icon mapping helper
 const iconMap = {
@@ -379,80 +377,122 @@ export default function Landing() {
       </div>
 
       <main className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 pt-0 overflow-x-hidden">
-        <HeroSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          mousePosition={mousePosition}
-        />
-        <TransformJourneySection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          CardContainer={CardContainer}
-        />
+        {/* Hero Section */}
+        <div className={`relative ${isDark ? 'bg-gradient-to-b from-black via-black to-black/95' : 'bg-gradient-to-b from-white via-white to-gray-50/30'}`}>
+          <HeroSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            mousePosition={mousePosition}
+          />
+        </div>
 
-        <WhyEvoaSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          getIcon={getIcon}
-        />
-        <WhoIsEvoaSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-        />
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
-        <HowItWorksSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          getIcon={getIcon}
-        />
+        {/* Transform Journey Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-gray-900/30 to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <TransformJourneySection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            CardContainer={CardContainer}
+          />
+        </div>
 
-        <PowerfulFeaturesSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-        />
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
-        <TrustDesignSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          CardContainer={CardContainer}
-        />
+        {/* Why EVO-A Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-black to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <WhyEvoaSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            getIcon={getIcon}
+          />
+        </div>
 
-        <UserJourneySection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          CardContainer={CardContainer}
-        />
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
-        <FAQSection 
-          isVisible={isVisible}
-          isDark={isDark}
-          setRef={setRef}
-          SectionTitle={SectionTitle}
-          openFAQ={openFAQ}
-          toggleFAQ={toggleFAQ}
-        />
+        {/* Who is EVO-A For Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-gray-900/30 to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <WhoIsEvoaSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+          />
+        </div>
+
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+        {/* How It Works Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-black to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <HowItWorksSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            getIcon={getIcon}
+          />
+        </div>
+
+        {/* Section Divider - Extra spacing for separation */}
+        <div className={`h-px w-full my-16 sm:my-20 md:my-24 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+        {/* Powerful Features Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-gray-900/30 to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <PowerfulFeaturesSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+          />
+        </div>
+
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+        {/* Trust Design Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-black to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <TrustDesignSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            CardContainer={CardContainer}
+          />
+        </div>
+
+        {/* Section Divider - Extra spacing for separation */}
+        <div className={`h-px w-full my-16 sm:my-20 md:my-24 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+        {/* User Journey Section */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-gray-900/30 to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <UserJourneySection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            CardContainer={CardContainer}
+          />
+        </div>
+
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
         {/* Final Call-to-Action */}
-        <section 
-          ref={setRef('finalCta')}
-          className={`relative mt-8 sm:mt-12 md:mt-16 transition-all duration-1000 ease-out ${
-            isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-black to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <section 
+            ref={setRef('finalCta')}
+            className={`relative transition-all duration-1000 ease-out ${
+              isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
           <div className={`relative border-2 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center ${
             isDark 
               ? 'bg-black/40 border-[#B0FFFA]/30 shadow-[0_0_30px_rgba(176,255,250,0.2)]' 
@@ -466,45 +506,51 @@ export default function Landing() {
               }`}>
                 Ready to Transform Your Startup Journey?
               </h2>
-              <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 md:mb-4 ${
-                isDark ? 'text-white/90' : 'text-black/90'
-              }`}>
-                Join EVO-A Today – Where Dreams Meet Opportunities
-              </h3>
-              <p className={`text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed ${
+              <p className={`text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto ${
                 isDark ? 'text-white/80' : 'text-black/70'
               }`}>
-                Whether you're a founder ready to pitch your vision, an investor seeking the next big opportunity, or an incubator building the future – EVO-A connects you with the right people at the right time. Start your journey today!
+                Whether you're a founder ready to pitch your vision, an investor seeking the next big opportunity, or an incubator building the future – EVO-A connects you with the right people at the right time.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-4 sm:mb-5">
                 <Link 
                   to="/register" 
-                  className="group relative w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-sm sm:text-base md:text-lg font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden
-                    bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[0_0_30px_rgba(176,255,250,0.5)]"
+                  className="group relative w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 md:px-10 md:py-4 text-base sm:text-lg md:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden
+                    bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-xl hover:shadow-[0_0_40px_rgba(176,255,250,0.6)]"
                 >
-                  <span className="relative z-10">Create Your Account Now</span>
-                  <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <span className="relative z-10">Get Started Free</span>
+                  <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
                   to="/login" 
-                  className={`w-full sm:w-auto px-5 py-3 sm:px-6 sm:py-3 md:px-8 md:py-3.5 border-2 rounded-lg text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center ${
+                  className={`w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 md:px-10 md:py-4 border-2 rounded-xl text-base sm:text-lg md:text-xl font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center ${
                     isDark 
                       ? 'border-[#B0FFFA]/50 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA]' 
                       : 'border-[#B0FFFA] text-[#00B8A9] hover:bg-[#B0FFFA]/10 hover:border-[#00B8A9]'
                   }`}
                 >
-                  Sign in with Email
+                  Watch Demo
                 </Link>
               </div>
-              <p className={`text-xs sm:text-sm md:text-base flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
-                isDark ? 'text-white/60' : 'text-black/60'
-              }`}>
-                <span>Already have an account? Sign in with email or continue with Google.</span>
-              </p>
             </div>
           </div>
         </section>
+        </div>
+
+        {/* Section Divider */}
+        <div className={`h-px w-full my-12 sm:my-16 md:my-20 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+        {/* FAQ Section - Moved to end */}
+        <div className={`relative py-12 sm:py-16 md:py-20 ${isDark ? 'bg-gradient-to-b from-black/95 via-gray-900/30 to-black/95' : 'bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30'}`}>
+          <FAQSection 
+            isVisible={isVisible}
+            isDark={isDark}
+            setRef={setRef}
+            SectionTitle={SectionTitle}
+            openFAQ={openFAQ}
+            toggleFAQ={toggleFAQ}
+          />
+        </div>
       </main>
 
       <Footer />
