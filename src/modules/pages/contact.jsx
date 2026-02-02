@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
-import { HiMail, HiPhone, HiLocationMarker, HiArrowRight } from "react-icons/hi";
-import { FaLinkedin,  FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6"; // Real X Icon
+import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
+import { HiArrowRight } from "react-icons/hi2";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import Footer from "../../components/layout/footer";
+
 export default function Contact() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -14,18 +17,107 @@ export default function Contact() {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const SectionTitle = ({ children }) => (
+    <h2
+      className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 ${
+        isDark
+          ? "text-white"
+          : "bg-gradient-to-r from-[#00B8A9] via-[#00C9B7] to-[#00B8A9] bg-clip-text text-transparent"
+      }`}
+    >
+      {children}
+    </h2>
+  );
+
+  const CardContainer = ({ children, className = "" }) => (
+    <div
+      className={`group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl transition-all duration-300 ${
+        isDark
+          ? "bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-2xl hover:shadow-[#B0FFFA]/10"
+          : "bg-white/95 backdrop-blur-xl border border-gray-200 hover:border-[#00B8A9]/30 hover:shadow-xl hover:shadow-[#00B8A9]/5"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Full name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = "Email address is required";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Subject is required";
+    } else if (formData.subject.trim().length < 5) {
+      newErrors.subject = "Subject must be at least 5 characters";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 20) {
+      newErrors.message = "Message must be at least 20 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Replace with actual submit logic (API call, email service, etc.)
-    console.log("Contact form submitted:", formData);
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // TODO: Replace with your actual API endpoint
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      console.log("Contact form submitted:", formData);
+      
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -56,311 +148,395 @@ export default function Contact() {
   ];
 
   return (
-    <section
-      className={`min-h-screen py-10 sm:py-12 lg:py-16 transition-colors duration-300 ${
-        isDark ? "bg-black" : "bg-gray-50"
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDark ? "bg-black" : "bg-gradient-to-br from-gray-50 via-[#B0FFFA]/5 to-gray-50"
       }`}
-      aria-labelledby="contact-heading"
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        {/* Header */}
-        <header className="text-center mb-8 sm:mb-10 md:mb-14 lg:mb-16">
-          <h1
-            id="contact-heading"
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-wide leading-tight mb-3 sm:mb-4 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Get in touch
-          </h1>
-          <p
-            className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto ${
-              isDark ? "text-white/70" : "text-gray-600"
-            }`}
-          >
-            Have a question, partnership idea, or just want to say hello? Fill out the form
-            and our team will get back to you as soon as possible.
-          </p>
-        </header>
-
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start">
-          {/* Contact Information */}
-          <aside className="space-y-6 sm:space-y-8 lg:space-y-10">
-            <div>
-              <h2
-                className={`text-xl sm:text-2xl font-bold mb-3 ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Contact information
-              </h2>
-              <p
-                className={`text-sm sm:text-base ${
-                  isDark ? "text-white/70" : "text-gray-600"
-                }`}
-              >
-                Reach out using any of the channels below or send us a direct message through
-                the form.
-              </p>
+      <section
+        className="py-12 sm:py-16 md:py-20 lg:py-24"
+        aria-labelledby="contact-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+          {/* Header */}
+          <header className="text-center mb-10 sm:mb-12 md:mb-16">
+            <div
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 backdrop-blur-xl border font-semibold ${
+                isDark
+                  ? "bg-[#B0FFFA]/10 border-[#B0FFFA]/30 text-[#B0FFFA]"
+                  : "bg-[#00B8A9]/10 border-[#00B8A9]/20 text-[#00B8A9]"
+              }`}
+            >
+              <span className="text-xs tracking-wider uppercase">
+                Contact Us
+              </span>
             </div>
+            <SectionTitle>Get in Touch</SectionTitle>
+            <p
+              className={`text-base sm:text-lg md:text-xl max-w-3xl mx-auto mt-4 leading-relaxed ${
+                isDark ? "text-slate-300" : "text-gray-600"
+              }`}
+            >
+              Have a question or want to discuss a partnership? Our team is here to help.
+              <br className="hidden sm:block" />
+              We typically respond within 24 business hours.
+            </p>
+          </header>
 
-            {/* Contact Cards */}
-            <div className="space-y-4">
-              {contactInfo.map((info, idx) => {
-                const IconComponent = info.icon;
+          {/* Main Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 items-start">
+            {/* Contact Information - 2 columns on large screens */}
+            <aside className="lg:col-span-2 space-y-5 sm:space-y-6">
+              {/* Info Header Card */}
+              <CardContainer>
+                <h2
+                  className={`text-lg sm:text-xl font-bold mb-2 ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Contact Information
+                </h2>
+                <p
+                  className={`text-sm sm:text-base leading-relaxed ${
+                    isDark ? "text-slate-300" : "text-gray-600"
+                  }`}
+                >
+                  Reach out through any of these channels. We're here to assist you.
+                </p>
+              </CardContainer>
 
-                const card = (
-                  <div
-                    className={`flex items-start gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 border transition-transform duration-150 hover:-translate-y-0.5 ${
-                      isDark
-                        ? "bg-black/40 border-white/20"
-                        : "bg-white border-black/20"
-                    }`}
-                  >
-                    <div
-                      className={`shrink-0 inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 ${
-                        isDark ? "bg-white/10" : "bg-black/5"
-                      }`}
-                    >
-                      <IconComponent
-                        size={20}
-                        className={isDark ? "text-white" : "text-black"}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div>
-                      <h3
-                        className={`font-semibold text-xs sm:text-sm md:text-base mb-1 ${
-                          isDark ? "text-white" : "text-gray-900"
+              {/* Contact Cards */}
+              <div className="space-y-4">
+                {contactInfo.map((info, idx) => {
+                  const IconComponent = info.icon;
+
+                  const content = (
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-lg ${
+                          isDark
+                            ? "bg-[#B0FFFA]/10 border border-[#B0FFFA]/20"
+                            : "bg-[#00B8A9]/10 border border-[#00B8A9]/20"
                         }`}
                       >
-                        {info.title}
-                      </h3>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className={`text-xs sm:text-sm break-words ${
-                            isDark
-                              ? "text-white/80 hover:text-white"
-                              : "text-gray-700 hover:text-black"
+                        <IconComponent
+                          size={20}
+                          className={isDark ? "text-[#B0FFFA]" : "text-[#00B8A9]"}
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3
+                          className={`font-semibold text-sm mb-1 ${
+                            isDark ? "text-slate-300" : "text-gray-500"
                           }`}
                         >
-                          {info.value}
-                        </a>
-                      ) : (
+                          {info.title}
+                        </h3>
                         <p
-                          className={`text-xs sm:text-sm ${
-                            isDark ? "text-white/70" : "text-gray-600"
-                          }`}
+                          className={`text-base sm:text-lg font-medium ${
+                            info.link
+                              ? isDark
+                                ? "text-white hover:text-[#B0FFFA]"
+                                : "text-gray-900 hover:text-[#00B8A9]"
+                              : isDark
+                              ? "text-white"
+                              : "text-gray-900"
+                          } transition-colors`}
                         >
                           {info.value}
                         </p>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
 
-                return info.link ? (
-                  <a key={idx} href={info.link} className="block">
-                    {card}
-                  </a>
-                ) : (
-                  <div key={idx}>{card}</div>
-                );
-              })}
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3
-                className={`font-semibold mb-3 ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Follow us
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {socialLinks.map((social, idx) => {
-                  const IconComponent = social.icon;
                   return (
-                    <a
-                      key={idx}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 flex items-center justify-center transition-transform duration-150 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                        isDark
-                          ? "bg-white/10 text-white hover:bg-white/20 focus:ring-white/60 focus:ring-offset-black"
-                          : "bg-black/5 text-black hover:bg-black/10 focus:ring-black/60 focus:ring-offset-white"
-                      }`}
-                      aria-label={social.name}
-                    >
-                      <IconComponent size={18} />
-                    </a>
+                    <CardContainer key={idx} className="hover:scale-[1.01]">
+                      {info.link ? (
+                        <a href={info.link} className="block">
+                          {content}
+                        </a>
+                      ) : (
+                        content
+                      )}
+                    </CardContainer>
                   );
                 })}
               </div>
-            </div>
-          </aside>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <form
-              onSubmit={handleSubmit}
-              className={`p-4 sm:p-5 md:p-6 lg:p-8 border ${
-                isDark
-                  ? "bg-black/40 border-white/20"
-                  : "bg-white border-black/20"
-              }`}
-              noValidate
-            >
-              <h2
-                className={`text-lg sm:text-xl md:text-2xl font-bold mb-4 sm:mb-5 md:mb-6 ${
-                  isDark ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Send us a message
-              </h2>
-
-              <div className="space-y-5">
-                {/* Name */}
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="name"
-                    className={`text-sm font-medium ${
-                      isDark ? "text-white" : "text-gray-700"
-                    }`}
-                  >
-                    Full name <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    autoComplete="name"
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border text-xs sm:text-sm md:text-base ${
-                      isDark
-                        ? "bg-black/50 border-white/20 text-white placeholder-white/40"
-                        : "bg-gray-50 border-gray-300 text-black placeholder-gray-400"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-                    placeholder="Enter your full name"
-                    aria-required="true"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="email"
-                    className={`text-sm font-medium ${
-                      isDark ? "text-white" : "text-gray-700"
-                    }`}
-                  >
-                    Email address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    autoComplete="email"
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border text-xs sm:text-sm md:text-base ${
-                      isDark
-                        ? "bg-black/50 border-white/20 text-white placeholder-white/40"
-                        : "bg-gray-50 border-gray-300 text-black placeholder-gray-400"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-                    placeholder="you@example.com"
-                    aria-required="true"
-                  />
-                </div>
-
-                {/* Subject */}
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="subject"
-                    className={`text-sm font-medium ${
-                      isDark ? "text-white" : "text-gray-700"
-                    }`}
-                  >
-                    Subject <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="subject"
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border text-xs sm:text-sm md:text-base ${
-                      isDark
-                        ? "bg-black/50 border-white/20 text-white placeholder-white/40"
-                        : "bg-gray-50 border-gray-300 text-black placeholder-gray-400"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-                    placeholder="What is this regarding?"
-                    aria-required="true"
-                  />
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="message"
-                    className={`text-sm font-medium ${
-                      isDark ? "text-white" : "text-gray-700"
-                    }`}
-                  >
-                    Message <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 md:py-3 border resize-none text-xs sm:text-sm md:text-base ${
-                      isDark
-                        ? "bg-black/50 border-white/20 text-white placeholder-white/40"
-                        : "bg-gray-50 border-gray-300 text-black placeholder-gray-400"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-                    placeholder="Tell us how we can help you..."
-                    aria-required="true"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <div className="pt-1">
-                  <button
-                    type="submit"
-                    className={`w-full inline-flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm md:text-base px-4 py-2.5 sm:py-3 md:py-3.5 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                      isDark
-                        ? "bg-white text-black hover:bg-white/90 focus:ring-white focus:ring-offset-black"
-                        : "bg-black text-white hover:bg-black/90 focus:ring-black focus:ring-offset-white"
-                    }`}
-                  >
-                    Send message
-                    <HiArrowRight size={18} aria-hidden="true" />
-                  </button>
-                </div>
-
-                <p
-                  className={`text-[11px] sm:text-xs text-center ${
-                    isDark ? "text-white/50" : "text-gray-500"
+              {/* Social Links */}
+              <CardContainer>
+                <h3
+                  className={`font-semibold text-base mb-4 ${
+                    isDark ? "text-white" : "text-gray-900"
                   }`}
                 >
-                  We usually respond within 24–48 business hours.
-                </p>
-              </div>
-            </form>
+                  Follow Us
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {socialLinks.map((social, idx) => {
+                    const IconComponent = social.icon;
+                    return (
+                      <a
+                        key={idx}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                          isDark
+                            ? "bg-[#B0FFFA]/10 text-[#B0FFFA] hover:bg-[#B0FFFA]/20 border border-[#B0FFFA]/20 focus:ring-[#B0FFFA]/60 focus:ring-offset-black"
+                            : "bg-[#00B8A9]/10 text-[#00B8A9] hover:bg-[#00B8A9]/20 border border-[#00B8A9]/20 focus:ring-[#00B8A9]/60 focus:ring-offset-white"
+                        }`}
+                        aria-label={social.name}
+                      >
+                        <IconComponent size={20} />
+                      </a>
+                    );
+                  })}
+                </div>
+              </CardContainer>
+            </aside>
+
+            {/* Contact Form - 3 columns on large screens */}
+            <div className="lg:col-span-3">
+              <CardContainer>
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <div className="border-b pb-5 mb-2" style={{ borderColor: isDark ? 'rgba(176, 255, 250, 0.1)' : 'rgba(229, 231, 235, 1)' }}>
+                    <h2
+                      className={`text-xl sm:text-2xl font-bold mb-2 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      Send Us a Message
+                    </h2>
+                    <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-500"}`}>
+                      Fill out the form below and we'll get back to you shortly.
+                    </p>
+                  </div>
+
+                  {/* Success/Error Messages */}
+                  {submitStatus === "success" && (
+                    <div className={`p-4 rounded-lg border ${
+                      isDark 
+                        ? "bg-[#B0FFFA]/10 border-[#B0FFFA]/30" 
+                        : "bg-green-50 border-green-200"
+                    }`}>
+                      <p className={`text-sm font-medium ${
+                        isDark ? "text-[#B0FFFA]" : "text-green-800"
+                      }`}>
+                        ✓ Message sent successfully! We'll respond within 24 hours.
+                      </p>
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                      <p className="text-sm font-medium text-red-800 dark:text-red-300">
+                        ✗ Something went wrong. Please try again or contact us directly.
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="space-y-5">
+                    {/* Name */}
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className={`block text-sm font-semibold mb-2 ${
+                          isDark ? "text-white" : "text-gray-700"
+                        }`}
+                      >
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        autoComplete="name"
+                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                          errors.name
+                            ? "border-red-500 focus:ring-red-500"
+                            : isDark
+                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
+                        } focus:outline-none`}
+                        placeholder="John Doe"
+                        aria-required="true"
+                        aria-invalid={!!errors.name}
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className={`block text-sm font-semibold mb-2 ${
+                          isDark ? "text-white" : "text-gray-700"
+                        }`}
+                      >
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        autoComplete="email"
+                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                          errors.email
+                            ? "border-red-500 focus:ring-red-500"
+                            : isDark
+                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
+                        } focus:outline-none`}
+                        placeholder="john@company.com"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                      )}
+                    </div>
+
+                    {/* Subject */}
+                    <div>
+                      <label
+                        htmlFor="subject"
+                        className={`block text-sm font-semibold mb-2 ${
+                          isDark ? "text-white" : "text-gray-700"
+                        }`}
+                      >
+                        Subject <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="subject"
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                          errors.subject
+                            ? "border-red-500 focus:ring-red-500"
+                            : isDark
+                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
+                        } focus:outline-none`}
+                        placeholder="Partnership Inquiry"
+                        aria-required="true"
+                        aria-invalid={!!errors.subject}
+                      />
+                      {errors.subject && (
+                        <p className="mt-1 text-xs text-red-500">{errors.subject}</p>
+                      )}
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className={`block text-sm font-semibold mb-2 ${
+                          isDark ? "text-white" : "text-gray-700"
+                        }`}
+                      >
+                        Message <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={6}
+                        className={`w-full px-4 py-3 rounded-lg border resize-none text-sm transition-all duration-200 ${
+                          errors.message
+                            ? "border-red-500 focus:ring-red-500"
+                            : isDark
+                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
+                        } focus:outline-none`}
+                        placeholder="Tell us about your inquiry..."
+                        aria-required="true"
+                        aria-invalid={!!errors.message}
+                      />
+                      {errors.message && (
+                        <p className="mt-1 text-xs text-red-500">{errors.message}</p>
+                      )}
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`w-full inline-flex items-center justify-center gap-2 font-semibold text-base px-6 py-3.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                          isSubmitting
+                            ? "opacity-60 cursor-not-allowed"
+                            : "hover:scale-[1.01] active:scale-[0.99]"
+                        } ${
+                          isDark
+                            ? "bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[#B0FFFA]/30 focus:ring-[#B0FFFA] focus:ring-offset-black"
+                            : "bg-gradient-to-r from-[#00B8A9] to-[#00C9B7] text-white shadow-lg hover:shadow-[#00B8A9]/30 focus:ring-[#00B8A9] focus:ring-offset-white"
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin h-5 w-5"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
+                            </svg>
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <HiArrowRight size={18} aria-hidden="true" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Privacy Notice */}
+                    <p
+                      className={`text-xs text-center leading-relaxed pt-1 ${
+                        isDark ? "text-slate-400" : "text-gray-500"
+                      }`}
+                    >
+                      By submitting this form, you agree to our privacy policy. We respect your
+                      privacy and will never share your information with third parties.
+                    </p>
+                  </div>
+                </form>
+              </CardContainer>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </div>
   );
 }
