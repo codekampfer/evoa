@@ -417,7 +417,7 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
           {/* RIGHT COLUMN - Illustration + Bubbles */}
           <div
             className={`
-              hidden lg:flex relative h-[520px]
+              hidden lg:flex relative h-[600px]
               items-center justify-center
               transition-all duration-1000 delay-400
               ${isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}
@@ -429,8 +429,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               <line
                 x1="50%"
                 y1="50%"
-                x2="82%"
-                y2="18%"
+                x2="88%"
+                y2="12%"
                 stroke={isDark ? 'rgba(0,184,169,0.4)' : 'rgba(0,184,169,0.25)'}
                 strokeWidth="2"
                 strokeDasharray="8,8"
@@ -441,8 +441,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               <line
                 x1="50%"
                 y1="50%"
-                x2="82%"
-                y2="82%"
+                x2="88%"
+                y2="88%"
                 stroke={isDark ? 'rgba(147,51,234,0.4)' : 'rgba(147,51,234,0.25)'}
                 strokeWidth="2"
                 strokeDasharray="8,8"
@@ -454,8 +454,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               <line
                 x1="50%"
                 y1="50%"
-                x2="18%"
-                y2="82%"
+                x2="12%"
+                y2="88%"
                 stroke={isDark ? 'rgba(6,182,212,0.4)' : 'rgba(6,182,212,0.25)'}
                 strokeWidth="2"
                 strokeDasharray="8,8"
@@ -467,8 +467,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               <line
                 x1="50%"
                 y1="50%"
-                x2="18%"
-                y2="18%"
+                x2="12%"
+                y2="12%"
                 stroke={isDark ? 'rgba(236,72,153,0.4)' : 'rgba(236,72,153,0.25)'}
                 strokeWidth="2"
                 strokeDasharray="8,8"
@@ -477,21 +477,21 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               />
             </svg>
 
-            {/* Center Hero Image */}
+            {/* Center Hero Image - Smaller Size */}
             <div className="relative z-40 text-center group cursor-pointer">
               <img
                 src={heroImage}
                 alt="EVO-A Platform"
-                className="w-[380px] h-[380px] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto"
+                className="w-[320px] h-[320px] object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl mx-auto"
               />
             </div>
 
-            {/* Floating Bubbles */}
+            {/* Floating Bubbles - Better Positioned */}
             <div className="absolute inset-0 pointer-events-none z-10">
               {/* Bubble 1 - Top Right */}
               <div
                 className={`
-                  hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full
+                  hidden lg:flex absolute w-[110px] h-[110px] xl:w-[130px] xl:h-[130px] rounded-full
                   ${isDark ? 'bg-gradient-to-br from-[#043873]/15 to-[#B0FFFA]/8' : 'bg-white/95'}
                   backdrop-blur-md border-2
                   ${isDark ? 'border-[#043873]/30' : 'border-[#043873]/20'}
@@ -500,8 +500,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                   pointer-events-auto
                 `}
                 style={{
-                  top: '5%',
-                  right: '5%',
+                  top: '2%',
+                  right: '0%',
                   boxShadow: isDark
                     ? '0 8px 32px rgba(0, 184, 169, 0.25)'
                     : '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -509,23 +509,23 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               >
                 <div
                   className={`
-                    w-8 h-8 xl:w-9 xl:h-9 rounded-full
+                    w-9 h-9 xl:w-10 xl:h-10 rounded-full
                     ${isDark ? 'bg-[#043873]/25' : 'bg-[#043873]/15'}
-                    flex items-center justify-center mb-1
+                    flex items-center justify-center mb-1.5
                     group-hover:scale-110 transition-transform duration-300
                   `}
                 >
-                  <HiRocketLaunch className="w-4 h-4 xl:w-5 xl:h-5 text-[#043873]" />
+                  <HiRocketLaunch className="w-5 h-5 xl:w-6 xl:h-6 text-[#043873]" />
                 </div>
                 <h3
-                  className={`text-[10px] xl:text-xs font-bold ${
+                  className={`text-[11px] xl:text-xs font-bold ${
                     isDark ? 'text-white' : 'text-gray-900'
                   } text-center leading-tight`}
                 >
                   For Startups
                 </h3>
                 <p
-                  className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
+                  className={`text-[9px] xl:text-[10px] text-center mt-0.5 leading-tight ${
                     isDark ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
@@ -536,7 +536,7 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               {/* Bubble 2 - Bottom Right */}
               <div
                 className={`
-                  hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full
+                  hidden lg:flex absolute w-[110px] h-[110px] xl:w-[130px] xl:h-[130px] rounded-full
                   ${isDark ? 'bg-gradient-to-br from-purple-500/15 to-blue-500/8' : 'bg-white/95'}
                   backdrop-blur-md border-2
                   ${isDark ? 'border-purple-500/30' : 'border-purple-500/20'}
@@ -545,8 +545,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                   pointer-events-auto
                 `}
                 style={{
-                  bottom: '5%',
-                  right: '5%',
+                  bottom: '2%',
+                  right: '0%',
                   boxShadow: isDark
                     ? '0 8px 32px rgba(147, 51, 234, 0.25)'
                     : '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -554,23 +554,23 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               >
                 <div
                   className={`
-                    w-8 h-8 xl:w-9 xl:h-9 rounded-full
+                    w-9 h-9 xl:w-10 xl:h-10 rounded-full
                     ${isDark ? 'bg-purple-500/25' : 'bg-purple-500/15'}
-                    flex items-center justify-center mb-1
+                    flex items-center justify-center mb-1.5
                     group-hover:scale-110 transition-transform duration-300
                   `}
                 >
-                  <HiCurrencyDollar className="w-4 h-4 xl:w-5 xl:h-5 text-purple-500" />
+                  <HiCurrencyDollar className="w-5 h-5 xl:w-6 xl:h-6 text-purple-500" />
                 </div>
                 <h3
-                  className={`text-[10px] xl:text-xs font-bold ${
+                  className={`text-[11px] xl:text-xs font-bold ${
                     isDark ? 'text-white' : 'text-gray-900'
                   } text-center leading-tight`}
                 >
                   For Investors
                 </h3>
                 <p
-                  className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
+                  className={`text-[9px] xl:text-[10px] text-center mt-0.5 leading-tight ${
                     isDark ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
@@ -581,7 +581,7 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               {/* Bubble 3 - Bottom Left */}
               <div
                 className={`
-                  hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full
+                  hidden lg:flex absolute w-[110px] h-[110px] xl:w-[130px] xl:h-[130px] rounded-full
                   ${isDark ? 'bg-gradient-to-br from-cyan-500/15 to-emerald-500/8' : 'bg-white/95'}
                   backdrop-blur-md border-2
                   ${isDark ? 'border-cyan-500/30' : 'border-cyan-500/20'}
@@ -590,8 +590,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                   pointer-events-auto
                 `}
                 style={{
-                  bottom: '5%',
-                  left: '5%',
+                  bottom: '2%',
+                  left: '0%',
                   boxShadow: isDark
                     ? '0 8px 32px rgba(6, 182, 212, 0.25)'
                     : '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -599,23 +599,23 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               >
                 <div
                   className={`
-                    w-8 h-8 xl:w-9 xl:h-9 rounded-full
+                    w-9 h-9 xl:w-10 xl:h-10 rounded-full
                     ${isDark ? 'bg-cyan-500/25' : 'bg-cyan-500/15'}
-                    flex items-center justify-center mb-1
+                    flex items-center justify-center mb-1.5
                     group-hover:scale-110 transition-transform duration-300
                   `}
                 >
-                  <HiAcademicCap className="w-4 h-4 xl:w-5 xl:h-5 text-cyan-500" />
+                  <HiAcademicCap className="w-5 h-5 xl:w-6 xl:h-6 text-cyan-500" />
                 </div>
                 <h3
-                  className={`text-[10px] xl:text-xs font-bold ${
+                  className={`text-[11px] xl:text-xs font-bold ${
                     isDark ? 'text-white' : 'text-gray-900'
                   } text-center leading-tight`}
                 >
                   For Incubators
                 </h3>
                 <p
-                  className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
+                  className={`text-[9px] xl:text-[10px] text-center mt-0.5 leading-tight ${
                     isDark ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
@@ -626,7 +626,7 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               {/* Bubble 4 - Top Left */}
               <div
                 className={`
-                  hidden lg:flex absolute w-[100px] h-[100px] xl:w-[120px] xl:h-[120px] rounded-full
+                  hidden lg:flex absolute w-[110px] h-[110px] xl:w-[130px] xl:h-[130px] rounded-full
                   ${isDark ? 'bg-gradient-to-br from-pink-500/15 to-rose-500/8' : 'bg-white/95'}
                   backdrop-blur-md border-2
                   ${isDark ? 'border-pink-500/30' : 'border-pink-500/20'}
@@ -635,8 +635,8 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
                   pointer-events-auto
                 `}
                 style={{
-                  top: '5%',
-                  left: '5%',
+                  top: '2%',
+                  left: '0%',
                   boxShadow: isDark
                     ? '0 8px 32px rgba(236, 72, 153, 0.25)'
                     : '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -644,23 +644,23 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               >
                 <div
                   className={`
-                    w-8 h-8 xl:w-9 xl:h-9 rounded-full
+                    w-9 h-9 xl:w-10 xl:h-10 rounded-full
                     ${isDark ? 'bg-pink-500/25' : 'bg-pink-500/15'}
-                    flex items-center justify-center mb-1
+                    flex items-center justify-center mb-1.5
                     group-hover:scale-110 transition-transform duration-300
                   `}
                 >
-                  <HiUsers className="w-4 h-4 xl:w-5 xl:h-5 text-pink-500" />
+                  <HiUsers className="w-5 h-5 xl:w-6 xl:h-6 text-pink-500" />
                 </div>
                 <h3
-                  className={`text-[10px] xl:text-xs font-bold ${
+                  className={`text-[11px] xl:text-xs font-bold ${
                     isDark ? 'text-white' : 'text-gray-900'
                   } text-center leading-tight`}
                 >
                   For Viewers
                 </h3>
                 <p
-                  className={`text-[8px] xl:text-[9px] text-center mt-0.5 leading-tight ${
+                  className={`text-[9px] xl:text-[10px] text-center mt-0.5 leading-tight ${
                     isDark ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
