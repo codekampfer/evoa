@@ -57,11 +57,11 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
         <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight ${
           isDark ? 'text-white' : 'text-gray-900'
         }`}>
-          Everything You Need.{' '}
+          One Platform.  {' '}
           <span className={`underline decoration-2 underline-offset-4 ${
             isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
           }`}>
-            Nothing You Don't.
+           Zero Noise.
           </span>
         </h2>
         <p className={`text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
@@ -116,19 +116,19 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`group relative p-4 sm:p-5 rounded-xl transition-all duration-700 transform ${
+              className={`relative p-4 sm:p-5 rounded-xl transition-all duration-700 transform ${
                 isVisible['powerfulFeatures'] 
                   ? 'opacity-100 translate-y-0 scale-100' 
                   : 'opacity-0 translate-y-6 scale-95'
               } ${
                 isDark 
-                  ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40' 
-                  : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50'
-              } shadow-lg hover:shadow-xl`}
+                  ? 'bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-xl border border-[#B0FFFA]/20' 
+                  : 'bg-gradient-to-br from-white/90 via-white/80 to-white/90 backdrop-blur-xl border border-[#B0FFFA]/30'
+              } shadow-lg`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Animated gradient overlay */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl"></div>
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-br from-[#B0FFFA]/5 via-transparent to-[#80E5FF]/5 rounded-xl"></div>
               
               <div className="relative z-10">
                 {/* Number indicator */}
@@ -139,12 +139,12 @@ export default function PowerfulFeaturesSection({ isVisible, isDark, setRef }) {
                 </div>
                 
                 <h3 className={`text-lg sm:text-xl font-bold mb-3 transition-all duration-300 ${
-                  isDark ? 'text-white group-hover:text-[#B0FFFA]' : 'text-gray-900 group-hover:text-[#00B8A9]'
+                  isDark ? 'text-white' : 'text-gray-900'
                 }`}>
                   {feature.title}
                 </h3>
                 <p className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
-                  isDark ? 'text-white/80 group-hover:text-white/90' : 'text-gray-700 group-hover:text-gray-800'
+                  isDark ? 'text-white/80' : 'text-gray-700'
                 }`}>
                   {feature.desc}
                 </p>

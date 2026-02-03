@@ -115,7 +115,7 @@ export default function PurposeBuiltSection({ isVisible, isDark, setRef }) {
             return (
               <div
                 key={idx}
-                className={`group transition-all duration-700 ${
+                className={`transition-all duration-700 ${
                   isVisible?.purposeBuilt
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
@@ -123,15 +123,15 @@ export default function PurposeBuiltSection({ isVisible, isDark, setRef }) {
                 style={{ transitionDelay: `${200 + idx * 150}ms` }}
               >
                 <div
-                  className={`relative h-full p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 hover:-translate-y-2 ${
+                  className={`relative h-full p-8 rounded-2xl text-center transition-all duration-300   ${
                     isDark
-                      ? 'bg-white/5 hover:bg-white/10 border border-white/10'
-                      : 'bg-white hover:bg-gray-50 border border-gray-200'
+                      ? 'bg-white/5  border border-white/10'
+                      : 'bg-white  border border-gray-200'
                   }`}
                 >
                   {/* Icon */}
                   <div
-                    className="mx-auto flex items-center justify-center w-16 h-16 rounded-full mb-6 transition-transform duration-300 group-hover:scale-110"
+                    className="mx-auto flex items-center justify-center w-16 h-16 rounded-full mb-6 transition-transform duration-300 "
                     style={{ backgroundColor: feature.bgColor }}
                   >
                     <Icon
