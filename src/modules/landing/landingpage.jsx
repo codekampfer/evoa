@@ -196,6 +196,7 @@ const animationStyles = `
     }
   }
   
+  
   .animate-float {
     animation: float 8s ease-in-out infinite;
   }
@@ -225,6 +226,29 @@ const animationStyles = `
       transparent 100%
     );
     background-size: 1000px 100%;
+  }
+  
+  /* Responsive Grid Pattern */
+  .responsive-grid-pattern {
+    background-size: 25px 25px;
+  }
+  
+  @media (min-width: 640px) {
+    .responsive-grid-pattern {
+      background-size: 30px 30px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-grid-pattern {
+      background-size: 35px 35px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .responsive-grid-pattern {
+      background-size: 40px 40px;
+    }
   }
 `;
 
@@ -342,7 +366,7 @@ export default function Landing() {
       </div>
 
 
-      <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 pb-20 pt-0 overflow-x-hidden">
+      <main className="mx-auto max-w-7xl pb-20 pt-0 overflow-x-hidden">
         {/* Hero Section */}
         <div className="relative">
           <HeroSection 
@@ -478,57 +502,161 @@ export default function Landing() {
           </div>
 
 
+          {/* Section Divider - Top Border */}
+          <div className={`h-px w-full ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+        </div>
+      </main>
+
+      {/* Final Call-to-Action - Full Width Section with Faded Edges - Outside Main Container */}
+      <section 
+        ref={setRef('finalCta')}
+        className={`relative transition-all duration-1000 ease-out min-h-[400px] sm:min-h-[500px] md:min-h-[600px] w-full overflow-hidden flex flex-col justify-center py-8 sm:py-12 md:py-16 ${
+          isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {/* Grid Pattern Background - Full Coverage - Responsive */}
+        <div 
+          className="absolute w-full responsive-grid-pattern"
+          style={{
+            top: '0',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            backgroundImage: `
+              linear-gradient(${isDark ? 'rgba(176, 255, 250, 0.06)' : 'rgba(0, 0, 0, 0.05)'} 1px, transparent 1px),
+              linear-gradient(90deg, ${isDark ? 'rgba(176, 255, 250, 0.06)' : 'rgba(0, 0, 0, 0.05)'} 1px, transparent 1px)
+            `,
+            backgroundPosition: '0 0',
+            backgroundRepeat: 'repeat',
+            maskImage: `
+              linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%),
+              linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)
+            `,
+            WebkitMaskImage: `
+              linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%),
+              linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)
+            `,
+            maskComposite: 'intersect',
+            WebkitMaskComposite: 'source-in',
+          }}
+        />
+        
+        {/* Enhanced Faded Edge Masks - Pattern Fade Effect - Responsive */}
+        {/* Top Fade - Responsive */}
+        <div 
+          className="absolute left-0 right-0 h-16 sm:h-24 md:h-32 pointer-events-none z-10"
+          style={{
+            top: '0',
+            background: `linear-gradient(to bottom, ${
+              isDark ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'
+            } 0%, ${
+              isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)'
+            } 25%, ${
+              isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+            } 50%, transparent 100%)`,
+          }}
+        />
+        
+        {/* Bottom Fade - Responsive */}
+        <div 
+          className="absolute left-0 right-0 h-16 sm:h-24 md:h-32 pointer-events-none z-10"
+          style={{
+            bottom: '0',
+            background: `linear-gradient(to top, ${
+              isDark ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'
+            } 0%, ${
+              isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)'
+            } 25%, ${
+              isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+            } 50%, transparent 100%)`,
+          }}
+        />
+        
+        {/* Left Fade - Responsive */}
+        <div 
+          className="absolute top-0 bottom-0 left-0 w-12 sm:w-20 md:w-32 pointer-events-none z-10"
+          style={{
+            background: `linear-gradient(to right, ${
+              isDark ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'
+            } 0%, ${
+              isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)'
+            } 25%, ${
+              isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+            } 50%, transparent 100%)`,
+          }}
+        />
+        
+        {/* Right Fade - Responsive */}
+        <div 
+          className="absolute top-0 bottom-0 right-0 w-12 sm:w-20 md:w-32 pointer-events-none z-10"
+          style={{
+            background: `linear-gradient(to left, ${
+              isDark ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'
+            } 0%, ${
+              isDark ? 'rgba(0, 0, 0, 0.4)' : 'rgba(255, 255, 255, 0.4)'
+            } 25%, ${
+              isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+            } 50%, transparent 100%)`,
+          }}
+        />
+        
+        {/* Reduced overlay for better visibility */}
+        <div 
+          className={`absolute w-full pointer-events-none ${
+            isDark ? 'bg-black/5' : 'bg-white/10'
+          }`}
+          style={{
+            top: '0',
+            bottom: '0',
+            left: '0',
+            right: '0',
+          }}
+        />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 text-center z-20 my-auto py-4 sm:py-6 md:py-8">
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 px-2 ${
+            isDark ? 'text-white' : 'text-black'
+          }`}>
+            Ready to Transform Your Startup?
+          </h2>
+          
+          <p className={`text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2 ${
+            isDark ? 'text-white/70' : 'text-black/60'
+          }`}>
+            Join thousands of founders, investors, and innovators building the future with EVO-A.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center items-stretch sm:items-center px-2">
+            <Link 
+              to="/register" 
+              className="group relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-gradient-to-r from-[#B0FFFA] via-[#80E5FF] to-[#B0FFFA] text-black font-bold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl hover:shadow-[#B0FFFA]/40 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 w-full sm:w-auto"
+            >
+              <span className="relative z-10">Create Your Account</span>
+              <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform relative z-10" />
+            </Link>
+            
+            <Link 
+              to="/login" 
+              className={`relative px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 border-2 rounded-lg sm:rounded-xl md:rounded-2xl font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 active:scale-95 text-center overflow-hidden w-full sm:w-auto ${
+                isDark 
+                  ? 'border-[#B0FFFA]/60 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA] hover:shadow-[0_0_30px_rgba(176,255,250,0.3)]' 
+                  : 'border-[#00B8A9] text-[#00B8A9] hover:bg-[#00B8A9]/10 hover:border-[#00B8A9] hover:shadow-[0_0_30px_rgba(0,184,169,0.3)]'
+              }`}
+            >
+              <span className="relative z-10">Sign in with Email</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* Section Divider - Bottom Border Outside Section */}
+      <div className={`h-px w-full mt-12 sm:mt-16 md:mt-20 lg:mt-24 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+
+      {/* FAQ Section - Back Inside Main Container */}
+      <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 pb-20 pt-0 overflow-x-hidden">
+        <div className="space-y-32 md:space-y-40 lg:space-y-48">
           {/* Section Divider */}
           <div className={`h-px w-full ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
-
-
-          {/* Final Call-to-Action */}
-          <section 
-            ref={setRef('finalCta')}
-            className={`relative transition-all duration-1000 ease-out ${
-              isVisible['finalCta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="relative max-w-4xl mx-auto text-center py-16 md:py-20 px-6">
-              <h2 className={`text-3xl md:text-5xl font-bold mb-4 ${
-                isDark ? 'text-white' : 'text-black'
-              }`}>
-                Ready to Transform Your Startup?
-              </h2>
-              
-              <p className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed ${
-                isDark ? 'text-white/70' : 'text-black/60'
-              }`}>
-                Join thousands of founders, investors, and innovators building the future with EVO-A.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center">
-                <Link 
-                  to="/register" 
-                  className="group relative px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-[#B0FFFA] via-[#80E5FF] to-[#B0FFFA] text-black font-bold rounded-xl sm:rounded-2xl hover:shadow-2xl hover:shadow-[#B0FFFA]/40 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
-                >
-                  <span className="relative z-10">Create Your Account</span>
-                  <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform relative z-10" />
-                </Link>
-                
-                <Link 
-                  to="/login" 
-                  className={`relative px-8 sm:px-10 py-4 sm:py-5 border-2 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center overflow-hidden ${
-                    isDark 
-                      ? 'border-[#B0FFFA]/60 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA] hover:shadow-[0_0_30px_rgba(176,255,250,0.3)]' 
-                      : 'border-[#00B8A9] text-[#00B8A9] hover:bg-[#00B8A9]/10 hover:border-[#00B8A9] hover:shadow-[0_0_30px_rgba(0,184,169,0.3)]'
-                  }`}
-                >
-                  <span className="relative z-10">Sign in with Email</span>
-                </Link>
-              </div>
-            </div>
-          </section>
-
-
-          {/* Section Divider */}
-          <div className={`h-px w-full ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
-
 
           {/* FAQ Section */}
           <div ref={setRef('faq')} className={`transition-all duration-1000 ${
