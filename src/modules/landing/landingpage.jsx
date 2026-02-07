@@ -177,6 +177,25 @@ const animationStyles = `
     }
   }
   
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
   .animate-float {
     animation: float 8s ease-in-out infinite;
   }
@@ -191,6 +210,21 @@ const animationStyles = `
   
   .animate-dot-move {
     animation: dotMove 15s linear infinite;
+  }
+  
+  .animate-fade-out {
+    animation: fade-out 0.5s ease-out forwards;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(176, 255, 250, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
   }
 `;
 
@@ -468,24 +502,24 @@ export default function Landing() {
                 Join thousands of founders, investors, and innovators building the future with EVO-A.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-stretch sm:items-center">
                 <Link 
                   to="/register" 
-                  className="group px-8 py-4 bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black font-semibold rounded-xl hover:shadow-xl hover:shadow-[#B0FFFA]/30 transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"
+                  className="group relative px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-[#B0FFFA] via-[#80E5FF] to-[#B0FFFA] text-black font-bold rounded-xl sm:rounded-2xl hover:shadow-2xl hover:shadow-[#B0FFFA]/40 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                 >
-                  <span>Get Started Free</span>
-                  <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Create Your Account</span>
+                  <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform relative z-10" />
                 </Link>
                 
                 <Link 
                   to="/login" 
-                  className={`px-8 py-4 border-2 rounded-xl font-semibold transition-all duration-200 hover:scale-105 text-center ${
+                  className={`relative px-8 sm:px-10 py-4 sm:py-5 border-2 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center overflow-hidden ${
                     isDark 
-                      ? 'border-[#B0FFFA]/50 text-[#B0FFFA] hover:bg-[#B0FFFA]/5' 
-                      : 'border-[#00B8A9] text-[#00B8A9] hover:bg-[#00B8A9]/5'
+                      ? 'border-[#B0FFFA]/60 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA] hover:shadow-[0_0_30px_rgba(176,255,250,0.3)]' 
+                      : 'border-[#00B8A9] text-[#00B8A9] hover:bg-[#00B8A9]/10 hover:border-[#00B8A9] hover:shadow-[0_0_30px_rgba(0,184,169,0.3)]'
                   }`}
                 >
-                  Watch Demo
+                  <span className="relative z-10">Sign in with Email</span>
                 </Link>
               </div>
             </div>

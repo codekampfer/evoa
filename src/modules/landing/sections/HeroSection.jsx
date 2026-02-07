@@ -183,6 +183,21 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               ${isVisible['hero'] ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}
             `}
           >
+            {/* Tagline - Workflow Requirement - Enhanced Professional Styling */}
+            <div className="mb-5 sm:mb-6">
+              <div className={`inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full mb-4 backdrop-blur-xl border transition-all duration-500 ${
+                isDark 
+                  ? 'bg-[#B0FFFA]/10 border-[#B0FFFA]/30 hover:border-[#B0FFFA]/50 hover:bg-[#B0FFFA]/15' 
+                  : 'bg-[#00B8A9]/10 border-[#00B8A9]/30 hover:border-[#00B8A9]/50 hover:bg-[#00B8A9]/15'
+              }`}>
+                <span className={`text-sm sm:text-base md:text-lg font-bold tracking-wide ${
+                  isDark ? 'text-[#B0FFFA]' : 'text-[#00B8A9]'
+                }`}>
+                  Join the Future of Startup–Investor Ecosystem
+                </span>
+              </div>
+            </div>
+
             {/* Heading + Typing */}
             <div>
               <h1
@@ -216,11 +231,22 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               </h1>
             </div>
 
+            {/* Informational Section - Workflow Requirement */}
+            <p
+              className={`
+                text-base sm:text-lg md:text-xl
+                leading-relaxed max-w-2xl mt-1 font-medium
+                ${isDark ? 'text-white' : 'text-gray-900'}
+              `}
+            >
+              EVOA is Redefining Startup Investments
+            </p>
+
             {/* Subheading */}
             <p
               className={`
                 text-base sm:text-lg md:text-xl
-                leading-relaxed max-w-2xl mt-1
+                leading-relaxed max-w-2xl mt-3
                 ${isDark ? 'text-gray-300' : 'text-gray-600'}
               `}
             >
@@ -378,38 +404,42 @@ export default function HeroSection({ isVisible, isDark, setRef, mousePosition }
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* CTA Buttons - Workflow Requirements - Enhanced Professional Styling */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <Link
                 to="/register"
                 className={`
-                  group inline-flex items-center justify-center gap-2
-                  px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl
+                  group relative inline-flex items-center justify-center gap-2
+                  px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl
                   font-bold text-base sm:text-lg
-                  shadow-xl hover:shadow-[0_0_40px_rgba(0,184,169,0.5)]
+                  shadow-2xl hover:shadow-[0_0_50px_rgba(176,255,250,0.6)]
                   transition-all duration-300 hover:scale-105 active:scale-95
-                  bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black
+                  bg-gradient-to-r from-[#B0FFFA] via-[#80E5FF] to-[#B0FFFA] text-black
+                  overflow-hidden
+                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+                  before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700
                 `}
               >
-                <span>Get Started Free</span>
-                <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10">Create Your Account</span>
+                <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform relative z-10" />
               </Link>
 
               <Link
                 to="/login"
                 className={`
-                  inline-flex items-center justify-center
-                  px-7 sm:px-9 py-3.5 sm:py-4 rounded-xl
+                  relative inline-flex items-center justify-center
+                  px-8 sm:px-10 py-4 sm:py-5 rounded-xl sm:rounded-2xl
                   font-semibold text-base sm:text-lg border-2
                   transition-all duration-300 hover:scale-105 active:scale-95
+                  overflow-hidden
                   ${
                     isDark
-                      ? 'border-[#B0FFFA]/60 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA]'
-                      : 'border-[#043873] text-[#043873] hover:bg-[#B0FFFA]/10'
+                      ? 'border-[#B0FFFA]/60 text-[#B0FFFA] hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA] hover:shadow-[0_0_30px_rgba(176,255,250,0.3)]'
+                      : 'border-[#043873] text-[#043873] hover:bg-[#00B8A9]/10 hover:border-[#00B8A9] hover:shadow-[0_0_30px_rgba(0,184,169,0.3)]'
                   }
                 `}
               >
-                Watch Demo
+                <span className="relative z-10">Sign in with Email</span>
               </Link>
             </div>
           </div>
