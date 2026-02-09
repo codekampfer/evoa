@@ -378,7 +378,7 @@ export default function Landing() {
 
 
         {/* All sections with consistent spacing */}
-        <div className="space-y-32 md:space-y-40 lg:space-y-48">
+        <div className="space-y-16 md:space-y-20 lg:space-y-24">
           {/* Section Divider */}
           <div className={`h-px w-full ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
@@ -650,11 +650,11 @@ export default function Landing() {
       </section>
       
       {/* Section Divider - Bottom Border Outside Section */}
-      <div className={`h-px w-full mt-12 sm:mt-16 md:mt-20 lg:mt-24 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
+      <div className={`h-px w-full mt-8 sm:mt-10 md:mt-12 lg:mt-16 ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
       {/* FAQ Section - Back Inside Main Container */}
       <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 pb-20 pt-0 overflow-x-hidden">
-        <div className="space-y-32 md:space-y-40 lg:space-y-48">
+        <div className="space-y-16 md:space-y-20 lg:space-y-24">
           {/* Section Divider */}
           <div className={`h-px w-full ${isDark ? 'bg-gradient-to-r from-transparent via-[#B0FFFA]/20 to-transparent' : 'bg-gradient-to-r from-transparent via-[#00B8A9]/20 to-transparent'}`}></div>
 
