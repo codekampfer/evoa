@@ -164,6 +164,17 @@ export default function Startup() {
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <button 
+              onClick={() => navigate('/pitch/1')} 
+              className={`p-2 rounded-xl transition-all duration-200 ${
+                isDark 
+                  ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
+                  : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
+              }`}
+              title="View Pitch"
+            >
+              <FaPlay size={20} />
+            </button>
+            <button 
               onClick={() => navigate('/explore')} 
               className={`p-2 rounded-xl transition-all duration-200 ${
                 isDark 
