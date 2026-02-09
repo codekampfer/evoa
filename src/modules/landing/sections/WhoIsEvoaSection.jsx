@@ -19,12 +19,12 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
           <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">For Everyone</span>
         </div>
         
-        <SectionTitle>Who is EVO-A For?</SectionTitle>
+        <SectionTitle>Get Started - Join EVO-A</SectionTitle>
         
         <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4 ${
           isDark ? 'text-white/70' : 'text-gray-600'
         }`}>
-          Choose your role and join the ecosystem
+          Click on your category to register and join the ecosystem
         </p>
       </div>
 
