@@ -82,7 +82,7 @@ export default function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className={`border px-2.5 py-1.5 transition-all hover:scale-110 active:scale-95 ${
+                className={`border px-2.5 py-1.5 rounded cursor-pointer transition-all hover:scale-110 active:scale-95 ${
                   isDark
                     ? 'border-[#B0FFFA]/40 hover:bg-[#B0FFFA]/10 hover:border-[#B0FFFA]'
                     : 'border-[#00B8A9]/40 hover:bg-[#00B8A9]/10 hover:border-[#00B8A9]'
@@ -106,7 +106,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2 md:hidden">
               <button
                 onClick={toggleTheme}
-                className={`h-8 w-8 flex items-center justify-center ${
+                className={`h-8 w-8 flex items-center justify-center rounded cursor-pointer ${
                   isDark ? 'hover:bg-white/10' : 'hover:bg-black/10'
                 }`}
               >
@@ -176,7 +176,7 @@ export default function Navbar() {
             <div className="px-5 py-5 border-t border-white/10 space-y-3">
               <button
                 onClick={toggleTheme}
-                className="w-full px-4 py-3 flex justify-between font-semibold"
+                className="w-full px-4 py-3 flex justify-between font-semibold rounded cursor-pointer"
               >
                 Theme {isDark ? <HiSun /> : <HiMoon />}
               </button>
