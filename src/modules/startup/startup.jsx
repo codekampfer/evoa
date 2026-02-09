@@ -200,8 +200,8 @@ export default function Startup() {
       </div>
 
       {/* Main Content */}
-      <main className="pt-20 sm:pt-24">
-        <div className="max-w-3xl mx-auto px-0 sm:px-4 pb-20">
+      <main className="pt-16 sm:pt-20 md:pt-24">
+        <div className="max-w-3xl mx-auto px-0 sm:px-4 pb-16 sm:pb-20 overflow-x-hidden">
           {/* Feed Posts - Enhanced Cards */}
           <div className="space-y-0 sm:space-y-4">
             {posts.map((post) => (
@@ -214,10 +214,10 @@ export default function Startup() {
                 } sm:shadow-lg sm:hover:shadow-xl`}
               >
                 {/* Post Header */}
-                <div className="flex items-center justify-between px-4 py-3">
-                  <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <div className="relative">
-                      <div className={`w-11 h-11 rounded-full overflow-hidden ring-2 ${
+                <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                    <div className="relative flex-shrink-0">
+                      <div className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full overflow-hidden ring-2 ${
                         post.type === "reel" 
                           ? 'ring-gradient-to-tr from-purple-500 to-pink-500' 
                           : isDark ? 'ring-white/10' : 'ring-gray-200'
@@ -229,63 +229,66 @@ export default function Startup() {
                         />
                       </div>
                       {post.type === "reel" && (
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <div className="hidden sm:flex absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full items-center justify-center">
                           <FaPlay size={10} className="text-white ml-0.5" />
                         </div>
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <span className={`font-bold text-sm truncate ${
+                    <div className="flex-1 min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-1 sm:gap-1.5">
+                        <span className={`font-bold text-xs sm:text-sm truncate ${
                           isDark ? 'text-white' : 'text-gray-900'
                         }`}>
                           {post.displayName}
                         </span>
                         {post.isVerified && (
-                          <MdVerified className="text-[#00B8A9] flex-shrink-0" size={16} />
+                          <MdVerified className="text-[#00B8A9] flex-shrink-0" size={14} />
                         )}
                       </div>
-                      <div className={`flex items-center gap-1.5 text-xs ${
+                      <div className={`flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs ${
                         isDark ? 'text-white/50' : 'text-gray-500'
                       }`}>
-                        <span>@{post.username}</span>
-                        <span>•</span>
-                        <span>{post.timeAgo}</span>
-                        <FaGlobeAmericas size={10} className="ml-0.5" />
+                        <span className="truncate">@{post.username}</span>
+                        <span className="hidden sm:inline">•</span>
+                        <span className="hidden sm:inline">{post.timeAgo}</span>
+                        <span className="sm:hidden">{post.timeAgo}</span>
+                        <FaGlobeAmericas size={9} className="ml-0.5 hidden sm:block" />
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
                     {!post.isSupporting && (
                       <button
                         onClick={() => toggleSupport(post.id)}
-                        className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-105 active:scale-95"
+                        className="px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1 sm:gap-1.5 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-105 active:scale-95"
                       >
-                        <FaUserPlus size={12} />
-                        Support
+                        <FaUserPlus size={10} className="sm:hidden" />
+                        <FaUserPlus size={12} className="hidden sm:block" />
+                        <span className="hidden sm:inline">Support</span>
                       </button>
                     )}
-                    <button className={`p-2 rounded-full transition-colors ${
+                    <button className={`p-1.5 sm:p-2 rounded-full transition-colors ${
                       isDark ? 'text-white/60 hover:bg-white/10' : 'text-gray-500 hover:bg-gray-100'
                     }`}>
-                      <FaEllipsisH size={16} />
+                      <FaEllipsisH size={14} className="sm:hidden" />
+                      <FaEllipsisH size={16} className="hidden sm:block" />
                     </button>
                   </div>
                 </div>
 
                 {/* Caption - Before Media (LinkedIn/X style) */}
                 {post.caption && (
-                  <div className="px-4 pb-3">
-                    <p className={`text-sm sm:text-base leading-relaxed ${
+                  <div className="px-3 sm:px-4 pb-2.5 sm:pb-3">
+                    <p className={`text-xs sm:text-sm md:text-base leading-relaxed break-words ${
                       isDark ? 'text-white/90' : 'text-gray-900'
                     }`}>
                       {post.caption}
                     </p>
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-1.5 sm:mt-2">
                       {post.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className={`text-sm font-medium ${
+                          className={`text-xs sm:text-sm font-medium ${
                             isDark ? 'text-[#00B8A9] hover:text-[#00A89A]' : 'text-[#00B8A9] hover:text-[#00A89A]'
                           } cursor-pointer transition-colors`}
                         >
@@ -297,7 +300,7 @@ export default function Startup() {
                 )}
 
                 {/* Media */}
-                <div className="relative w-full aspect-square sm:aspect-video bg-black">
+                <div className="relative w-full aspect-square sm:aspect-video bg-black overflow-hidden">
                   {post.type === "reel" ? (
                     <>
                       <video
@@ -340,49 +343,61 @@ export default function Startup() {
                 </div>
 
                 {/* Engagement Stats - Unique Compact Design */}
-                <div className={`px-4 py-3 flex items-center gap-4 text-xs border-b ${
+                <div className={`px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs border-b ${
                   isDark ? 'border-white/[0.08]' : 'border-gray-200'
                 }`}>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     <button
                       onClick={() => toggleLike(post.id)}
-                      className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 ${
+                      className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 ${
                         post.liked 
                           ? isDark ? 'bg-red-500/20 text-red-400' : 'bg-red-50 text-red-600'
                           : isDark ? 'bg-white/5 text-white/60 hover:bg-white/10' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
                       {post.liked ? (
-                        <FaHeart size={12} fill="currentColor" />
+                        <FaHeart size={11} className="sm:hidden" fill="currentColor" />
                       ) : (
-                        <FaRegHeart size={12} />
+                        <FaRegHeart size={11} className="sm:hidden" />
+                      )}
+                      {post.liked ? (
+                        <FaHeart size={12} className="hidden sm:block" fill="currentColor" />
+                      ) : (
+                        <FaRegHeart size={12} className="hidden sm:block" />
                       )}
                       <span className="font-semibold">{formatNumber(post.likes)}</span>
                     </button>
-                    <button className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 ${
+                    <button className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 ${
                       isDark ? 'bg-white/5 text-white/60 hover:bg-white/10' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}>
-                      <FaRegComment size={12} />
+                      <FaRegComment size={11} className="sm:hidden" />
+                      <FaRegComment size={12} className="hidden sm:block" />
                       <span className="font-semibold">{formatNumber(post.comments)}</span>
                     </button>
-                    <button className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 ${
+                    <button className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 ${
                       isDark ? 'bg-white/5 text-white/60 hover:bg-white/10' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}>
-                      <FaShare size={12} />
+                      <FaShare size={11} className="sm:hidden" />
+                      <FaShare size={12} className="hidden sm:block" />
                       <span className="font-semibold">{formatNumber(post.shares)}</span>
                     </button>
                     <button
                       onClick={() => toggleSave(post.id)}
-                      className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 ${
+                      className={`px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full flex items-center gap-1 sm:gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 ${
                         post.saved
                           ? isDark ? 'bg-amber-500/20 text-amber-400' : 'bg-amber-50 text-amber-600'
                           : isDark ? 'bg-white/5 text-white/60 hover:bg-white/10' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
                       {post.saved ? (
-                        <FaBookmark size={12} fill="currentColor" />
+                        <FaBookmark size={11} className="sm:hidden" fill="currentColor" />
                       ) : (
-                        <FaRegBookmark size={12} />
+                        <FaRegBookmark size={11} className="sm:hidden" />
+                      )}
+                      {post.saved ? (
+                        <FaBookmark size={12} className="hidden sm:block" fill="currentColor" />
+                      ) : (
+                        <FaRegBookmark size={12} className="hidden sm:block" />
                       )}
                     </button>
                   </div>
@@ -390,9 +405,9 @@ export default function Startup() {
 
 
                 {/* Comment Input - Unique Design */}
-                <div className="px-4 py-3.5">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-full overflow-hidden ring-2 transition-all ${
+                <div className="px-3 sm:px-4 py-2.5 sm:py-3.5">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden ring-2 transition-all flex-shrink-0 ${
                       isDark ? 'ring-white/10 hover:ring-[#00B8A9]/30' : 'ring-gray-200 hover:ring-[#00B8A9]/30'
                     }`}>
                       <img
@@ -401,17 +416,17 @@ export default function Startup() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="flex-1 relative group">
+                    <div className="flex-1 relative group min-w-0">
                       <input
                         type="text"
                         placeholder="Share your thoughts..."
-                        className={`w-full px-4 py-2.5 pr-20 rounded-xl text-sm transition-all duration-300 ${
+                        className={`w-full px-3 sm:px-4 py-2 sm:py-2.5 pr-16 sm:pr-20 rounded-lg sm:rounded-xl text-xs sm:text-sm transition-all duration-300 ${
                           isDark
                             ? 'bg-white/5 text-white placeholder-white/40 border border-white/10 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20 focus:bg-white/10'
                             : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20 focus:bg-white'
                         } outline-none`}
                       />
-                      <button className={`absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                      <button className={`absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-semibold transition-all ${
                         isDark
                           ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] opacity-0 group-focus-within:opacity-100 pointer-events-none group-focus-within:pointer-events-auto'
                           : 'bg-[#00B8A9] text-white hover:bg-[#00A89A] opacity-0 group-focus-within:opacity-100 pointer-events-none group-focus-within:pointer-events-auto'
