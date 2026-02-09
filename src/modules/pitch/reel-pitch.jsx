@@ -244,9 +244,9 @@ export default function ReelPitch() {
     const state = reelStates[pitch.id] || { isLiked: false, isSaved: false, isPlaying: false, isMuted: true };
     
     return (
-      <div key={pitch.id} className="w-full h-screen flex-shrink-0 relative">
+      <div key={pitch.id} className="w-full h-screen flex-shrink-0 relative overflow-hidden">
         {/* Video/Image Container */}
-        <div className="relative w-full h-full flex items-center justify-center bg-black">
+        <div className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden">
           <video
             ref={(el) => (videoRefs.current[pitch.id] = el)}
             src={pitch.video}
@@ -311,7 +311,7 @@ export default function ReelPitch() {
           )}
 
           {/* Right Side - User Info & Interaction Buttons */}
-          <div className="absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2.5 sm:gap-4 md:gap-6">
+          <div className="absolute right-1 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 sm:gap-3 md:gap-6 max-h-[90vh] overflow-hidden">
             {/* User Avatar */}
             <div className="relative">
               <div className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden ring-2 ring-purple-500">
@@ -388,33 +388,33 @@ export default function ReelPitch() {
           </div>
 
           {/* Bottom Section */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none max-w-full overflow-hidden">
             {/* Gradient Overlay */}
-            <div className={`h-44 sm:h-56 md:h-64 bg-gradient-to-t pointer-events-none ${
+            <div className={`h-40 sm:h-52 md:h-64 bg-gradient-to-t pointer-events-none ${
               isDark ? 'from-black via-black/85 to-transparent' : 'from-white via-white/85 to-transparent'
             }`}></div>
 
             {/* Content */}
-            <div className={`absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 pointer-events-auto ${isDark ? 'text-white' : 'text-black'}`}>
+            <div className={`absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 md:p-5 pointer-events-auto max-w-full overflow-hidden ${isDark ? 'text-white' : 'text-black'}`}>
               {/* User Info */}
-              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-2.5">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full overflow-hidden ring-2 ring-purple-500 flex-shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 md:mb-2.5">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full overflow-hidden ring-2 ring-purple-500 flex-shrink-0">
                   <img
                     src={pitch.profilePhoto}
                     alt={pitch.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="min-w-0 flex-1 pr-2">
-                  <h3 className="font-bold text-xs sm:text-sm md:text-base truncate">{pitch.name}</h3>
-                  <p className="text-[10px] sm:text-xs md:text-sm opacity-80 truncate">{pitch.hashtag}</p>
+                <div className="min-w-0 flex-1 pr-1 sm:pr-2 overflow-hidden">
+                  <h3 className="font-bold text-[10px] sm:text-xs md:text-base truncate">{pitch.name}</h3>
+                  <p className="text-[9px] sm:text-[10px] md:text-sm opacity-80 truncate">{pitch.hashtag}</p>
                 </div>
               </div>
 
               {/* Support Button */}
               <button
                 onClick={() => handleSupport(pitch.id)}
-                className={`w-full py-2 sm:py-2.5 md:py-3 rounded-lg text-xs sm:text-sm md:text-base font-semibold mb-2.5 sm:mb-3 md:mb-4 transition-all active:scale-95 ${
+                className={`w-full py-2 sm:py-2 md:py-3 rounded-lg text-[10px] sm:text-xs md:text-base font-semibold mb-2 sm:mb-2.5 md:mb-4 transition-all active:scale-95 ${
                   isDark 
                     ? 'bg-gray-800 text-white hover:bg-gray-700' 
                     : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
@@ -424,32 +424,32 @@ export default function ReelPitch() {
               </button>
 
               {/* Financial Details */}
-              <div className="flex gap-2 sm:gap-2.5 md:gap-3 mb-2 sm:mb-2.5 md:mb-3">
-                <div className={`flex-1 px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg transition-all ${
+              <div className="flex gap-1.5 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 md:mb-3">
+                <div className={`flex-1 px-2 sm:px-2.5 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-lg transition-all min-w-0 ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.4)]'
                 }`}>
-                  <p className="text-[9px] sm:text-[10px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Ask</p>
-                  <p className="font-bold text-[10px] sm:text-xs md:text-sm leading-tight break-words">{pitch.dealInfo.ask} for {pitch.dealInfo.equity}</p>
+                  <p className="text-[8px] sm:text-[9px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Ask</p>
+                  <p className="font-bold text-[9px] sm:text-[10px] md:text-sm leading-tight break-words">{pitch.dealInfo.ask} for {pitch.dealInfo.equity}</p>
                 </div>
-                <div className={`flex-1 px-2.5 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg transition-all ${
+                <div className={`flex-1 px-2 sm:px-2.5 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-lg transition-all min-w-0 ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] text-black hover:shadow-[0_0_20px_rgba(128,229,255,0.5)]' 
                     : 'bg-gradient-to-r from-[#008C81] to-[#00B8A9] text-white hover:shadow-[0_0_20px_rgba(0,140,129,0.4)]'
                 }`}>
-                  <p className="text-[9px] sm:text-[10px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Revenue</p>
-                  <p className="font-bold text-[10px] sm:text-xs md:text-sm leading-tight break-words">{pitch.dealInfo.revenue} Revenue</p>
+                  <p className="text-[8px] sm:text-[9px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Revenue</p>
+                  <p className="font-bold text-[9px] sm:text-[10px] md:text-sm leading-tight break-words">{pitch.dealInfo.revenue} Revenue</p>
                 </div>
               </div>
 
               {/* Team Info */}
-              <p className={`text-[10px] sm:text-xs md:text-sm mb-1 sm:mb-1.5 md:mb-2 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+              <p className={`text-[9px] sm:text-[10px] md:text-sm mb-1 sm:mb-1.5 md:mb-2 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
                 Team of {pitch.teamSize}
               </p>
 
               {/* Description */}
-              <p className={`text-[10px] sm:text-xs md:text-sm line-clamp-2 ${isDark ? 'text-white/90' : 'text-gray-900'}`}>
+              <p className={`text-[9px] sm:text-[10px] md:text-sm line-clamp-2 ${isDark ? 'text-white/90' : 'text-gray-900'}`}>
                 {pitch.description}
               </p>
             </div>
@@ -462,7 +462,7 @@ export default function ReelPitch() {
   return (
     <div className={`fixed inset-0 z-50 ${isDark ? 'bg-black' : 'bg-gray-100'} overflow-hidden`}>
       {/* Container with max-width for larger screens */}
-      <div className="w-full h-full max-w-md mx-auto relative shadow-2xl overflow-hidden">
+      <div className="w-full h-full max-w-md mx-auto relative shadow-2xl overflow-hidden max-h-screen">
         {/* Header - Fixed */}
         <div className={`absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 ${
           isDark ? 'bg-gradient-to-b from-black/80 to-transparent' : 'bg-gradient-to-b from-white/80 to-transparent'
@@ -485,7 +485,7 @@ export default function ReelPitch() {
         {/* Scrollable Reels Container */}
         <div 
           ref={containerRef}
-          className="w-full h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide"
+          className="w-full h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide max-h-screen"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {pitches.map((pitch, index) => (
