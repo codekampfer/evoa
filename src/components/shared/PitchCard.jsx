@@ -125,26 +125,36 @@ export default function PitchCard({ pitch, onLike, onComment, onShare, onSave })
 
         {/* Deal Info */}
         {pitch.dealInfo && (
-          <div className={`p-3 rounded-lg mb-2 ${isDark ? 'bg-white/5' : 'bg-black/5'}`}>
-            <div className="grid grid-cols-3 gap-2 text-xs">
-              <div>
-                <span className={isDark ? 'text-white/60' : 'text-black/60'}>Raising</span>
-                <p className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>
-                  ₹{pitch.dealInfo.amount || '0'}
-                </p>
-              </div>
-              <div>
-                <span className={isDark ? 'text-white/60' : 'text-black/60'}>Equity</span>
-                <p className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>
-                  {pitch.dealInfo.equity || '0'}%
-                </p>
-              </div>
-              <div>
-                <span className={isDark ? 'text-white/60' : 'text-black/60'}>Revenue</span>
-                <p className={`font-semibold ${isDark ? 'text-white' : 'text-black'}`}>
-                  ₹{pitch.dealInfo.revenue || '0'}
-                </p>
-              </div>
+          <div className="grid grid-cols-3 gap-2 mb-2">
+            <div className={`px-3 py-2 rounded-lg transition-all ${
+              isDark 
+                ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+                : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+            }`}>
+              <span className="text-xs opacity-90 block mb-1">Raising</span>
+              <p className="font-bold text-sm">
+                ₹{pitch.dealInfo.amount || '0'}
+              </p>
+            </div>
+            <div className={`px-3 py-2 rounded-lg transition-all ${
+              isDark 
+                ? 'bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] text-black' 
+                : 'bg-gradient-to-r from-[#008C81] to-[#00B8A9] text-white'
+            }`}>
+              <span className="text-xs opacity-90 block mb-1">Equity</span>
+              <p className="font-bold text-sm">
+                {pitch.dealInfo.equity || '0'}%
+              </p>
+            </div>
+            <div className={`px-3 py-2 rounded-lg transition-all ${
+              isDark 
+                ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 
+                : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white'
+            }`}>
+              <span className="text-xs opacity-90 block mb-1">Revenue</span>
+              <p className="font-bold text-sm">
+                ₹{pitch.dealInfo.revenue || '0'}
+              </p>
             </div>
           </div>
         )}

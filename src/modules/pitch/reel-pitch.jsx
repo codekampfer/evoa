@@ -265,11 +265,19 @@ export default function ReelPitch() {
 
             {/* Financial Details */}
             <div className="flex gap-3 mb-3">
-              <div className="flex-1 bg-purple-600 text-white px-4 py-3 rounded-lg">
+              <div className={`flex-1 px-4 py-3 rounded-lg transition-all ${
+                isDark 
+                  ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
+                  : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.4)]'
+              }`}>
                 <p className="text-xs opacity-90 mb-1">Ask</p>
                 <p className="font-bold text-sm">{pitch.dealInfo.ask} for {pitch.dealInfo.equity}</p>
               </div>
-              <div className="flex-1 bg-green-600 text-white px-4 py-3 rounded-lg">
+              <div className={`flex-1 px-4 py-3 rounded-lg transition-all ${
+                isDark 
+                  ? 'bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] text-black hover:shadow-[0_0_20px_rgba(128,229,255,0.5)]' 
+                  : 'bg-gradient-to-r from-[#008C81] to-[#00B8A9] text-white hover:shadow-[0_0_20px_rgba(0,140,129,0.4)]'
+              }`}>
                 <p className="text-xs opacity-90 mb-1">Revenue</p>
                 <p className="font-bold text-sm">{pitch.dealInfo.revenue} Revenue</p>
               </div>
