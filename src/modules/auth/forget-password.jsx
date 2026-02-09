@@ -128,7 +128,7 @@ export default function ForgetPassword() {
           </div>
 
           {/* Form Container with Animation */}
-          <div className={`rounded-2xl p-5 sm:p-6 animate-fadeInUp ${
+          <div className={`rounded-3xl p-5 sm:p-6 animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'
@@ -141,7 +141,7 @@ export default function ForgetPassword() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 transform hover:scale-[1.02] focus:scale-[1.02] ${
+                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border rounded-xl focus:outline-none focus:ring-2 transition-all duration-300 transform hover:scale-[1.02] focus:scale-[1.02] ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                       : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -154,7 +154,7 @@ export default function ForgetPassword() {
                 <button
                   type="button"
                   onClick={handleSendOTP}
-                  className="w-full py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] relative overflow-hidden group"
+                  className="w-full py-2.5 sm:py-3 text-sm font-semibold rounded-xl transition-all duration-300 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] relative overflow-hidden group"
                 >
                   <span className="relative z-10">Send OTP Code</span>
                   {/* Shimmer effect */}
@@ -165,7 +165,7 @@ export default function ForgetPassword() {
           </div>
 
           {/* Sign In Link with Animation */}
-          <div className={`mt-4 text-center py-4 rounded-2xl animate-fadeInUp ${
+          <div className={`mt-4 text-center py-4 rounded-3xl animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'

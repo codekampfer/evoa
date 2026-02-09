@@ -117,7 +117,7 @@ export default function CreateNewPassword() {
           </div>
 
           {/* Form Container */}
-          <div className={`-2xl p-5 sm:p-6 ${
+          <div className={`rounded-3xl p-5 sm:p-6 ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -129,10 +129,10 @@ export default function CreateNewPassword() {
                   <input
                     type={showNewPassword ? "text" : "password"}
                     placeholder="New Password"
-                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 ${
+                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all pr-12 ${
                       isDark 
-                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
-                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
+                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
+                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
                     }`}
                   />
                   <button
@@ -154,10 +154,10 @@ export default function CreateNewPassword() {
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm Password"
-                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border focus:outline-none focus:ring-1 transition-all pr-12 ${
+                    className={`w-full px-4 py-2.5 sm:py-3  text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all pr-12 ${
                       isDark 
-                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-white/40 focus:ring-white/20' 
-                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-black/40 focus:ring-black/20'
+                        ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
+                        : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
                     }`}
                   />
                   <button
@@ -177,11 +177,7 @@ export default function CreateNewPassword() {
               <button
                 type="button"
                 onClick={handleUpdatePassword}
-                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 ${
-                  isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
-                }`}
+                className="w-full py-2.5 sm:py-3 text-sm font-semibold rounded-xl transition-all duration-300 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
               >
                 Update Password
               </button>
@@ -189,7 +185,7 @@ export default function CreateNewPassword() {
           </div>
 
           {/* Sign In Link */}
-          <div className={`mt-4 text-center py-4 -2xl ${
+          <div className={`mt-4 text-center py-4 rounded-3xl ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -200,9 +196,7 @@ export default function CreateNewPassword() {
               Remember your password?{' '}
               <Link 
                 to="/login" 
-                className={`font-semibold transition-colors ${
-                  isDark ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'
-                }`}
+                className="font-semibold transition-colors text-[#00B8A9] hover:text-[#00A89A]"
               >
                 Sign in
               </Link>

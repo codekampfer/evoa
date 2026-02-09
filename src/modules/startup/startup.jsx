@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
-import StatusComponent from "../../components/shared/StatusComponent";
 import { 
   FaHeart,
   FaBookmark,
@@ -88,7 +87,6 @@ export default function Startup() {
     }
   ]);
 
-  const [activeTab, setActiveTab] = useState('forYou'); // 'forYou' or 'following'
   const videoRefs = useRef({});
 
   const toggleLike = (postId) => {
@@ -160,8 +158,8 @@ export default function Startup() {
             <img src={logo} alt="EVO-A" className="h-8 w-8 sm:h-9 sm:w-9 object-contain rounded-xl" />
             <span className={`text-xl sm:text-2xl font-black tracking-tight bg-gradient-to-r ${
               isDark 
-                ? 'from-white via-blue-100 to-purple-200 text-transparent bg-clip-text' 
-                : 'from-gray-900 via-blue-900 to-purple-900 text-transparent bg-clip-text'
+                ? 'from-white via-[#00B8A9] to-[#00A89A] text-transparent bg-clip-text' 
+                : 'from-gray-900 via-[#00B8A9] to-[#00A89A] text-transparent bg-clip-text'
             }`}>EVO-A</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -169,8 +167,8 @@ export default function Startup() {
               onClick={() => navigate('/explore')} 
               className={`p-2 rounded-xl transition-all duration-200 ${
                 isDark 
-                  ? 'text-white/70 hover:text-white hover:bg-white/10' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
+                  : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
             >
               <FaSearch size={20} />
@@ -179,8 +177,8 @@ export default function Startup() {
               onClick={() => navigate('/notifications')} 
               className={`p-2 rounded-xl transition-all duration-200 relative ${
                 isDark 
-                  ? 'text-white/70 hover:text-white hover:bg-white/10' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
+                  : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
             >
               <FaBell size={20} />
@@ -188,54 +186,11 @@ export default function Startup() {
             </button>
           </div>
         </div>
-
-        {/* Tab Switcher - X/TikTok Style */}
-        <div className={`flex items-center justify-center border-t ${
-          isDark ? 'border-white/[0.08]' : 'border-gray-200/60'
-        }`}>
-          <div className="flex gap-0 max-w-3xl w-full">
-            <button
-              onClick={() => setActiveTab('forYou')}
-              className={`flex-1 py-3 text-sm sm:text-base font-semibold transition-all duration-200 relative ${
-                activeTab === 'forYou'
-                  ? isDark ? 'text-white' : 'text-gray-900'
-                  : isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              For You
-              {activeTab === 'forYou' && (
-                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 rounded-full ${
-                  isDark ? 'bg-white' : 'bg-gray-900'
-                }`}></div>
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab('following')}
-              className={`flex-1 py-3 text-sm sm:text-base font-semibold transition-all duration-200 relative ${
-                activeTab === 'following'
-                  ? isDark ? 'text-white' : 'text-gray-900'
-                  : isDark ? 'text-white/50 hover:text-white/70' : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Following
-              {activeTab === 'following' && (
-                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-1 rounded-full ${
-                  isDark ? 'bg-white' : 'bg-gray-900'
-                }`}></div>
-              )}
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Main Content */}
-      <main className="pt-32 sm:pt-36">
+      <main className="pt-20 sm:pt-24">
         <div className="max-w-3xl mx-auto px-0 sm:px-4 pb-20">
-          {/* Stories/Status - Hidden on mobile for cleaner look */}
-          <div className="hidden sm:block mb-6 px-4 sm:px-0">
-            <StatusComponent />
-          </div>
-
           {/* Feed Posts - Enhanced Cards */}
           <div className="space-y-0 sm:space-y-4">
             {posts.map((post) => (
@@ -276,7 +231,7 @@ export default function Startup() {
                           {post.displayName}
                         </span>
                         {post.isVerified && (
-                          <MdVerified className="text-blue-500 flex-shrink-0" size={16} />
+                          <MdVerified className="text-[#00B8A9] flex-shrink-0" size={16} />
                         )}
                       </div>
                       <div className={`flex items-center gap-1.5 text-xs ${
@@ -293,11 +248,7 @@ export default function Startup() {
                     {!post.isFollowing && (
                       <button
                         onClick={() => toggleFollow(post.id)}
-                        className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
-                          isDark 
-                            ? 'bg-white text-black hover:bg-white/90' 
-                            : 'bg-gray-900 text-white hover:bg-gray-800'
-                        }`}
+                        className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-105 active:scale-95"
                       >
                         <FaUserPlus size={12} />
                         Follow
@@ -324,8 +275,8 @@ export default function Startup() {
                         <span
                           key={index}
                           className={`text-sm font-medium ${
-                            isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                          } cursor-pointer`}
+                            isDark ? 'text-[#00B8A9] hover:text-[#00A89A]' : 'text-[#00B8A9] hover:text-[#00A89A]'
+                          } cursor-pointer transition-colors`}
                         >
                           {tag}
                         </span>
@@ -377,90 +328,130 @@ export default function Startup() {
                   )}
                 </div>
 
-                {/* Engagement Stats */}
-                <div className={`px-4 py-2.5 flex items-center justify-between text-xs border-b ${
-                  isDark ? 'text-white/60 border-white/[0.08]' : 'text-gray-600 border-gray-200'
+                {/* Engagement Stats - Unique Compact Design */}
+                <div className={`px-4 py-3 flex items-center gap-4 text-xs border-b ${
+                  isDark ? 'border-white/[0.08]' : 'border-gray-200'
                 }`}>
-                  <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1.5">
-                      <div className="flex -space-x-1">
-                        <div className="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center border-2 border-current">
-                          <FaHeart size={10} className="text-white" />
-                        </div>
-                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center border-2 border-current">
-                          <span className="text-white text-[10px]">👍</span>
-                        </div>
-                      </div>
-                      {formatNumber(post.likes)}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span>{formatNumber(post.comments)} comments</span>
-                    <span>{formatNumber(post.shares)} shares</span>
+                  <div className="flex items-center gap-2">
+                    <div className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 ${
+                      post.liked 
+                        ? isDark ? 'bg-red-500/20 text-red-400' : 'bg-red-50 text-red-600'
+                        : isDark ? 'bg-white/5 text-white/60' : 'bg-gray-100 text-gray-600'
+                    } transition-all`}>
+                      {post.liked ? (
+                        <FaHeart size={12} fill="currentColor" />
+                      ) : (
+                        <FaRegHeart size={12} />
+                      )}
+                      <span className="font-semibold">{formatNumber(post.likes)}</span>
+                    </div>
+                    <div className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 ${
+                      isDark ? 'bg-white/5 text-white/60' : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      <FaRegComment size={12} />
+                      <span className="font-semibold">{formatNumber(post.comments)}</span>
+                    </div>
+                    <div className={`px-2.5 py-1 rounded-full flex items-center gap-1.5 ${
+                      isDark ? 'bg-white/5 text-white/60' : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      <FaShare size={12} />
+                      <span className="font-semibold">{formatNumber(post.shares)}</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Action Buttons - Modern Layout */}
-                <div className={`px-2 py-2 flex items-center justify-around border-b ${
+                {/* Action Buttons - Unique Vertical Icon Layout */}
+                <div className={`px-3 py-3 flex items-center gap-1 border-b ${
                   isDark ? 'border-white/[0.08]' : 'border-gray-200'
                 }`}>
                   <button
                     onClick={() => toggleLike(post.id)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                    className={`group relative flex flex-col items-center justify-center gap-1 px-3 py-2.5 rounded-xl transition-all duration-300 flex-1 ${
                       post.liked
                         ? 'text-red-500'
                         : isDark 
-                          ? 'text-white/70 hover:bg-white/10 hover:text-white' 
-                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                          ? 'text-white/60 hover:text-white hover:bg-white/5' 
+                          : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
-                    {post.liked ? (
-                      <FaHeart size={18} fill="currentColor" />
-                    ) : (
-                      <FaRegHeart size={18} />
-                    )}
-                    <span className="text-sm font-medium hidden sm:inline">Like</span>
+                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                      post.liked
+                        ? 'bg-red-500/10'
+                        : isDark 
+                          ? 'bg-white/5 group-hover:bg-white/10' 
+                          : 'bg-gray-100 group-hover:bg-gray-200'
+                    }`}>
+                      {post.liked ? (
+                        <FaHeart size={16} fill="currentColor" />
+                      ) : (
+                        <FaRegHeart size={16} />
+                      )}
+                    </div>
+                    <span className="text-[10px] font-medium uppercase tracking-wide">Like</span>
                   </button>
-                  <button className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                  
+                  <button className={`group relative flex flex-col items-center justify-center gap-1 px-3 py-2.5 rounded-xl transition-all duration-300 flex-1 ${
                     isDark 
-                      ? 'text-white/70 hover:bg-white/10 hover:text-white' 
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      ? 'text-white/60 hover:text-[#00B8A9] hover:bg-white/5' 
+                      : 'text-gray-500 hover:text-[#00B8A9] hover:bg-gray-50'
                   }`}>
-                    <FaRegComment size={18} />
-                    <span className="text-sm font-medium hidden sm:inline">Comment</span>
+                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                      isDark 
+                        ? 'bg-white/5 group-hover:bg-[#00B8A9]/10' 
+                        : 'bg-gray-100 group-hover:bg-[#00B8A9]/10'
+                    }`}>
+                      <FaRegComment size={16} />
+                    </div>
+                    <span className="text-[10px] font-medium uppercase tracking-wide">Comment</span>
                   </button>
-                  <button className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                  
+                  <button className={`group relative flex flex-col items-center justify-center gap-1 px-3 py-2.5 rounded-xl transition-all duration-300 flex-1 ${
                     isDark 
-                      ? 'text-white/70 hover:bg-white/10 hover:text-white' 
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      ? 'text-white/60 hover:text-[#00B8A9] hover:bg-white/5' 
+                      : 'text-gray-500 hover:text-[#00B8A9] hover:bg-gray-50'
                   }`}>
-                    <FaShare size={18} />
-                    <span className="text-sm font-medium hidden sm:inline">Share</span>
+                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                      isDark 
+                        ? 'bg-white/5 group-hover:bg-[#00B8A9]/10' 
+                        : 'bg-gray-100 group-hover:bg-[#00B8A9]/10'
+                    }`}>
+                      <FaShare size={16} />
+                    </div>
+                    <span className="text-[10px] font-medium uppercase tracking-wide">Share</span>
                   </button>
+                  
                   <button
                     onClick={() => toggleSave(post.id)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 flex-1 justify-center ${
+                    className={`group relative flex flex-col items-center justify-center gap-1 px-3 py-2.5 rounded-xl transition-all duration-300 flex-1 ${
                       post.saved
                         ? 'text-amber-500'
                         : isDark 
-                          ? 'text-white/70 hover:bg-white/10 hover:text-white' 
-                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                          ? 'text-white/60 hover:text-amber-400 hover:bg-white/5' 
+                          : 'text-gray-500 hover:text-amber-500 hover:bg-gray-50'
                     }`}
                   >
-                    {post.saved ? (
-                      <FaBookmark size={18} fill="currentColor" />
-                    ) : (
-                      <FaRegBookmark size={18} />
-                    )}
-                    <span className="text-sm font-medium hidden sm:inline">Save</span>
+                    <div className={`p-2 rounded-lg transition-all duration-300 ${
+                      post.saved
+                        ? 'bg-amber-500/10'
+                        : isDark 
+                          ? 'bg-white/5 group-hover:bg-amber-500/10' 
+                          : 'bg-gray-100 group-hover:bg-amber-50'
+                    }`}>
+                      {post.saved ? (
+                        <FaBookmark size={16} fill="currentColor" />
+                      ) : (
+                        <FaRegBookmark size={16} />
+                      )}
+                    </div>
+                    <span className="text-[10px] font-medium uppercase tracking-wide">Save</span>
                   </button>
                 </div>
 
-                {/* Comment Input */}
-                <div className="px-4 py-3">
+                {/* Comment Input - Unique Design */}
+                <div className="px-4 py-3.5">
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full overflow-hidden ring-2 ${
-                      isDark ? 'ring-white/10' : 'ring-gray-200'
+                    <div className={`w-9 h-9 rounded-full overflow-hidden ring-2 transition-all ${
+                      isDark ? 'ring-white/10 hover:ring-[#00B8A9]/30' : 'ring-gray-200 hover:ring-[#00B8A9]/30'
                     }`}>
                       <img
                         src="https://i.pravatar.cc/150?img=5"
@@ -468,15 +459,24 @@ export default function Startup() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <input
-                      type="text"
-                      placeholder="Write a comment..."
-                      className={`flex-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                    <div className="flex-1 relative group">
+                      <input
+                        type="text"
+                        placeholder="Share your thoughts..."
+                        className={`w-full px-4 py-2.5 pr-20 rounded-xl text-sm transition-all duration-300 ${
+                          isDark
+                            ? 'bg-white/5 text-white placeholder-white/40 border border-white/10 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20 focus:bg-white/10'
+                            : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20 focus:bg-white'
+                        } outline-none`}
+                      />
+                      <button className={`absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                         isDark
-                          ? 'bg-white/5 text-white placeholder-white/40 border border-white/10 focus:border-white/20 focus:bg-white/10'
-                          : 'bg-gray-100 text-gray-900 placeholder-gray-500 border border-gray-200 focus:border-gray-300 focus:bg-gray-50'
-                      } outline-none`}
-                    />
+                          ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] opacity-0 group-focus-within:opacity-100 pointer-events-none group-focus-within:pointer-events-auto'
+                          : 'bg-[#00B8A9] text-white hover:bg-[#00A89A] opacity-0 group-focus-within:opacity-100 pointer-events-none group-focus-within:pointer-events-auto'
+                      }`}>
+                        Post
+                      </button>
+                    </div>
                   </div>
                 </div>
               </article>

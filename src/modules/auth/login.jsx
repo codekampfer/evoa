@@ -251,7 +251,7 @@ export default function Login() {
           </div>
 
           {/* Form Container with Animation */}
-          <div className={`rounded-2xl p-5 sm:p-6 animate-fadeInUp ${
+          <div className={`rounded-3xl p-5 sm:p-6 animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'
@@ -262,7 +262,7 @@ export default function Login() {
             >
               {/* Error Message with Animation */}
               {error && (
-                <div className={`p-3 text-sm border animate-shake ${
+                <div className={`p-3 text-sm border rounded-xl animate-shake ${
                   isDark 
                     ? 'bg-red-500/10 border-red-500/30 text-red-400' 
                     : 'bg-red-50 border-red-200 text-red-600'
@@ -281,7 +281,7 @@ export default function Login() {
                   placeholder="Email"
                   required
                   disabled={loading}
-                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] focus:scale-[1.02] ${
+                  className={`w-full px-4 py-2.5 sm:py-3 text-sm border rounded-xl focus:outline-none focus:ring-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] focus:scale-[1.02] ${
                     isDark 
                       ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                       : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -300,7 +300,7 @@ export default function Login() {
                     placeholder="Password"
                     required
                     disabled={loading}
-                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border focus:outline-none focus:ring-2 transition-all duration-300 pr-12 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] focus:scale-[1.02] ${
+                    className={`w-full px-4 py-2.5 sm:py-3 text-sm border rounded-xl focus:outline-none focus:ring-2 transition-all duration-300 pr-12 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] focus:scale-[1.02] ${
                       isDark 
                         ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' 
                         : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'
@@ -324,7 +324,7 @@ export default function Login() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] relative overflow-hidden group"
+                  className="w-full py-2.5 sm:py-3 text-sm font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] relative overflow-hidden group"
                 >
                   <span className="relative z-10">{loading ? 'Signing in...' : 'Sign in'}</span>
                   {/* Shimmer effect */}
@@ -351,7 +351,7 @@ export default function Login() {
                   type="button"
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className={`w-full py-2.5 text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] group ${
+                  className={`w-full py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] group ${
                     isDark 
                       ? 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30' 
                       : 'bg-black/5 text-black border border-black/20 hover:bg-black/10 hover:border-black/30'
@@ -375,7 +375,7 @@ export default function Login() {
           </div>
 
           {/* Sign Up Link with Animation */}
-          <div className={`mt-4 text-center py-4 rounded-2xl animate-fadeInUp ${
+          <div className={`mt-4 text-center py-4 rounded-3xl animate-fadeInUp ${
             isDark 
               ? 'bg-black/50 border border-white/10 backdrop-blur-sm' 
               : 'bg-white/90 border border-black/10 backdrop-blur-sm'

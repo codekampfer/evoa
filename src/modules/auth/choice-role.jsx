@@ -106,14 +106,12 @@ export default function ChoiceRole() {
                 onClick={() => setSelectedRole(role.id)}
                 onMouseEnter={() => setHoveredRole(role.id)}
                 onMouseLeave={() => setHoveredRole(null)}
-                className={`relative p-7 transition-all duration-300 border-2 ${
+                className={`relative p-7 transition-all duration-300 border-2 rounded-3xl ${
                   isSelected 
-                    ? isDark
-                      ? 'bg-white text-black border-white shadow-2xl transform scale-105'
-                      : 'bg-black text-white border-black shadow-2xl transform scale-105'
+                    ? 'bg-[#00B8A9] text-white border-[#00B8A9] shadow-2xl shadow-[#00B8A9]/40 transform scale-105'
                     : isDark
-                      ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-lg'
+                      ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#00B8A9]/30'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-[#00B8A9]/30 hover:shadow-lg'
                 }`}
               >
                 {/* Selection Checkmark */}
@@ -121,7 +119,7 @@ export default function ChoiceRole() {
                   <div className="absolute top-5 right-5">
                     <IoCheckmarkCircle 
                       size={24} 
-                      className={isDark ? 'text-black' : 'text-white'}
+                      className="text-white"
                     />
                   </div>
                 )}
@@ -129,9 +127,7 @@ export default function ChoiceRole() {
                 {/* Icon Container */}
                 <div className={`w-20 h-20 mx-auto mb-6 flex items-center justify-center transition-all duration-300 ${
                   isSelected 
-                    ? isDark
-                      ? 'bg-black/10'
-                      : 'bg-white/20'
+                    ? 'bg-white/20'
                     : isDark
                       ? 'bg-white/10'
                       : 'bg-gray-200'
@@ -140,7 +136,7 @@ export default function ChoiceRole() {
                     size={38} 
                     className={
                       isSelected 
-                        ? isDark ? 'text-black' : 'text-white'
+                        ? 'text-white'
                         : isDark ? 'text-white' : 'text-black'
                     }
                   />
@@ -149,7 +145,7 @@ export default function ChoiceRole() {
                 {/* Role Title */}
                 <h3 className={`text-xl font-bold mb-3 ${
                   isSelected 
-                    ? isDark ? 'text-black' : 'text-white'
+                    ? 'text-white'
                     : isDark ? 'text-white' : 'text-black'
                 }`}>
                   {role.name}
@@ -158,7 +154,7 @@ export default function ChoiceRole() {
                 {/* Description */}
                 <p className={`text-sm mb-5 leading-relaxed min-h-[60px] ${
                   isSelected 
-                    ? isDark ? 'text-black/70' : 'text-white/80'
+                    ? 'text-white/90'
                     : isDark ? 'text-gray-400' : 'text-gray-600'
                 }`}>
                   {role.description}
@@ -167,19 +163,19 @@ export default function ChoiceRole() {
                 {/* Features List */}
                 <div className={`space-y-2.5 pt-5 border-t ${
                   isSelected
-                    ? isDark ? 'border-black/20' : 'border-white/20'
+                    ? 'border-white/20'
                     : isDark ? 'border-white/10' : 'border-gray-200'
                 }`}>
                   {role.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2.5">
                       <div className={`w-1.5 h-1.5 ${
                         isSelected 
-                          ? isDark ? 'bg-black/60' : 'bg-white/80'
+                          ? 'bg-white/80'
                           : isDark ? 'bg-white/50' : 'bg-gray-500'
                       }`}></div>
                       <span className={`text-xs ${
                         isSelected 
-                          ? isDark ? 'text-black/60' : 'text-white/70'
+                          ? 'text-white/80'
                           : isDark ? 'text-gray-500' : 'text-gray-600'
                       }`}>
                         {feature}
@@ -197,11 +193,9 @@ export default function ChoiceRole() {
           <button
             onClick={handleContinue}
             disabled={!selectedRole}
-            className={`group inline-flex items-center gap-3 px-10 py-4 text-base font-semibold transition-all duration-300 ${
+            className={`group inline-flex items-center gap-3 px-10 py-4 text-base font-semibold rounded-xl transition-all duration-300 ${
               selectedRole 
-                ? isDark
-                  ? 'bg-white text-black hover:scale-105 hover:shadow-2xl'
-                  : 'bg-black text-white hover:scale-105 hover:shadow-2xl'
+                ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] hover:scale-105 hover:shadow-2xl hover:shadow-[#00B8A9]/40'
                 : isDark
                   ? 'bg-white/10 text-gray-600 cursor-not-allowed'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'

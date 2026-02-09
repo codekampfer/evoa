@@ -147,7 +147,7 @@ export default function VerifyOTP() {
           </div>
 
           {/* Form Container */}
-          <div className={`-2xl p-5 sm:p-6 ${
+          <div className={`rounded-3xl p-5 sm:p-6 ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -166,10 +166,10 @@ export default function VerifyOTP() {
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
                     onPaste={handlePaste}
-                    className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-center text-xl sm:text-2xl font-bold  border focus:outline-none focus:ring-1 transition-all ${
+                    className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-center text-xl sm:text-2xl font-bold border rounded-xl focus:outline-none focus:ring-1 transition-all ${
                       isDark 
-                        ? 'bg-black/80 border-white/30 text-white focus:ring-white/20 focus:border-white/50' 
-                        : 'bg-white border-black/40 text-black focus:ring-black/20 focus:border-black/50'
+                        ? 'bg-black/80 border-white/30 text-white focus:ring-[#00B8A9]/30 focus:border-[#00B8A9]' 
+                        : 'bg-white border-black/40 text-black focus:ring-[#00B8A9]/30 focus:border-[#00B8A9]'
                     }`}
                   />
                 ))}
@@ -179,11 +179,7 @@ export default function VerifyOTP() {
               <button
                 type="button"
                 onClick={handleVerify}
-                className={`w-full py-2.5 sm:py-3  text-sm font-semibold transition-all duration-200 ${
-                  isDark 
-                    ? 'bg-white text-black hover:bg-white/90' 
-                    : 'bg-black text-white hover:bg-black/90'
-                }`}
+                className="w-full py-2.5 sm:py-3 text-sm font-semibold rounded-xl transition-all duration-300 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
               >
                 Verify Code
               </button>
@@ -191,7 +187,7 @@ export default function VerifyOTP() {
           </div>
 
           {/* Resend OTP Link */}
-          <div className={`mt-4 text-center py-4 -2xl ${
+          <div className={`mt-4 text-center py-4 rounded-3xl ${
             isDark 
               ? 'bg-black/50 border border-white/10' 
               : 'bg-white border border-black/10'
@@ -202,9 +198,7 @@ export default function VerifyOTP() {
               Didn't receive code?{' '}
               <a 
                 href="#" 
-                className={`font-semibold transition-colors ${
-                  isDark ? 'text-white hover:text-white/80' : 'text-black hover:text-black/80'
-                }`}
+                className="font-semibold transition-colors text-[#00B8A9] hover:text-[#00A89A]"
               >
                 Resend OTP
               </a>

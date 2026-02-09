@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
-import { FaBell, FaFire, FaDollarSign, FaRocket, FaCog } from "react-icons/fa";
+import { FaBell, FaFire, FaDollarSign, FaRocket, FaCog, FaArrowLeft } from "react-icons/fa";
 import logo from "../../assets/logo.avif";
 
 export default function Notifications() {
@@ -55,10 +55,20 @@ export default function Notifications() {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-gray-50'}`}>
       <div className="pt-16">
-        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div className="max-w-3xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
           {/* Header */}
           <div className="mb-4 sm:mb-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <button
+                onClick={() => navigate(-1)}
+                className={`p-2 rounded-xl transition-all ${
+                  isDark 
+                    ? 'text-white/70 hover:text-white hover:bg-white/10' 
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                <FaArrowLeft size={18} />
+              </button>
               <img src={logo} alt="EVO-A" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
               <h1 className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>Notifications</h1>
             </div>
@@ -74,12 +84,10 @@ export default function Notifications() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                     activeTab === tab.id
-                      ? isDark
-                        ? 'bg-white text-black'
-                        : 'bg-black text-white'
+                      ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30'
                       : isDark
-                        ? 'bg-white/10 text-white hover:bg-white/20'
-                        : 'bg-black/10 text-black hover:bg-black/20'
+                        ? 'bg-white/10 text-white hover:bg-white/20 hover:text-[#00B8A9]'
+                        : 'bg-black/10 text-black hover:bg-black/20 hover:text-[#00B8A9]'
                   }`}
                 >
                   <Icon size={16} />
@@ -101,8 +109,8 @@ export default function Notifications() {
                       ? 'bg-black/30 border border-white/5'
                       : 'bg-white border border-gray-200'
                     : isDark
-                      ? 'bg-white/10 border border-white/20'
-                      : 'bg-blue-50 border border-blue-200'
+                      ? 'bg-[#00B8A9]/10 border border-[#00B8A9]/30'
+                      : 'bg-[#00B8A9]/5 border border-[#00B8A9]/30'
                 }`}
               >
                 <div className="flex items-start justify-between">
@@ -115,7 +123,7 @@ export default function Notifications() {
                     </p>
                   </div>
                   {!notification.read && (
-                    <div className={`w-2 h-2 rounded-full ${isDark ? 'bg-white' : 'bg-blue-500'}`} />
+                    <div className="w-2 h-2 rounded-full bg-[#00B8A9]" />
                   )}
                 </div>
               </div>
