@@ -37,8 +37,8 @@ export default function Contact() {
     <div
       className={`group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl transition-all duration-300 ${
         isDark
-          ? "bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-2xl hover:shadow-[#B0FFFA]/10"
-          : "bg-white/95 backdrop-blur-xl border border-gray-200 hover:border-[#00B8A9]/30 hover:shadow-xl hover:shadow-[#00B8A9]/5"
+          ? "bg-gradient-to-br from-black/80 via-slate-900/70 to-black/80 backdrop-blur-xl border border-[#B0FFFA]/20 hover:border-[#B0FFFA]/40 hover:shadow-2xl hover:shadow-[#B0FFFA]/10"
+          : "bg-white backdrop-blur-xl border border-gray-200/80 hover:border-[#00B8A9]/30 hover:shadow-xl hover:shadow-[#00B8A9]/5"
       } ${className}`}
     >
       {children}
@@ -184,27 +184,9 @@ export default function Contact() {
           </header>
 
           {/* Main Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 items-start">
-            {/* Contact Information - 2 columns on large screens */}
-            <aside className="lg:col-span-2 space-y-5 sm:space-y-6">
-              {/* Info Header Card */}
-              <CardContainer>
-                <h2
-                  className={`text-lg sm:text-xl font-bold mb-2 ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Contact Information
-                </h2>
-                <p
-                  className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-slate-300" : "text-gray-600"
-                  }`}
-                >
-                  Reach out through any of these channels. We're here to assist you.
-                </p>
-              </CardContainer>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start">
+            {/* Contact Information - Left Side */}
+            <aside className="space-y-5 sm:space-y-6">
               {/* Contact Cards */}
               <div className="space-y-4">
                 {contactInfo.map((info, idx) => {
@@ -213,21 +195,21 @@ export default function Contact() {
                   const content = (
                     <div className="flex items-start gap-4">
                       <div
-                        className={`shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-lg ${
+                        className={`shrink-0 inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${
                           isDark
                             ? "bg-[#B0FFFA]/10 border border-[#B0FFFA]/20"
                             : "bg-[#00B8A9]/10 border border-[#00B8A9]/20"
                         }`}
                       >
                         <IconComponent
-                          size={20}
+                          size={22}
                           className={isDark ? "text-[#B0FFFA]" : "text-[#00B8A9]"}
                           aria-hidden="true"
                         />
                       </div>
                       <div className="flex-1">
                         <h3
-                          className={`font-semibold text-sm mb-1 ${
+                          className={`font-semibold text-sm mb-1.5 ${
                             isDark ? "text-slate-300" : "text-gray-500"
                           }`}
                         >
@@ -237,8 +219,8 @@ export default function Contact() {
                           className={`text-base sm:text-lg font-medium ${
                             info.link
                               ? isDark
-                                ? "text-white hover:text-[#B0FFFA]"
-                                : "text-gray-900 hover:text-[#00B8A9]"
+                                ? "text-white hover:text-[#B0FFFA] cursor-pointer"
+                                : "text-gray-900 hover:text-[#00B8A9] cursor-pointer"
                               : isDark
                               ? "text-white"
                               : "text-gray-900"
@@ -267,12 +249,19 @@ export default function Contact() {
               {/* Social Links */}
               <CardContainer>
                 <h3
-                  className={`font-semibold text-base mb-4 ${
+                  className={`font-semibold text-lg mb-4 ${
                     isDark ? "text-white" : "text-gray-900"
                   }`}
                 >
                   Follow Us
                 </h3>
+                <p
+                  className={`text-sm mb-4 ${
+                    isDark ? "text-slate-300" : "text-gray-600"
+                  }`}
+                >
+                  Connect with us on social media for updates and news.
+                </p>
                 <div className="flex flex-wrap gap-3">
                   {socialLinks.map((social, idx) => {
                     const IconComponent = social.icon;
@@ -282,7 +271,7 @@ export default function Contact() {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`w-11 h-11 flex items-center justify-center rounded-lg transition-all duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                        className={`w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-200 hover:-translate-y-1 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                           isDark
                             ? "bg-[#B0FFFA]/10 text-[#B0FFFA] hover:bg-[#B0FFFA]/20 border border-[#B0FFFA]/20 focus:ring-[#B0FFFA]/60 focus:ring-offset-black"
                             : "bg-[#00B8A9]/10 text-[#00B8A9] hover:bg-[#00B8A9]/20 border border-[#00B8A9]/20 focus:ring-[#00B8A9]/60 focus:ring-offset-white"
@@ -297,11 +286,11 @@ export default function Contact() {
               </CardContainer>
             </aside>
 
-            {/* Contact Form - 3 columns on large screens */}
-            <div className="lg:col-span-3">
+            {/* Contact Form - Right Side */}
+            <div>
               <CardContainer>
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                  <div className="border-b pb-5 mb-2" style={{ borderColor: isDark ? 'rgba(176, 255, 250, 0.1)' : 'rgba(229, 231, 235, 1)' }}>
+                  <div className="mb-6">
                     <h2
                       className={`text-xl sm:text-2xl font-bold mb-2 ${
                         isDark ? "text-white" : "text-gray-900"
@@ -356,11 +345,11 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         autoComplete="name"
-                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                        className={`w-full px-4 py-3 rounded-xl border text-sm transition-all duration-200 ${
                           errors.name
                             ? "border-red-500 focus:ring-red-500"
                             : isDark
-                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            ? "bg-black/50 border-slate-700/50 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
                             : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
                         } focus:outline-none`}
                         placeholder="John Doe"
@@ -390,11 +379,11 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         autoComplete="email"
-                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                        className={`w-full px-4 py-3 rounded-xl border text-sm transition-all duration-200 ${
                           errors.email
                             ? "border-red-500 focus:ring-red-500"
                             : isDark
-                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            ? "bg-black/50 border-slate-700/50 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
                             : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
                         } focus:outline-none`}
                         placeholder="john@company.com"
@@ -423,11 +412,11 @@ export default function Contact() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className={`w-full px-4 py-3 rounded-lg border text-sm transition-all duration-200 ${
+                        className={`w-full px-4 py-3 rounded-xl border text-sm transition-all duration-200 ${
                           errors.subject
                             ? "border-red-500 focus:ring-red-500"
                             : isDark
-                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            ? "bg-black/50 border-slate-700/50 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
                             : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
                         } focus:outline-none`}
                         placeholder="Partnership Inquiry"
@@ -456,11 +445,11 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         rows={6}
-                        className={`w-full px-4 py-3 rounded-lg border resize-none text-sm transition-all duration-200 ${
+                        className={`w-full px-4 py-3 rounded-xl border resize-none text-sm transition-all duration-200 ${
                           errors.message
                             ? "border-red-500 focus:ring-red-500"
                             : isDark
-                            ? "bg-slate-900/50 border-slate-700 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
+                            ? "bg-black/50 border-slate-700/50 text-white placeholder-slate-400 focus:border-[#B0FFFA] focus:ring-2 focus:ring-[#B0FFFA]/20"
                             : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-[#00B8A9] focus:ring-2 focus:ring-[#00B8A9]/20"
                         } focus:outline-none`}
                         placeholder="Tell us about your inquiry..."
@@ -477,14 +466,14 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full inline-flex items-center justify-center gap-2 font-semibold text-base px-6 py-3.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                        className={`w-full inline-flex items-center justify-center gap-2 font-semibold text-base px-6 py-3.5 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                           isSubmitting
                             ? "opacity-60 cursor-not-allowed"
-                            : "hover:scale-[1.01] active:scale-[0.99]"
+                            : "hover:scale-[1.02] active:scale-[0.98]"
                         } ${
                           isDark
-                            ? "bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[#B0FFFA]/30 focus:ring-[#B0FFFA] focus:ring-offset-black"
-                            : "bg-gradient-to-r from-[#00B8A9] to-[#00C9B7] text-white shadow-lg hover:shadow-[#00B8A9]/30 focus:ring-[#00B8A9] focus:ring-offset-white"
+                            ? "bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black shadow-lg hover:shadow-[#B0FFFA]/40 focus:ring-[#B0FFFA] focus:ring-offset-black"
+                            : "bg-gradient-to-r from-[#00B8A9] to-[#00C9B7] text-white shadow-lg hover:shadow-[#00B8A9]/40 focus:ring-[#00B8A9] focus:ring-offset-white"
                         }`}
                       >
                         {isSubmitting ? (

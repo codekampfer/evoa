@@ -15,7 +15,8 @@ import {
   FaSearch,
   FaChartLine,
   FaUserPlus,
-  FaGlobeAmericas
+  FaGlobeAmericas,
+  FaUser
 } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import logo from "../../assets/logo.avif";
@@ -194,6 +195,17 @@ export default function Startup() {
             >
               <FaBell size={20} />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+            <button 
+              onClick={() => navigate('/profile')} 
+              className={`p-2 rounded-xl transition-all duration-200 ${
+                isDark 
+                  ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
+                  : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
+              }`}
+              title="Profile"
+            >
+              <FaUser size={20} />
             </button>
           </div>
         </div>

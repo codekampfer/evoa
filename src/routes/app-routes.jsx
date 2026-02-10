@@ -18,6 +18,7 @@ import Viewer from '../modules/viewer/viewer';
 import Explore from '../modules/explore/explore';
 import Notifications from '../modules/notifications/notifications';
 import ReelPitch from '../modules/pitch/reel-pitch';
+import Profile from '../modules/profile/profile';
 import Blog from '../modules/pages/blog';
 import PitchUs from '../modules/pages/pitch-us';
 import Portfolio from '../modules/pages/portfolio';
@@ -46,6 +47,7 @@ export default function AppRoutes() {
         <Route path="viewer" element={<Viewer />} />
         <Route path="explore" element={<Explore />} />
         <Route path="notifications" element={<Notifications />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="pitch/:id" element={<ReelPitch />} />
         <Route path="blog" element={<Blog />} />
         <Route path="pitch-us" element={<PitchUs />} />
