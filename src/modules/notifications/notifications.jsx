@@ -54,8 +54,8 @@ export default function Notifications() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-gray-50'}`}>
-      <div className="pt-16">
-        <div className="max-w-3xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+      <div className="pt-4 sm:pt-6">
+        <div className="max-w-3xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
           {/* Header */}
           <div className="mb-4 sm:mb-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">

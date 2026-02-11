@@ -25,8 +25,8 @@ export default function Explore() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-gray-50'}`}>
-      <div className="pt-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="pt-4 sm:pt-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-6">

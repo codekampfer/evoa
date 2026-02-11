@@ -147,7 +147,7 @@ export default function Profile() {
       </div>
 
       {/* Main Content */}
-      <main className="pt-16 sm:pt-20">
+      <main className="pt-12 sm:pt-16">
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           {/* Cover Photo */}
           <div className="relative h-48 sm:h-64 md:h-80 rounded-b-2xl overflow-hidden mb-4">
