@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
 import { useTheme } from "../../contexts/ThemeContext";
+import SearchableSelect from "../../components/shared/SearchableSelect";
 import logo from "../../assets/logo.avif";
 
 export default function IncubatorRegistration() {
@@ -145,16 +146,13 @@ export default function IncubatorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               2. Location Details
             </h2>
-            <select
+            <SearchableSelect
               value={formData.state}
-              onChange={(e) => handleInputChange('state', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Select State</option>
-              {states.map(state => (
-                <option key={state} value={state}>{state}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('state', value)}
+              options={states.map(state => ({ value: state, label: state }))}
+              placeholder="Select State"
+              isDark={isDark}
+            />
             <input
               type="text"
               placeholder="City"
@@ -185,26 +183,20 @@ export default function IncubatorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               3. Verification & Authentication
             </h2>
-            <select
+            <SearchableSelect
               value={formData.organizationType}
-              onChange={(e) => handleInputChange('organizationType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Type of Organization</option>
-              {organizationTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
-            <select
+              onChange={(value) => handleInputChange('organizationType', value)}
+              options={organizationTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Type of Organization"
+              isDark={isDark}
+            />
+            <SearchableSelect
               value={formData.affiliationType}
-              onChange={(e) => handleInputChange('affiliationType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Affiliation Type</option>
-              {affiliationTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('affiliationType', value)}
+              options={affiliationTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Affiliation Type"
+              isDark={isDark}
+            />
           </div>
         );
 
@@ -214,16 +206,13 @@ export default function IncubatorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               4. Verified Document Section
             </h2>
-            <select
+            <SearchableSelect
               value={formData.verificationDocumentType}
-              onChange={(e) => handleInputChange('verificationDocumentType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Choose Your Verification Document</option>
-              {verificationDocTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('verificationDocumentType', value)}
+              options={verificationDocTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Choose Your Verification Document"
+              isDark={isDark}
+            />
             {formData.verificationDocumentType && (
               <label className={`block text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
                 Upload Selected Document (PDF/JPG/PNG)
@@ -248,16 +237,13 @@ export default function IncubatorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               5. Program Details
             </h2>
-            <select
+            <SearchableSelect
               value={formData.programType}
-              onChange={(e) => handleInputChange('programType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Program Type</option>
-              {programTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('programType', value)}
+              options={programTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Program Type"
+              isDark={isDark}
+            />
             <div>
               <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
                 Sector Focus (Multi-select)
@@ -276,16 +262,13 @@ export default function IncubatorRegistration() {
                 ))}
               </div>
             </div>
-            <select
+            <SearchableSelect
               value={formData.equityPolicy}
-              onChange={(e) => handleInputChange('equityPolicy', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Equity Policy</option>
-              {equityPolicies.map(policy => (
-                <option key={policy} value={policy}>{policy}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('equityPolicy', value)}
+              options={equityPolicies.map(policy => ({ value: policy, label: policy }))}
+              placeholder="Equity Policy"
+              isDark={isDark}
+            />
             {formData.equityPolicy === 'Custom Equity' && (
               <input
                 type="text"
@@ -295,16 +278,13 @@ export default function IncubatorRegistration() {
                     className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
               />
             )}
-            <select
+            <SearchableSelect
               value={formData.fundingSupport}
-              onChange={(e) => handleInputChange('fundingSupport', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Funding Support</option>
-              {fundingSupports.map(support => (
-                <option key={support} value={support}>{support}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('fundingSupport', value)}
+              options={fundingSupports.map(support => ({ value: support, label: support }))}
+              placeholder="Funding Support"
+              isDark={isDark}
+            />
             <input
               type="text"
               placeholder="Program Duration (Weeks/Months)"
@@ -507,8 +487,8 @@ export default function IncubatorRegistration() {
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
-                  ? 'bg-white/10 text-white hover:bg-white/20'
-                  : 'bg-black/10 text-black hover:bg-black/20'
+                  ? 'bg-white/10 text-white hover:bg-white/20 cursor-pointer'
+                  : 'bg-black/10 text-black hover:bg-black/20 cursor-pointer'
             }`}
           >
             Previous
@@ -517,7 +497,7 @@ export default function IncubatorRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Next
             </button>
@@ -525,7 +505,7 @@ export default function IncubatorRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Submit
             </button>

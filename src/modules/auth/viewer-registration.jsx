@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
 import { useTheme } from "../../contexts/ThemeContext";
+import SearchableSelect from "../../components/shared/SearchableSelect";
 import logo from "../../assets/logo.avif";
 
 export default function ViewerRegistration() {
@@ -143,16 +144,13 @@ export default function ViewerRegistration() {
           <h2 className={`text-lg sm:text-xl font-semibold mt-4 sm:mt-6 mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
             3. Location Details
           </h2>
-          <select
+          <SearchableSelect
             value={formData.state}
-            onChange={(e) => handleInputChange('state', e.target.value)}
-            className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-          >
-            <option value="">Select State</option>
-            {states.map(state => (
-              <option key={state} value={state}>{state}</option>
-            ))}
-          </select>
+            onChange={(value) => handleInputChange('state', value)}
+            options={states.map(state => ({ value: state, label: state }))}
+            placeholder="Select State"
+            isDark={isDark}
+          />
           <input
             type="text"
             placeholder="City"
@@ -266,7 +264,7 @@ export default function ViewerRegistration() {
 
           <button
             type="submit"
-            className="w-full py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all mt-4 sm:mt-6 shrink-0 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+            className="w-full py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all mt-4 sm:mt-6 shrink-0 bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
           >
             Create Account
           </button>

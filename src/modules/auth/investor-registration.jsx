@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUpload } from "react-icons/fi";
 import { useTheme } from "../../contexts/ThemeContext";
+import SearchableSelect from "../../components/shared/SearchableSelect";
 import logo from "../../assets/logo.avif";
 
 export default function InvestorRegistration() {
@@ -133,16 +134,13 @@ export default function InvestorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               2. Investor Type
             </h2>
-            <select
+            <SearchableSelect
               value={formData.investorType}
-              onChange={(e) => handleInputChange('investorType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Select Investor Type</option>
-              {investorTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('investorType', value)}
+              options={investorTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Select Investor Type"
+              isDark={isDark}
+            />
           </div>
         );
 
@@ -152,16 +150,13 @@ export default function InvestorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               3. Investment Focus & Ticket Size
             </h2>
-            <select
+            <SearchableSelect
               value={formData.investmentRange}
-              onChange={(e) => handleInputChange('investmentRange', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Investment Range</option>
-              {investmentRanges.map(range => (
-                <option key={range} value={range}>{range}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('investmentRange', value)}
+              options={investmentRanges.map(range => ({ value: range, label: range }))}
+              placeholder="Investment Range"
+              isDark={isDark}
+            />
             <div>
               <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
                 Sector Focus (Multi-Select)
@@ -189,15 +184,16 @@ export default function InvestorRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               4. Verification Section
             </h2>
-            <select
+            <SearchableSelect
               value={formData.verificationOption}
-              onChange={(e) => handleInputChange('verificationOption', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Select Verification Option</option>
-              <option value="SEBI">SEBI-Registered Investor</option>
-              <option value="Non-SEBI">Non-SEBI Angel Investors</option>
-            </select>
+              onChange={(value) => handleInputChange('verificationOption', value)}
+              options={[
+                { value: 'SEBI', label: 'SEBI-Registered Investor' },
+                { value: 'Non-SEBI', label: 'Non-SEBI Angel Investors' }
+              ]}
+              placeholder="Select Verification Option"
+              isDark={isDark}
+            />
             {formData.verificationOption === 'SEBI' && (
               <div className="space-y-3">
                 <input
@@ -320,24 +316,23 @@ export default function InvestorRegistration() {
               onChange={(e) => handleInputChange('city', e.target.value)}
                     className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
             />
-            <select
+            <SearchableSelect
               value={formData.state}
-              onChange={(e) => handleInputChange('state', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Select State</option>
-              {states.map(state => (
-                <option key={state} value={state}>{state}</option>
-              ))}
-            </select>
-            <select
+              onChange={(value) => handleInputChange('state', value)}
+              options={states.map(state => ({ value: state, label: state }))}
+              placeholder="Select State"
+              isDark={isDark}
+            />
+            <SearchableSelect
               value={formData.country}
-              onChange={(e) => handleInputChange('country', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="India">India</option>
-              <option value="Others">Others</option>
-            </select>
+              onChange={(value) => handleInputChange('country', value)}
+              options={[
+                { value: 'India', label: 'India' },
+                { value: 'Others', label: 'Others' }
+              ]}
+              placeholder="Select Country"
+              isDark={isDark}
+            />
           </div>
         );
 
@@ -365,16 +360,13 @@ export default function InvestorRegistration() {
                 ))}
               </div>
             </div>
-            <select
+            <SearchableSelect
               value={formData.engagementType}
-              onChange={(e) => handleInputChange('engagementType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-            >
-              <option value="">Engagement Type</option>
-              {engagementTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('engagementType', value)}
+              options={engagementTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Engagement Type"
+              isDark={isDark}
+            />
           </div>
         );
 
@@ -490,8 +482,8 @@ export default function InvestorRegistration() {
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
-                  ? 'bg-white/10 text-white hover:bg-white/20'
-                  : 'bg-black/10 text-black hover:bg-black/20'
+                  ? 'bg-white/10 text-white hover:bg-white/20 cursor-pointer'
+                  : 'bg-black/10 text-black hover:bg-black/20 cursor-pointer'
             }`}
           >
             Previous
@@ -500,7 +492,7 @@ export default function InvestorRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Next
             </button>
@@ -508,7 +500,7 @@ export default function InvestorRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Submit
             </button>

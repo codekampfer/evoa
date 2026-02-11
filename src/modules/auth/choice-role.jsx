@@ -63,30 +63,30 @@ export default function ChoiceRole() {
   };
 
   return (
-    <div className={`min-h-screen flex items-start sm:items-center justify-center px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-12 overflow-y-auto ${
-      isDark ? 'bg-black' : 'bg-white'
+    <div className={`min-h-screen flex items-start sm:items-center justify-center px-3 sm:px-4 md:px-6 py-2 sm:py-6 md:py-12 overflow-y-auto ${
+      isDark ? 'bg-black' : 'bg-gray-100'
     }`}>
       <div className="w-full max-w-6xl my-auto sm:my-0">
         {/* Header Section */}
-        <div className="text-center mb-6 sm:mb-10 md:mb-16">
-          <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
-            <div className={`p-2 sm:p-2.5 md:p-3 border ${
-              isDark ? 'bg-white/10 border-white/20' : 'bg-black/5 border-black/20'
+        <div className="text-center mb-3 sm:mb-6 md:mb-10 pt-2 sm:pt-0">
+          <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-4 md:mb-6 flex-wrap">
+            <div className={`p-1 sm:p-1.5 md:p-2 rounded-lg border ${
+              isDark ? 'bg-white/10 border-white/20' : 'bg-white border-gray-200 shadow-sm'
             }`}>
-              <img src={logo} alt="EVO-A" className="h-8 w-8 sm:h-10 sm:w-10 md:h-11 md:w-11 object-contain" />
+              <img src={logo} alt="EVO-A" className="h-5 w-5 sm:h-7 sm:w-7 md:h-9 md:w-9 object-contain" />
             </div>
-            <span className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ${
-              isDark ? 'text-white' : 'text-black'
+            <span className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-tight ${
+              isDark ? 'text-white' : 'text-gray-900'
             }`}>
               EVO-A
             </span>
           </div>
-          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-tight px-2 ${
-            isDark ? 'text-white' : 'text-black'
+          <h1 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1.5 sm:mb-2 md:mb-3 tracking-tight px-2 ${
+            isDark ? 'text-white' : 'text-gray-900'
           }`}>
             Choose Your Role
           </h1>
-          <p className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2 ${
+          <p className={`text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2 ${
             isDark ? 'text-gray-400' : 'text-gray-600'
           }`}>
             Select the role that best describes you to get started
@@ -106,12 +106,12 @@ export default function ChoiceRole() {
                 onClick={() => setSelectedRole(role.id)}
                 onMouseEnter={() => setHoveredRole(role.id)}
                 onMouseLeave={() => setHoveredRole(null)}
-                className={`relative p-4 sm:p-5 md:p-7 transition-all duration-300 border-2 rounded-2xl sm:rounded-3xl ${
+                className={`relative p-4 sm:p-5 md:p-7 transition-all duration-300 border-2 rounded-2xl sm:rounded-3xl cursor-pointer ${
                   isSelected 
                     ? 'bg-[#00B8A9] text-white border-[#00B8A9] shadow-2xl shadow-[#00B8A9]/40 transform scale-[1.02] sm:scale-105'
                     : isDark
                       ? 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-[#00B8A9]/30 active:scale-95'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:border-[#00B8A9]/30 hover:shadow-lg active:scale-95'
+                      : 'bg-white/90 border-gray-300 hover:bg-white hover:border-[#00B8A9]/30 hover:shadow-lg active:scale-95'
                 }`}
               >
                 {/* Selection Checkmark */}
@@ -163,10 +163,10 @@ export default function ChoiceRole() {
                 </div>
 
                 {/* Role Title */}
-                <h3 className={`text-lg sm:text-xl font-bold mb-2 sm:mb-3 ${
+                <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 ${
                   isSelected 
                     ? 'text-white'
-                    : isDark ? 'text-white' : 'text-black'
+                    : isDark ? 'text-white' : 'text-gray-800'
                 }`}>
                   {role.name}
                 </h3>
@@ -215,7 +215,7 @@ export default function ChoiceRole() {
             disabled={!selectedRole}
             className={`group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base font-semibold rounded-lg sm:rounded-xl transition-all duration-300 w-full sm:w-auto justify-center ${
               selectedRole 
-                ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] hover:scale-105 hover:shadow-2xl hover:shadow-[#00B8A9]/40 active:scale-95'
+                ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A] hover:scale-105 hover:shadow-2xl hover:shadow-[#00B8A9]/40 active:scale-95 cursor-pointer'
                 : isDark
                   ? 'bg-white/10 text-gray-600 cursor-not-allowed'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -234,7 +234,7 @@ export default function ChoiceRole() {
             />
           </button>
           <p className={`mt-3 sm:mt-4 md:mt-6 text-xs sm:text-sm ${
-            isDark ? 'text-gray-600' : 'text-gray-400'
+            isDark ? 'text-gray-500' : 'text-gray-500'
           }`}>
             You can change your role anytime in settings
           </p>

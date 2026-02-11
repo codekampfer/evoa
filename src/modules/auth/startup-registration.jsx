@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUpload, FiX } from "react-icons/fi";
 import { useTheme } from "../../contexts/ThemeContext";
+import SearchableSelect from "../../components/shared/SearchableSelect";
 import logo from "../../assets/logo.avif";
 
 export default function StartupRegistration() {
@@ -181,20 +182,17 @@ export default function StartupRegistration() {
                     }}
                     className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
                   />
-                  <select
+                  <SearchableSelect
                     value={founder.role}
-                    onChange={(e) => {
+                    onChange={(value) => {
                       const newFounders = [...formData.founders];
-                      newFounders[index].role = e.target.value;
+                      newFounders[index].role = value;
                       setFormData(prev => ({ ...prev, founders: newFounders }));
                     }}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-                  >
-                    <option value="">Select Founder Role</option>
-                    {founderRoles.map(role => (
-                      <option key={role} value={role}>{role}</option>
-                    ))}
-                  </select>
+                    options={founderRoles.map(role => ({ value: role, label: role }))}
+                    placeholder="Select Founder Role"
+                    isDark={isDark}
+                  />
                   <label className={`block text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>
                     Profile Photo (Optional)
                     <input
@@ -279,24 +277,23 @@ export default function StartupRegistration() {
               onChange={(e) => handleInputChange('city', e.target.value)}
               className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
             />
-            <select
+            <SearchableSelect
               value={formData.state}
-              onChange={(e) => handleInputChange('state', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
-            >
-              <option value="">Select State</option>
-              {states.map(state => (
-                <option key={state} value={state}>{state}</option>
-              ))}
-            </select>
-            <select
+              onChange={(value) => handleInputChange('state', value)}
+              options={states.map(state => ({ value: state, label: state }))}
+              placeholder="Select State"
+              isDark={isDark}
+            />
+            <SearchableSelect
               value={formData.country}
-              onChange={(e) => handleInputChange('country', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
-            >
-              <option value="India">India</option>
-              <option value="Others">Others</option>
-            </select>
+              onChange={(value) => handleInputChange('country', value)}
+              options={[
+                { value: 'India', label: 'India' },
+                { value: 'Others', label: 'Others' }
+              ]}
+              placeholder="Select Country"
+              isDark={isDark}
+            />
           </div>
         );
 
@@ -328,16 +325,13 @@ export default function StartupRegistration() {
               <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
                 Stage of Startup
               </label>
-              <select
+              <SearchableSelect
                 value={formData.stage}
-                onChange={(e) => handleInputChange('stage', e.target.value)}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
-              >
-                <option value="">Select Stage</option>
-                {stages.map(stage => (
-                  <option key={stage} value={stage}>{stage}</option>
-                ))}
-              </select>
+                onChange={(value) => handleInputChange('stage', value)}
+                options={stages.map(stage => ({ value: stage, label: stage }))}
+                placeholder="Select Stage"
+                isDark={isDark}
+              />
             </div>
           </div>
         );
@@ -348,32 +342,30 @@ export default function StartupRegistration() {
             <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
               4. Business Verification
             </h2>
-            <select
+            <SearchableSelect
               value={formData.entityType}
-              onChange={(e) => handleInputChange('entityType', e.target.value)}
-              className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl ${isDark ? 'bg-black/80 border-white/20 text-white' : 'bg-white border-black/20 text-black'}`}
-            >
-              <option value="">Type of Entity</option>
-              {entityTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('entityType', value)}
+              options={entityTypes.map(type => ({ value: type, label: type }))}
+              placeholder="Type of Entity"
+              isDark={isDark}
+            />
             {formData.entityType && formData.entityType !== 'Not Registered Yet' && (
               <div className="space-y-3">
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-white' : 'text-black'}`}>
                     Verification Option
                   </label>
-                  <select
+                  <SearchableSelect
                     value={formData.verificationType}
-                    onChange={(e) => handleInputChange('verificationType', e.target.value)}
-                    className={`w-full px-3 sm:px-4 py-2 sm:py-2.5  text-xs sm:text-sm border rounded-xl focus:outline-none focus:ring-1 transition-all ${isDark ? 'bg-black/80 border-white/20 text-white placeholder-white/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30' : 'bg-white border-black/20 text-black placeholder-black/50 focus:border-[#00B8A9] focus:ring-[#00B8A9]/30'}`}
-                  >
-                    <option value="">Select Verification Type</option>
-                    <option value="CIN">CIN (Company Identification Number)</option>
-                    <option value="GST">GST Number</option>
-                    <option value="Udyam">Udyam Registration Number</option>
-                  </select>
+                    onChange={(value) => handleInputChange('verificationType', value)}
+                    options={[
+                      { value: 'CIN', label: 'CIN (Company Identification Number)' },
+                      { value: 'GST', label: 'GST Number' },
+                      { value: 'Udyam', label: 'Udyam Registration Number' }
+                    ]}
+                    placeholder="Select Verification Type"
+                    isDark={isDark}
+                  />
                 </div>
                 {formData.verificationType === 'CIN' && (
                   <input
@@ -723,8 +715,8 @@ export default function StartupRegistration() {
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
-                  ? 'bg-white/10 text-white hover:bg-white/20'
-                  : 'bg-black/10 text-black hover:bg-black/20'
+                  ? 'bg-white/10 text-white hover:bg-white/20 cursor-pointer'
+                  : 'bg-black/10 text-black hover:bg-black/20 cursor-pointer'
             }`}
           >
             Previous
@@ -733,7 +725,7 @@ export default function StartupRegistration() {
             <button
               type="button"
               onClick={nextStep}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Next
             </button>
@@ -741,7 +733,7 @@ export default function StartupRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98]"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Submit
             </button>

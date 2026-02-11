@@ -195,10 +195,10 @@ export default function Profile() {
                     <MdVerified className="text-[#00B8A9]" size={24} />
                   )}
                   <button
-                    className={`ml-auto sm:ml-0 px-4 py-2 rounded-lg font-semibold transition-all ${
+                    className={`ml-auto sm:ml-0 px-4 py-2.5 rounded-xl font-semibold transition-all ${
                       isDark
-                        ? 'bg-white/10 text-white hover:bg-white/20'
-                        : 'bg-gray-200 text-black hover:bg-gray-300'
+                        ? 'bg-white/5 text-white hover:bg-white/10'
+                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                     }`}
                   >
                     <FaEdit size={14} className="inline mr-2" />
@@ -236,62 +236,98 @@ export default function Profile() {
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-6 sm:gap-8 mb-6 pb-6 border-b border-white/10">
-              <div className="text-center">
-                <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>
-                  {formatNumber(user.posts)}
-                </p>
-                <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Posts</p>
-              </div>
-              <div className="text-center">
-                <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>
-                  {formatNumber(user.followers)}
-                </p>
-                <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Followers</p>
-              </div>
-              <div className="text-center">
-                <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>
-                  {formatNumber(user.following)}
-                </p>
-                <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Following</p>
+            <div className={`rounded-2xl p-4 sm:p-5 mb-6 ${
+              isDark ? 'bg-white/5' : 'bg-gray-100'
+            }`}>
+              <div className="flex items-center justify-around gap-4">
+                <div className="text-center">
+                  <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {formatNumber(user.posts)}
+                  </p>
+                  <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Posts</p>
+                </div>
+                <div className="text-center">
+                  <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {formatNumber(user.followers)}
+                  </p>
+                  <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Followers</p>
+                </div>
+                <div className="text-center">
+                  <p className={`text-xl sm:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {formatNumber(user.following)}
+                  </p>
+                  <p className={`text-xs sm:text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>Following</p>
+                </div>
               </div>
             </div>
 
             {/* Additional Info */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {user.education && (
-                <div className="flex items-start gap-3">
-                  <FaGraduationCap className={`mt-1 ${isDark ? 'text-white/60' : 'text-gray-500'}`} size={18} />
-                  <div>
-                    <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Education</p>
-                    <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-black'}`}>{user.education}</p>
+                <div className={`flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                  isDark 
+                    ? 'bg-white/5 hover:bg-white/10' 
+                    : 'bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div className={`p-2.5 rounded-lg ${
+                    isDark ? 'bg-white/10' : 'bg-white'
+                  }`}>
+                    <FaGraduationCap className={isDark ? 'text-white' : 'text-gray-700'} size={18} />
+                  </div>
+                  <div className="flex-1">
+                    <p className={`text-xs mb-0.5 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Education</p>
+                    <p className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{user.education}</p>
                   </div>
                 </div>
               )}
               {user.experience && (
-                <div className="flex items-start gap-3">
-                  <FaBriefcase className={`mt-1 ${isDark ? 'text-white/60' : 'text-gray-500'}`} size={18} />
-                  <div>
-                    <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Experience</p>
-                    <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-black'}`}>{user.experience}</p>
+                <div className={`flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                  isDark 
+                    ? 'bg-white/5 hover:bg-white/10' 
+                    : 'bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div className={`p-2.5 rounded-lg ${
+                    isDark ? 'bg-white/10' : 'bg-white'
+                  }`}>
+                    <FaBriefcase className={isDark ? 'text-white' : 'text-gray-700'} size={18} />
+                  </div>
+                  <div className="flex-1">
+                    <p className={`text-xs mb-0.5 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Experience</p>
+                    <p className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{user.experience}</p>
                   </div>
                 </div>
               )}
               {user.email && (
-                <div className="flex items-start gap-3">
-                  <FaEnvelope className={`mt-1 ${isDark ? 'text-white/60' : 'text-gray-500'}`} size={18} />
-                  <div>
-                    <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Email</p>
-                    <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-black'}`}>{user.email}</p>
+                <div className={`flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                  isDark 
+                    ? 'bg-white/5 hover:bg-white/10' 
+                    : 'bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div className={`p-2.5 rounded-lg ${
+                    isDark ? 'bg-white/10' : 'bg-white'
+                  }`}>
+                    <FaEnvelope className={isDark ? 'text-white' : 'text-gray-700'} size={18} />
+                  </div>
+                  <div className="flex-1">
+                    <p className={`text-xs mb-0.5 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Email</p>
+                    <p className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{user.email}</p>
                   </div>
                 </div>
               )}
               {user.phone && (
-                <div className="flex items-start gap-3">
-                  <FaPhone className={`mt-1 ${isDark ? 'text-white/60' : 'text-gray-500'}`} size={18} />
-                  <div>
-                    <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Phone</p>
-                    <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-black'}`}>{user.phone}</p>
+                <div className={`flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                  isDark 
+                    ? 'bg-white/5 hover:bg-white/10' 
+                    : 'bg-gray-100 hover:bg-gray-200'
+                }`}>
+                  <div className={`p-2.5 rounded-lg ${
+                    isDark ? 'bg-white/10' : 'bg-white'
+                  }`}>
+                    <FaPhone className={isDark ? 'text-white' : 'text-gray-700'} size={18} />
+                  </div>
+                  <div className="flex-1">
+                    <p className={`text-xs mb-0.5 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>Phone</p>
+                    <p className={`text-sm font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{user.phone}</p>
                   </div>
                 </div>
               )}
@@ -299,43 +335,56 @@ export default function Profile() {
 
             {/* Social Links */}
             {(user.links.linkedin || user.links.twitter || user.links.instagram) && (
-              <div className="flex items-center gap-3 mb-6">
-                {user.links.linkedin && (
-                  <a
-                    href={user.links.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2 rounded-full transition-all ${
-                      isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-gray-200 text-black hover:bg-gray-300'
-                    }`}
-                  >
-                    <FaLinkedin size={18} />
-                  </a>
-                )}
-                {user.links.twitter && (
-                  <a
-                    href={user.links.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2 rounded-full transition-all ${
-                      isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-gray-200 text-black hover:bg-gray-300'
-                    }`}
-                  >
-                    <FaTwitter size={18} />
-                  </a>
-                )}
-                {user.links.instagram && (
-                  <a
-                    href={user.links.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-2 rounded-full transition-all ${
-                      isDark ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-gray-200 text-black hover:bg-gray-300'
-                    }`}
-                  >
-                    <FaInstagram size={18} />
-                  </a>
-                )}
+              <div className={`p-4 rounded-xl mb-6 ${
+                isDark ? 'bg-white/5' : 'bg-gray-100'
+              }`}>
+                <div className="flex items-center gap-3">
+                  {user.links.linkedin && (
+                    <a
+                      href={user.links.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-lg transition-all flex-1 ${
+                        isDark 
+                          ? 'bg-white/5 text-white hover:bg-white/10' 
+                          : 'bg-white text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      <FaLinkedin size={18} />
+                      <span className="text-sm font-semibold">LinkedIn</span>
+                    </a>
+                  )}
+                  {user.links.twitter && (
+                    <a
+                      href={user.links.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-lg transition-all flex-1 ${
+                        isDark 
+                          ? 'bg-white/5 text-white hover:bg-white/10' 
+                          : 'bg-white text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      <FaTwitter size={18} />
+                      <span className="text-sm font-semibold">Twitter</span>
+                    </a>
+                  )}
+                  {user.links.instagram && (
+                    <a
+                      href={user.links.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-lg transition-all flex-1 ${
+                        isDark 
+                          ? 'bg-white/5 text-white hover:bg-white/10' 
+                          : 'bg-white text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      <FaInstagram size={18} />
+                      <span className="text-sm font-semibold">Instagram</span>
+                    </a>
+                  )}
+                </div>
               </div>
             )}
 
@@ -365,9 +414,9 @@ export default function Profile() {
               {posts.map((post) => (
                 <div
                   key={post.id}
-                  className={`rounded-xl overflow-hidden transition-all ${
-                    isDark ? 'bg-[#0a0a0a] border border-white/10' : 'bg-white border border-gray-200'
-                  } hover:shadow-lg`}
+                  className={`rounded-2xl overflow-hidden transition-all ${
+                    isDark ? 'bg-white/5' : 'bg-gray-100'
+                  } hover:opacity-90`}
                 >
                   <div className="relative aspect-square">
                     <img
