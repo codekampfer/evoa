@@ -9,14 +9,13 @@ import {
   FaPlay, 
   FaUser 
 } from "react-icons/fa";
+import { HiSun, HiMoon } from "react-icons/hi"; // Theme toggle icons
 import logo from "../../assets/logo.avif";
 
-
 export default function Viewer() {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme(); // Added toggleTheme
   const isDark = theme === 'dark';
   const navigate = useNavigate();
-
 
   const [pitches] = useState([
     {
@@ -40,16 +39,16 @@ export default function Viewer() {
     }
   ]);
 
-
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-[#000000]' : 'bg-[#f7f9fa]'}`}>
-      {/* Top Navigation Bar - Modern Gradient (Same as other components) */}
+      {/* Top Navigation Bar - Enhanced with Theme Toggle */}
       <div className={`fixed top-0 left-0 right-0 z-50 ${
         isDark 
           ? 'bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/98 to-[#0a0a0a]/95 backdrop-blur-2xl border-b border-white/[0.08]' 
           : 'bg-gradient-to-b from-white via-white/98 to-white/95 backdrop-blur-2xl border-b border-gray-200/60'
       } shadow-sm`}>
         <div className="flex items-center justify-between px-4 sm:px-6 py-3 max-w-3xl mx-auto">
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <img src={logo} alt="EVO-A" className="h-8 w-8 sm:h-9 sm:w-9 object-contain rounded-xl" />
             <span className={`text-xl sm:text-2xl font-black tracking-tight bg-gradient-to-r ${
@@ -58,54 +57,92 @@ export default function Viewer() {
                 : 'from-gray-900 via-[#00B8A9] to-[#00A89A] text-transparent bg-clip-text'
             }`}>EVO-A</span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3">
+
+          {/* Navigation Icons - Mobile Responsive with Theme Toggle */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Pitch Button */}
             <button 
               onClick={() => navigate('/pitch/1')} 
-              className={`p-2 rounded-xl transition-all duration-200 ${
+              className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 active:scale-95 ${
                 isDark 
                   ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
                   : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
               title="View Pitch"
             >
-              <FaPlay size={20} />
+              <FaPlay size={18} className="sm:hidden" />
+              <FaPlay size={20} className="hidden sm:block" />
             </button>
+
+            {/* Search Button */}
             <button 
               onClick={() => navigate('/explore')} 
-              className={`p-2 rounded-xl transition-all duration-200 ${
+              className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 active:scale-95 ${
                 isDark 
                   ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
                   : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
+              title="Search"
             >
-              <FaSearch size={20} />
+              <FaSearch size={18} className="sm:hidden" />
+              <FaSearch size={20} className="hidden sm:block" />
             </button>
+
+            {/* Theme Toggle Button - NEW */}
+            <button
+              onClick={toggleTheme}
+              className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 active:scale-95 hover:scale-110 ${
+                isDark 
+                  ? 'text-white/70 hover:text-[#B0FFFA] hover:bg-white/10 border border-[#B0FFFA]/20' 
+                  : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100 border border-[#00B8A9]/20'
+              }`}
+              title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {isDark ? (
+                <>
+                  <HiSun size={20} className="sm:hidden animate-spin-slow" />
+                  <HiSun size={22} className="hidden sm:block animate-spin-slow" />
+                </>
+              ) : (
+                <>
+                  <HiMoon size={20} className="sm:hidden" />
+                  <HiMoon size={22} className="hidden sm:block" />
+                </>
+              )}
+            </button>
+
+            {/* Notifications Button */}
             <button 
               onClick={() => navigate('/notifications')} 
-              className={`p-2 rounded-xl transition-all duration-200 relative ${
+              className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 relative active:scale-95 ${
                 isDark 
                   ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
                   : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
+              title="Notifications"
             >
-              <FaBell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              <FaBell size={18} className="sm:hidden" />
+              <FaBell size={20} className="hidden sm:block" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-current"></span>
             </button>
+
+            {/* Profile Button */}
             <button 
               onClick={() => navigate('/profile')} 
-              className={`p-2 rounded-xl transition-all duration-200 ${
+              className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 active:scale-95 ${
                 isDark 
                   ? 'text-white/70 hover:text-[#00B8A9] hover:bg-white/10' 
                   : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100'
               }`}
               title="Profile"
             >
-              <FaUser size={20} />
+              <FaUser size={18} className="sm:hidden" />
+              <FaUser size={20} className="hidden sm:block" />
             </button>
           </div>
         </div>
       </div>
-
 
       {/* Main Content */}
       <main className="pt-16 sm:pt-20 md:pt-24">
@@ -120,6 +157,21 @@ export default function Viewer() {
           </div>
         </div>
       </main>
+
+      {/* Add Custom Animation for Sun Icon */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

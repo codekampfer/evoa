@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
 import { FaSearch, FaFire, FaTrophy, FaEye, FaPlay, FaArrowLeft } from "react-icons/fa";
+import { HiSun, HiMoon } from "react-icons/hi"; // Theme toggle icons
 import logo from "../../assets/logo.avif";
 
 export default function Explore() {
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme(); // Added toggleTheme
   const isDark = theme === 'dark';
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,21 +28,52 @@ export default function Explore() {
     <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-gray-50'}`}>
       <div className="pt-4 sm:pt-6">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-          {/* Header */}
+          {/* Header with Theme Toggle */}
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center justify-between mb-6">
+              {/* Left Side - Back Button, Logo, Title */}
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <button
+                  onClick={() => navigate(-1)}
+                  className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all active:scale-95 ${
+                    isDark 
+                      ? 'text-white/70 hover:text-white hover:bg-white/10' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  }`}
+                  title="Go Back"
+                >
+                  <FaArrowLeft size={18} className="sm:hidden" />
+                  <FaArrowLeft size={20} className="hidden sm:block" />
+                </button>
+                <img src={logo} alt="EVO-A" className="h-9 w-9 sm:h-10 sm:w-10 object-contain rounded-xl flex-shrink-0" />
+                <h1 className={`text-xl sm:text-2xl md:text-3xl font-bold truncate ${isDark ? 'text-white' : 'text-black'}`}>
+                  Explore
+                </h1>
+              </div>
+
+              {/* Right Side - Theme Toggle Button */}
               <button
-                onClick={() => navigate(-1)}
-                className={`p-2 rounded-xl transition-all ${
+                onClick={toggleTheme}
+                className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-xl transition-all duration-200 active:scale-95 hover:scale-110 flex-shrink-0 ml-2 ${
                   isDark 
-                    ? 'text-white/70 hover:text-white hover:bg-white/10' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    ? 'text-white/70 hover:text-[#B0FFFA] hover:bg-white/10 border border-[#B0FFFA]/20' 
+                    : 'text-gray-600 hover:text-[#00B8A9] hover:bg-gray-100 border border-[#00B8A9]/20'
                 }`}
+                title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               >
-                <FaArrowLeft size={20} />
+                {isDark ? (
+                  <>
+                    <HiSun size={20} className="sm:hidden animate-spin-slow" />
+                    <HiSun size={22} className="hidden sm:block animate-spin-slow" />
+                  </>
+                ) : (
+                  <>
+                    <HiMoon size={20} className="sm:hidden" />
+                    <HiMoon size={22} className="hidden sm:block" />
+                  </>
+                )}
               </button>
-              <img src={logo} alt="EVO-A" className="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-xl" />
-              <h1 className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-white' : 'text-black'}`}>Explore</h1>
             </div>
             
             {/* Search Bar */}
@@ -229,7 +261,21 @@ export default function Explore() {
           </div>
         </div>
       </div>
+
+      {/* Add Custom Animation for Sun Icon */}
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }
-
