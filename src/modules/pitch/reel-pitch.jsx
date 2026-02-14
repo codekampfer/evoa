@@ -18,7 +18,6 @@ import {
   FaSpinner
 } from "react-icons/fa";
 
-
 export default function ReelPitch() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
@@ -35,7 +34,6 @@ export default function ReelPitch() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
 
   // Multiple pitch reels data
   const pitches = [
@@ -117,9 +115,7 @@ export default function ReelPitch() {
     }
   ];
 
-
   const currentPitch = pitches[currentIndex] || pitches[0];
-
 
   // Initialize reel states
   useEffect(() => {
@@ -135,12 +131,10 @@ export default function ReelPitch() {
     setReelStates(initialState);
   }, []);
 
-
   // Handle scroll and play/pause videos
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
 
     const handleScroll = () => {
       const scrollTop = container.scrollTop;
@@ -155,7 +149,6 @@ export default function ReelPitch() {
           if (video) video.pause();
         });
 
-
         // Reset all states
         setReelStates((prev) => {
           const updated = { ...prev };
@@ -164,7 +157,6 @@ export default function ReelPitch() {
           });
           return updated;
         });
-
 
         // Play current video
         const currentVideo = videoRefs.current[pitches[newIndex].id];
@@ -182,11 +174,9 @@ export default function ReelPitch() {
       }
     };
 
-
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
   }, [currentIndex, reelStates]);
-
 
   // Play first video on mount
   useEffect(() => {
@@ -200,7 +190,6 @@ export default function ReelPitch() {
       }));
     }
   }, [reelStates]);
-
 
   const togglePlay = (pitchId) => {
     const video = videoRefs.current[pitchId];
@@ -222,7 +211,6 @@ export default function ReelPitch() {
     }
   };
 
-
   const toggleMute = (pitchId) => {
     const video = videoRefs.current[pitchId];
     if (video) {
@@ -235,14 +223,12 @@ export default function ReelPitch() {
     }
   };
 
-
   const handleLike = (pitchId) => {
     setReelStates((prev) => ({
       ...prev,
       [pitchId]: { ...prev[pitchId], isLiked: !prev[pitchId].isLiked }
     }));
   };
-
 
   const handleSave = (pitchId) => {
     setReelStates((prev) => ({
@@ -251,21 +237,15 @@ export default function ReelPitch() {
     }));
   };
 
-
   const handleComment = (pitchId) => {
-    // Navigate to comments or open comment modal
     console.log('Open comments', pitchId);
   };
 
-
   const handleShare = (pitchId) => {
-    // Share functionality
     console.log('Share pitch', pitchId);
   };
 
-
   const handleSupport = (pitchId) => {
-    // Navigate to support page
     navigate(`/support/${pitchId}`);
   };
 
@@ -348,13 +328,12 @@ export default function ReelPitch() {
     }
   };
 
-
   const renderReel = (pitch, index) => {
     const state = reelStates[pitch.id] || { isLiked: false, isSaved: false, isPlaying: false, isMuted: true };
     
     return (
       <div key={pitch.id} className="w-full h-screen flex-shrink-0 relative overflow-hidden">
-        {/* Video/Image Container */}
+        {/* Video Container */}
         <div className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden">
           <video
             ref={(el) => (videoRefs.current[pitch.id] = el)}
@@ -374,10 +353,9 @@ export default function ReelPitch() {
             }))}
           />
 
-
-          {/* Category Tag - Top Left */}
-          <div className="absolute top-11 sm:top-14 md:top-16 left-2 sm:left-3 md:left-4 z-10">
-            <div className={`px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-1 md:py-1.5 rounded-full text-[9px] sm:text-[10px] md:text-xs font-semibold ${
+          {/* Category Tag - Top Left - Mobile Optimized */}
+          <div className="absolute top-14 left-3 z-10 safe-area-top">
+            <div className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
               isDark 
                 ? 'bg-black/60 backdrop-blur-sm text-white border border-white/20' 
                 : 'bg-white/80 backdrop-blur-sm text-gray-900 border border-gray-200'
@@ -386,56 +364,42 @@ export default function ReelPitch() {
             </div>
           </div>
 
-
-          {/* Top Right Icons - Meet, AI, Volume */}
-          <div className="absolute top-11 sm:top-14 md:top-16 right-2 sm:right-3 md:right-4 z-10 flex items-center gap-2">
-            {/* Meet Button */}
+          {/* Top Right Icons - Meet, AI, Volume - Mobile Optimized */}
+          <div className="absolute top-14 right-3 z-10 flex items-center gap-2 safe-area-top">
+            {/* Meet Button - Touch Friendly */}
             <button
               onClick={handleMeetClick}
-              className={`p-1.5 sm:p-2 rounded-full transition-all active:scale-95 ${
+              className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
                 isDark 
                   ? 'bg-black/60 backdrop-blur-sm text-white hover:bg-black/80' 
                   : 'bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white'
               }`}
               title="Schedule Meeting"
             >
-              <FaVideo size={14} className="sm:hidden" />
-              <FaVideo size={16} className="hidden sm:block" />
+              <FaVideo size={18} />
             </button>
 
-            {/* AI Button */}
+            {/* AI Button - Touch Friendly */}
             <button
               onClick={() => handleAIClick(pitch)}
-              className="p-1.5 sm:p-2 rounded-full transition-all active:scale-95 bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg"
               title="AI Assistant"
             >
-              <FaRobot size={14} className="sm:hidden" />
-              <FaRobot size={16} className="hidden sm:block" />
+              <FaRobot size={18} />
             </button>
 
-            {/* Volume Button */}
+            {/* Volume Button - Touch Friendly */}
             <button
               onClick={() => toggleMute(pitch.id)}
-              className={`p-1.5 sm:p-2 rounded-full transition-all active:scale-95 ${
+              className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
                 isDark 
                   ? 'bg-black/60 backdrop-blur-sm text-white hover:bg-black/80' 
                   : 'bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white'
               }`}
             >
-              {state.isMuted ? (
-                <>
-                  <FaVolumeMute size={14} className="sm:hidden" />
-                  <FaVolumeMute size={16} className="hidden sm:block" />
-                </>
-              ) : (
-                <>
-                  <FaVolumeUp size={14} className="sm:hidden" />
-                  <FaVolumeUp size={16} className="hidden sm:block" />
-                </>
-              )}
+              {state.isMuted ? <FaVolumeMute size={18} /> : <FaVolumeUp size={18} />}
             </button>
           </div>
-
 
           {/* Play/Pause Overlay */}
           {!state.isPlaying && (
@@ -443,18 +407,17 @@ export default function ReelPitch() {
               className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer z-10"
               onClick={() => togglePlay(pitch.id)}
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-2xl">
-                <div className="w-0 h-0 border-l-[10px] sm:border-l-[12px] border-l-gray-900 border-t-[6px] sm:border-t-[8px] border-t-transparent border-b-[6px] sm:border-b-[8px] border-b-transparent ml-0.5 sm:ml-1"></div>
+              <div className="min-w-[72px] min-h-[72px] rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-2xl">
+                <div className="w-0 h-0 border-l-[14px] border-l-gray-900 border-t-[9px] border-t-transparent border-b-[9px] border-b-transparent ml-1"></div>
               </div>
             </div>
           )}
 
-
-          {/* Right Side - User Info & Interaction Buttons */}
-          <div className="absolute right-1 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 sm:gap-3 md:gap-6 max-h-[90vh] overflow-hidden">
-            {/* User Avatar */}
+          {/* Right Side - User Info & Interaction Buttons - Mobile Optimized */}
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-5 max-h-[70vh] overflow-y-auto scrollbar-hide safe-area-right">
+            {/* User Avatar - Touch Friendly */}
             <div className="relative">
-              <div className="w-9 h-9 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden ring-2 ring-purple-500">
+              <div className="min-w-[48px] min-h-[48px] w-12 h-12 rounded-full overflow-hidden ring-2 ring-purple-500">
                 <img
                   src={pitch.profilePhoto}
                   alt={pitch.name}
@@ -463,105 +426,78 @@ export default function ReelPitch() {
               </div>
             </div>
 
-
-            {/* Like Button */}
+            {/* Like Button - Touch Friendly (minimum 44px) */}
             <button
               onClick={() => handleLike(pitch.id)}
-              className="flex flex-col items-center gap-0.5 sm:gap-1 active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1 active:scale-95 transition-transform min-w-[44px] min-h-[44px] justify-center"
             >
               {state.isLiked ? (
-                <>
-                  <FaHeart size={20} className="sm:hidden text-red-500" />
-                  <FaHeart size={24} className="hidden sm:block md:hidden text-red-500" />
-                  <FaHeart size={28} className="hidden md:block text-red-500" />
-                </>
+                <FaHeart size={26} className="text-red-500" />
               ) : (
-                <>
-                  <FaRegHeart size={20} className="sm:hidden text-white drop-shadow-lg" />
-                  <FaRegHeart size={24} className="hidden sm:block md:hidden text-white drop-shadow-lg" />
-                  <FaRegHeart size={28} className="hidden md:block text-white drop-shadow-lg" />
-                </>
+                <FaRegHeart size={26} className="text-white drop-shadow-lg" />
               )}
-              <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-white drop-shadow-md">{pitch.likes.toLocaleString()}</span>
+              <span className="text-xs font-semibold text-white drop-shadow-md">{pitch.likes.toLocaleString()}</span>
             </button>
 
-
-            {/* Comment Button */}
+            {/* Comment Button - Touch Friendly */}
             <button
               onClick={() => handleComment(pitch.id)}
-              className="flex flex-col items-center gap-0.5 sm:gap-1 active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1 active:scale-95 transition-transform min-w-[44px] min-h-[44px] justify-center"
             >
-              <FaRegComment size={20} className="sm:hidden text-white drop-shadow-lg" />
-              <FaRegComment size={24} className="hidden sm:block md:hidden text-white drop-shadow-lg" />
-              <FaRegComment size={28} className="hidden md:block text-white drop-shadow-lg" />
-              <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-white drop-shadow-md">{pitch.comments}</span>
+              <FaRegComment size={26} className="text-white drop-shadow-lg" />
+              <span className="text-xs font-semibold text-white drop-shadow-md">{pitch.comments}</span>
             </button>
 
-
-            {/* Share Button */}
+            {/* Share Button - Touch Friendly */}
             <button
               onClick={() => handleShare(pitch.id)}
-              className="flex flex-col items-center gap-0.5 sm:gap-1 active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1 active:scale-95 transition-transform min-w-[44px] min-h-[44px] justify-center"
             >
-              <FaRegPaperPlane size={20} className="sm:hidden text-white drop-shadow-lg" />
-              <FaRegPaperPlane size={24} className="hidden sm:block md:hidden text-white drop-shadow-lg" />
-              <FaRegPaperPlane size={28} className="hidden md:block text-white drop-shadow-lg" />
-              <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-white drop-shadow-md">{pitch.shares}</span>
+              <FaRegPaperPlane size={26} className="text-white drop-shadow-lg" />
+              <span className="text-xs font-semibold text-white drop-shadow-md">{pitch.shares}</span>
             </button>
 
-
-            {/* Bookmark Button */}
+            {/* Bookmark Button - Touch Friendly */}
             <button
               onClick={() => handleSave(pitch.id)}
-              className="flex flex-col items-center gap-0.5 sm:gap-1 active:scale-95 transition-transform"
+              className="flex flex-col items-center gap-1 active:scale-95 transition-transform min-w-[44px] min-h-[44px] justify-center"
             >
               {state.isSaved ? (
-                <>
-                  <FaBookmark size={20} className="sm:hidden text-amber-400" />
-                  <FaBookmark size={24} className="hidden sm:block md:hidden text-amber-400" />
-                  <FaBookmark size={28} className="hidden md:block text-amber-400" />
-                </>
+                <FaBookmark size={26} className="text-amber-400" />
               ) : (
-                <>
-                  <FaRegBookmark size={20} className="sm:hidden text-white drop-shadow-lg" />
-                  <FaRegBookmark size={24} className="hidden sm:block md:hidden text-white drop-shadow-lg" />
-                  <FaRegBookmark size={28} className="hidden md:block text-white drop-shadow-lg" />
-              </>
+                <FaRegBookmark size={26} className="text-white drop-shadow-lg" />
               )}
             </button>
           </div>
 
-
-          {/* Bottom Section */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none max-w-full overflow-hidden">
+          {/* Bottom Section - Mobile Optimized */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none max-w-full overflow-hidden safe-area-bottom">
             {/* Gradient Overlay */}
-            <div className={`h-40 sm:h-52 md:h-64 bg-gradient-to-t pointer-events-none ${
-              isDark ? 'from-black via-black/85 to-transparent' : 'from-white via-white/85 to-transparent'
+            <div className={`h-56 bg-gradient-to-t pointer-events-none ${
+              isDark ? 'from-black via-black/90 to-transparent' : 'from-white via-white/90 to-transparent'
             }`}></div>
 
-
-            {/* Content */}
-            <div className={`absolute bottom-0 left-0 right-0 p-2.5 sm:p-3 md:p-5 pointer-events-auto max-w-full overflow-hidden ${isDark ? 'text-white' : 'text-black'}`}>
+            {/* Content - More Padding for Mobile */}
+            <div className={`absolute bottom-0 left-0 right-0 px-4 py-4 pointer-events-auto max-w-full overflow-hidden ${isDark ? 'text-white' : 'text-black'}`}>
               {/* User Info */}
-              <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 md:mb-2.5">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full overflow-hidden ring-2 ring-purple-500 flex-shrink-0">
+              <div className="flex items-center gap-2.5 mb-2.5">
+                <div className="min-w-[40px] min-h-[40px] w-10 h-10 rounded-full overflow-hidden ring-2 ring-purple-500 flex-shrink-0">
                   <img
                     src={pitch.profilePhoto}
                     alt={pitch.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="min-w-0 flex-1 pr-1 sm:pr-2 overflow-hidden">
-                  <h3 className="font-bold text-[10px] sm:text-xs md:text-base truncate">{pitch.name}</h3>
-                  <p className="text-[9px] sm:text-[10px] md:text-sm opacity-80 truncate">{pitch.hashtag}</p>
+                <div className="min-w-0 flex-1 pr-2 overflow-hidden">
+                  <h3 className="font-bold text-sm truncate">{pitch.name}</h3>
+                  <p className="text-xs opacity-80 truncate">{pitch.hashtag}</p>
                 </div>
               </div>
 
-
-              {/* Support Button */}
+              {/* Support Button - Touch Friendly (minimum 48px height) */}
               <button
                 onClick={() => handleSupport(pitch.id)}
-                className={`w-full py-2 sm:py-2 md:py-3 rounded-lg text-[10px] sm:text-xs md:text-base font-semibold mb-2 sm:mb-2.5 md:mb-4 transition-all active:scale-95 ${
+                className={`w-full min-h-[48px] py-3 rounded-xl text-sm font-semibold mb-3 transition-all active:scale-[0.98] ${
                   isDark 
                     ? 'bg-gray-800 text-white hover:bg-gray-700' 
                     : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
@@ -570,36 +506,33 @@ export default function ReelPitch() {
                 Support this startup
               </button>
 
-
-              {/* Financial Details */}
-              <div className="flex gap-1.5 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 md:mb-3">
-                <div className={`flex-1 px-2 sm:px-2.5 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-lg transition-all min-w-0 ${
+              {/* Financial Details - Better Mobile Layout */}
+              <div className="flex gap-2.5 mb-3">
+                <div className={`flex-1 px-3 py-3 rounded-xl transition-all min-w-0 ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black hover:shadow-[0_0_20px_rgba(176,255,250,0.5)]' 
                     : 'bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-[0_0_20px_rgba(0,184,169,0.4)]'
                 }`}>
-                  <p className="text-[8px] sm:text-[9px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Ask</p>
-                  <p className="font-bold text-[9px] sm:text-[10px] md:text-sm leading-tight break-words">{pitch.dealInfo.ask} for {pitch.dealInfo.equity}</p>
+                  <p className="text-[10px] opacity-90 mb-1">Ask</p>
+                  <p className="font-bold text-xs leading-tight break-words">{pitch.dealInfo.ask} for {pitch.dealInfo.equity}</p>
                 </div>
-                <div className={`flex-1 px-2 sm:px-2.5 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-lg transition-all min-w-0 ${
+                <div className={`flex-1 px-3 py-3 rounded-xl transition-all min-w-0 ${
                   isDark 
                     ? 'bg-gradient-to-r from-[#80E5FF] to-[#B0FFFA] text-black hover:shadow-[0_0_20px_rgba(128,229,255,0.5)]' 
                     : 'bg-gradient-to-r from-[#008C81] to-[#00B8A9] text-white hover:shadow-[0_0_20px_rgba(0,140,129,0.4)]'
                 }`}>
-                  <p className="text-[8px] sm:text-[9px] md:text-xs opacity-90 mb-0.5 sm:mb-1">Revenue</p>
-                  <p className="font-bold text-[9px] sm:text-[10px] md:text-sm leading-tight break-words">{pitch.dealInfo.revenue} Revenue</p>
+                  <p className="text-[10px] opacity-90 mb-1">Revenue</p>
+                  <p className="font-bold text-xs leading-tight break-words">{pitch.dealInfo.revenue} Revenue</p>
                 </div>
               </div>
 
-
               {/* Team Info */}
-              <p className={`text-[9px] sm:text-[10px] md:text-sm mb-1 sm:mb-1.5 md:mb-2 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+              <p className={`text-xs mb-2 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
                 Team of {pitch.teamSize}
               </p>
 
-
               {/* Description */}
-              <p className={`text-[9px] sm:text-[10px] md:text-sm line-clamp-2 ${isDark ? 'text-white/90' : 'text-gray-900'}`}>
+              <p className={`text-xs leading-relaxed line-clamp-2 ${isDark ? 'text-white/90' : 'text-gray-900'}`}>
                 {pitch.description}
               </p>
             </div>
@@ -609,40 +542,41 @@ export default function ReelPitch() {
     );
   };
 
-
   return (
     <>
       <div className={`fixed inset-0 z-50 ${isDark ? 'bg-black' : 'bg-gray-100'} overflow-hidden`}>
         {/* Container with max-width for larger screens */}
-        <div className="w-full h-full max-w-md mx-auto relative shadow-2xl overflow-hidden max-h-screen">
-          {/* Header - Fixed */}
-          <div className={`absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 ${
+        <div className="w-full h-full max-w-md mx-auto relative shadow-2xl overflow-hidden">
+          {/* Header - Fixed - Mobile Optimized */}
+          <div className={`absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 py-3 min-h-[56px] safe-area-top ${
             isDark ? 'bg-gradient-to-b from-black/80 to-transparent' : 'bg-gradient-to-b from-white/80 to-transparent'
           }`}>
             <button
               onClick={() => navigate(-1)}
-              className={`p-1.5 sm:p-2 rounded-full transition-all flex-shrink-0 ${
+              className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
                 isDark ? 'bg-black/50 text-white hover:bg-black/70' : 'bg-white/50 text-black hover:bg-white/70'
               }`}
             >
-              <FaArrowLeft size={16} className="sm:hidden" />
-              <FaArrowLeft size={18} className="hidden sm:block" />
+              <FaArrowLeft size={18} />
             </button>
-            <h1 className={`text-base sm:text-lg font-bold ${isDark ? 'text-white' : 'text-black'}`}>
+            <h1 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-black'}`}>
               Pitch Reels
             </h1>
-            <div className="w-8 sm:w-10"></div> {/* Spacer for centering */}
+            <div className="min-w-[44px]"></div>
           </div>
-
 
           {/* Scrollable Reels Container */}
           <div 
             ref={containerRef}
-            className="w-full h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide max-h-screen"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="w-full h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide touch-pan-y overscroll-y-none"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
           >
             {pitches.map((pitch, index) => (
-              <div key={pitch.id} className="snap-start">
+              <div key={pitch.id} className="snap-start snap-always">
                 {renderReel(pitch, index)}
               </div>
             ))}
@@ -650,30 +584,30 @@ export default function ReelPitch() {
         </div>
       </div>
 
-      {/* AI Chat Modal */}
+      {/* AI Chat Modal - Mobile Optimized */}
       {isAIOpen && currentPitchForAI && (
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
             onClick={() => setIsAIOpen(false)}
           />
 
-          {/* Chat Window */}
+          {/* Chat Window - Full Screen Mobile */}
           <div
-            className={`fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-[70] w-full sm:w-full sm:max-w-md h-[85vh] sm:h-[600px] rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col transition-all ${
-              isDark ? 'bg-[#0a0a0a] border-t sm:border border-white/10' : 'bg-white border-t sm:border border-gray-200'
+            className={`fixed inset-0 sm:bottom-6 sm:right-6 sm:inset-auto z-[70] w-full sm:w-96 h-full sm:h-[600px] sm:rounded-2xl shadow-2xl flex flex-col transition-all ${
+              isDark ? 'bg-[#0a0a0a] sm:border border-white/10' : 'bg-white sm:border border-gray-200'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
+            {/* Header - Touch Friendly */}
             <div
-              className={`flex items-center justify-between px-4 py-3 border-b ${
+              className={`flex items-center justify-between px-4 py-4 min-h-[64px] border-b safe-area-top ${
                 isDark ? 'border-white/10' : 'border-gray-200'
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden">
+                <div className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-full overflow-hidden flex-shrink-0">
                   <img
                     src={currentPitchForAI.profilePhoto}
                     alt={currentPitchForAI.name}
@@ -681,7 +615,7 @@ export default function ReelPitch() {
                   />
                 </div>
                 <div>
-                  <h3 className={`font-bold text-sm ${isDark ? 'text-white' : 'text-black'}`}>
+                  <h3 className={`font-bold text-base ${isDark ? 'text-white' : 'text-black'}`}>
                     AI - {currentPitchForAI.name}
                   </h3>
                   <p className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>
@@ -691,23 +625,23 @@ export default function ReelPitch() {
               </div>
               <button
                 onClick={() => setIsAIOpen(false)}
-                className={`p-2 rounded-full transition-all ${
+                className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
                   isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
                 }`}
               >
-                <FaTimes size={18} className={isDark ? 'text-white' : 'text-black'} />
+                <FaTimes size={20} className={isDark ? 'text-white' : 'text-black'} />
               </button>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-hide">
+            {/* Messages - Better Padding for Mobile */}
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-hide overscroll-contain">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                       message.type === 'user'
                         ? isDark
                           ? 'bg-[#00B8A9] text-white'
@@ -717,9 +651,9 @@ export default function ReelPitch() {
                         : 'bg-gray-100 text-black'
                     }`}
                   >
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    <p className="text-sm leading-relaxed break-words">{message.text}</p>
                     <p
-                      className={`text-[10px] mt-1 ${
+                      className={`text-[10px] mt-1.5 ${
                         message.type === 'user'
                           ? 'text-white/70'
                           : isDark
@@ -738,19 +672,19 @@ export default function ReelPitch() {
               {isLoading && (
                 <div className="flex justify-start">
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2.5 ${
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                       isDark ? 'bg-white/10' : 'bg-gray-100'
                     }`}
                   >
-                    <FaSpinner className="animate-spin text-[#00B8A9]" size={16} />
+                    <FaSpinner className="animate-spin text-[#00B8A9]" size={18} />
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Input */}
+            {/* Input - Touch Friendly */}
             <div
-              className={`px-4 py-3 border-t ${
+              className={`px-4 py-4 border-t safe-area-bottom ${
                 isDark ? 'border-white/10' : 'border-gray-200'
               }`}
             >
@@ -761,7 +695,7 @@ export default function ReelPitch() {
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask about this startup..."
-                  className={`flex-1 px-4 py-2.5 rounded-xl text-sm outline-none transition-all ${
+                  className={`flex-1 px-4 py-3 min-h-[48px] rounded-xl text-sm outline-none transition-all ${
                     isDark
                       ? 'bg-white/5 text-white placeholder-white/50 border border-white/10 focus:border-[#00B8A9]'
                       : 'bg-gray-50 text-black placeholder-gray-400 border border-gray-200 focus:border-[#00B8A9]'
@@ -770,7 +704,7 @@ export default function ReelPitch() {
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputMessage.trim() || isLoading}
-                  className={`p-2.5 rounded-xl transition-all ${
+                  className={`min-w-[48px] min-h-[48px] flex items-center justify-center rounded-xl transition-all active:scale-95 ${
                     inputMessage.trim() && !isLoading
                       ? isDark
                         ? 'bg-[#00B8A9] text-white hover:bg-[#00A89A]'
@@ -780,16 +714,38 @@ export default function ReelPitch() {
                       : 'bg-gray-100 text-gray-300 cursor-not-allowed'
                   }`}
                 >
-                  <FaPaperPlane size={16} />
+                  <FaPaperPlane size={18} />
                 </button>
               </div>
-              <p className={`text-xs mt-2 text-center ${isDark ? 'text-white/50' : 'text-gray-400'}`}>
+              <p className={`text-xs mt-2.5 text-center ${isDark ? 'text-white/50' : 'text-gray-400'}`}>
                 AI-powered pitch insights
               </p>
             </div>
           </div>
         </>
       )}
+
+      {/* Add CSS for safe areas and scrollbar hiding */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        @supports (padding: max(0px)) {
+          .safe-area-top {
+            padding-top: max(env(safe-area-inset-top), 12px);
+          }
+          .safe-area-bottom {
+            padding-bottom: max(env(safe-area-inset-bottom), 16px);
+          }
+          .safe-area-right {
+            padding-right: max(env(safe-area-inset-right), 12px);
+          }
+        }
+      `}</style>
     </>
   );
 }
