@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
 import { 
@@ -9,7 +9,6 @@ import {
   IoArrowForward,
   IoCheckmarkCircle
 } from "react-icons/io5";
-
 
 import logo from "../../assets/logo.avif";
 
@@ -24,32 +23,54 @@ export default function ChoiceRole() {
     {
       id: 'startup',
       name: 'Startup',
-      icon: IoRocketSharp, // Modern rocket icon
+      icon: IoRocketSharp,
       description: 'Launch your innovative ideas and connect with investors',
       features: ['Pitch your startup', 'Connect with investors', 'Raise funding']
     },
     {
       id: 'investor',
       name: 'Investor',
-      icon: IoTrendingUp, // Trending up chart icon
+      icon: IoTrendingUp,
       description: 'Discover and invest in promising startups',
       features: ['Discover startups', 'Make investments', 'Track portfolio']
     },
     {
       id: 'incubator',
       name: 'Incubator',
-      icon: IoBusinessSharp, // Business building icon
+      icon: IoBusinessSharp,
       description: 'Nurture and support startups in your program',
       features: ['Manage programs', 'Support startups', 'Build network']
     },
     {
       id: 'viewer',
       name: 'Viewer',
-      icon: IoGlasses, // Glasses/explore icon
+      icon: IoGlasses,
       description: 'Explore and discover opportunities',
       features: ['Explore startups', 'Learn from pitches', 'Stay updated']
     }
   ];
+
+  // Load saved role from localStorage on component mount
+  useEffect(() => {
+    const savedRole = localStorage.getItem('userRole');
+    if (savedRole) {
+      setSelectedRole(savedRole);
+    }
+  }, []);
+
+  // Handle role selection and save to localStorage
+  const handleRoleSelect = (roleId) => {
+    setSelectedRole(roleId);
+    localStorage.setItem('userRole', roleId);
+    
+    // Also store role name and timestamp for better tracking
+    const selectedRoleData = roles.find(role => role.id === roleId);
+    localStorage.setItem('userRoleData', JSON.stringify({
+      id: roleId,
+      name: selectedRoleData.name,
+      selectedAt: new Date().toISOString()
+    }));
+  };
 
   const handleContinue = () => {
     if (!selectedRole) return;
@@ -103,7 +124,7 @@ export default function ChoiceRole() {
             return (
               <button
                 key={role.id}
-                onClick={() => setSelectedRole(role.id)}
+                onClick={() => handleRoleSelect(role.id)}
                 onMouseEnter={() => setHoveredRole(role.id)}
                 onMouseLeave={() => setHoveredRole(null)}
                 className={`relative p-4 sm:p-5 md:p-7 transition-all duration-300 border-2 rounded-2xl sm:rounded-3xl cursor-pointer ${

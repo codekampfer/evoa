@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
 import { HiRocketLaunch, HiCurrencyDollar, HiAcademicCap, HiUsers } from 'react-icons/hi2';
 
-
 export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTitle }) {
+  
+  // Function to save role to localStorage
+  const handleRoleClick = (roleId, roleName) => {
+    localStorage.setItem('userRole', roleId);
+    localStorage.setItem('userRoleData', JSON.stringify({
+      id: roleId,
+      name: roleName,
+      selectedAt: new Date().toISOString()
+    }));
+  };
+
   return (
     <section 
       ref={setRef('userRoles')}
@@ -27,7 +37,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
           Click on your category to register and join the ecosystem
         </p>
       </div>
-
 
       <div className="relative max-w-7xl mx-auto px-3 sm:px-4">
         <div className="hidden md:block">
@@ -68,8 +77,7 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
               </div>
             </div>
 
-
-            {/* SVG Circle - UPDATED */}
+            {/* SVG Circle */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <svg 
                 width="100%" 
@@ -93,7 +101,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                     </feMerge>
                   </filter>
                   
-                  {/* Gradient for dotted line */}
                   <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor={isDark ? '#B0FFFA' : '#00B8A9'} stopOpacity="0.4" />
                     <stop offset="50%" stopColor={isDark ? '#80E5FF' : '#00E5D0'} stopOpacity="0.25" />
@@ -101,7 +108,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                   </linearGradient>
                 </defs>
                 
-                {/* Main dotted circle - refined */}
                 <circle
                   cx="375"
                   cy="375"
@@ -115,7 +121,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                   opacity="0.9"
                 />
                 
-                {/* Animated dots on circle */}
                 <circle
                   r="5"
                   fill={isDark ? '#B0FFFA' : '#00B8A9'}
@@ -159,57 +164,61 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
               </svg>
             </div>
 
-
-            {/* Role Cards - UPDATED POSITIONS */}
+            {/* Role Cards - Desktop */}
             {[
-  { 
-    icon: HiRocketLaunch, 
-    title: 'For Startups', 
-    desc: 'Pitch your vision &<br/>get funded', 
-    link: '/register/startup', 
-    cta: 'Create Account', 
-    position: { top: '12%', left: '50%', transform: 'translate(-50%, -50%)' }, 
-    delay: '100ms' 
-  },
-  { 
-    icon: HiCurrencyDollar, 
-    title: 'For Investors', 
-    desc: 'Discover & fund<br/>unicorns', 
-    link: '/register/investor', 
-    cta: 'Join EVO-A', 
-    position: { top: '50%', left: '88%', transform: 'translate(-50%, -50%)' }, 
-    delay: '250ms' 
-  },
-  { 
-    icon: HiAcademicCap, 
-    title: 'For Incubators', 
-    desc: 'Nurture & scale<br/>startups', 
-    link: '/register/incubator', 
-    cta: 'Get Started', 
-    position: { top: '88%', left: '50%', transform: 'translate(-50%, -50%)' }, 
-    delay: '400ms' 
-  },
-  { 
-    icon: HiUsers, 
-    title: 'For Viewers', 
-    desc: 'Explore & learn<br/>daily', 
-    link: '/register/viewer', 
-    cta: 'Start Exploring', 
-    position: { top: '50%', left: '12%', transform: 'translate(-50%, -50%)' }, 
-    delay: '550ms' 
-  }
-].map((role, index) => (
-  <Link 
-    key={index}
-    to={role.link}
-    className={`absolute transition-all duration-700 group/card ${
-      isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-    }`}
-    style={{ 
-      ...role.position,
-      transitionDelay: role.delay
-    }}
-  >
+              { 
+                icon: HiRocketLaunch, 
+                title: 'For Startups', 
+                desc: 'Pitch your vision &<br/>get funded', 
+                link: '/register/startup', 
+                roleId: 'startup',
+                cta: 'Create Account', 
+                position: { top: '12%', left: '50%', transform: 'translate(-50%, -50%)' }, 
+                delay: '100ms' 
+              },
+              { 
+                icon: HiCurrencyDollar, 
+                title: 'For Investors', 
+                desc: 'Discover & fund<br/>unicorns', 
+                link: '/register/investor', 
+                roleId: 'investor',
+                cta: 'Join EVO-A', 
+                position: { top: '50%', left: '88%', transform: 'translate(-50%, -50%)' }, 
+                delay: '250ms' 
+              },
+              { 
+                icon: HiAcademicCap, 
+                title: 'For Incubators', 
+                desc: 'Nurture & scale<br/>startups', 
+                link: '/register/incubator', 
+                roleId: 'incubator',
+                cta: 'Get Started', 
+                position: { top: '88%', left: '50%', transform: 'translate(-50%, -50%)' }, 
+                delay: '400ms' 
+              },
+              { 
+                icon: HiUsers, 
+                title: 'For Viewers', 
+                desc: 'Explore & learn<br/>daily', 
+                link: '/register/viewer', 
+                roleId: 'viewer',
+                cta: 'Start Exploring', 
+                position: { top: '50%', left: '12%', transform: 'translate(-50%, -50%)' }, 
+                delay: '550ms' 
+              }
+            ].map((role, index) => (
+              <Link 
+                key={index}
+                to={role.link}
+                onClick={() => handleRoleClick(role.roleId, role.title)}
+                className={`absolute transition-all duration-700 group/card ${
+                  isVisible['userRoles'] ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+                }`}
+                style={{ 
+                  ...role.position,
+                  transitionDelay: role.delay
+                }}
+              >
                 <div className={`relative rounded-full 
                   w-36 h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52
                   flex flex-col items-center justify-center
@@ -224,7 +233,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                   <div className={`absolute inset-0 rounded-full blur-2xl opacity-0 group-hover/card:opacity-60 transition-opacity duration-500 ${
                     isDark ? 'bg-[#B0FFFA]/40' : 'bg-[#00B8A9]/30'
                   }`}></div>
-
 
                   <div className="relative z-10 text-center flex flex-col items-center justify-center gap-2 lg:gap-3 h-full w-full">
                     <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18 flex items-center justify-center rounded-full 
@@ -252,7 +260,6 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                       }`} dangerouslySetInnerHTML={{ __html: role.desc }} />
                     </div>
 
-
                     <div className={`transition-all duration-500 transform
                       opacity-0 scale-75 max-h-0 overflow-hidden
                       group-hover/card:opacity-100 group-hover/card:scale-100 group-hover/card:max-h-20`}>
@@ -271,14 +278,13 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
           </div>
         </div>
 
-
         {/* Mobile Layout */}
         <div className="md:hidden space-y-4 sm:space-y-6">
           {[
-            { icon: HiRocketLaunch, title: 'For Startups', desc: 'Pitch your vision & get funded', link: '/register/startup', cta: 'Create Account' },
-            { icon: HiCurrencyDollar, title: 'For Investors', desc: 'Discover & fund unicorns', link: '/register/investor', cta: 'Join EVO-A' },
-            { icon: HiAcademicCap, title: 'For Incubators', desc: 'Nurture & scale startups', link: '/register/incubator', cta: 'Get Started' },
-            { icon: HiUsers, title: 'For Viewers', desc: 'Explore & learn daily', link: '/register/viewer', cta: 'Start Exploring' }
+            { icon: HiRocketLaunch, title: 'For Startups', desc: 'Pitch your vision & get funded', link: '/register/startup', roleId: 'startup', cta: 'Create Account' },
+            { icon: HiCurrencyDollar, title: 'For Investors', desc: 'Discover & fund unicorns', link: '/register/investor', roleId: 'investor', cta: 'Join EVO-A' },
+            { icon: HiAcademicCap, title: 'For Incubators', desc: 'Nurture & scale startups', link: '/register/incubator', roleId: 'incubator', cta: 'Get Started' },
+            { icon: HiUsers, title: 'For Viewers', desc: 'Explore & learn daily', link: '/register/viewer', roleId: 'viewer', cta: 'Start Exploring' }
           ].map((role, index) => (
             <div
               key={index}
@@ -311,6 +317,7 @@ export default function WhoIsEvoaSection({ isVisible, isDark, setRef, SectionTit
                 </div>
                 <Link 
                   to={role.link}
+                  onClick={() => handleRoleClick(role.roleId, role.title)}
                   className={`mt-3 sm:mt-4 block w-full text-center px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg ${
                     isDark 
                       ? 'bg-gradient-to-r from-[#B0FFFA] to-[#80E5FF] text-black' 

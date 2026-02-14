@@ -28,12 +28,25 @@ export default function ReelPitch() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reelStates, setReelStates] = useState({});
   
+  // User Role State
+  const [userRole, setUserRole] = useState(null);
+  
   // AI Chat State
   const [isAIOpen, setIsAIOpen] = useState(false);
   const [currentPitchForAI, setCurrentPitchForAI] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Load user role from localStorage
+  useEffect(() => {
+    const savedRole = localStorage.getItem('userRole');
+    setUserRole(savedRole);
+  }, []);
+
+  // Check if user can see AI and Meet buttons
+  // Only Investors and Incubators can see these buttons
+  const canSeeInvestorFeatures = userRole === 'investor' || userRole === 'incubator';
 
   // Multiple pitch reels data
   const pitches = [
@@ -366,29 +379,33 @@ export default function ReelPitch() {
 
           {/* Top Right Icons - Meet, AI, Volume - Mobile Optimized */}
           <div className="absolute top-14 right-3 z-10 flex items-center gap-2 safe-area-top">
-            {/* Meet Button - Touch Friendly */}
-            <button
-              onClick={handleMeetClick}
-              className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
-                isDark 
-                  ? 'bg-black/60 backdrop-blur-sm text-white hover:bg-black/80' 
-                  : 'bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white'
-              }`}
-              title="Schedule Meeting"
-            >
-              <FaVideo size={18} />
-            </button>
+            {/* Meet Button - Only for Investors and Incubators */}
+            {canSeeInvestorFeatures && (
+              <button
+                onClick={handleMeetClick}
+                className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
+                  isDark 
+                    ? 'bg-black/60 backdrop-blur-sm text-white hover:bg-black/80' 
+                    : 'bg-white/80 backdrop-blur-sm text-gray-900 hover:bg-white'
+                }`}
+                title="Schedule Meeting"
+              >
+                <FaVideo size={18} />
+              </button>
+            )}
 
-            {/* AI Button - Touch Friendly */}
-            <button
-              onClick={() => handleAIClick(pitch)}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg"
-              title="AI Assistant"
-            >
-              <FaRobot size={18} />
-            </button>
+            {/* AI Button - Only for Investors and Incubators */}
+            {canSeeInvestorFeatures && (
+              <button
+                onClick={() => handleAIClick(pitch)}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 bg-gradient-to-r from-[#00B8A9] to-[#008C81] text-white hover:shadow-lg"
+                title="AI Assistant"
+              >
+                <FaRobot size={18} />
+              </button>
+            )}
 
-            {/* Volume Button - Touch Friendly */}
+            {/* Volume Button - Available for all users */}
             <button
               onClick={() => toggleMute(pitch.id)}
               className={`min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all active:scale-95 ${
@@ -584,8 +601,8 @@ export default function ReelPitch() {
         </div>
       </div>
 
-      {/* AI Chat Modal - Mobile Optimized */}
-      {isAIOpen && currentPitchForAI && (
+      {/* AI Chat Modal - Mobile Optimized - Only shown if user has investor features */}
+      {isAIOpen && currentPitchForAI && canSeeInvestorFeatures && (
         <>
           {/* Backdrop */}
           <div
