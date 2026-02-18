@@ -72,7 +72,7 @@ export default function ViewerRegistration() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <div className={`min-h-screen transition-colors rounded-xl duration-300 overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="h-screen flex flex-col max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         <div className="mb-4 sm:mb-6 shrink-0">
           <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
@@ -87,7 +87,7 @@ export default function ViewerRegistration() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className={` p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <form onSubmit={handleSubmit} className={` p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4 flex-1 overflow-y-auto rounded-xl mb-4 sm:mb-6 custom-scrollbar ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           <h2 className={`text-lg sm:text-xl font-semibold mb-3 sm:mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
             1. Basic Identity
           </h2>

@@ -447,7 +447,7 @@ export default function InvestorRegistration() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <div className={`min-h-screen transition-colors rounded-xl duration-300 overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="h-screen flex flex-col max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         <div className="mb-4 sm:mb-6 shrink-0">
           <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
@@ -462,18 +462,18 @@ export default function InvestorRegistration() {
           </p>
         </div>
 
-        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
+        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 rounded-xl -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
           <div
             className="h-full -full transition-all duration-300 bg-[#00B8A9]"
             style={{ width: `${(currentStep / 8) * 100}%` }}
           />
         </div>
 
-        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto rounded-xl custom-scrollbar ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           {renderStep()}
         </div>
 
-        <div className="flex justify-between gap-2 sm:gap-4 shrink-0">
+        <div className="flex justify-between gap-2 sm:gap-4 shrink-0 rounded-xl">
           <button
             type="button"
             onClick={prevStep}

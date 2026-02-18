@@ -467,23 +467,23 @@ export default function IncubatorRegistration() {
           </p>
         </div>
 
-        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
+        <div className={`mb-4 sm:mb-6 h-1.5 sm:h-2 rounded-xl -full shrink-0 ${isDark ? 'bg-white/10' : 'bg-black/10'}`}>
           <div
-            className="h-full -full transition-all duration-300 bg-[#00B8A9]"
+            className="h-full -full rounded-xl transition-all duration-300 bg-[#00B8A9]"
             style={{ width: `${(currentStep / 8) * 100}%` }}
           />
         </div>
 
-        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
+        <div className={`-xl sm:-2xl p-4 sm:p-6 mb-4 sm:mb-6 flex-1 overflow-y-auto rounded-xl custom-scrollbar ${isDark ? 'bg-black/50 border border-white/10' : 'bg-white border border-black/10'}`}>
           {renderStep()}
         </div>
 
-        <div className="flex justify-between gap-2 sm:gap-4 shrink-0">
+        <div className="flex justify-between gap-2 sm:gap-4 shrink-0 rounded-xl">
           <button
             type="button"
             onClick={prevStep}
             disabled={currentStep === 1}
-            className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 sm:px-6 py-2 sm:py-2.5  text-xs sm:text-sm font-semibold transition-all rounded-xl ${
               currentStep === 1
                 ? 'opacity-50 cursor-not-allowed'
                 : isDark
@@ -505,7 +505,7 @@ export default function IncubatorRegistration() {
             <button
               type="button"
               onClick={handleSubmit}
-              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs   sm:text-sm font-semibold rounded-xl transition-all bg-[#00B8A9] text-white hover:bg-[#00A89A] shadow-lg shadow-[#00B8A9]/30 transform hover:scale-[1.02] hover:shadow-xl hover:shadow-[#00B8A9]/40 active:scale-[0.98] cursor-pointer"
             >
               Submit
             </button>

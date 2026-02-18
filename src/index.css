@@ -295,3 +295,32 @@ option:focus {
   background-color: #00B8A9 !important;
   color: white !important;
 }
+/* Modern clean scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #00B8A9 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #00B8A9;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #009688;
+}
+
+/* Optional ultra-premium look */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
